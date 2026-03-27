@@ -32,7 +32,7 @@
         .nav-links a:hover { color: var(--accent-color); }
 
         .language-switcher { display: flex; gap: 5px; background: rgba(212, 175, 55, 0.1); padding: 5px; border-radius: 20px; }
-        .lang-btn { background: transparent; border: none; color: #fff; padding: 3px 10px; cursor: pointer; border-radius: 15px; font-size: 0.75rem; }
+        .lang-btn { background: transparent; border: none; color: #fff; padding: 3px 10px; cursor: pointer; border-radius: 15px; font-size: 0.75rem; font-weight: 600; }
         .lang-btn.active { background: var(--accent-color); color: #000; }
 
         .hero {
@@ -50,42 +50,44 @@
         .hour { width: 4px; height: 30px; } .min { width: 3px; height: 45px; } .sec { width: 1px; height: 50px; background: #ff4d4d; }
 
         .date-panel { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px; border: 1px solid var(--accent-glow); width: 100%; }
-
-        .manifesto { font-style: italic; margin-top: 30px; padding: 20px; max-width: 800px; border-top: 1px solid var(--accent-color); border-bottom: 1px solid var(--accent-color); background: rgba(0,0,0,0.4); }
+        .manifesto { font-style: italic; margin-top: 30px; padding: 25px; max-width: 800px; border-top: 1px solid var(--accent-color); border-bottom: 1px solid var(--accent-color); background: rgba(0,0,0,0.5); border-radius: 8px; }
 
         section { padding: 80px 8%; border-bottom: 1px solid #2a2a2a; }
-        
-        /* Стили для сетки ссылок */
+        .bio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 40px; }
+        .bio-img { width: 100%; max-height: 600px; object-fit: cover; border: 1px solid var(--accent-color); border-radius: 8px; }
+        .bio-text { font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.8; text-align: justify; }
+        .bio-text p { margin-bottom: 1.5rem; }
+        .highlight { color: var(--accent-color); font-weight: 500; }
+
         .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .resource-card { background: var(--card-bg); padding: 25px; border-radius: 8px; border: 1px solid transparent; transition: 0.3s; }
         .resource-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
         .resource-card h3 { margin-bottom: 20px; font-size: 1.1rem; border-bottom: 1px solid var(--accent-glow); padding-bottom: 10px; }
         
-        .link-list { list-style: none; text-align: left; }
+        .link-list { list-style: none; }
         .link-list li { margin-bottom: 12px; }
         .link-list a { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #ccc; }
         .link-list a:hover { color: var(--accent-color); padding-left: 5px; }
 
-        .btn { display: inline-block; padding: 10px 20px; border: 1px solid var(--accent-color); color: var(--accent-color); border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; margin: 5px; }
+        .btn { display: inline-block; padding: 10px 24px; border: 1px solid var(--accent-color); color: var(--accent-color); border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; margin: 5px; font-weight: 600; }
         .btn:hover { background: var(--accent-color); color: #000; }
 
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; opacity: 0.6; }
-
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        footer { padding: 60px; text-align: center; font-size: 0.8rem; opacity: 0.6; font-family: 'Montserrat', sans-serif; }
+        @media (max-width: 768px) { .nav-links { display: none; } .bio-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="nav-links">
-            <a href="#about">Биография</a>
-            <a href="#library">Ресурсы</a>
-            <a href="#contact">Связь</a>
+            <a href="#about" data-translate="nav_bio">Биография</a>
+            <a href="#library" data-translate="nav_resources">Ресурсы</a>
+            <a href="#contact" data-translate="nav_contact">Связь</a>
         </div>
         <div class="language-switcher">
-            <button class="lang-btn active" onclick="setLanguage('ru')">RU</button>
-            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" onclick="setLanguage('ka')">KA</button>
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
         </div>
     </header>
 
@@ -99,43 +101,52 @@
                 </div>
                 <div class="date-panel">
                     <p id="date-ru" style="color:var(--accent-color); font-weight:bold;"></p>
-                    <p id="date-en" style="font-size: 0.8rem; margin: 5px 0;"></p>
-                    <p id="date-ka" style="font-size: 0.9rem;"></p>
+                    <p id="date-en" style="font-size: 0.75rem; margin: 5px 0; display:none;"></p>
+                    <p id="date-ka" style="font-size: 0.9rem; display:none;"></p>
                 </div>
             </div>
-            <h1>Эрих Эрлэнбах</h1>
-            <div class="manifesto">
-                «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии...»
+            <h1 data-translate="hero_title">Эрих Эрлэнбах</h1>
+            <div class="manifesto" data-translate="hero_quote">
+                «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»
             </div>
         </section>
 
-        <section id="library">
-            <h2>Библиотека и ресурсы</h2>
+        <section id="about">
+            <h2 data-translate="about_title">Биография</h2>
+            <div class="bio-grid">
+                <div>
+                    <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах" onerror="this.src='https://placehold.co/600x800/1e1e1e/d4af37?text=Erich+Erlenbach'">
+                </div>
+                <div class="bio-text" id="bioContent">
+                    </div>
+            </div>
+        </section>
+
+        <section id="library" style="background: var(--secondary-bg);">
+            <h2 data-translate="library_title">Библиотека и ресурсы</h2>
             <div class="resource-grid">
                 <div class="resource-card">
-                    <h3>🎵 Музыкальные каналы</h3>
+                    <h3 data-translate="cat_music">🎵 Музыка</h3>
                     <ul class="link-list">
                         <li><a href="https://music.yandex.ru/artist/25156828" target="_blank">Yandex Music</a></li>
                         <li><a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" target="_blank">Apple Music</a></li>
                         <li><a href="https://music.amazon.de/artists/B0GBVXPCMR/erich-erlenbach" target="_blank">Amazon Music</a></li>
-                        <li><a href="https://open.spotify.com/artist/0AWaEQAAQBAJ" target="_blank">Spotify</a></li>
+                        <li><a href="https://open.spotify.com/artist/ericherlenbach" target="_blank">Spotify</a></li>
                         <li><a href="https://vk.com/artist/8133192430738481080" target="_blank">VK Музыка</a></li>
-                        <li><a href="https://youtube.com/@ericherlenbach" target="_blank">YouTube канал</a></li>
+                        <li><a href="https://youtube.com/@ericherlenbach" target="_blank">YouTube</a></li>
                     </ul>
                 </div>
-
                 <div class="resource-card">
-                    <h3>✍️ Поэзия и Проза</h3>
+                    <h3 data-translate="cat_lit">✍️ Литература</h3>
                     <ul class="link-list">
-                        <li><a href="https://www.litres.ru/author/erich-erlenbach/" target="_blank">LitRes (Книги)</a></li>
-                        <li><a href="https://proza.ru/avtor/sheridan1" target="_blank">Proza.ru</a></li>
-                        <li><a href="https://stihi.ru/avtor/sheridan2" target="_blank">Stihi.ru</a></li>
+                        <li><a href="https://www.litres.ru/author/erich-erlenbach/" target="_blank">LitRes (Литрес)</a></li>
+                        <li><a href="https://proza.ru/avtor/sheridan1" target="_blank">Proza.ru (Проза)</a></li>
+                        <li><a href="https://stihi.ru/avtor/sheridan2" target="_blank">Stihi.ru (Стихи)</a></li>
                         <li><a href="https://www.amazon.com/author/ericherlenbach" target="_blank">Amazon Books</a></li>
                     </ul>
                 </div>
-
                 <div class="resource-card">
-                    <h3>📱 Видео и Соцсети</h3>
+                    <h3 data-translate="cat_social">📱 Соцсети и Видео</h3>
                     <ul class="link-list">
                         <li><a href="https://rutube.ru/u/2e/" target="_blank">RuTube</a></li>
                         <li><a href="https://www.tiktok.com/@erich_erlenbach.2e" target="_blank">TikTok</a></li>
@@ -146,9 +157,9 @@
         </section>
 
         <section id="contact" style="text-align: center;">
-            <h2>Связь</h2>
-            <p style="margin: 20px 0;">Email: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color);">d.a.tretiakof@gmail.com</a></p>
-            <a href="https://t.me/ErichErlenbach" class="btn">Написать в Telegram</a>
+            <h2 data-translate="contact_title">Связь</h2>
+            <p style="margin: 20px 0;">Email: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color); border-bottom: 1px dashed;">d.a.tretiakof@gmail.com</a></p>
+            <a href="https://t.me/ErichErlenbach" class="btn" data-translate="btn_tg">Написать в Telegram</a>
         </section>
     </main>
 
@@ -157,6 +168,41 @@
     </footer>
 
     <script>
+        const bios = {
+            ru: `<p><span class="highlight">Эрих Эрлэнбах</span> родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная объединяет семь наций и три религии — от немцев Поволжья и Вюртемберга до древних родов Кавказа.</p>
+                 <p>Детство прошло в знаменитых тбилисских «итальянских двориках», где в мире сосуществовали десятки культур. Этот опыт стал фундаментом его философии единства человечества.</p>
+                 <p>С 17 лет — на военной службе. Окончил артиллерийское училище, более 40 лет посвятил служению Родине (полковник в отставке). Параллельно развивался в искусстве: музыкальная и шахматная школы, хореография, конный спорт и борьба сётокан.</p>
+                 <p>Сегодня Эрих — поэт и композитор, член Российского Союза писателей, автор более 15 книг и множества симфонических произведений.</p>`,
+            en: `<p><span class="highlight">Erich Erlenbach</span> was born in 1962 in Tbilisi into a family of opera singers. His heritage spans seven nations and three religions, from Volga Germans to the ancient lineages of the Caucasus.</p>
+                 <p>Raised in the famous "Italian courtyards" of Tbilisi, he witnessed the peaceful coexistence of dozens of cultures, which formed the basis of his philosophy of human unity.</p>
+                 <p>At 17, he entered military service, graduating from artillery school and serving for over 40 years (Retired Colonel). Alongside his career, he pursued arts, chess, equestrian sports, and Shotokan karate.</p>
+                 <p>Today, Erich is a poet and composer, a member of the Russian Union of Writers, and the author of over 15 books and numerous symphonic works.</p>`,
+            ka: `<p><span class="highlight">ერიხ ერლენბახი</span> დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა აერთიანებს შვიდ ერსა და სამ რელიგიას.</p>
+                 <p>ბავშვობა თბილისურ „იტალიურ ეზოებში“ გაატარა, სადაც ათობით კულტურა მშვიდობიანად თანაარსებობდა. ეს გამოცდილება მისი ფილოსოფიის საფუძველი გახდა.</p>
+                 <p>17 წლიდან სამხედრო სამსახურშია. დაამთავრა საარტილერიო სასწავლებელი, 40 წელზე მეტი მიუძღვნა სამშობლოს სამსახურს (პოლკოვნიკი თადარიგში).</p>
+                 <p>დღეს ერიხი არის პოეტი და კომპოზიტორი, რუსეთის მწერალთა კავშირის წევრი, 15-ზე მეტი წიგნის და მრავალი სიმფონიური ნაწარმოების ავტორი.</p>`
+        };
+
+        const translations = {
+            ru: { nav_bio: "Биография", nav_resources: "Ресурсы", nav_contact: "Связь", hero_title: "Эрих Эрлэнбах", hero_quote: "«Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии...»", about_title: "Биография", library_title: "Ресурсы", cat_music: "🎵 Музыка", cat_lit: "✍️ Литература", cat_social: "📱 Соцсети", contact_title: "Связь", btn_tg: "Написать в Telegram" },
+            en: { nav_bio: "Biography", nav_resources: "Resources", nav_contact: "Contact", hero_title: "Erich Erlenbach", hero_quote: "«Everything that takes form in sound, in rhyme or in prose is but an earthly echo of Heavenly harmony...»", about_title: "Biography", library_title: "Resources", cat_music: "🎵 Music", cat_lit: "✍️ Literature", cat_social: "📱 Social Media", contact_title: "Contact", btn_tg: "Message via Telegram" },
+            ka: { nav_bio: "ბიოგრაფია", nav_resources: "რესურსები", nav_contact: "კონტაქტი", hero_title: "ერიხ ერლენბახი", hero_quote: "«ყველაფერი, რაც ფორმას იძენს ხმაში, რითმაში თუ პროზაში, მხოლოდ ამქვეყნიური ექოა ზეციური ჰარმონიისა...»", about_title: "ბიოგრაფია", library_title: "რესურსები", cat_music: "🎵 მუსიკა", cat_lit: "✍️ ლიტერატურა", cat_social: "📱 სოც. ქსელები", contact_title: "კონტაქტი", btn_tg: "Telegram-ით დაკავშირება" }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+            document.getElementById('bioContent').innerHTML = bios[lang];
+            
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                el.innerText = translations[lang][key];
+            });
+
+            document.getElementById('date-ru').style.display = lang === 'ru' ? 'block' : 'none';
+            document.getElementById('date-en').style.display = lang === 'en' ? 'block' : 'none';
+            document.getElementById('date-ka').style.display = lang === 'ka' ? 'block' : 'none';
+        }
+
         function updateClock() {
             const now = new Date();
             document.getElementById('sec').style.transform = `translateX(-50%) rotate(${(now.getSeconds()/60)*360}deg)`;
@@ -167,13 +213,12 @@
             document.getElementById('date-en').innerText = now.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
             document.getElementById('date-ka').innerText = now.toLocaleDateString('ka-GE', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
         }
-        setInterval(updateClock, 1000); updateClock();
 
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            // Здесь можно добавить смену текстов через JS объект, если нужно полное погружение
-        }
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+        
+        setInterval(updateClock, 1000);
+        updateClock();
+        setLanguage('ru');
     </script>
 </body>
 </html>
