@@ -42,6 +42,7 @@
         .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 10px; color: var(--accent-color); }
         .hero .subtitle { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 30px; text-transform: uppercase; color: #aaa; }
         
+        /* Блок Манифеста */
         .hero .manifesto {
             font-style: italic; font-size: clamp(1.1rem, 3.5vw, 1.4rem);
             color: var(--text-color); max-width: 850px; line-height: 1.8;
@@ -69,9 +70,6 @@
         }
         .btn:hover { background: var(--accent-color); color: var(--bg-color); }
 
-        .link-group { margin-top: 10px; }
-        .link-group-title { font-size: 0.75rem; color: #888; text-transform: uppercase; margin-bottom: 5px; margin-top: 15px; border-bottom: 1px solid #444; }
-
         footer { padding: 60px 20px; text-align: center; background: var(--secondary-bg); border-top: 1px solid rgba(212, 175, 55, 0.2); }
 
         @media (max-width: 768px) {
@@ -98,6 +96,7 @@
         <section class="hero">
             <h1>Эрих Эрленбах</h1>
             <p class="subtitle">Синтез слова, мысли и звука</p>
+            
             <div class="manifesto">
                 «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца, ибо истинное созидание возможно лишь тогда, когда рука ведома Свыше»
             </div>
@@ -107,8 +106,8 @@
             <h2 class="section-title">Хронограф</h2>
             <div class="bio-grid">
                 <div class="bio-text">
-                    <p><strong>Эрих Эрленбах</strong> (род. 1962, Тбилиси) — поэт, писатель и композитор, чьё творчество объединяет семь наций и три религии. Воспитанный в атмосфере оперного театра, он перенес музыкальную драматургию в литературное слово.</p>
-                    <p>Более 40 лет службы в вооруженных силах огранили его стиль, придав философским размышлениям строгость и точность. Его произведения — это синтез академической музыки, квантовой физики и библейских аллегорий.</p>
+                    <p><strong>Эрих Эрленбах</strong> (род. 1962, Тбилиси) — поэт, писатель и композитор. Его творчество — это синтез академической музыки, философии и литературы, вобравший в себя опыт пяти десятилетий созидания.</p>
+                    <p>Более 40 лет службы в вооруженных силах огранили его стиль, придав философским размышлениям строгость, точность и внутреннюю силу.</p>
                 </div>
                 <div class="bio-img">
                     <img src="sheridan1.jpg" alt="Эрих Эрленбах">
@@ -127,7 +126,6 @@
                 </div>
                 <div class="card">
                     <h3>Мировые издания</h3>
-                    <p>Книги автора доступны для международного читателя на платформе Amazon.</p>
                     <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="btn" target="_blank">Amazon Books</a>
                 </div>
             </div>
@@ -138,14 +136,12 @@
             <div class="grid">
                 <div class="card">
                     <h3>Видеоканалы</h3>
-                    <div class="link-group">
-                        <a href="https://youtube.com/@ericherlenbach?si=9pon30xA-7sjGZ-g" class="btn" target="_blank">YouTube (VC)</a>
-                        <a href="https://rutube.ru/u/2e/" class="btn" target="_blank">RuTube</a>
-                        <a href="https://www.tiktok.com/@erich_erlenbach.2e?_r=1&_t=ZS-929anEDbMMq" class="btn" target="_blank">TikTok</a>
-                    </div>
+                    <a href="https://youtube.com/@ericherlenbach?si=9pon30xA-7sjGZ-g" class="btn" target="_blank">YouTube (VC)</a>
+                    <a href="https://rutube.ru/u/2e/" class="btn" target="_blank">RuTube</a>
+                    <a href="https://www.tiktok.com/@erich_erlenbach.2e?_r=1&_t=ZS-929anEDbMMq" class="btn" target="_blank">TikTok</a>
                 </div>
                 <div class="card">
-                    <h3>Стриминг и Музыка</h3>
+                    <h3>Стриминг</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                         <a href="https://music.yandex.ru/artist/25156828" class="btn" target="_blank">Яндекс.Музыка</a>
                         <a href="https://vk.com/artist/8133192430738481080" class="btn" target="_blank">VK Музыка</a>
@@ -165,7 +161,7 @@
 
     <footer>
         <p>© 2026 Эрих Эрленбах</p>
-        <p style="color: var(--accent-color); margin: 10px 0; font-size: 0.85rem; letter-spacing: 1px;">
+        <p style="color: var(--accent-color); margin: 10px 0; font-size: 0.85rem;">
             ISNI: 0000 0005 2738 1605 | 0000 0005 2738 1621
         </p>
         <p style="font-size: 0.7rem; color: #666;">
