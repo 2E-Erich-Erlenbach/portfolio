@@ -95,8 +95,8 @@
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 0.8rem;
-            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
             cursor: pointer;
             border-radius: 30px;
             transition: all 0.2s;
@@ -375,12 +375,119 @@
         }
 
         footer {
-            padding: 48px 24px;
+            padding: 48px 24px 32px;
             text-align: center;
             font-size: 0.75rem;
             opacity: 0.7;
             border-top: 1px solid #222;
             font-family: 'Montserrat', sans-serif;
+        }
+
+        .banners {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .banners a {
+            display: inline-block;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .banners a:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .banners img {
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .banners img:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Стиль для баннера Грузинского национального музея */
+        .museum-banner {
+            display: inline-block;
+            width: 180px;
+            height: 90px;
+            background: #1e2a2e;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .museum-banner:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            filter: brightness(1.02);
+            border-color: var(--accent-color);
+        }
+
+        .banner-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 6px 4px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .museum-icon {
+            font-size: 22px;
+            line-height: 1;
+            margin-bottom: 2px;
+            letter-spacing: 1px;
+        }
+
+        .museum-name {
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #e5c687;
+            letter-spacing: 0.5px;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+
+        .museum-location {
+            font-size: 7px;
+            color: #c0cfcf;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1px solid rgba(229,198,135,0.5);
+            padding-top: 3px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .decoration {
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            margin-bottom: 2px;
+        }
+        .decoration span {
+            display: inline-block;
+            width: 2px;
+            height: 8px;
+            background: #e5c687;
+            opacity: 0.7;
         }
 
         @media (max-width: 680px) {
@@ -391,6 +498,14 @@
             .nav-links {
                 gap: 1.2rem;
                 font-size: 0.7rem;
+            }
+            .language-switcher {
+                gap: 0.3rem;
+                padding: 0.2rem 0.4rem;
+            }
+            .lang-btn {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.5rem;
             }
             .hero {
                 padding-top: 150px;
@@ -422,6 +537,19 @@
                 padding: 6px 14px;
                 font-size: 0.7rem;
             }
+            .banners {
+                gap: 12px;
+            }
+            .banners img, .museum-banner {
+                width: 150px;
+                height: 75px;
+            }
+            .museum-name {
+                font-size: 8px;
+            }
+            .museum-icon {
+                font-size: 18px;
+            }
         }
 
         [data-translate] {
@@ -441,6 +569,7 @@
             <button class="lang-btn" data-lang="ru">RU</button>
             <button class="lang-btn" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ka">KA</button>
+            <button class="lang-btn" data-lang="de">DE</button>
         </div>
     </header>
 
@@ -456,19 +585,20 @@
                     <p id="date-ru" style="color:var(--accent-color); font-weight:bold;"></p>
                     <p id="date-en" style="font-size: 0.75rem; margin: 5px 0; opacity:0.9;"></p>
                     <p id="date-ka" style="font-size: 0.85rem;"></p>
+                    <p id="date-de" style="font-size: 0.85rem;"></p>
                 </div>
                 <div class="weather-card" id="weatherWidget">
-                    <div class="weather-city">🇬🇪 თბილისი</div>
-                    <div class="weather-loading" id="weatherLoading">🌤️ Загрузка погоды...</div>
+                    <div class="weather-city">🇬🇪 Tbilisi</div>
+                    <div class="weather-loading" id="weatherLoading">🌤️ Wetter wird geladen...</div>
                     <div id="weatherContent" style="display: none;">
                         <div class="weather-temp" id="weatherTemp"></div>
                         <div class="weather-desc" id="weatherDesc"></div>
                         <div class="weather-details">
                             <span>💧 <span id="weatherHumidity"></span>%</span>
-                            <span>🌬️ <span id="weatherWind"></span> м/с</span>
+                            <span>🌬️ <span id="weatherWind"></span> m/s</span>
                         </div>
                     </div>
-                    <div class="weather-error" id="weatherError" style="display: none;">⚠️ Не удалось загрузить погоду</div>
+                    <div class="weather-error" id="weatherError" style="display: none;">⚠️ Wetter konnte nicht geladen werden</div>
                 </div>
             </div>
 
@@ -494,7 +624,6 @@
         <section id="library" style="background: var(--secondary-bg);">
             <h2 data-translate="library_title">Библиотека и ресурсы</h2>
             
-            <!-- Музыкальные каналы -->
             <div class="links-section">
                 <div class="links-category">
                     <h3 data-translate="music_links_title">🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ</h3>
@@ -510,17 +639,15 @@
                     </div>
                 </div>
                 
-                <!-- Поэзия и проза -->
                 <div class="links-category">
                     <h3 data-translate="poetry_prose_title">📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ</h3>
                     <div class="links-grid">
                         <a href="https://www.litres.ru/search/?q=erlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">LitRes</a>
-                        <a href="https://stihi.ru/avtor/sheridan2" class="btn-link" target="_blank" rel="noopener noreferrer">Поэзия (Stihi.ru)</a>
-                        <a href="https://proza.ru/avtor/sheridan1" class="btn-link" target="_blank" rel="noopener noreferrer">Проза (Proza.ru)</a>
+                        <a href="https://stihi.ru/avtor/sheridan2" class="btn-link" target="_blank" rel="noopener noreferrer">Poetry (Stihi.ru)</a>
+                        <a href="https://proza.ru/avtor/sheridan1" class="btn-link" target="_blank" rel="noopener noreferrer">Prose (Proza.ru)</a>
                     </div>
                 </div>
                 
-                <!-- Дополнительные ресурсы -->
                 <div class="links-category">
                     <h3 data-translate="additional_resources_title">📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ</h3>
                     <div class="links-grid">
@@ -551,54 +678,67 @@
     </main>
 
     <footer>
+        <!-- Баннеры -->
+        <div class="banners">
+            <a href="https://stihi.ru/avtor/sheridan2" target="_blank" rel="noopener noreferrer">
+                <img src="https://stihi.ru/images/author180x90.gif" width="180" height="90" border="0" alt="Эрих Эрлэнбах на сервере Стихи.ру">
+            </a>
+            <a href="https://proza.ru/avtor/sheridan1" target="_blank" rel="noopener noreferrer">
+                <img src="https://proza.ru/images/author180x90.gif" width="180" height="90" border="0" alt="Эрих Эрлэнбах на сервере Проза.ру">
+            </a>
+            <!-- Баннер Грузинского национального музея -->
+            <a href="https://museum.ge/index.php?m=2&lng=eng" target="_blank" rel="noopener noreferrer" class="museum-banner">
+                <div class="banner-inner">
+                    <div class="museum-icon">🏛️</div>
+                    <div class="museum-name">GEORGIAN<br>NATIONAL<br>MUSEUM</div>
+                    <div class="decoration"><span></span><span></span><span></span></div>
+                    <div class="museum-location">TBILISI · GEORGIA</div>
+                </div>
+            </a>
+        </div>
         <span data-translate="footer_copyright">© 2026 Эрих Эрлэнбах | ISNI: 0000 0005 2738 1605 | Все права защищены</span>
     </footer>
 
     <script>
-        // Полные биографии на трёх языках
+        // Полные биографии на 4 языках
         const fullBio = {
             ru: `<p><span class="highlight">Эрих Эрлэнбах</span> родился в 1962 году в городе Тбилиси (Грузинская ССР) в семье оперных артистов и фактически вырос в консерватории, где учились родители, и за кулисами театра.</p>
-                <p>Его родословная объединяет представителей семи наций и трёх религий. Это история семьи, которая под натиском исторических бурь и преобразований сконцентрировалась на Кавказе, в Грузии (Сакартвело — страна картлийцев) — из королевства Вюртемберг (Германия) и Баку (Азербайджан), из Санкт-Петербурга (Россия) и Еревана (Армения), из Каменца-Подольского (Польша, Украина) и лезгинского села Хрюг (Дагестан, Россия), из Тбилиси (Тифлис, Сакартвело) и немцев Поволжья (Автономная Социалистическая Советская Республика Немцев Поволжья).</p>
-                <p>Тёплый во всех отношениях город Тбилиси на протяжении веков оставался многоконфессиональным — и продолжает быть таковым.</p>
-                <p>Дом и двор, в котором проживал Эрих, объединял более десяти национальностей: грузин и армян, итальянцев и русских, немцев и татар, курдов и езидов, поляков и азербайджанцев, украинцев и др. Двор в таких домах в Тифлисе / Тбилиси называли «итальянскими двориками»: именно там нации и религии сосуществовали в мире и взаимопонимании, обогащая друг друга традициями, обычаями, кухней и культурным наследием.</p>
-                <p>Тбилиси на протяжении веков служил примером такого гармоничного сосуществования: здесь соседствовали православные и католики, армяно-григориане и иудеи, мусульмане и езидизм. Были в свое время и митраизм, и зороастризм. Разные этнические семьи жили бок о бок, сохраняя собственную идентичность и одновременно впитывая черты соседних культур.</p>
-                <p>Это многоголосие народов и верований формировало особую атмосферу города:<br>— в одних и тех же кварталах звучали молитвы из церквей, мечетей и синагог;<br>— праздники разных общин переплетались, создавая непрерывную череду торжеств;<br>— бытовые обычаи и кулинарные традиции взаимно проникали, рождая уникальные смешанные формы, вкусы и ароматы.</p>
-                <p>Для Эриха этот опыт стал фундаментом мировоззрения: наблюдая с детства, как разные культуры уживаются в едином пространстве, он научился видеть общее в кажущемся различии, искать диалог там, где другие видят конфликт. Именно эта среда породила в нём стремление выражать в творчестве идею единства человечества — через аллегории, библейские сюжеты и личные истории семьи, прошедшей сквозь перипетии истории.</p>
-                <p>С ранних лет Эрих получал разностороннее образование. Параллельно со средней школой он обучался:<br>— в музыкальной школе;<br>— в шахматной школе;<br>— в хореографическом училище.</p>
-                <p>Кроме того, он активно увлекался:<br>— горнолыжным спортом;<br>— конным спортом (выездка и конкур на Московском ипподроме);<br>— борьбой сётокан;<br>— рисованием (карандаш и пастель);<br>— созданием архитектурных проектов.</p>
-                <p>В возрасте 17 лет Эрих вместе с другом детства Виктором поступил в Тбилисское высшее артиллерийское командное училище (ТВАККОКЗУ), которое успешно окончил. Школьный друг Эрик тоже хотел поступать, но после отказался от этой идеи (в память о нём).</p>
-                <p>Более 40 лет он служил в войсках на различных должностях, в том числе за пределами Родины. Женат, имеет двух детей и внука.</p>
+                <p>Его родословная объединяет представителей семи наций и трёх религий. Это история семьи, которая под натиском исторических бурь и преобразований сконцентрировалась на Кавказе, в Грузии — из королевства Вюртемберг (Германия) и Баку (Азербайджан), из Санкт-Петербурга (Россия) и Еревана (Армения), из Каменца-Подольского (Польша, Украина) и лезгинского села Хрюг (Дагестан, Россия), из Тбилиси (Тифлис, Сакартвело) и немцев Поволжья.</p>
+                <p>Дом и двор, в котором проживал Эрих, объединял более десяти национальностей. Двор в таких домах в Тифлисе / Тбилиси называли «итальянскими двориками»: именно там нации и религии сосуществовали в мире и взаимопонимании.</p>
+                <p>С ранних лет Эрих получал разностороннее образование. Параллельно со средней школой он обучался в музыкальной школе, шахматной школе, хореографическом училище. Активно увлекался горнолыжным спортом, конным спортом, борьбой сётокан, рисованием и архитектурой.</p>
+                <p>В возрасте 17 лет поступил в Тбилисское высшее артиллерийское командное училище, которое успешно окончил. Более 40 лет служил в войсках на различных должностях. Женат, имеет двух детей и внука.</p>
                 <div class="member-badge">✍️ Член Российского Союза писателей</div>
-                <p>Поэт, композитор, писатель, шахматист. Автор более десятка книг, музыкальных альбомов и публичных лекций о метафизике искусства. Сегодня живёт и работает между Тбилиси и Баден-Баденом, продолжая писать стихи, прозу и симфонические композиции, вдохновлённые кавказским многоголосием и европейской классической традицией.</p>`,
+                <p>Поэт, композитор, писатель, шахматист. Автор более десятка книг, музыкальных альбомов и публичных лекций о метафизике искусства. Сегодня живёт и работает между Тбилиси и Баден-Баденом.</p>`,
             en: `<p><span class="highlight">Erich Erlenbach</span> was born in 1962 in Tbilisi (Georgian SSR) into a family of opera singers and practically grew up in the conservatory where his parents studied, as well as behind the scenes of the theater.</p>
-                <p>His lineage unites representatives of seven nations and three religions. This is the story of a family that, under the pressure of historical storms and transformations, concentrated in the Caucasus, in Georgia (Sakartvelo — the land of the Kartvelians) — from the Kingdom of Württemberg (Germany) and Baku (Azerbaijan), from St. Petersburg (Russia) and Yerevan (Armenia), from Kamianets-Podilskyi (Poland, Ukraine) and the Lezgin village of Khryug (Dagestan, Russia), from Tbilisi (Tiflis, Sakartvelo) and the Volga Germans (Volga German Autonomous Soviet Socialist Republic).</p>
-                <p>The warm in every sense city of Tbilisi has remained multi-confessional for centuries — and continues to be so.</p>
-                <p>The house and courtyard where Erich lived united more than ten nationalities: Georgians and Armenians, Italians and Russians, Germans and Tatars, Kurds and Yazidis, Poles and Azerbaijanis, Ukrainians and others. The courtyard in such houses in Tiflis / Tbilisi was called "Italian courtyards": it was there that nations and religions coexisted in peace and mutual understanding, enriching each other with traditions, customs, cuisine, and cultural heritage.</p>
-                <p>For centuries, Tbilisi served as an example of such harmonious coexistence: Orthodox and Catholics, Armenian Gregorians and Jews, Muslims and Yazidism lived side by side. There were also Mithraism and Zoroastrianism in their time. Different ethnic families lived side by side, preserving their own identity while simultaneously absorbing the features of neighboring cultures.</p>
-                <p>This polyphony of peoples and beliefs shaped the special atmosphere of the city:<br>— prayers from churches, mosques and synagogues sounded in the same neighborhoods;<br>— holidays of different communities intertwined, creating a continuous chain of celebrations;<br>— everyday customs and culinary traditions interpenetrated, giving birth to unique mixed forms, tastes and aromas.</p>
-                <p>For Erich, this experience became the foundation of his worldview: from childhood, observing how different cultures coexist in a single space, he learned to see the common in apparent differences, to seek dialogue where others see conflict. It was this environment that gave rise to his desire to express in his work the idea of the unity of humanity — through allegories, biblical subjects and personal stories of a family that went through the vicissitudes of history.</p>
-                <p>From an early age, Erich received a diverse education. Alongside secondary school, he studied:<br>— at a music school;<br>— at a chess school;<br>— at a choreographic college.</p>
-                <p>In addition, he was actively involved in:<br>— alpine skiing;<br>— equestrian sports (dressage and show jumping at the Moscow Hippodrome);<br>— Shotokan wrestling;<br>— drawing (pencil and pastel);<br>— creating architectural projects.</p>
-                <p>At the age of 17, Erich, together with his childhood friend Victor, entered the Tbilisi Higher Artillery Command School (TVAKKOKZU), which he successfully graduated from. His school friend Erich also wanted to enroll but later abandoned the idea (in his memory).</p>
-                <p>He served in the military for over 40 years in various positions, including outside his homeland. He is married, has two children and a grandson.</p>
+                <p>His lineage unites representatives of seven nations and three religions. This is the story of a family that concentrated in the Caucasus, in Georgia — from the Kingdom of Württemberg (Germany) and Baku (Azerbaijan), from St. Petersburg (Russia) and Yerevan (Armenia), from Kamianets-Podilskyi (Poland, Ukraine) and the Lezgin village of Khryug (Dagestan, Russia), from Tbilisi (Tiflis, Sakartvelo) and the Volga Germans.</p>
+                <p>The house and courtyard where Erich lived united more than ten nationalities. The courtyard in such houses in Tiflis / Tbilisi was called "Italian courtyards": it was there that nations and religions coexisted in peace and mutual understanding.</p>
+                <p>From an early age, Erich received a diverse education. Alongside secondary school, he studied at a music school, chess school, and choreographic college. He was actively involved in alpine skiing, equestrian sports, Shotokan wrestling, drawing, and architecture.</p>
+                <p>At the age of 17, he entered the Tbilisi Higher Artillery Command School, which he successfully graduated from. He served in the military for over 40 years in various positions. He is married, has two children and a grandson.</p>
                 <div class="member-badge">✍️ Member of the Russian Union of Writers</div>
-                <p>Poet, composer, writer, chess player. Author of more than a dozen books, musical albums and public lectures on the metaphysics of art. Today he lives and works between Tbilisi and Baden-Baden, continuing to write poetry, prose and symphonic compositions inspired by Caucasian polyphony and European classical tradition.</p>`,
-            ka: `<p><span class="highlight">ერიხ ერლენბახი</span> დაიბადა 1962 წელს ქალაქ თბილისში (საქართველოს სსრ), ოპერის მომღერლების ოჯახში და ფაქტობრივად გაიზარდა კონსერვატორიაში, სადაც მშობლები სწავლობდნენ, და თეატრის კულისებში.</p>
-                <p>მისი წარმომავლობა აერთიანებს შვიდი ერისა და სამი რელიგიის წარმომადგენლებს. ეს არის ოჯახის ისტორია, რომელიც ისტორიული ქარიშხლებისა და გარდაქმნების ზეწოლის ქვეშ კონცენტრირდა კავკასიაში, საქართველოში — ვიურტემბერგის სამეფოდან (გერმანია) და ბაქოდან (აზერბაიჯანი), სანქტ-პეტერბურგიდან (რუსეთი) და ერევნიდან (სომხეთი), კამიანეც-პოდილსკიდან (პოლონეთი, უკრაინა) და ლეზგიური სოფელ ხრიუგიდან (დაღესტანი, რუსეთი), თბილისიდან (ტფილისი, საქართველო) და ამიერვოლგის გერმანელებიდან (ამიერვოლგის გერმანელთა ავტონომიური საბჭოთა სოციალისტური რესპუბლიკა).</p>
-                <p>ყველა თვალსაზრისით თბილი ქალაქი თბილისი საუკუნეების განმავლობაში მრავალკონფესიური რჩებოდა — და დღესაც ასეა.</p>
-                <p>სახლი და ეზო, სადაც ერიხი ცხოვრობდა, აერთიანებდა ათზე მეტ ეროვნებას: ქართველები და სომხები, იტალიელები და რუსები, გერმანელები და თათრები, ქურთები და ეზიდები, პოლონელები და აზერბაიჯანელები, უკრაინელები და სხვები. ასეთ სახლებში ეზოს ტფილისში / თბილისში „იტალიურ ეზოებს“ ეძახდნენ: სწორედ იქ თანაარსებობდნენ ერები და რელიგიები მშვიდობასა და ურთიერთგაგებაში, ამდიდრებდნენ ერთმანეთს ტრადიციებით, წეს-ჩვეულებებით, სამზარეულოთი და კულტურული მემკვიდრეობით.</p>
-                <p>თბილისი საუკუნეების განმავლობაში იყო ასეთი ჰარმონიული თანაარსებობის მაგალითი: აქ მეზობლად ცხოვრობდნენ მართლმადიდებლები და კათოლიკეები, სომხურ-გრიგორიანელები და ებრაელები, მუსულმანები და იზიდიზმი. იყო თავის დროზე მითრაიზმიც და ზოროასტრიზმიც. სხვადასხვა ეთნიკური ოჯახები გვერდიგვერდ ცხოვრობდნენ, ინარჩუნებდნენ საკუთარ იდენტობას და ამავდროულად შთანთქავდნენ მეზობელი კულტურების თვისებებს.</p>
-                <p>ხალხთა და რწმენათა ეს მრავალხმიანობა ქმნიდა ქალაქის განსაკუთრებულ ატმოსფეროს:<br>— ერთსა და იმავე უბნებში ჟღერდა ლოცვები ეკლესიებიდან, მეჩეთებიდან და სინაგოგებიდან;<br>— სხვადასხვა თემის დღესასწაულები ერთმანეთში ირეოდა, ქმნიდა ზეიმების უწყვეტ ჯაჭვს;<br>— ყოფითი წეს-ჩვეულებები და კულინარიული ტრადიციები ურთიერთშეაღწევდა, ბადებდა უნიკალურ შერეულ ფორმებს, გემოებსა და არომატებს.</p>
-                <p>ერიხისთვის ეს გამოცდილება მსოფლმხედველობის საფუძველი გახდა: ბავშვობიდანვე აკვირდებოდა, როგორ უძღვებოდნენ სხვადასხვა კულტურები ერთ სივრცეში, მან ისწავლა საერთოს დანახვა აშკარა განსხვავებებში, დიალოგის ძიება იქ, სადაც სხვები კონფლიქტს ხედავენ. სწორედ ამ გარემომ გააჩინა მასში სწრაფვა, შემოქმედებაში გამოეხატა კაცობრიობის ერთიანობის იდეა — ალეგორიებით, ბიბლიური სიუჟეტებით და ოჯახის პირადი ისტორიებით, რომელმაც გაიარა ისტორიის პერიპეტიები.</p>
-                <p>ადრეული ასაკიდან ერიხი მრავალმხრივ განათლებას იღებდა. საშუალო სკოლის პარალელურად სწავლობდა:<br>— მუსიკალურ სკოლაში;<br>— ჭადრაკის სკოლაში;<br>— ქორეოგრაფიულ სასწავლებელში.</p>
-                <p>გარდა ამისა, იგი აქტიურად ეწეოდა:<br>— სამთო-სათხილამურო სპორტს;<br>— ცხენოსნურ სპორტს (გაწვრთნა და კონკური მოსკოვის იპოდრომზე);<br>— შოტოკან ჭიდაობას;<br>— ხატვას (ფანქარი და პასტელი);<br>— არქიტექტურული პროექტების შექმნას.</p>
-                <p>17 წლის ასაკში ერიხი ბავშვობის მეგობარ ვიქტორთან ერთად ჩაირიცხა თბილისის უმაღლეს საარტილერიო სამეთაურო სასწავლებელში, რომელიც წარმატებით დაამთავრა. მისი სკოლის მეგობარი ერიკიც აპირებდა ჩაბარებას, მაგრამ შემდეგ უარი თქვა ამ იდეაზე (მის ხსოვნას).</p>
-                <p>40 წელზე მეტი ჯარში მსახურობდა სხვადასხვა თანამდებობაზე, მათ შორის სამშობლოს გარეთ. ჰყავს მეუღლე, ორი შვილი და შვილიშვილი.</p>
+                <p>Poet, composer, writer, chess player. Author of more than a dozen books, musical albums and public lectures on the metaphysics of art. Today he lives and works between Tbilisi and Baden-Baden.</p>`,
+            ka: `<p><span class="highlight">ერიხ ერლენბახი</span> დაიბადა 1962 წელს ქალაქ თბილისში (საქართველოს სსრ), ოპერის მომღერლების ოჯახში და ფაქტობრივად გაიზარდა კონსერვატორიაში და თეატრის კულისებში.</p>
+                <p>მისი წარმომავლობა აერთიანებს შვიდი ერისა და სამი რელიგიის წარმომადგენლებს. ეს არის ოჯახის ისტორია, რომელიც კონცენტრირდა კავკასიაში, საქართველოში — ვიურტემბერგის სამეფოდან (გერმანია) და ბაქოდან (აზერბაიჯანი), სანქტ-პეტერბურგიდან (რუსეთი) და ერევნიდან (სომხეთი), კამიანეც-პოდილსკიდან (პოლონეთი, უკრაინა) და ლეზგიური სოფელ ხრიუგიდან (დაღესტანი, რუსეთი), თბილისიდან და ამიერვოლგის გერმანელებიდან.</p>
+                <p>სახლი და ეზო, სადაც ერიხი ცხოვრობდა, აერთიანებდა ათზე მეტ ეროვნებას. ასეთ სახლებში ეზოს ტფილისში / თბილისში „იტალიურ ეზოებს“ ეძახდნენ: სწორედ იქ თანაარსებობდნენ ერები და რელიგიები მშვიდობასა და ურთიერთგაგებაში.</p>
+                <p>ადრეული ასაკიდან ერიხი მრავალმხრივ განათლებას იღებდა. საშუალო სკოლის პარალელურად სწავლობდა მუსიკალურ სკოლაში, ჭადრაკის სკოლაში, ქორეოგრაფიულ სასწავლებელში. ეწეოდა სამთო-სათხილამურო სპორტს, ცხენოსნურ სპორტს, შოტოკან ჭიდაობას, ხატვასა და არქიტექტურას.</p>
+                <p>17 წლის ასაკში ჩაირიცხა თბილისის უმაღლეს საარტილერიო სამეთაურო სასწავლებელში. 40 წელზე მეტი ჯარში მსახურობდა. ჰყავს მეუღლე, ორი შვილი და შვილიშვილი.</p>
                 <div class="member-badge">✍️ რუსეთის მწერალთა კავშირის წევრი</div>
-                <p>პოეტი, კომპოზიტორი, მწერალი, მოჭადრაკე. ათეულზე მეტი წიგნის, მუსიკალური ალბომის და ხელოვნების მეტაფიზიკის შესახებ საჯარო ლექციების ავტორი. დღეს ცხოვრობს და მოღვაწეობს თბილისსა და ბადენ-ბადენს შორის, აგრძელებს ლექსების, პროზისა და სიმფონიური კომპოზიციების წერას, შთაგონებული კავკასიური მრავალხმიანობითა და ევროპული კლასიკური ტრადიციით.</p>`
+                <p>პოეტი, კომპოზიტორი, მწერალი, მოჭადრაკე. ათეულზე მეტი წიგნის, მუსიკალური ალბომის და ხელოვნების მეტაფიზიკის შესახებ საჯარო ლექციების ავტორი. დღეს ცხოვრობს და მოღვაწეობს თბილისსა და ბადენ-ბადენს შორის.</p>`,
+            de: `<p><span class="highlight">Erich Erlenbach</span> wurde 1962 in Tbilisi (Georgische SSR) in eine Familie von Opernsängern geboren und wuchs praktisch im Konservatorium, wo seine Eltern studierten, sowie hinter den Kulissen des Theaters auf.</p>
+                <p>Seine Abstammung vereint Vertreter von sieben Nationen und drei Religionen. Dies ist die Geschichte einer Familie, die sich im Kaukasus, in Georgien, konzentrierte — aus dem Königreich Württemberg (Deutschland) und Baku (Aserbaidschan), aus St. Petersburg (Russland) und Eriwan (Armenien), aus Kamianets-Podilskyi (Polen, Ukraine) und dem lesgischen Dorf Chryug (Dagestan, Russland), aus Tbilisi (Tiflis, Sakartvelo) und den Wolgadeutschen.</p>
+                <p>Das Haus und der Hof, in dem Erich lebte, vereinte mehr als zehn Nationalitäten. Den Hof in solchen Häusern in Tiflis / Tbilisi nannte man „italienische Höfe“: dort existierten Nationen und Religionen in Frieden und gegenseitigem Verständnis nebeneinander.</p>
+                <p>Von frühester Kindheit an erhielt Erich eine vielseitige Bildung. Parallel zur allgemeinbildenden Schule besuchte er eine Musikschule, eine Schachschule und eine choreografische Hochschule. Er interessierte sich aktiv für Skifahren, Reitsport, Shotokan-Ringen, Zeichnen und Architektur.</p>
+                <p>Im Alter von 17 Jahren trat er in die Tbiliser Höhere Artillerie-Kommandoschule ein, die er erfolgreich abschloss. Über 40 Jahre diente er in der Armee auf verschiedenen Positionen. Er ist verheiratet, hat zwei Kinder und einen Enkel.</p>
+                <div class="member-badge">✍️ Mitglied des Russischen Schriftstellerverbandes</div>
+                <p>Dichter, Komponist, Schriftsteller, Schachspieler. Autor von mehr als einem Dutzend Büchern, Musikalben und öffentlichen Vorträgen über die Metaphysik der Kunst. Heute lebt und arbeitet er zwischen Tbilisi und Baden-Baden.</p>`
         };
 
-        // Функция для правильной грузинской даты
+        // Форматирование дат
+        function formatDateGerman(date) {
+            const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+            const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+            return `${weekdays[date.getDay()]}, ${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
         function formatDateGeorgian(date) {
             const weekdays = ['კვირა', 'ორშაბათი', 'სამშაბათი', 'ოთხშაბათი', 'ხუთშაბათი', 'პარასკევი', 'შაბათი'];
             const months = ['იანვარი', 'თებერვალი', 'მარტი', 'აპრილი', 'მაისი', 'ივნისი', 'ივლისი', 'აგვისტო', 'სექტემბერი', 'ოქტომბერი', 'ნოემბერი', 'დეკემბერი'];
@@ -634,22 +774,27 @@
             const ruDateElem = document.getElementById('date-ru');
             const enDateElem = document.getElementById('date-en');
             const kaDateElem = document.getElementById('date-ka');
+            const deDateElem = document.getElementById('date-de');
+            
+            ruDateElem.style.display = 'none';
+            enDateElem.style.display = 'none';
+            kaDateElem.style.display = 'none';
+            if (deDateElem) deDateElem.style.display = 'none';
             
             if (lang === 'ru') {
                 ruDateElem.style.display = 'block';
-                enDateElem.style.display = 'none';
-                kaDateElem.style.display = 'none';
                 ruDateElem.innerText = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             } else if (lang === 'en') {
-                ruDateElem.style.display = 'none';
                 enDateElem.style.display = 'block';
-                kaDateElem.style.display = 'none';
                 enDateElem.innerText = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             } else if (lang === 'ka') {
-                ruDateElem.style.display = 'none';
-                enDateElem.style.display = 'none';
                 kaDateElem.style.display = 'block';
                 kaDateElem.innerText = formatDateGeorgian(now);
+            } else if (lang === 'de') {
+                if (deDateElem) {
+                    deDateElem.style.display = 'block';
+                    deDateElem.innerText = formatDateGerman(now);
+                }
             }
         }
         
@@ -691,17 +836,9 @@
                 if (data.current_weather) {
                     const temp = Math.round(data.current_weather.temperature);
                     const wind = data.current_weather.windspeed;
-                    const weatherCode = data.current_weather.weathercode;
                     
-                    let description = '', icon = '☀️';
-                    if (weatherCode === 0) { description = 'Ясно'; icon = '☀️'; }
-                    else if (weatherCode === 1 || weatherCode === 2) { description = 'Переменная облачность'; icon = '⛅'; }
-                    else if (weatherCode === 3) { description = 'Облачно'; icon = '☁️'; }
-                    else if (weatherCode >= 45 && weatherCode <= 48) { description = 'Туман'; icon = '🌫️'; }
-                    else if (weatherCode >= 51 && weatherCode <= 67) { description = 'Дождь'; icon = '🌧️'; }
-                    else if (weatherCode >= 71 && weatherCode <= 77) { description = 'Снег'; icon = '❄️'; }
-                    else if (weatherCode >= 80 && weatherCode <= 99) { description = 'Гроза'; icon = '⛈️'; }
-                    else { description = 'Облачно'; icon = '☁️'; }
+                    weatherTemp.innerHTML = `🌡️ ${temp}°C`;
+                    weatherDesc.innerHTML = currentLang === 'de' ? 'Aktuelles Wetter' : (currentLang === 'en' ? 'Current weather' : (currentLang === 'ka' ? 'მიმდინარე ამინდი' : 'Текущая погода'));
                     
                     let humidity = '—';
                     if (data.hourly && data.hourly.relativehumidity_2m && data.hourly.time) {
@@ -713,8 +850,6 @@
                         }
                     }
                     
-                    weatherTemp.innerHTML = `${icon} ${temp}°C`;
-                    weatherDesc.innerHTML = description;
                     weatherHumidity.innerHTML = humidity !== '—' ? humidity : '—';
                     weatherWind.innerHTML = Math.round(wind);
                     
@@ -734,67 +869,59 @@
         fetchWeather();
         setInterval(fetchWeather, 30 * 60 * 1000);
         
-        // Переводы для навигации и категорий
+        // Переводы
         const translations = {
             ru: {
-                nav_bio: "Биография",
-                nav_books: "Книги",
-                nav_contact: "Связь",
+                nav_bio: "Биография", nav_books: "Книги", nav_contact: "Связь",
                 hero_title: "Эрих Эрлэнбах",
                 hero_quote: "«Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»",
-                about_title: "Биография",
-                library_title: "Библиотека и ресурсы",
+                about_title: "Биография", library_title: "Библиотека и ресурсы",
                 music_links_title: "🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ",
                 poetry_prose_title: "📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ",
                 additional_resources_title: "📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ",
-                random_quote_btn: "Случайная цитата",
-                quote_hint: "нажмите, чтобы увидеть афоризм",
-                contact_title: "Связь",
-                contact_email_label: "Email",
-                telegram_btn: "Telegram-канал",
-                copy_email_btn: "Скопировать email",
-                contact_note: "📬 Для творческих предложений и коллабораций",
+                random_quote_btn: "Случайная цитата", quote_hint: "нажмите, чтобы увидеть афоризм",
+                contact_title: "Связь", contact_email_label: "Email", telegram_btn: "Telegram-канал",
+                copy_email_btn: "Скопировать email", contact_note: "📬 Для творческих предложений и коллабораций",
                 footer_copyright: "© 2026 Эрих Эрлэнбах | ISNI: 0000 0005 2738 1605 | Все права защищены"
             },
             en: {
-                nav_bio: "Biography",
-                nav_books: "Books",
-                nav_contact: "Contact",
+                nav_bio: "Biography", nav_books: "Books", nav_contact: "Contact",
                 hero_title: "Erich Erlenbach",
                 hero_quote: "«Everything that takes form in sound, in rhyme or in prose is but an earthly echo of Heavenly harmony. We are not authors, but co-authors of the Creator...»",
-                about_title: "Biography",
-                library_title: "Library & Resources",
+                about_title: "Biography", library_title: "Library & Resources",
                 music_links_title: "🎵 MUSIC CHANNELS",
                 poetry_prose_title: "📚 POETRY & PROSE CHANNELS",
                 additional_resources_title: "📖 ADDITIONAL RESOURCES",
-                random_quote_btn: "Random quote",
-                quote_hint: "click to see an aphorism",
-                contact_title: "Contact",
-                contact_email_label: "Email",
-                telegram_btn: "Telegram channel",
-                copy_email_btn: "Copy email",
-                contact_note: "📬 For creative proposals and collaborations",
+                random_quote_btn: "Random quote", quote_hint: "click to see an aphorism",
+                contact_title: "Contact", contact_email_label: "Email", telegram_btn: "Telegram channel",
+                copy_email_btn: "Copy email", contact_note: "📬 For creative proposals and collaborations",
                 footer_copyright: "© 2026 Erich Erlenbach | ISNI: 0000 0005 2738 1605 | All rights reserved"
             },
             ka: {
-                nav_bio: "ბიოგრაფია",
-                nav_books: "წიგნები",
-                nav_contact: "კონტაქტი",
+                nav_bio: "ბიოგრაფია", nav_books: "წიგნები", nav_contact: "კონტაქტი",
                 hero_title: "ერიხ ერლენბახი",
                 hero_quote: "«ყველაფერი, რაც ფორმას იძენს ხმაში, რითმაში თუ პროზაში, მხოლოდ ამქვეყნიური ექოა ზეციური ჰარმონიისა. ჩვენ არა ავტორები, არამედ თანაავტორები ვართ შემოქმედისა...»",
-                about_title: "ბიოგრაფია",
-                library_title: "ბიბლიოთეკა და რესურსები",
+                about_title: "ბიოგრაფია", library_title: "ბიბლიოთეკა და რესურსები",
                 music_links_title: "🎵 მუსიკალური არხები",
                 poetry_prose_title: "📚 პოეზიისა და პროზის არხები",
                 additional_resources_title: "📖 დამატებითი რესურსები",
-                random_quote_btn: "შემთხვევითი ციტატა",
-                quote_hint: "დააჭირეთ აფორიზმის სანახავად",
-                contact_title: "კონტაქტი",
-                contact_email_label: "ელფოსტა",
-                telegram_btn: "Telegram არხი",
-                copy_email_btn: "ელფოსტის კოპირება",
-                contact_note: "📬 შემოქმედებითი წინადადებებისა და კოლაბორაციებისთვის",
+                random_quote_btn: "შემთხვევითი ციტატა", quote_hint: "დააჭირეთ აფორიზმის სანახავად",
+                contact_title: "კონტაქტი", contact_email_label: "ელფოსტა", telegram_btn: "Telegram არხი",
+                copy_email_btn: "ელფოსტის კოპირება", contact_note: "📬 შემოქმედებითი წინადადებებისა და კოლაბორაციებისთვის",
                 footer_copyright: "© 2026 ერიხ ერლენბახი | ISNI: 0000 0005 2738 1605 | ყველა უფლება დაცულია"
+            },
+            de: {
+                nav_bio: "Biografie", nav_books: "Bücher", nav_contact: "Kontakt",
+                hero_title: "Erich Erlenbach",
+                hero_quote: "«Alles, was in Klang, Reim oder Prosa Gestalt annimmt, ist nur ein irdisches Echo der himmlischen Harmonie. Wir sind nicht Autoren, sondern Mitautoren des Schöpfers...»",
+                about_title: "Biografie", library_title: "Bibliothek & Ressourcen",
+                music_links_title: "🎵 MUSIK-KANÄLE",
+                poetry_prose_title: "📚 POESIE- & PROSA-KANÄLE",
+                additional_resources_title: "📖 WEITERE RESSOURCEN",
+                random_quote_btn: "Zufälliges Zitat", quote_hint: "klicken Sie, um ein Aphorismus zu sehen",
+                contact_title: "Kontakt", contact_email_label: "E-Mail", telegram_btn: "Telegram-Kanal",
+                copy_email_btn: "E-Mail kopieren", contact_note: "📬 Für kreative Vorschläge und Kooperationen",
+                footer_copyright: "© 2026 Erich Erlenbach | ISNI: 0000 0005 2738 1605 | Alle Rechte vorbehalten"
             }
         };
         
@@ -802,7 +929,8 @@
         const quotesByLang = {
             ru: ["«Истинная поэзия — это звук, который не нуждается в переводе». — Э.Э.", "«Шахматы учат видеть красоту порядка среди хаоса, а музыка — слышать тишину между нотами».", "«Кавказский двор — это модель мира, где каждый народ звучит своей нотой, но создаёт единую гармонию».", "«Служение искусству выше служения чинам, но честь и искусство всегда рядом».", "«В каждом стихе прячется вечность, а в каждой ноте — дыхание небес»."],
             en: ["«True poetry is a sound that needs no translation». — E.E.", "«Chess teaches to see the beauty of order amidst chaos, and music — to hear the silence between notes».", "«The Caucasian courtyard is a model of the world where every nation sounds its own note, yet creates a single harmony».", "«Service to art is above service to ranks, but honor and art are always together».", "«In every verse hides eternity, and in every note — the breath of heavens»."],
-            ka: ["«ნამდვილი პოეზია არის ბგერა, რომელსაც თარგმანი არ სჭირდება». — ე.ე.", "«ჭადრაკი გვასწავლის ქაოსში წესრიგის სილამაზის დანახვას, ხოლო მუსიკა — ნოტებს შორის სიჩუმის მოსმენას».", "«კავკასიური ეზო არის სამყაროს მოდელი, სადაც თითოეული ერი თავის ნოტს ჟღერს, მაგრამ ქმნის ერთიან ჰარმონიას».", "«ხელოვნების მსახურება უფრო მაღლა დგას, ვიდრე წოდებების მსახურება, მაგრამ პატივი და ხელოვნება ყოველთვის ერთად არიან».", "«ყოველ ლექსში იმალება მარადისობა, ყოველ ნოტში კი — ზეცის სუნთქვა»."]
+            ka: ["«ნამდვილი პოეზია არის ბგერა, რომელსაც თარგმანი არ სჭირდება». — ე.ე.", "«ჭადრაკი გვასწავლის ქაოსში წესრიგის სილამაზის დანახვას, ხოლო მუსიკა — ნოტებს შორის სიჩუმის მოსმენას».", "«კავკასიური ეზო არის სამყაროს მოდელი, სადაც თითოეული ერი თავის ნოტს ჟღერს, მაგრამ ქმნის ერთიან ჰარმონიას».", "«ხელოვნების მსახურება უფრო მაღლა დგას, ვიდრე წოდებების მსახურება, მაგრამ პატივი და ხელოვნება ყოველთვის ერთად არიან».", "«ყოველ ლექსში იმალება მარადისობა, ყოველ ნოტში კი — ზეცის სუნთქვა»."],
+            de: ["«Wahre Poesie ist ein Klang, der keiner Übersetzung bedarf». — E.E.", "«Schach lehrt, die Schönheit der Ordnung im Chaos zu sehen, und Musik — die Stille zwischen den Noten zu hören».", "«Der kaukasische Hof ist ein Modell der Welt, wo jede Nation ihre eigene Note spielt, aber eine einzige Harmonie schafft».", "«Der Dienst an der Kunst steht über dem Dienst an Rängen, aber Ehre und Kunst sind immer zusammen».", "«In jedem Vers verbirgt sich die Ewigkeit, und in jeder Note — der Atem des Himmels»."]
         };
         
         document.getElementById('randomQuoteBtn')?.addEventListener('click', () => {
@@ -818,7 +946,8 @@
                 await navigator.clipboard.writeText(email);
                 const btn = e.target;
                 const original = btn.innerText;
-                btn.innerText = currentLang === 'ru' ? '✅ Скопировано!' : (currentLang === 'en' ? '✅ Copied!' : '✅ დაკოპირდა!');
+                const successMsg = { ru: '✅ Скопировано!', en: '✅ Copied!', ka: '✅ დაკოპირდა!', de: '✅ Kopiert!' };
+                btn.innerText = successMsg[currentLang] || '✅ Copied!';
                 setTimeout(() => btn.innerText = original, 2000);
             } catch { alert(email); }
         });
