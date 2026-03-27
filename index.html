@@ -76,7 +76,7 @@
         }
         .btn:hover { background: var(--accent-color); color: var(--bg-color); }
 
-        footer { padding: 60px 20px; text-align: center; background: #0a0a0a; }
+        footer { padding: 60px 20px; text-align: center; background: #0a0a0a; border-top: 1px solid rgba(212, 175, 55, 0.2); }
 
         @media (max-width: 768px) {
             section { padding: 60px 5%; }
@@ -94,7 +94,7 @@
                 <li><a href="#biography" class="nav-link">Биография</a></li>
                 <li><a href="#creativity" class="nav-link">Творчество</a></li>
                 <li><a href="#library" class="nav-link">Библиотека</a></li>
-                <li><a href="#music" class="nav-link">Музыка</a></li>
+                <li><a href="#contact" class="nav-link">Связь</a></li>
             </ul>
         </nav>
     </header>
@@ -114,29 +114,21 @@
                 <img src="sheridan1.jpg" alt="Эрих Эрленбах" class="bio-img-large" onerror="this.style.display='none'">
                 <div class="bio-text">
                     <p>Эрих Эрленбах родился в 1962 году в городе Тбилиси (Грузинская ССР) в семье оперных артистов. Он фактически вырос в консерватории, где учились родители, и за кулисами театра, что предопределило его глубокую связь с искусством.</p>
-                    
-                    <p>Его родословная — это живое переплетение семи наций и трёх религий. История семьи, ведомая ветрами истории, сошлась в сердце Кавказа из самых разных уголков: от королевства Вюртемберг и Поволжья до Санкт-Петербурга, Еревана, Баку и лезгинского села Хрюг. Тбилиси стал для этой семьи общим домом, где православные и католики, мусульмане, иудеи и езиды веками жили в гармонии.</p>
-                    
-                    <p>Детство Эриха прошло в знаменитых «итальянских двориках» Тбилиси, где под одной крышей сосуществовали десятки национальностей. Этот уникальный опыт сосуществования, взаимообогащения традиций и культур стал фундаментом его мировоззрения. Для него не существует чужих культур — он приучен искать диалог там, где другие видят конфликт.</p>
+                    <p>Его родословная — это живое переплетение семи наций и трёх религий. История семьи сошлась в сердце Кавказа из самых разных уголков: от королевства Вюртемберг до лезгинского села Хрюг. Детство Эриха прошло в знаменитых «итальянских двориках» Тбилиси, где под одной крышей сосуществовали десятки национальностей.</p>
                 </div>
-
                 <div class="feature-grid">
                     <div class="feature-item">
                         <h3>Образование</h3>
                         <ul>
-                            <li>Средняя школа</li>
-                            <li>Музыкальная школа</li>
-                            <li>Шахматная школа</li>
+                            <li>Музыкальная и шахматная школы</li>
                             <li>Хореографическое училище</li>
                         </ul>
                     </div>
                     <div class="feature-item">
                         <h3>Грани личности</h3>
                         <ul>
-                            <li>Горнолыжный и конный спорт</li>
-                            <li>Борьба Сётокан</li>
-                            <li>Архитектурное проектирование</li>
-                            <li>Живопись (карандаш, пастель)</li>
+                            <li>Конный спорт и Сётокан</li>
+                            <li>Архитектура и живопись</li>
                         </ul>
                     </div>
                 </div>
@@ -146,69 +138,58 @@
         <section id="creativity" style="background: var(--secondary-bg);">
             <h2 class="section-title">Творческий путь</h2>
             <div class="content-block">
-                <div class="bio-text">
-                    <p>Литературная и музыкальная деятельность Эриха Эрленбаха охватывает более 50 лет. В своих работах он размышляет на вечные философские темы, пересказывает историю своей семьи через аллегории и создает глубокие полотна на основе библейских сюжетов.</p>
-                </div>
-                
                 <div class="stats-bar">
                     <div class="stat-box"><span class="stat-num">20+</span><span class="stat-desc">Издано книг</span></div>
                     <div class="stat-box"><span class="stat-num">50</span><span class="stat-desc">Лет творчества</span></div>
                     <div class="stat-box"><span class="stat-num">2000</span><span class="stat-desc">Листов рукописей</span></div>
                 </div>
-
                 <div class="feature-grid">
                     <div class="feature-item">
                         <h3>Литература</h3>
-                        <li>Поэзия: Саги и поэмы на русском, немецком и грузинском.</li>
-                        <li>Проза: Фантастика, детектив, философия, сказки.</li>
-                        <li>Переводы: С немецкого, армянского, грузинского, азербайджанского.</li>
+                        <p style="font-size: 0.9rem;">Саги, поэмы, фантастика и переводы с пяти языков.</p>
                     </div>
                     <div class="feature-item">
                         <h3>Музыка</h3>
-                        <li>Композитор-полистилист (от барокко до EDM).</li>
-                        <li>Симфонии, кантаты, оперные партии.</li>
-                        <li>Песни на английском, французском, немецком и русском.</li>
+                        <p style="font-size: 0.9rem;">Полистилистика: от барокко и оперных партий до EDM.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="library">
-            <h2 class="section-title">Библиотека</h2>
+            <h2 class="section-title">Библиотека и Музыка</h2>
             <div class="grid" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <div class="card" style="max-width: 450px;">
-                    <h3>Избранные издания</h3>
-                    <a href="https://www.google.de/books/edition/%D0%A2%D0%B5%D0%BD%D0%B8_%D0%BD%D0%B0%D0%B4_%D0%9A%D1%83%D1%80%D1%84%D1%8E%D1%80%D1%81%D1%82%D0%B5%D0%BD%D0%B4%D0%B0/0AWaEQAAQBAJ" class="btn" target="_blank">Тени над Курфюрстендамм (Google Books)</a>
+                <div class="card" style="max-width: 500px; text-align: center;">
+                    <h3>Площадки</h3>
+                    <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn" target="_blank">Google Books</a>
                     <a href="https://proza.ru/avtor/sheridan1" class="btn" target="_blank">Проза.ру</a>
                     <a href="https://stihi.ru/avtor/sheridan2" class="btn" target="_blank">Стихи.ру</a>
-                    <a href="http://www.litres.ru/search/?q=erlenbach%27" class="btn" target="_blank">ЛитРес</a>
-                    <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="btn" target="_blank">Amazon Books</a>
+                    <a href="https://youtube.com/@ericherlenbach" class="btn" target="_blank">YouTube</a>
+                    <a href="https://music.yandex.ru/artist/25156828" class="btn" target="_blank">Яндекс.Музыка</a>
+                    <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="btn" target="_blank">Amazon</a>
                 </div>
             </div>
         </section>
 
-        <section id="music" style="background: var(--secondary-bg);">
-            <h2 class="section-title">Партитура</h2>
-            <div class="grid" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <div class="card" style="text-align: center;">
-                    <h3>Стриминг и видео</h3>
-                    <a href="https://youtube.com/@ericherlenbach" class="btn" target="_blank">YouTube</a>
-                    <a href="https://rutube.ru/u/2e/" class="btn" target="_blank">RuTube</a>
-                    <a href="https://music.yandex.ru/artist/25156828" class="btn" target="_blank">Яндекс.Музыка</a>
-                    <a href="https://vk.com/artist/8133192430738481080" class="btn" target="_blank">VK Музыка</a>
-                    <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567?ls" class="btn" target="_blank">Apple Music</a>
-                    <a href="https://www.tiktok.com/@erich_erlenbach.2e" class="btn" target="_blank">TikTok</a>
-                </div>
+        <section id="contact" style="background: var(--secondary-bg); text-align: center;">
+            <h2 class="section-title">Связь</h2>
+            <div class="content-block">
+                <p style="margin-bottom: 30px;">Буду рад диалогу о творчестве, искусстве и сотрудничестве.</p>
+                <a href="mailto:d.a.tretiakof@gmail.com" class="btn" style="border-width: 2px;">Написать письмо (Email)</a>
+                <a href="https://t.me/ErichErlenbach" class="btn" target="_blank">Telegram-канал</a>
             </div>
         </section>
     </main>
 
     <footer>
         <p>© 2026 Эрих Эрленбах</p>
-        <p style="color: var(--accent-color); margin: 15px 0; font-size: 0.85rem;">
+        <p style="margin: 10px 0;">
+            <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--accent-color); font-family: 'Montserrat'; font-size: 0.9rem;">d.a.tretiakof@gmail.com</a>
+        </p>
+        <p style="color: #666; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px;">
             ISNI: 0000 0005 2738 1605 | 0000 0005 2738 1621
         </p>
-        <p style="font-size: 0.75rem; color: #777;">
+        <p style="font-size: 0.7rem; color: #444;">
             Интеллектуальная собственность РЦИС: 1374-173-780, 1767-067-747, 0614-421-108
         </p>
     </footer>
