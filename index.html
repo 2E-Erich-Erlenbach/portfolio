@@ -318,14 +318,6 @@
             font-weight: 500;
         }
 
-        .bio-full ul {
-            margin: 1rem 0 1rem 2rem;
-        }
-
-        .bio-full li {
-            margin: 0.5rem 0;
-        }
-
         .member-badge {
             display: inline-block;
             background: rgba(212, 175, 55, 0.15);
@@ -336,23 +328,47 @@
             font-weight: 500;
         }
 
-        .btn {
+        /* Стили для категорий ссылок */
+        .links-section {
+            margin-top: 30px;
+        }
+        
+        .links-category {
+            margin-bottom: 35px;
+        }
+        
+        .links-category h3 {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+        
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .btn-link {
             display: inline-block;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
-            margin: 6px;
-            text-transform: uppercase;
+            margin: 4px;
             font-size: 0.75rem;
             font-weight: 600;
             font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            background: transparent;
+            letter-spacing: 0.5px;
+            background: rgba(212, 175, 55, 0.05);
             border-radius: 40px;
             transition: all 0.25s;
         }
-
-        .btn:hover {
+        
+        .btn-link:hover {
             background: var(--accent-color);
             color: #000;
             transform: translateY(-2px);
@@ -399,6 +415,13 @@
             }
             .bio-grid {
                 grid-template-columns: 1fr;
+            }
+            .links-grid {
+                gap: 8px;
+            }
+            .btn-link {
+                padding: 6px 14px;
+                font-size: 0.7rem;
             }
         }
 
@@ -471,15 +494,47 @@
 
         <section id="library" style="background: var(--secondary-bg);">
             <h2 data-translate="library_title">Библиотека и ресурсы</h2>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn" target="_blank" rel="noopener noreferrer">Google Books</a>
-                <a href="https://proza.ru/avtor/sheridan1" class="btn" target="_blank" rel="noopener noreferrer">Проза.ру</a>
-                <a href="https://youtube.com/@ericherlenbach" class="btn" target="_blank" rel="noopener noreferrer">YouTube</a>
-                <a href="https://music.yandex.ru/artist/25156828" class="btn" target="_blank" rel="noopener noreferrer">Яндекс.Музыка</a>
-                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;" data-translate="random_quote_btn">Случайная цитата</a>
+            
+            <!-- Музыкальные каналы -->
+            <div class="links-section">
+                <div class="links-category">
+                    <h3>🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ</h3>
+                    <div class="links-grid">
+                        <a href="https://music.yandex.ru/artist/25156828" class="btn-link" target="_blank" rel="noopener noreferrer">Yandex Music</a>
+                        <a href="https://vk.com/artist/8133192430738481080" class="btn-link" target="_blank" rel="noopener noreferrer">VK Music</a>
+                        <a href="https://rutube.ru/u/2e/" class="btn-link" target="_blank" rel="noopener noreferrer">RuTube</a>
+                        <a href="https://youtube.com/@ericherlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">YouTube</a>
+                        <a href="https://open.spotify.com/artist/6EoFhJ7NVHtN6axOpodKpn" class="btn-link" target="_blank" rel="noopener noreferrer">Spotify</a>
+                        <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" class="btn-link" target="_blank" rel="noopener noreferrer">Apple Music</a>
+                        <a href="https://music.amazon.de/artists/B0GBVXPCMR/erich-erlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">Amazon Music</a>
+                        <a href="https://www.tiktok.com/@erich_erlenbach.2e" class="btn-link" target="_blank" rel="noopener noreferrer">TikTok</a>
+                    </div>
+                </div>
+                
+                <!-- Поэзия и проза -->
+                <div class="links-category">
+                    <h3>📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ</h3>
+                    <div class="links-grid">
+                        <a href="https://www.litres.ru/search/?q=erlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">LitRes</a>
+                        <a href="https://stihi.ru/avtor/sheridan2" class="btn-link" target="_blank" rel="noopener noreferrer">Поэзия (Stihi.ru)</a>
+                        <a href="https://proza.ru/avtor/sheridan1" class="btn-link" target="_blank" rel="noopener noreferrer">Проза (Proza.ru)</a>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные ресурсы -->
+                <div class="links-category">
+                    <h3>📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ</h3>
+                    <div class="links-grid">
+                        <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn-link" target="_blank" rel="noopener noreferrer">Google Books</a>
+                    </div>
+                </div>
             </div>
-            <div id="quoteMessage" style="text-align:center; margin-top: 28px; font-style:italic; font-size:0.95rem; padding: 12px; border-left: 2px solid var(--accent-color); border-right: 2px solid var(--accent-color); max-width: 700px; margin-left: auto; margin-right: auto;">
+            
+            <div id="quoteMessage" style="text-align:center; margin-top: 40px; font-style:italic; font-size:0.95rem; padding: 12px; border-left: 2px solid var(--accent-color); border-right: 2px solid var(--accent-color); max-width: 700px; margin-left: auto; margin-right: auto;">
                 ✦ <span data-translate="quote_hint">нажмите, чтобы увидеть афоризм</span> ✦
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;" data-translate="random_quote_btn">Случайная цитата</a>
             </div>
         </section>
 
@@ -501,7 +556,7 @@
     </footer>
 
     <script>
-        // Полные биографии на трёх языках (с сохранением всей информации)
+        // Полные биографии на трёх языках
         const fullBio = {
             ru: `<p><span class="highlight">Эрих Эрлэнбах</span> родился в 1962 году в городе Тбилиси (Грузинская ССР) в семье оперных артистов и фактически вырос в консерватории, где учились родители, и за кулисами театра.</p>
                 <p>Его родословная объединяет представителей семи наций и трёх религий. Это история семьи, которая под натиском исторических бурь и преобразований сконцентрировалась на Кавказе, в Грузии (Сакартвело — страна картлийцев) — из королевства Вюртемберг (Германия) и Баку (Азербайджан), из Санкт-Петербурга (Россия) и Еревана (Армения), из Каменца-Подольского (Польша, Украина) и лезгинского села Хрюг (Дагестан, Россия), из Тбилиси (Тифлис, Сакартвело) и немцев Поволжья (Автономная Социалистическая Советская Республика Немцев Поволжья).</p>
@@ -566,7 +621,6 @@
                 }
             });
             
-            // Обновляем биографию
             const bioDiv = document.getElementById('bioContent');
             if (bioDiv && fullBio[lang]) {
                 bioDiv.innerHTML = fullBio[lang];
