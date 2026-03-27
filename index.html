@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Эрих Эрленбах | Официальный сайт</title>
+    <title>Erich Erlenbach | Official Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -44,38 +44,79 @@
             transition: var(--transition);
         }
 
-        /* Шапка (навигация) */
+        /* Шапка с навигацией и переключателем языков */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(18, 18, 18, 0.92);
-            backdrop-filter: blur(8px);
+            padding: 0.8rem 2rem;
+            background: rgba(18, 18, 18, 0.94);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--accent-glow);
             display: flex;
-            justify-content: center;
-            gap: 2.5rem;
+            justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
         }
 
-        header a {
+        .nav-links a {
             padding: 0.4rem 0;
             border-bottom: 1px solid transparent;
         }
 
-        header a:hover {
+        .nav-links a:hover {
             border-bottom-color: var(--accent-color);
             color: var(--accent-color);
         }
 
-        /* Главный экран (hero) */
+        /* Переключатель языков */
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(212, 175, 55, 0.12);
+            padding: 0.3rem 0.6rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(212, 175, 55, 0.3);
+            color: var(--accent-color);
+        }
+
+        /* Главный экран */
         .hero {
             padding: 130px 5% 70px;
             min-height: 100vh;
@@ -89,7 +130,6 @@
             text-align: center;
         }
 
-        /* Блок часов и даты */
         .widgets-wrap {
             margin-bottom: 40px;
             display: flex;
@@ -121,23 +161,9 @@
             transition: transform 0.1s cubic-bezier(0.4, 2.5, 0.6, 1);
         }
 
-        .hour {
-            width: 5px;
-            height: 32px;
-            background: #e6c864;
-        }
-
-        .min {
-            width: 4px;
-            height: 48px;
-            background: #e0b84d;
-        }
-
-        .sec {
-            width: 2px;
-            height: 55px;
-            background: #ff6b6b;
-        }
+        .hour { width: 5px; height: 32px; background: #e6c864; }
+        .min { width: 4px; height: 48px; background: #e0b84d; }
+        .sec { width: 2px; height: 55px; background: #ff6b6b; }
 
         .clock::after {
             content: '';
@@ -149,7 +175,6 @@
             background: var(--accent-color);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2;
         }
 
         .date-panel {
@@ -168,11 +193,6 @@
             margin: 5px 0;
         }
 
-        .weather-placeholder {
-            width: 100%;
-            min-height: 100px;
-        }
-
         .manifesto {
             font-style: italic;
             margin-top: 30px;
@@ -185,7 +205,6 @@
             border-radius: 4px;
         }
 
-        /* Контентные секции */
         section {
             padding: 70px 6%;
             border-bottom: 1px solid #2a2a2a;
@@ -245,22 +264,23 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* адаптивность */
         @media (max-width: 680px) {
             header {
+                padding: 0.6rem 1rem;
+                flex-direction: column;
+            }
+            .nav-links {
                 gap: 1.2rem;
                 font-size: 0.7rem;
-                padding: 0.8rem;
             }
             .hero {
-                padding-top: 110px;
+                padding-top: 150px;
             }
             h1 {
                 font-size: 1.8rem;
             }
             .manifesto {
                 font-size: 0.9rem;
-                padding: 16px;
             }
             .clock {
                 width: 110px;
@@ -269,24 +289,26 @@
             .hour { height: 26px; }
             .min { height: 40px; }
             .sec { height: 46px; }
-            section {
-                padding: 50px 5%;
-            }
         }
 
-        /* подложка для изображения при ошибке */
-        .bio-img.error-load {
-            object-fit: cover;
-            filter: brightness(0.9);
+        [data-translate] {
+            transition: opacity 0.15s ease;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#about">Биография</a>
-        <a href="#library">Книги</a>
-        <a href="#contact">Связь</a>
+        <div class="nav-links">
+            <a href="#about" data-translate="nav_bio">Биография</a>
+            <a href="#library" data-translate="nav_books">Книги</a>
+            <a href="#contact" data-translate="nav_contact">Связь</a>
+        </div>
+        <div class="language-switcher">
+            <button class="lang-btn" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
+        </div>
     </header>
 
     <main>
@@ -307,66 +329,190 @@
                 </div>
             </div>
 
-            <h1>Эрих Эрленбах</h1>
-            <div class="manifesto">
+            <h1 data-translate="hero_title">Эрих Эрленбах</h1>
+            <div class="manifesto" data-translate="hero_quote">
                 «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»
             </div>
         </section>
 
         <section id="about">
-            <h2>Биография</h2>
+            <h2 data-translate="about_title">Биография</h2>
             <div class="bio-grid">
                 <div>
-                    <img src="sheridan1.jpg" class="bio-img" alt="Портрет Эриха Эрленбаха" 
+                    <img src="sheridan1.jpg" class="bio-img" alt="Erich Erlenbach" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x750/1e1e1e/d4af37?text=Erich+Erlenbach'; this.classList.add('error-load');">
                 </div>
                 <div style="font-family: 'Montserrat'; font-weight: 300; font-size: 1.05rem;">
-                    <p>Родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная объединяет семь наций и три религии. Детство прошло в «итальянских двориках» — символе гармонии и сосуществования.</p>
+                    <p data-translate="bio_p1">Родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная объединяет семь наций и три религии. Детство прошло в «итальянских двориках» — символе гармонии и сосуществования.</p>
                     <br>
-                    <p>Более 40 лет службы в войсках (полковник в отставке), 50 лет в творчестве. Поэт, композитор, писатель, шахматист. Автор более десятка книг, музыкальных альбомов и публичных лекций о метафизике искусства.</p>
+                    <p data-translate="bio_p2">Более 40 лет службы в войсках (полковник в отставке), 50 лет в творчестве. Поэт, композитор, писатель, шахматист. Автор более десятка книг, музыкальных альбомов и публичных лекций о метафизике искусства.</p>
                     <br>
-                    <p>Сегодня живёт и работает между Тбилиси и Баден-Баденом, продолжая писать стихи, прозу и симфонические композиции, вдохновлённые кавказским многоголосием и европейской классической традицией.</p>
+                    <p data-translate="bio_p3">Сегодня живёт и работает между Тбилиси и Баден-Баденом, продолжая писать стихи, прозу и симфонические композиции, вдохновлённые кавказским многоголосием и европейской классической традицией.</p>
                 </div>
             </div>
         </section>
 
         <section id="library" style="background: var(--secondary-bg);">
-            <h2>Библиотека и ресурсы</h2>
+            <h2 data-translate="library_title">Библиотека и ресурсы</h2>
             <div style="text-align: center; margin-top: 40px;">
                 <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn" target="_blank" rel="noopener noreferrer">Google Books</a>
                 <a href="https://proza.ru/avtor/sheridan1" class="btn" target="_blank" rel="noopener noreferrer">Проза.ру</a>
                 <a href="https://youtube.com/@ericherlenbach" class="btn" target="_blank" rel="noopener noreferrer">YouTube</a>
                 <a href="https://music.yandex.ru/artist/25156828" class="btn" target="_blank" rel="noopener noreferrer">Яндекс.Музыка</a>
-                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;">Случайная цитата</a>
+                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;" data-translate="random_quote_btn">Случайная цитата</a>
             </div>
             <div id="quoteMessage" style="text-align:center; margin-top: 28px; font-style:italic; font-size:0.95rem; padding: 12px; border-left: 2px solid var(--accent-color); border-right: 2px solid var(--accent-color); max-width: 700px; margin-left: auto; margin-right: auto;">
-                ✦ нажмите, чтобы увидеть афоризм ✦
+                ✦ <span data-translate="quote_hint">нажмите, чтобы увидеть афоризм</span> ✦
             </div>
         </section>
 
         <section id="contact">
-            <h2>Связь</h2>
+            <h2 data-translate="contact_title">Связь</h2>
             <div style="text-align: center; margin-top: 28px;">
-                <p style="margin-bottom: 16px;">Email: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color); border-bottom: 1px dashed var(--accent-color);">d.a.tretiakof@gmail.com</a></p>
-                <a href="https://t.me/ErichErlenbach" class="btn" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
-                <a href="#" class="btn" id="copyEmailBtn" style="margin-left: 8px;">Скопировать email</a>
+                <p style="margin-bottom: 16px;"><span data-translate="contact_email_label">Email</span>: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color); border-bottom: 1px dashed var(--accent-color);">d.a.tretiakof@gmail.com</a></p>
+                <a href="https://t.me/ErichErlenbach" class="btn" target="_blank" rel="noopener noreferrer" data-translate="telegram_btn">Telegram-канал</a>
+                <a href="#" class="btn" id="copyEmailBtn" style="margin-left: 8px;" data-translate="copy_email_btn">Скопировать email</a>
             </div>
             <div style="text-align: center; margin-top: 35px; font-size: 0.85rem; background: rgba(212,175,55,0.05); padding: 15px; border-radius: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">
-                <span>📬 Для творческих предложений и коллабораций</span>
+                <span data-translate="contact_note">📬 Для творческих предложений и коллабораций</span>
             </div>
         </section>
     </main>
 
     <footer>
-        © 2026 Эрих Эрленбах | ISNI: 0000 0005 2738 1605 | Все права защищены
+        <span data-translate="footer_copyright">© 2026 Эрих Эрленбах | ISNI: 0000 0005 2738 1605 | Все права защищены</span>
     </footer>
 
     <script>
-        // 1. Часы с плавным обновлением и корректным позиционированием
-        function updateClockAndDate() {
-            const now = new Date();
+        // ==================== МУЛЬТИЯЗЫЧНЫЙ КОНТЕНТ ====================
+        const translations = {
+            ru: {
+                nav_bio: "Биография",
+                nav_books: "Книги",
+                nav_contact: "Связь",
+                hero_title: "Эрих Эрленбах",
+                hero_quote: "«Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»",
+                about_title: "Биография",
+                bio_p1: "Родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная объединяет семь наций и три религии. Детство прошло в «итальянских двориках» — символе гармонии и сосуществования.",
+                bio_p2: "Более 40 лет службы в войсках (полковник в отставке), 50 лет в творчестве. Поэт, композитор, писатель, шахматист. Автор более десятка книг, музыкальных альбомов и публичных лекций о метафизике искусства.",
+                bio_p3: "Сегодня живёт и работает между Тбилиси и Баден-Баденом, продолжая писать стихи, прозу и симфонические композиции, вдохновлённые кавказским многоголосием и европейской классической традицией.",
+                library_title: "Библиотека и ресурсы",
+                random_quote_btn: "Случайная цитата",
+                quote_hint: "нажмите, чтобы увидеть афоризм",
+                contact_title: "Связь",
+                contact_email_label: "Email",
+                telegram_btn: "Telegram-канал",
+                copy_email_btn: "Скопировать email",
+                contact_note: "📬 Для творческих предложений и коллабораций",
+                footer_copyright: "© 2026 Эрих Эрленбах | ISNI: 0000 0005 2738 1605 | Все права защищены"
+            },
+            en: {
+                nav_bio: "Biography",
+                nav_books: "Books",
+                nav_contact: "Contact",
+                hero_title: "Erich Erlenbach",
+                hero_quote: "«Everything that takes form in sound, in rhyme or in prose is but an earthly echo of Heavenly harmony. We are not authors, but co-authors of the Creator...»",
+                about_title: "Biography",
+                bio_p1: "Born in 1962 in Tbilisi into a family of opera singers. His lineage unites seven nations and three religions. His childhood was spent in the \"Italian courtyards\" — a symbol of harmony and coexistence.",
+                bio_p2: "Over 40 years of military service (colonel, retired), 50 years in creative work. Poet, composer, writer, chess player. Author of more than a dozen books, musical albums, and public lectures on the metaphysics of art.",
+                bio_p3: "Today he lives and works between Tbilisi and Baden-Baden, continuing to write poetry, prose, and symphonic compositions inspired by Caucasian polyphony and European classical tradition.",
+                library_title: "Library & Resources",
+                random_quote_btn: "Random quote",
+                quote_hint: "click to see an aphorism",
+                contact_title: "Contact",
+                contact_email_label: "Email",
+                telegram_btn: "Telegram channel",
+                copy_email_btn: "Copy email",
+                contact_note: "📬 For creative proposals and collaborations",
+                footer_copyright: "© 2026 Erich Erlenbach | ISNI: 0000 0005 2738 1605 | All rights reserved"
+            },
+            ka: {
+                nav_bio: "ბიოგრაფია",
+                nav_books: "წიგნები",
+                nav_contact: "კონტაქტი",
+                hero_title: "ერიხ ერლენბახი",
+                hero_quote: "«ყველაფერი, რაც ფორმას იძენს ხმაში, რითმაში თუ პროზაში, მხოლოდ ამქვეყნიური ექოა ზეციური ჰარმონიისა. ჩვენ არა ავტორები, არამედ თანაავტორები ვართ შემოქმედისა...»",
+                about_title: "ბიოგრაფია",
+                bio_p1: "დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა აერთიანებს შვიდ ერს და სამ რელიგიას. ბავშვობა გაატარა „იტალიურ ეზოებში“ — ჰარმონიისა და თანაცხოვრების სიმბოლოში.",
+                bio_p2: "40 წელზე მეტი სამხედრო სამსახური (პოლკოვნიკი გადამდგარი), 50 წელი შემოქმედებაში. პოეტი, კომპოზიტორი, მწერალი, მოჭადრაკე. ათეულზე მეტი წიგნის, მუსიკალური ალბომის და ხელოვნების მეტაფიზიკის შესახებ საჯარო ლექციების ავტორი.",
+                bio_p3: "დღეს ცხოვრობს და მოღვაწეობს თბილისსა და ბადენ-ბადენს შორის, აგრძელებს ლექსების, პროზისა და სიმფონიური კომპოზიციების წერას, შთაგონებული კავკასიური მრავალხმიანობითა და ევროპული კლასიკური ტრადიციით.",
+                library_title: "ბიბლიოთეკა და რესურსები",
+                random_quote_btn: "შემთხვევითი ციტატა",
+                quote_hint: "დააჭირეთ აფორიზმის სანახავად",
+                contact_title: "კონტაქტი",
+                contact_email_label: "ელფოსტა",
+                telegram_btn: "Telegram არხი",
+                copy_email_btn: "ელფოსტის კოპირება",
+                contact_note: "📬 შემოქმედებითი წინადადებებისა და კოლაბორაციებისთვის",
+                footer_copyright: "© 2026 ერიხ ერლენბახი | ISNI: 0000 0005 2738 1605 | ყველა უფლება დაცულია"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            // Обновляем активную кнопку
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
             
-            // секунды, минуты, часы
+            // Переводим все элементы с data-translate
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else if (el.tagName === 'A' && el.getAttribute('data-translate') === 'random_quote_btn') {
+                        el.innerText = translations[lang][key];
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Обновляем даты (формат даты под язык)
+            updateDatesForLanguage(lang);
+            
+            // Сохраняем язык в localStorage
+            localStorage.setItem('erlenbach_lang', lang);
+        }
+        
+        function updateDatesForLanguage(lang) {
+            const now = new Date();
+            const ruDateElem = document.getElementById('date-ru');
+            const enDateElem = document.getElementById('date-en');
+            const kaDateElem = document.getElementById('date-ka');
+            
+            if (lang === 'ru') {
+                if (ruDateElem) ruDateElem.style.display = 'block';
+                if (enDateElem) enDateElem.style.display = 'none';
+                if (kaDateElem) kaDateElem.style.display = 'none';
+                if (ruDateElem) ruDateElem.innerText = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            } else if (lang === 'en') {
+                if (ruDateElem) ruDateElem.style.display = 'none';
+                if (enDateElem) enDateElem.style.display = 'block';
+                if (kaDateElem) kaDateElem.style.display = 'none';
+                if (enDateElem) enDateElem.innerText = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            } else if (lang === 'ka') {
+                if (ruDateElem) ruDateElem.style.display = 'none';
+                if (enDateElem) enDateElem.style.display = 'none';
+                if (kaDateElem) kaDateElem.style.display = 'block';
+                try {
+                    kaDateElem.innerText = now.toLocaleDateString('ka-GE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                } catch(e) {
+                    kaDateElem.innerText = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + " (ქართ.)";
+                }
+            }
+        }
+        
+        // Обновление часов (не зависит от языка)
+        function updateClock() {
+            const now = new Date();
             const seconds = now.getSeconds();
             const minutes = now.getMinutes();
             const hours = now.getHours() % 12;
@@ -383,32 +529,14 @@
             if (minHand) minHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
             if (hourHand) hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
             
-            // Дата: русский, английский, грузинский
-            const dateRuElem = document.getElementById('date-ru');
-            const dateEnElem = document.getElementById('date-en');
-            const dateKaElem = document.getElementById('date-ka');
-            
-            if (dateRuElem) {
-                dateRuElem.innerText = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            }
-            if (dateEnElem) {
-                dateEnElem.innerText = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            }
-            if (dateKaElem) {
-                try {
-                    // для грузинской локализации (если поддерживается браузером)
-                    dateKaElem.innerText = now.toLocaleDateString('ka-GE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                } catch(e) {
-                    dateKaElem.innerText = now.toLocaleDateString('ru-RU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + " (груз.)";
-                }
-            }
+            // Обновляем дату для текущего языка каждую секунду
+            updateDatesForLanguage(currentLang);
         }
         
-        // Запускаем часы каждые 250 мс для более плавной секундной стрелки, но обновляем дату раз в секунду достаточно
-        setInterval(updateClockAndDate, 250);
-        updateClockAndDate();
+        setInterval(updateClock, 250);
+        updateClock();
         
-        // 2. Виджет погоды (без изменений, корректная инициализация)
+        // Инициализация погодного виджета
         (function(d,s,id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (!d.getElementById(id)) {
@@ -419,27 +547,42 @@
             }
         }(document, 'script', 'weatherwidget-io-js'));
         
-        // 3. Дополнительная интерактивность: цитаты (разнообразие)
-        const quotes = [
-            "«Истинная поэзия — это звук, который не нуждается в переводе». — Э.Э.",
-            "«Шахматы учат видеть красоту порядка среди хаоса, а музыка — слышать тишину между нотами». ",
-            "«Кавказский двор — это модель мира, где каждый народ звучит своей нотой, но создаёт единую гармонию». ",
-            "«Служение искусству выше служения чинам, но честь и искусство всегда рядом». ",
-            "«В каждом стихе прячется вечность, а в каждой ноте — дыхание небес». "
-        ];
+        // Цитаты на всех языках
+        const quotesByLang = {
+            ru: [
+                "«Истинная поэзия — это звук, который не нуждается в переводе». — Э.Э.",
+                "«Шахматы учат видеть красоту порядка среди хаоса, а музыка — слышать тишину между нотами».",
+                "«Кавказский двор — это модель мира, где каждый народ звучит своей нотой, но создаёт единую гармонию».",
+                "«Служение искусству выше служения чинам, но честь и искусство всегда рядом».",
+                "«В каждом стихе прячется вечность, а в каждой ноте — дыхание небес»."
+            ],
+            en: [
+                "«True poetry is a sound that needs no translation». — E.E.",
+                "«Chess teaches to see the beauty of order amidst chaos, and music — to hear the silence between notes».",
+                "«The Caucasian courtyard is a model of the world where every nation sounds its own note, yet creates a single harmony».",
+                "«Service to art is above service to ranks, but honor and art are always together».",
+                "«In every verse hides eternity, and in every note — the breath of heavens»."
+            ],
+            ka: [
+                "«ნამდვილი პოეზია არის ბგერა, რომელსაც თარგმანი არ სჭირდება». — ე.ე.",
+                "«ჭადრაკი გვასწავლის ქაოსში წესრიგის სილამაზის დანახვას, ხოლო მუსიკა — ნოტებს შორის სიჩუმის მოსმენას».",
+                "«კავკასიური ეზო არის სამყაროს მოდელი, სადაც თითოეული ერი თავის ნოტს ჟღერს, მაგრამ ქმნის ერთიან ჰარმონიას».",
+                "«ხელოვნების მსახურება უფრო მაღლა დგას, ვიდრე წოდებების მსახურება, მაგრამ პატივი და ხელოვნება ყოველთვის ერთად არიან».",
+                "«ყოველ ლექსში იმალება მარადისობა, ყოველ ნოტში კი — ზეცის სუნთქვა»."
+            ]
+        };
         
         const randomQuoteBtn = document.getElementById('randomQuoteBtn');
         const quoteMsgDiv = document.getElementById('quoteMessage');
         if (randomQuoteBtn && quoteMsgDiv) {
             randomQuoteBtn.addEventListener('click', () => {
+                const quotes = quotesByLang[currentLang] || quotesByLang.ru;
                 const randomIndex = Math.floor(Math.random() * quotes.length);
                 quoteMsgDiv.innerHTML = `✦ ${quotes[randomIndex]} ✦`;
-                quoteMsgDiv.style.opacity = '1';
-                quoteMsgDiv.style.transition = '0.2s';
             });
         }
         
-        // 4. Кнопка копирования email
+        // Копирование email
         const copyBtn = document.getElementById('copyEmailBtn');
         if (copyBtn) {
             copyBtn.addEventListener('click', async (e) => {
@@ -448,24 +591,34 @@
                 try {
                     await navigator.clipboard.writeText(email);
                     const originalText = copyBtn.innerText;
-                    copyBtn.innerText = '✅ Скопировано!';
+                    copyBtn.innerText = currentLang === 'ru' ? '✅ Скопировано!' : (currentLang === 'en' ? '✅ Copied!' : '✅ დაკოპირდა!');
                     setTimeout(() => {
-                        copyBtn.innerText = originalText;
+                        copyBtn.innerText = translations[currentLang]?.copy_email_btn || 'Скопировать email';
                     }, 2000);
                 } catch (err) {
-                    alert('Не удалось скопировать, но email: ' + email);
+                    alert(email);
                 }
             });
         }
         
-        // 5. Обработка ошибок загрузки изображения уже через onerror, плюс fallback текста
-        const bioImg = document.querySelector('.bio-img');
-        if (bioImg && bioImg.complete && bioImg.naturalWidth === 0) {
-            bioImg.src = 'https://placehold.co/600x750/1e1e1e/d4af37?text=Erich+Erlenbach';
+        // Обработчики переключения языка
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                setLanguage(lang);
+            });
+        });
+        
+        // Восстанавливаем сохранённый язык
+        const savedLang = localStorage.getItem('erlenbach_lang');
+        if (savedLang && translations[savedLang]) {
+            setLanguage(savedLang);
+        } else {
+            setLanguage('ru');
         }
         
-        // 6. Корректировка header при навигации (чтобы не перекрывалось якорями)
-        document.querySelectorAll('header a').forEach(anchor => {
+        // Плавная навигация с учётом фиксированного хедера
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 if (targetId && targetId !== '#') {
@@ -483,43 +636,7 @@
             });
         });
         
-        // 7. мелкая фича: плавный скролл для ссылок без id (если потребуется, но основная навигация уже обработана)
-        // добавим также корректировку при первом открытии, если есть хеш
-        if (window.location.hash) {
-            setTimeout(() => {
-                const target = document.querySelector(window.location.hash);
-                if (target) {
-                    const headerHeight = document.querySelector('header')?.offsetHeight || 80;
-                    window.scrollTo(0, target.offsetTop - headerHeight - 10);
-                }
-            }, 100);
-        }
-        
-        // 8. (опционально) добавим небольшой эффект при наведении на дату, легкая атмосфера
-        const datePanel = document.querySelector('.date-panel');
-        if(datePanel) {
-            datePanel.style.transition = 'box-shadow 0.2s';
-            datePanel.addEventListener('mouseenter', () => {
-                datePanel.style.boxShadow = '0 0 10px rgba(212,175,55,0.2)';
-            });
-            datePanel.addEventListener('mouseleave', () => {
-                datePanel.style.boxShadow = 'none';
-            });
-        }
-        
-        // улучшение для погодного виджета: обеспечить перезагрузку стилей, если контейнер виден
-        const weatherLink = document.querySelector('.weatherwidget-io');
-        if(weatherLink && typeof window.WeatherWidget !== 'undefined') {
-            // ничего не делаем, виджет сам инициализируется. просто фикс для читаемости
-        }
-        
-        // дополнительная проверка даты-грузинской (если локализация не поддерживается, отображаем красивый вариант)
-        const kaParagraph = document.getElementById('date-ka');
-        if(kaParagraph && kaParagraph.innerText.includes('груз')) {
-            // уже есть fallback в коде, оставляем как есть
-        }
-        
-        // плавное появление элементов (небольшой визуальный штрих)
+        // Плавное появление секций
         const sections = document.querySelectorAll('section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -536,27 +653,23 @@
             sec.style.transition = 'opacity 0.6s ease, transform 0.5s ease';
             observer.observe(sec);
         });
-        // сразу активируем hero видимым
+        
         const heroSection = document.querySelector('.hero');
         if(heroSection) {
             heroSection.style.opacity = '1';
             heroSection.style.transform = 'translateY(0)';
         }
         
-        // также убираем мигание часов, добавим четкость стрелок
-        const styleFix = document.createElement('style');
-        styleFix.textContent = `
-            .hand {
-                will-change: transform;
-            }
-            .clock {
-                background: radial-gradient(circle at 30% 25%, rgba(0,0,0,0.6), #0a0a0a);
-            }
-            #randomQuoteBtn {
-                cursor: pointer;
-            }
-        `;
-        document.head.appendChild(styleFix);
+        // Обработка хеша при загрузке
+        if (window.location.hash) {
+            setTimeout(() => {
+                const target = document.querySelector(window.location.hash);
+                if (target) {
+                    const headerHeight = document.querySelector('header')?.offsetHeight || 80;
+                    window.scrollTo(0, target.offsetTop - headerHeight - 10);
+                }
+            }, 150);
+        }
     </script>
 </body>
 </html>
