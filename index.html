@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Эрих Эрлэнбах | Официальный сайт</title>
+    <title>埃里希·埃尔伦巴赫 | 官方网站</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,6 +28,34 @@
             font-family: 'Lora', serif;
             line-height: 1.6;
             scroll-behavior: smooth;
+        }
+
+        /* Стиль для арабского языка */
+        body.lang-ar {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body.lang-ar .nav-links,
+        body.lang-ar .language-switcher,
+        body.lang-ar .banners,
+        body.lang-ar .links-grid,
+        body.lang-ar .bio-grid {
+            direction: ltr;
+        }
+
+        body.lang-ar section,
+        body.lang-ar footer,
+        body.lang-ar .manifesto,
+        body.lang-ar .date-panel {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body.lang-ar h1, 
+        body.lang-ar h2, 
+        body.lang-ar h3 {
+            text-align: center;
         }
 
         h1, h2, h3 {
@@ -60,6 +88,10 @@
             gap: 1rem;
         }
 
+        body.lang-ar header {
+            direction: ltr;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -87,6 +119,8 @@
             padding: 0.3rem 0.6rem;
             border-radius: 40px;
             backdrop-filter: blur(4px);
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .lang-btn {
@@ -95,8 +129,8 @@
             color: var(--text-color);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 0.75rem;
-            padding: 0.3rem 0.7rem;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
             cursor: pointer;
             border-radius: 30px;
             transition: all 0.2s;
@@ -328,6 +362,11 @@
             font-weight: 500;
         }
 
+        body.lang-ar .member-badge {
+            border-left: none;
+            border-right: 3px solid var(--accent-color);
+        }
+
         .links-section {
             margin-top: 30px;
         }
@@ -413,30 +452,35 @@
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
         }
 
-        /* Стиль для баннера Грузинского национального музея */
-        .museum-banner {
+        /* Стили для баннеров */
+        .museum-banner, .berlin-banner {
             display: inline-block;
             width: 180px;
             height: 90px;
-            background: #1e2a2e;
             border-radius: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.3);
             text-decoration: none;
             transition: all 0.2s ease;
             overflow: hidden;
-            position: relative;
-            font-family: 'Georgia', 'Times New Roman', serif;
             border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        .museum-banner:hover {
+        .museum-banner:hover, .berlin-banner:hover {
             transform: scale(1.02);
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
             filter: brightness(1.02);
             border-color: var(--accent-color);
         }
 
-        .banner-inner {
+        .museum-banner {
+            background: #1e2a2e;
+        }
+
+        .berlin-banner {
+            background: linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCC00 100%);
+        }
+
+        .banner-inner, .berlin-banner-inner {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -447,33 +491,50 @@
             background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
         }
 
-        .museum-icon {
+        .museum-icon, .berlin-icon {
             font-size: 22px;
             line-height: 1;
             margin-bottom: 2px;
-            letter-spacing: 1px;
         }
 
-        .museum-name {
+        .museum-name, .berlin-name {
             font-size: 10px;
             font-weight: bold;
             text-transform: uppercase;
-            color: #e5c687;
             letter-spacing: 0.5px;
             text-align: center;
             line-height: 1.2;
             margin-bottom: 3px;
         }
 
-        .museum-location {
+        .museum-name {
+            color: #e5c687;
+        }
+
+        .berlin-name {
+            color: #FFCC00;
+            font-size: 11px;
+            font-weight: 800;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        .museum-location, .berlin-sub {
             font-size: 7px;
-            color: #c0cfcf;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border-top: 1px solid rgba(229,198,135,0.5);
             padding-top: 3px;
             width: 90%;
             text-align: center;
+        }
+
+        .museum-location {
+            color: #c0cfcf;
+        }
+
+        .berlin-sub {
+            color: #ffffff;
+            border-top-color: rgba(255,255,255,0.5);
         }
 
         .decoration {
@@ -504,8 +565,8 @@
                 padding: 0.2rem 0.4rem;
             }
             .lang-btn {
-                font-size: 0.65rem;
-                padding: 0.2rem 0.5rem;
+                font-size: 0.6rem;
+                padding: 0.2rem 0.4rem;
             }
             .hero {
                 padding-top: 150px;
@@ -540,14 +601,14 @@
             .banners {
                 gap: 12px;
             }
-            .banners img, .museum-banner {
+            .banners img, .museum-banner, .berlin-banner {
                 width: 150px;
                 height: 75px;
             }
-            .museum-name {
+            .museum-name, .berlin-name {
                 font-size: 8px;
             }
-            .museum-icon {
+            .museum-icon, .berlin-icon {
                 font-size: 18px;
             }
         }
@@ -558,7 +619,6 @@
     </style>
 </head>
 <body>
-
     <header>
         <div class="nav-links">
             <a href="#about" data-translate="nav_bio">Биография</a>
@@ -570,6 +630,8 @@
             <button class="lang-btn" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ka">KA</button>
             <button class="lang-btn" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
         </div>
     </header>
 
@@ -586,10 +648,12 @@
                     <p id="date-en" style="font-size: 0.75rem; margin: 5px 0; opacity:0.9;"></p>
                     <p id="date-ka" style="font-size: 0.85rem;"></p>
                     <p id="date-de" style="font-size: 0.85rem;"></p>
+                    <p id="date-ar" style="font-size: 0.85rem;"></p>
+                    <p id="date-zh" style="font-size: 0.85rem;"></p>
                 </div>
                 <div class="weather-card" id="weatherWidget">
                     <div class="weather-city">🇬🇪 Tbilisi</div>
-                    <div class="weather-loading" id="weatherLoading">🌤️ Wetter wird geladen...</div>
+                    <div class="weather-loading" id="weatherLoading">🌤️ 正在加载天气...</div>
                     <div id="weatherContent" style="display: none;">
                         <div class="weather-temp" id="weatherTemp"></div>
                         <div class="weather-desc" id="weatherDesc"></div>
@@ -598,35 +662,35 @@
                             <span>🌬️ <span id="weatherWind"></span> m/s</span>
                         </div>
                     </div>
-                    <div class="weather-error" id="weatherError" style="display: none;">⚠️ Wetter konnte nicht geladen werden</div>
+                    <div class="weather-error" id="weatherError" style="display: none;">⚠️ 无法加载天气数据</div>
                 </div>
             </div>
 
-            <h1 data-translate="hero_title">Эрих Эрлэнбах</h1>
+            <h1 data-translate="hero_title">埃里希·埃尔伦巴赫</h1>
             <div class="manifesto" data-translate="hero_quote">
-                «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»
+                «在声音、韵律或散文中成形的一切，都只是天堂和谐的尘世回响。我们不是作者，而是造物主的合著者...»
             </div>
         </section>
 
         <section id="about">
-            <h2 data-translate="about_title">Биография</h2>
+            <h2 data-translate="about_title">传记</h2>
             <div class="bio-grid">
                 <div>
-                    <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах" 
+                    <img src="sheridan1.jpg" class="bio-img" alt="埃里希·埃尔伦巴赫" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x750/1e1e1e/d4af37?text=Erich+Erlenbach'; this.classList.add('error-load');">
                 </div>
                 <div class="bio-full" id="bioContent">
-                    <!-- Полная биография будет загружена через JS -->
+                    <!-- 完整传记将通过JS加载 -->
                 </div>
             </div>
         </section>
 
         <section id="library" style="background: var(--secondary-bg);">
-            <h2 data-translate="library_title">Библиотека и ресурсы</h2>
+            <h2 data-translate="library_title">图书馆与资源</h2>
             
             <div class="links-section">
                 <div class="links-category">
-                    <h3 data-translate="music_links_title">🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ</h3>
+                    <h3 data-translate="music_links_title">🎵 音乐频道链接</h3>
                     <div class="links-grid">
                         <a href="https://music.yandex.ru/artist/25156828" class="btn-link" target="_blank" rel="noopener noreferrer">Yandex Music</a>
                         <a href="https://vk.com/artist/8133192430738481080" class="btn-link" target="_blank" rel="noopener noreferrer">VK Music</a>
@@ -640,7 +704,7 @@
                 </div>
                 
                 <div class="links-category">
-                    <h3 data-translate="poetry_prose_title">📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ</h3>
+                    <h3 data-translate="poetry_prose_title">📚 诗歌与散文频道链接</h3>
                     <div class="links-grid">
                         <a href="https://www.litres.ru/search/?q=erlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">LitRes</a>
                         <a href="https://stihi.ru/avtor/sheridan2" class="btn-link" target="_blank" rel="noopener noreferrer">Poetry (Stihi.ru)</a>
@@ -649,7 +713,7 @@
                 </div>
                 
                 <div class="links-category">
-                    <h3 data-translate="additional_resources_title">📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ</h3>
+                    <h3 data-translate="additional_resources_title">📖 其他资源</h3>
                     <div class="links-grid">
                         <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn-link" target="_blank" rel="noopener noreferrer">Google Books</a>
                     </div>
@@ -657,36 +721,34 @@
             </div>
             
             <div id="quoteMessage" style="text-align:center; margin-top: 40px; font-style:italic; font-size:0.95rem; padding: 12px; border-left: 2px solid var(--accent-color); border-right: 2px solid var(--accent-color); max-width: 700px; margin-left: auto; margin-right: auto;">
-                ✦ <span data-translate="quote_hint">нажмите, чтобы увидеть афоризм</span> ✦
+                ✦ <span data-translate="quote_hint">点击查看箴言</span> ✦
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;" data-translate="random_quote_btn">Случайная цитата</a>
+                <a href="#" class="btn" id="randomQuoteBtn" style="cursor:pointer;" data-translate="random_quote_btn">随机箴言</a>
             </div>
         </section>
 
         <section id="contact">
-            <h2 data-translate="contact_title">Связь</h2>
+            <h2 data-translate="contact_title">联系方式</h2>
             <div style="text-align: center; margin-top: 28px;">
-                <p style="margin-bottom: 16px;"><span data-translate="contact_email_label">Email</span>: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color); border-bottom: 1px dashed var(--accent-color);">d.a.tretiakof@gmail.com</a></p>
-                <a href="https://t.me/ErichErlenbach" class="btn" target="_blank" rel="noopener noreferrer" data-translate="telegram_btn">Telegram-канал</a>
-                <a href="#" class="btn" id="copyEmailBtn" style="margin-left: 8px;" data-translate="copy_email_btn">Скопировать email</a>
+                <p style="margin-bottom: 16px;"><span data-translate="contact_email_label">电子邮箱</span>: <a href="mailto:d.a.tretiakof@gmail.com" style="color:var(--accent-color); border-bottom: 1px dashed var(--accent-color);">d.a.tretiakof@gmail.com</a></p>
+                <a href="https://t.me/ErichErlenbach" class="btn" target="_blank" rel="noopener noreferrer" data-translate="telegram_btn">Telegram频道</a>
+                <a href="#" class="btn" id="copyEmailBtn" style="margin-left: 8px;" data-translate="copy_email_btn">复制邮箱</a>
             </div>
             <div style="text-align: center; margin-top: 35px; font-size: 0.85rem; background: rgba(212,175,55,0.05); padding: 15px; border-radius: 24px; max-width: 480px; margin-left: auto; margin-right: auto;">
-                <span data-translate="contact_note">📬 Для творческих предложений и коллабораций</span>
+                <span data-translate="contact_note">📬 用于创意建议与合作</span>
             </div>
         </section>
     </main>
 
     <footer>
-        <!-- Баннеры -->
         <div class="banners">
             <a href="https://stihi.ru/avtor/sheridan2" target="_blank" rel="noopener noreferrer">
-                <img src="https://stihi.ru/images/author180x90.gif" width="180" height="90" border="0" alt="Эрих Эрлэнбах на сервере Стихи.ру">
+                <img src="https://stihi.ru/images/author180x90.gif" width="180" height="90" border="0" alt="埃里希·埃尔伦巴赫在 Stihi.ru">
             </a>
             <a href="https://proza.ru/avtor/sheridan1" target="_blank" rel="noopener noreferrer">
-                <img src="https://proza.ru/images/author180x90.gif" width="180" height="90" border="0" alt="Эрих Эрлэнбах на сервере Проза.ру">
+                <img src="https://proza.ru/images/author180x90.gif" width="180" height="90" border="0" alt="埃里希·埃尔伦巴赫在 Proza.ru">
             </a>
-            <!-- Баннер Грузинского национального музея -->
             <a href="https://museum.ge/index.php?m=2&lng=eng" target="_blank" rel="noopener noreferrer" class="museum-banner">
                 <div class="banner-inner">
                     <div class="museum-icon">🏛️</div>
@@ -695,12 +757,19 @@
                     <div class="museum-location">TBILISI · GEORGIA</div>
                 </div>
             </a>
+            <a href="https://www.berlin.de" target="_blank" rel="noopener noreferrer" class="berlin-banner">
+                <div class="berlin-banner-inner">
+                    <div class="berlin-icon">🐻</div>
+                    <div class="berlin-name">BERLIN</div>
+                    <div class="berlin-sub">Hauptstadt Deutschlands</div>
+                </div>
+            </a>
         </div>
-        <span data-translate="footer_copyright">© 2026 Эрих Эрлэнбах | ISNI: 0000 0005 2738 1605 | Все права защищены</span>
+        <span data-translate="footer_copyright">© 2026 埃里希·埃尔伦巴赫 | ISNI: 0000 0005 2738 1605 | 保留所有权利</span>
     </footer>
 
     <script>
-        // Полные биографии на 4 языках
+        // 完整传记 (6种语言)
         const fullBio = {
             ru: `<p><span class="highlight">Эрих Эрлэнбах</span> родился в 1962 году в городе Тбилиси (Грузинская ССР) в семье оперных артистов и фактически вырос в консерватории, где учились родители, и за кулисами театра.</p>
                 <p>Его родословная объединяет представителей семи наций и трёх религий. Это история семьи, которая под натиском исторических бурь и преобразований сконцентрировалась на Кавказе, в Грузии — из королевства Вюртемберг (Германия) и Баку (Азербайджан), из Санкт-Петербурга (Россия) и Еревана (Армения), из Каменца-Подольского (Польша, Украина) и лезгинского села Хрюг (Дагестан, Россия), из Тбилиси (Тифлис, Сакартвело) и немцев Поволжья.</p>
@@ -729,10 +798,24 @@
                 <p>Von frühester Kindheit an erhielt Erich eine vielseitige Bildung. Parallel zur allgemeinbildenden Schule besuchte er eine Musikschule, eine Schachschule und eine choreografische Hochschule. Er interessierte sich aktiv für Skifahren, Reitsport, Shotokan-Ringen, Zeichnen und Architektur.</p>
                 <p>Im Alter von 17 Jahren trat er in die Tbiliser Höhere Artillerie-Kommandoschule ein, die er erfolgreich abschloss. Über 40 Jahre diente er in der Armee auf verschiedenen Positionen. Er ist verheiratet, hat zwei Kinder und einen Enkel.</p>
                 <div class="member-badge">✍️ Mitglied des Russischen Schriftstellerverbandes</div>
-                <p>Dichter, Komponist, Schriftsteller, Schachspieler. Autor von mehr als einem Dutzend Büchern, Musikalben und öffentlichen Vorträgen über die Metaphysik der Kunst. Heute lebt und arbeitet er zwischen Tbilisi und Baden-Baden.</p>`
+                <p>Dichter, Komponist, Schriftsteller, Schachspieler. Autor von mehr als einem Dutzend Büchern, Musikalben und öffentlichen Vorträgen über die Metaphysik der Kunst. Heute lebt und arbeitet er zwischen Tbilisi und Baden-Baden.</p>`,
+            ar: `<p><span class="highlight">إريش إرلنباخ</span> ولد في عام 1962 في مدينة تبليسي (جمهورية جورجيا السوفيتية) لعائلة من مغني الأوبرا، ونشأ فعلياً في معهد الموسيقى حيث درس والداه، وكذلك خلف كواليس المسرح.</p>
+                <p>يجمع نسبه ممثلين من سبع دول وثلاث ديانات. هذه هي قصة عائلة تركزت في القوقاز، في جورجيا — من مملكة فورتمبيرغ (ألمانيا) وباكو (أذربيجان)، من سانت بطرسبرغ (روسيا) ويريفان (أرمينيا)، من كامينيتس-بوديلسكي (بولندا، أوكرانيا) وقرية خروغ الليزغينية (داغستان، روسيا)، من تبليسي (تفليس، ساكارتفيلو) والألمان الفولغا.</p>
+                <p>المنزل والفناء الذي عاش فيه إريش جمع أكثر من عشر جنسيات. كان الفناء في مثل هذه المنازل في تفليس / تبليسي يسمى "الساحات الإيطالية": حيث تعايشت الأمم والأديان في سلام وتفاهم متبادل.</p>
+                <p>منذ سن مبكرة، تلقى إريش تعليماً متنوعاً. إلى جانب المدرسة الثانوية، درس في مدرسة الموسيقى، ومدرسة الشطرنج، والكلية الكوريغرافية. كان يهتم بنشاط بالتزلج على الجليد، ورياضات الفروسية، ومصارعة شوتوكان، والرسم، والهندسة المعمارية.</p>
+                <p>في سن السابعة عشرة، التحق بمدرسة تبليسي العليا لقيادة المدفعية، وتخرج منها بنجاح. خدم في الجيش لأكثر من 40 عاماً في مناصب مختلفة. متزوج، لديه ولدان وحفيد.</p>
+                <div class="member-badge">✍️ عضو في اتحاد الكتاب الروس</div>
+                <p>شاعر، ملحن، كاتب، لاعب شطرنج. مؤلف أكثر من اثني عشر كتاباً وألبوماً موسيقياً ومحاضرات عامة حول ميتافيزيقا الفن. يعيش ويعمل اليوم بين تبليسي وبادن بادن.</p>`,
+            zh: `<p><span class="highlight">埃里希·埃尔伦巴赫</span> 1962年出生于第比利斯（格鲁吉亚苏维埃社会主义共和国）的一个歌剧演员家庭，实际上他在父母学习的音乐学院和剧院幕后长大。</p>
+                <p>他的血统融合了七个民族和三种宗教的代表。这是一个在高加索地区、在格鲁吉亚汇聚的家族故事——来自符腾堡王国（德国）和巴库（阿塞拜疆），来自圣彼得堡（俄罗斯）和埃里温（亚美尼亚），来自卡梅涅茨-波多利斯基（波兰、乌克兰）和列兹金村庄赫留格（达吉斯坦、俄罗斯），来自第比利斯（梯弗里斯、萨卡尔特维洛）和伏尔加德意志人。</p>
+                <p>埃里希居住的房子和庭院汇集了十多个民族。在第比利斯，这类房屋的庭院被称为"意大利庭院"：正是在那里，各民族和宗教在和平与相互理解中共存。</p>
+                <p>从早年开始，埃里希接受了全面的教育。在就读普通中学的同时，他还就读于音乐学校、国际象棋学校和编舞学院。他积极参加高山滑雪、马术（莫斯科赛马场的盛装舞步和场地障碍赛）、松涛馆空手道、绘画（铅笔和粉彩）和建筑设计。</p>
+                <p>17岁时，他与童年朋友维克多一起进入第比利斯高等炮兵指挥学校并成功毕业。他在军队服役超过40年，担任过各种职务。已婚，育有一子一女和一个孙子。</p>
+                <div class="member-badge">✍️ 俄罗斯作家协会会员</div>
+                <p>诗人、作曲家、作家、国际象棋手。着有十多本书籍、音乐专辑以及关于艺术形而上学的公开讲座。如今他在第比利斯和巴登-巴登之间生活和工作，继续创作诗歌、散文和交响乐作品，灵感来自高加索复调和欧洲古典传统。</p>`
         };
 
-        // Форматирование дат
+        // 日期格式化函数
         function formatDateGerman(date) {
             const weekdays = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
             const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
@@ -745,6 +828,18 @@
             return `${weekdays[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
         }
 
+        function formatDateArabic(date) {
+            const weekdays = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+            return `${weekdays[date.getDay()]}، ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        function formatDateChinese(date) {
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+            return `${weekdays[date.getDay()]}，${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日`;
+        }
+
         let currentLang = 'ru';
 
         function setLanguage(lang) {
@@ -752,6 +847,13 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
+            
+            // 设置阿拉伯语文本方向
+            if (lang === 'ar') {
+                document.body.classList.add('lang-ar');
+            } else {
+                document.body.classList.remove('lang-ar');
+            }
             
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
@@ -775,11 +877,15 @@
             const enDateElem = document.getElementById('date-en');
             const kaDateElem = document.getElementById('date-ka');
             const deDateElem = document.getElementById('date-de');
+            const arDateElem = document.getElementById('date-ar');
+            const zhDateElem = document.getElementById('date-zh');
             
             ruDateElem.style.display = 'none';
             enDateElem.style.display = 'none';
             kaDateElem.style.display = 'none';
             if (deDateElem) deDateElem.style.display = 'none';
+            if (arDateElem) arDateElem.style.display = 'none';
+            if (zhDateElem) zhDateElem.style.display = 'none';
             
             if (lang === 'ru') {
                 ruDateElem.style.display = 'block';
@@ -794,6 +900,16 @@
                 if (deDateElem) {
                     deDateElem.style.display = 'block';
                     deDateElem.innerText = formatDateGerman(now);
+                }
+            } else if (lang === 'ar') {
+                if (arDateElem) {
+                    arDateElem.style.display = 'block';
+                    arDateElem.innerText = formatDateArabic(now);
+                }
+            } else if (lang === 'zh') {
+                if (zhDateElem) {
+                    zhDateElem.style.display = 'block';
+                    zhDateElem.innerText = formatDateChinese(now);
                 }
             }
         }
@@ -814,7 +930,7 @@
         setInterval(updateClock, 250);
         updateClock();
         
-        // Погода
+        // 天气
         async function fetchWeather() {
             const weatherLoading = document.getElementById('weatherLoading');
             const weatherContent = document.getElementById('weatherContent');
@@ -838,7 +954,10 @@
                     const wind = data.current_weather.windspeed;
                     
                     weatherTemp.innerHTML = `🌡️ ${temp}°C`;
-                    weatherDesc.innerHTML = currentLang === 'de' ? 'Aktuelles Wetter' : (currentLang === 'en' ? 'Current weather' : (currentLang === 'ka' ? 'მიმდინარე ამინდი' : 'Текущая погода'));
+                    const weatherDescText = {
+                        ru: 'Текущая погода', en: 'Current weather', ka: 'მიმდინარე ამინდი', de: 'Aktuelles Wetter', ar: 'الطقس الحالي', zh: '当前天气'
+                    };
+                    weatherDesc.innerHTML = weatherDescText[currentLang] || 'Current weather';
                     
                     let humidity = '—';
                     if (data.hourly && data.hourly.relativehumidity_2m && data.hourly.time) {
@@ -869,7 +988,7 @@
         fetchWeather();
         setInterval(fetchWeather, 30 * 60 * 1000);
         
-        // Переводы
+        // 翻译 (6种语言)
         const translations = {
             ru: {
                 nav_bio: "Биография", nav_books: "Книги", nav_contact: "Связь",
@@ -922,15 +1041,43 @@
                 contact_title: "Kontakt", contact_email_label: "E-Mail", telegram_btn: "Telegram-Kanal",
                 copy_email_btn: "E-Mail kopieren", contact_note: "📬 Für kreative Vorschläge und Kooperationen",
                 footer_copyright: "© 2026 Erich Erlenbach | ISNI: 0000 0005 2738 1605 | Alle Rechte vorbehalten"
+            },
+            ar: {
+                nav_bio: "السيرة الذاتية", nav_books: "الكتب", nav_contact: "اتصل",
+                hero_title: "إريش إرلنباخ",
+                hero_quote: "«كل ما يتخذ شكلاً في الصوت، في القافية أو في النثر، هو مجرد صدى أرضي للتناغم السماوي. نحن لسنا مؤلفين، بل شركاء في التأليف مع الخالق...»",
+                about_title: "السيرة الذاتية", library_title: "المكتبة والموارد",
+                music_links_title: "🎵 روابط القنوات الموسيقية",
+                poetry_prose_title: "📚 روابط قنوات الشعر والنثر",
+                additional_resources_title: "📖 موارد إضافية",
+                random_quote_btn: "اقتباس عشوائي", quote_hint: "انقر لرؤية حكمة",
+                contact_title: "اتصل بنا", contact_email_label: "البريد الإلكتروني", telegram_btn: "قناة تيليجرام",
+                copy_email_btn: "نسخ البريد الإلكتروني", contact_note: "📬 للاقتراحات الإبداعية والتعاون",
+                footer_copyright: "© 2026 إريش إرلنباخ | ISNI: 0000 0005 2738 1605 | جميع الحقوق محفوظة"
+            },
+            zh: {
+                nav_bio: "传记", nav_books: "书籍", nav_contact: "联系",
+                hero_title: "埃里希·埃尔伦巴赫",
+                hero_quote: "«在声音、韵律或散文中成形的一切，都只是天堂和谐的尘世回响。我们不是作者，而是造物主的合著者...»",
+                about_title: "传记", library_title: "图书馆与资源",
+                music_links_title: "🎵 音乐频道链接",
+                poetry_prose_title: "📚 诗歌与散文频道链接",
+                additional_resources_title: "📖 其他资源",
+                random_quote_btn: "随机箴言", quote_hint: "点击查看箴言",
+                contact_title: "联系方式", contact_email_label: "电子邮箱", telegram_btn: "Telegram频道",
+                copy_email_btn: "复制邮箱", contact_note: "📬 用于创意建议与合作",
+                footer_copyright: "© 2026 埃里希·埃尔伦巴赫 | ISNI: 0000 0005 2738 1605 | 保留所有权利"
             }
         };
         
-        // Цитаты
+        // 箴言 (6种语言)
         const quotesByLang = {
             ru: ["«Истинная поэзия — это звук, который не нуждается в переводе». — Э.Э.", "«Шахматы учат видеть красоту порядка среди хаоса, а музыка — слышать тишину между нотами».", "«Кавказский двор — это модель мира, где каждый народ звучит своей нотой, но создаёт единую гармонию».", "«Служение искусству выше служения чинам, но честь и искусство всегда рядом».", "«В каждом стихе прячется вечность, а в каждой ноте — дыхание небес»."],
             en: ["«True poetry is a sound that needs no translation». — E.E.", "«Chess teaches to see the beauty of order amidst chaos, and music — to hear the silence between notes».", "«The Caucasian courtyard is a model of the world where every nation sounds its own note, yet creates a single harmony».", "«Service to art is above service to ranks, but honor and art are always together».", "«In every verse hides eternity, and in every note — the breath of heavens»."],
             ka: ["«ნამდვილი პოეზია არის ბგერა, რომელსაც თარგმანი არ სჭირდება». — ე.ე.", "«ჭადრაკი გვასწავლის ქაოსში წესრიგის სილამაზის დანახვას, ხოლო მუსიკა — ნოტებს შორის სიჩუმის მოსმენას».", "«კავკასიური ეზო არის სამყაროს მოდელი, სადაც თითოეული ერი თავის ნოტს ჟღერს, მაგრამ ქმნის ერთიან ჰარმონიას».", "«ხელოვნების მსახურება უფრო მაღლა დგას, ვიდრე წოდებების მსახურება, მაგრამ პატივი და ხელოვნება ყოველთვის ერთად არიან».", "«ყოველ ლექსში იმალება მარადისობა, ყოველ ნოტში კი — ზეცის სუნთქვა»."],
-            de: ["«Wahre Poesie ist ein Klang, der keiner Übersetzung bedarf». — E.E.", "«Schach lehrt, die Schönheit der Ordnung im Chaos zu sehen, und Musik — die Stille zwischen den Noten zu hören».", "«Der kaukasische Hof ist ein Modell der Welt, wo jede Nation ihre eigene Note spielt, aber eine einzige Harmonie schafft».", "«Der Dienst an der Kunst steht über dem Dienst an Rängen, aber Ehre und Kunst sind immer zusammen».", "«In jedem Vers verbirgt sich die Ewigkeit, und in jeder Note — der Atem des Himmels»."]
+            de: ["«Wahre Poesie ist ein Klang, der keiner Übersetzung bedarf». — E.E.", "«Schach lehrt, die Schönheit der Ordnung im Chaos zu sehen, und Musik — die Stille zwischen den Noten zu hören».", "«Der kaukasische Hof ist ein Modell der Welt, wo jede Nation ihre eigene Note spielt, aber eine einzige Harmonie schafft».", "«Der Dienst an der Kunst steht über dem Dienst an Rängen, aber Ehre und Kunst sind immer zusammen».", "«In jedem Vers verbirgt sich die Ewigkeit, und in jeder Note — der Atem des Himmels»."],
+            ar: ["«الشعر الحقيقي هو صوت لا يحتاج إلى ترجمة». — إ.إ.", "«الشطرنج يعلم رؤية جمال النظام وسط الفوضى، والموسيقى تعلم سماع الصمت بين النغمات».", "«الفناء القوقازي هو نموذج للعالم حيث كل أمة تصدر نغمتها الخاصة، لكنها تخلق تناغماً واحداً».", "«خدمة الفن أسمى من خدمة الرتب، لكن الشرف والفن دائماً معاً».", "«في كل بيت شعر تختبئ الخلود، وفي كل نغمة — أنفاس السماء»."],
+            zh: ["«真正的诗歌是一种不需要翻译的声音」。——埃·埃", "«国际象棋教会我们在混沌中看到秩序之美，而音乐教会我们聆听音符之间的寂静」。", "«高加索庭院是世界的一个模型，每个民族都发出自己的音符，却创造出单一的和谐」。", "«为艺术服务高于为等级服务，但荣誉与艺术永远同在」。", "«每一节诗中隐藏着永恒，每一个音符中——天堂的呼吸»。"]
         };
         
         document.getElementById('randomQuoteBtn')?.addEventListener('click', () => {
@@ -946,7 +1093,7 @@
                 await navigator.clipboard.writeText(email);
                 const btn = e.target;
                 const original = btn.innerText;
-                const successMsg = { ru: '✅ Скопировано!', en: '✅ Copied!', ka: '✅ დაკოპირდა!', de: '✅ Kopiert!' };
+                const successMsg = { ru: '✅ Скопировано!', en: '✅ Copied!', ka: '✅ დაკოპირდა!', de: '✅ Kopiert!', ar: '✅ تم النسخ!', zh: '✅ 已复制!' };
                 btn.innerText = successMsg[currentLang] || '✅ Copied!';
                 setTimeout(() => btn.innerText = original, 2000);
             } catch { alert(email); }
