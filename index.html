@@ -328,7 +328,6 @@
             font-weight: 500;
         }
 
-        /* Стили для категорий ссылок */
         .links-section {
             margin-top: 30px;
         }
@@ -498,7 +497,7 @@
             <!-- Музыкальные каналы -->
             <div class="links-section">
                 <div class="links-category">
-                    <h3>🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ</h3>
+                    <h3 data-translate="music_links_title">🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ</h3>
                     <div class="links-grid">
                         <a href="https://music.yandex.ru/artist/25156828" class="btn-link" target="_blank" rel="noopener noreferrer">Yandex Music</a>
                         <a href="https://vk.com/artist/8133192430738481080" class="btn-link" target="_blank" rel="noopener noreferrer">VK Music</a>
@@ -513,7 +512,7 @@
                 
                 <!-- Поэзия и проза -->
                 <div class="links-category">
-                    <h3>📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ</h3>
+                    <h3 data-translate="poetry_prose_title">📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ</h3>
                     <div class="links-grid">
                         <a href="https://www.litres.ru/search/?q=erlenbach" class="btn-link" target="_blank" rel="noopener noreferrer">LitRes</a>
                         <a href="https://stihi.ru/avtor/sheridan2" class="btn-link" target="_blank" rel="noopener noreferrer">Поэзия (Stihi.ru)</a>
@@ -523,7 +522,7 @@
                 
                 <!-- Дополнительные ресурсы -->
                 <div class="links-category">
-                    <h3>📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ</h3>
+                    <h3 data-translate="additional_resources_title">📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ</h3>
                     <div class="links-grid">
                         <a href="https://www.google.de/books/edition/_/0AWaEQAAQBAJ" class="btn-link" target="_blank" rel="noopener noreferrer">Google Books</a>
                     </div>
@@ -735,7 +734,7 @@
         fetchWeather();
         setInterval(fetchWeather, 30 * 60 * 1000);
         
-        // Переводы для навигации
+        // Переводы для навигации и категорий
         const translations = {
             ru: {
                 nav_bio: "Биография",
@@ -745,6 +744,9 @@
                 hero_quote: "«Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»",
                 about_title: "Биография",
                 library_title: "Библиотека и ресурсы",
+                music_links_title: "🎵 ССЫЛКИ НА МУЗЫКАЛЬНЫЕ КАНАЛЫ",
+                poetry_prose_title: "📚 ССЫЛКИ НА КАНАЛЫ ПОЭЗИИ И ПРОЗЫ",
+                additional_resources_title: "📖 ДОПОЛНИТЕЛЬНЫЕ РЕСУРСЫ",
                 random_quote_btn: "Случайная цитата",
                 quote_hint: "нажмите, чтобы увидеть афоризм",
                 contact_title: "Связь",
@@ -762,6 +764,9 @@
                 hero_quote: "«Everything that takes form in sound, in rhyme or in prose is but an earthly echo of Heavenly harmony. We are not authors, but co-authors of the Creator...»",
                 about_title: "Biography",
                 library_title: "Library & Resources",
+                music_links_title: "🎵 MUSIC CHANNELS",
+                poetry_prose_title: "📚 POETRY & PROSE CHANNELS",
+                additional_resources_title: "📖 ADDITIONAL RESOURCES",
                 random_quote_btn: "Random quote",
                 quote_hint: "click to see an aphorism",
                 contact_title: "Contact",
@@ -779,6 +784,9 @@
                 hero_quote: "«ყველაფერი, რაც ფორმას იძენს ხმაში, რითმაში თუ პროზაში, მხოლოდ ამქვეყნიური ექოა ზეციური ჰარმონიისა. ჩვენ არა ავტორები, არამედ თანაავტორები ვართ შემოქმედისა...»",
                 about_title: "ბიოგრაფია",
                 library_title: "ბიბლიოთეკა და რესურსები",
+                music_links_title: "🎵 მუსიკალური არხები",
+                poetry_prose_title: "📚 პოეზიისა და პროზის არხები",
+                additional_resources_title: "📖 დამატებითი რესურსები",
                 random_quote_btn: "შემთხვევითი ციტატა",
                 quote_hint: "დააჭირეთ აფორიზმის სანახავად",
                 contact_title: "კონტაქტი",
