@@ -116,7 +116,7 @@
             color: var(--accent-color);
         }
 
-        /* Главный экран */
+        /* Главный экран с ГОРНЫМ ФОНОМ */
         .hero {
             padding: 130px 5% 70px;
             min-height: 100vh;
@@ -124,10 +124,31 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1920&q=80');
+            /* Величественный горный пейзаж — Кавказские горы */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), 
+                        url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
+            background-attachment: fixed;
             text-align: center;
+            position: relative;
+        }
+
+        /* Fallback на случай проблем с загрузкой — альтернативное горное изображение */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.7) 100%);
+            pointer-events: none;
+        }
+
+        .hero > * {
+            position: relative;
+            z-index: 2;
         }
 
         .widgets-wrap {
@@ -146,8 +167,9 @@
             border: 3px solid var(--accent-color);
             border-radius: 50%;
             position: relative;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(2px);
         }
 
         .hand {
@@ -178,14 +200,14 @@
         }
 
         .date-panel {
-            background: rgba(212, 175, 55, 0.08);
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
             padding: 1rem 1.5rem;
             border-radius: 20px;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             width: 100%;
         }
 
@@ -201,8 +223,9 @@
             border-top: 1px solid var(--accent-color);
             border-bottom: 1px solid var(--accent-color);
             font-size: 1.1rem;
-            background: rgba(0,0,0,0.3);
-            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 8px;
         }
 
         section {
@@ -275,6 +298,8 @@
             }
             .hero {
                 padding-top: 150px;
+                background-attachment: scroll;
+                background-position: center 20%;
             }
             h1 {
                 font-size: 1.8rem;
@@ -452,7 +477,6 @@
 
         function setLanguage(lang) {
             currentLang = lang;
-            // Обновляем активную кнопку
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if (btn.dataset.lang === lang) {
                     btn.classList.add('active');
@@ -461,24 +485,18 @@
                 }
             });
             
-            // Переводим все элементы с data-translate
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.getAttribute('data-translate');
                 if (translations[lang] && translations[lang][key]) {
                     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                         el.placeholder = translations[lang][key];
-                    } else if (el.tagName === 'A' && el.getAttribute('data-translate') === 'random_quote_btn') {
-                        el.innerText = translations[lang][key];
                     } else {
                         el.innerText = translations[lang][key];
                     }
                 }
             });
             
-            // Обновляем даты (формат даты под язык)
             updateDatesForLanguage(lang);
-            
-            // Сохраняем язык в localStorage
             localStorage.setItem('erlenbach_lang', lang);
         }
         
@@ -510,7 +528,6 @@
             }
         }
         
-        // Обновление часов (не зависит от языка)
         function updateClock() {
             const now = new Date();
             const seconds = now.getSeconds();
@@ -529,14 +546,12 @@
             if (minHand) minHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
             if (hourHand) hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
             
-            // Обновляем дату для текущего языка каждую секунду
             updateDatesForLanguage(currentLang);
         }
         
         setInterval(updateClock, 250);
         updateClock();
         
-        // Инициализация погодного виджета
         (function(d,s,id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (!d.getElementById(id)) {
@@ -547,7 +562,6 @@
             }
         }(document, 'script', 'weatherwidget-io-js'));
         
-        // Цитаты на всех языках
         const quotesByLang = {
             ru: [
                 "«Истинная поэзия — это звук, который не нуждается в переводе». — Э.Э.",
@@ -582,7 +596,6 @@
             });
         }
         
-        // Копирование email
         const copyBtn = document.getElementById('copyEmailBtn');
         if (copyBtn) {
             copyBtn.addEventListener('click', async (e) => {
@@ -601,15 +614,12 @@
             });
         }
         
-        // Обработчики переключения языка
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const lang = btn.dataset.lang;
-                setLanguage(lang);
+                setLanguage(btn.dataset.lang);
             });
         });
         
-        // Восстанавливаем сохранённый язык
         const savedLang = localStorage.getItem('erlenbach_lang');
         if (savedLang && translations[savedLang]) {
             setLanguage(savedLang);
@@ -617,7 +627,6 @@
             setLanguage('ru');
         }
         
-        // Плавная навигация с учётом фиксированного хедера
         document.querySelectorAll('.nav-links a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -636,7 +645,6 @@
             });
         });
         
-        // Плавное появление секций
         const sections = document.querySelectorAll('section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -648,19 +656,19 @@
         }, { threshold: 0.1 });
         
         sections.forEach(sec => {
-            sec.style.opacity = '0';
-            sec.style.transform = 'translateY(20px)';
-            sec.style.transition = 'opacity 0.6s ease, transform 0.5s ease';
-            observer.observe(sec);
+            if (!sec.classList.contains('hero')) {
+                sec.style.opacity = '0';
+                sec.style.transform = 'translateY(20px)';
+                sec.style.transition = 'opacity 0.6s ease, transform 0.5s ease';
+                observer.observe(sec);
+            }
         });
         
         const heroSection = document.querySelector('.hero');
         if(heroSection) {
             heroSection.style.opacity = '1';
-            heroSection.style.transform = 'translateY(0)';
         }
         
-        // Обработка хеша при загрузке
         if (window.location.hash) {
             setTimeout(() => {
                 const target = document.querySelector(window.location.hash);
