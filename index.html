@@ -34,9 +34,9 @@
         header {
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
             height: 44px; background: rgba(0, 0, 0, 0.8); backdrop-filter: var(--blur);
-            border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 8px;
+            border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 4px;
         }
-        .lang-btn { background: transparent; border: none; color: var(--ios-secondary); font-size: 11px; font-weight: 700; padding: 8px 12px; cursor: pointer; border-radius: 18px; transition: 0.3s; }
+        .lang-btn { background: transparent; border: none; color: var(--ios-secondary); font-size: 10px; font-weight: 700; padding: 8px 10px; cursor: pointer; border-radius: 18px; transition: 0.3s; }
         .lang-btn.active { background: var(--ios-accent); color: #000; }
 
         .status-panel { margin: 100px auto 0; padding: 0 25px; max-width: 900px; display: flex; justify-content: space-between; align-items: flex-end; }
@@ -93,6 +93,7 @@
             <button class="lang-btn" id="btn-ka" onclick="changeLang('ka')">KA</button>
             <button class="lang-btn" id="btn-ar" onclick="changeLang('ar')">AR</button>
             <button class="lang-btn" id="btn-zh" onclick="changeLang('zh')">ZH</button>
+            <button class="lang-btn" id="btn-ja" onclick="changeLang('ja')">JA</button>
         </div>
     </header>
 
@@ -108,7 +109,7 @@
 
     <main style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
         <div class="hero">
-            <h1 id="hero-title">Эрих Эрлэнбах</h1>
+            <h1 id="hero-title">Эрих Эрленбах</h1>
             <p id="hero-subtitle">Поэт • Писатель • Философ • Композитор</p>
         </div>
 
@@ -120,7 +121,7 @@
         <h2 id="sec-bio">Биография</h2>
         <div class="widget">
             <div class="bio-grid">
-                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах">
+                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрленбах">
                 <div class="bio-content" id="bio-text"></div>
             </div>
         </div>
@@ -166,46 +167,53 @@
     <script>
         const translations = {
             ru: {
-                title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор",
+                title: "Эрих Эрленбах", subtitle: "Поэт • Писатель • Философ • Композитор",
                 secBio: "Биография", secMedia: "Медиатека", secLit: "Литература", locale: "ru-RU",
-                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжье. Выросший в атмосфере знаменитых "итальянских двориков" Тифлиса, он впитал культуру многоголосия и гармоничного сосуществования, что стало фундаментом его мировоззрения.</p>
-                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он на протяжении полувека выстраивал свою художественную вселенную, получив разностороннее образование: от музыкальной и шахматной школ до хореографического училища и боевых искусств.</p>
-                <h3>Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Как композитор-полистилист и литератор, он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами. Автор более 20 изданных книг и десятков музыкальных опусов (симфоний, кантат, EDM), он рассматривает искусство не как профессию, а как высший способ познания жизни.</p>`
+                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрленбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p>
+                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он на протяжении полувека выстраивал свою художественную вселенную, получив разностороннее образование: от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p>
+                <h3>Метапроект</h3><p>Творчество Эрленбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Как композитор-полистилист и литератор, он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>`
             },
             en: {
                 title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer",
                 secBio: "Biography", secMedia: "Media Library", secLit: "Literature", locale: "en-US",
-                bio: `<h3>Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions. Growing up in the "Italian courtyards" of Tiflis, he embraced a culture of harmony that became the cornerstone of his philosophy.</p>
-                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe for half a century, educated in music, chess, choreography, and martial arts.</p>
-                <h3>Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs. Author of 20+ books and dozens of musical works.</p>`
+                bio: `<h3>Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p>
+                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe for half a century, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p>
+                <h3>Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>`
             },
             de: {
                 title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist",
                 secBio: "Biografie", secMedia: "Mediathek", secLit: "Literatur", locale: "de-DE",
-                bio: `<h3>Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen. Das Aufwachsen in den "italienischen Höfen" von Tiflis prägte sein harmonisches Weltbild.</p>
-                <h3>Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er über 50 Jahre lang sein künstlerisches Universum, ausgebildet in Musik, Schach, Choreografie und Kampfkunst.</p>
-                <h3>Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Als Komponist und Autor verbindet er klassische Formen mit Quantenphysik und biblischen Themen. Autor von über 20 Büchern.</p>`
+                bio: `<h3>Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p>
+                <h3>Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p>
+                <h3>Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>`
             },
             ka: {
                 title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი",
                 secBio: "ბიოგრაფია", secMedia: "მედიათეკა", secLit: "ლიტერატურა", locale: "ka-GE",
-                bio: `<h3>საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს. თბილისურ "იტალიურ ეზოებში" გატარებულმა ბავშვობამ მასში კულტურათა ჰარმონიული თანაარსებობის განცდა ჩამოაყალიბა.</p>
-                <h3>მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). პარალელურად, იგი 50 წლის განმავლობაში ქმნიდა თავის მხატვრულ სამყაროს. მას აქვს მრავალმხრივი განათლება: მუსიკალური, საჭადრაკო და ქორეოგრაფიული.</p>
-                <h3>მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან. 20-ზე მეტი წიგნის ავტორი.</p>`
+                bio: `<h3>საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p>
+                <h3>მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p>
+                <h3>მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>`
             },
             ar: {
                 title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن",
                 secBio: "السيرة الذاتية", secMedia: "المكتبة", secLit: "الأدب", locale: "ar-SA",
-                bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات. نشأ في بيئة تكرس التناغم والحوار بين الثقافات.</p>
-                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرن.</p>
-                <h3>المشروع الجامع</h3><p>عمله يمزج между الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية. مؤلف لأكثر من 20 كتاباً وعشرات الأعمال الموسيقية.</p>`
+                bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p>
+                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p>
+                <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>`
+            },
+            ja: {
+                title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家",
+                secBio: "伝記", secMedia: "メディアライブラリ", secLit: "文学", locale: "ja-JP",
+                bio: `<h3>起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p>
+                <h3>奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p>
+                <h3>メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>`
             },
             zh: {
                 title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家",
                 secBio: "传记", secMedia: "媒体库", secLit: "文学", locale: "zh-CN",
-                bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。他在军队服役超过40年（退役上校）。</p>
-                <h3>服役之路</h3><p>在职业生涯的同时，他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈和武术教育。</p>
-                <h3>宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。出版书籍20余部。</p>`
+                bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p>
+                <h3>服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p>
+                <h3>宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>`
             }
         };
 
