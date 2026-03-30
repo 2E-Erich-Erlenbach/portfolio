@@ -79,6 +79,7 @@
             .status-panel { flex-direction: column; align-items: center; text-align: center; } 
             .bio-grid { justify-content: center; text-align: center; }
             .bio-content p { text-align: center; }
+            #weather-box { margin-top: 10px; text-align: center; width: 100%; }
         }
     </style>
 </head>
@@ -97,7 +98,7 @@
 
     <div class="status-panel">
         <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
-        <div id="weather-box" style="min-width: 150px; text-align: right;"></div>
+        <div id="weather-box" style="min-width: 150px;"></div>
     </div>
 
     <main style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
@@ -191,14 +192,14 @@
                 title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن",
                 secBio: "السيرة الذاتية", secMedia: "المكتبة", secLit: "الأدب", locale: "ar-SA",
                 bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات. نشأ في بيئة تكرس التناغم والحوار بين الثقافات.</p>
-                <h3>طريق الخدمة</h3><p>كرс أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرن.</p>
+                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرн.</p>
                 <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية. مؤلف لأكثر من 20 كتاباً وعشرات الأعمال الموسيقية.</p>`
             },
             zh: {
                 title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家",
                 secBio: "传记", secMedia: "媒体库", secLit: "文学", locale: "zh-CN",
                 bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。他在军队服役超过40年（退役上校）。</p>
-                <h3>服役之路</h3><p>在职业生涯的同时，他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈和武术教育。</p>
+                <h3>服役之路</h3><p>在职业生涯的同时， he 用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈和武术教育。</p>
                 <h3>宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。出版书籍20余部。</p>`
             }
         };
@@ -237,14 +238,18 @@
 
         function getRandomQuote() { document.getElementById('quote-text').innerText = `«${quotes[Math.floor(Math.random() * quotes.length)]}»`; }
         
-        // ОБНОВЛЕННАЯ ФУНКЦИЯ ПОГОДЫ
+        // НОВАЯ ИСПРАВЛЕННАЯ ФУНКЦИЯ ПОГОДЫ
         function loadWeather() { 
             const weatherBox = document.getElementById('weather-box');
-            // Используем надежный и современный виджет Meteoblue для Тбилиси
             weatherBox.innerHTML = `
-                <iframe src="https://www.meteoblue.com/en/weather/widget/three/tbilisi_georgia_611717?geoloc=fixed&nocurrent=0&noforecast=1&days=1&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=monochrome" 
-                frameborder="0" scrolling="NO" allowtransparency="true" 
-                style="width: 160px; height: 50px; filter: brightness(1.5) sepia(0.5) hue-rotate(-10deg);"></iframe>`;
+                <a class="weatherwidget-io" href="https://forecast7.com/ru/41base7244base83/tbilisi/" 
+                   data-label_1="ТБИЛИСИ" data-label_2="ПОГОДА" data-font="Arial" 
+                   data-icons="Climacons Animated" data-mode="Current" data-theme="pure" 
+                   data-basecolor="rgba(0,0,0,0)" data-accent="rgba(0,0,0,0)" 
+                   data-textcolor="#d4af37" data-highcolor="#d4af37" data-lowcolor="#8e8e93">ТБИЛИСИ ПОГОДА</a>`;
+            
+            // Инициализация скрипта виджета
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
         }
 
         setInterval(updateClock, 1000);
