@@ -63,7 +63,6 @@
         .footer { text-align: center; padding: 60px 20px; border-top: var(--border); margin-top: 40px; }
         .footer-banners { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; align-items: center; }
         
-        /* СТИЛЬ ДЛЯ БАННЕРА ЛИТРЕС С ТЕКСТОМ */
         .litres-banner {
             display: inline-flex; align-items: center; justify-content: center;
             width: 88px; height: 31px; background: #fff; color: #fb5105; 
@@ -98,7 +97,7 @@
 
     <div class="status-panel">
         <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
-        <div id="weather-box"></div>
+        <div id="weather-box" style="min-width: 150px; text-align: right;"></div>
     </div>
 
     <main style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
@@ -148,7 +147,6 @@
             <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700;">d.a.tretiakof@gmail.com</a>
             <div class="footer-banners">
                 <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" class="litres-banner">ЛитРес</a>
-                
                 <a href="https://proza.ru/avtor/sheridan1" target="_blank">
                     <img src="https://proza.ru/images/author88x31.gif" width="88" height="31" alt="Проза.ру">
                 </a>
@@ -193,15 +191,15 @@
                 title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن",
                 secBio: "السيرة الذاتية", secMedia: "المكتبة", secLit: "الأدب", locale: "ar-SA",
                 bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات. نشأ في بيئة تكرس التناغم والحوار بين الثقافات.</p>
-                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرن.</p>
-                <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية. مؤلف لأكثر от 20 كتاباً وعشرات الأعمال الموسيقية.</p>`
+                <h3>طريق الخدمة</h3><p>كرс أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرن.</p>
+                <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية. مؤلف لأكثر من 20 كتاباً وعشرات الأعمال الموسيقية.</p>`
             },
             zh: {
                 title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家",
                 secBio: "传记", secMedia: "媒体库", secLit: "文学", locale: "zh-CN",
                 bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。他在军队服役超过40年（退役上校）。</p>
                 <h3>服役之路</h3><p>在职业生涯的同时，他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈和武术教育。</p>
-                <h3>宏大项目</h3><p>作为一名多元风格的作曲家 and 文学家，他将古典形式与量子物理及圣经主题相结合。出版书籍20余部。</p>`
+                <h3>宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。出版书籍20余部。</p>`
             }
         };
 
@@ -238,7 +236,16 @@
         }
 
         function getRandomQuote() { document.getElementById('quote-text').innerText = `«${quotes[Math.floor(Math.random() * quotes.length)]}»`; }
-        function loadWeather() { document.getElementById('weather-box').innerHTML = `<iframe src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=3&cityID=33317&type=13&scode=124&ltid=3457&domid=589&anc_id=27495&c1=202020&color=ffffff&bt=1&font=1&fontsize=12&cl=ffffff&sc=ffffff&iq=0&id=26832&f_type=1" width="160" height="36" frameborder="0" scrolling="no"></iframe>`; }
+        
+        // ОБНОВЛЕННАЯ ФУНКЦИЯ ПОГОДЫ
+        function loadWeather() { 
+            const weatherBox = document.getElementById('weather-box');
+            // Используем надежный и современный виджет Meteoblue для Тбилиси
+            weatherBox.innerHTML = `
+                <iframe src="https://www.meteoblue.com/en/weather/widget/three/tbilisi_georgia_611717?geoloc=fixed&nocurrent=0&noforecast=1&days=1&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=monochrome" 
+                frameborder="0" scrolling="NO" allowtransparency="true" 
+                style="width: 160px; height: 50px; filter: brightness(1.5) sepia(0.5) hue-rotate(-10deg);"></iframe>`;
+        }
 
         setInterval(updateClock, 1000);
         window.onload = () => { changeLang('ru'); getRandomQuote(); loadWeather(); };
