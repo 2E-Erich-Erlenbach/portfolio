@@ -4,157 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Erich Erlenbach | Official Site</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGJRX8JFGF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KGJRX8JFGF');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #f5f5f7;
-            --text-muted: #86868b;
-            --accent-color: #d4af37;
-            --glass-blur: blur(25px) saturate(180%);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --ios-bg: #000; --ios-card: rgba(28, 28, 30, 0.7);
+            --ios-accent: #d4af37; --ios-text: #fff;
+            --ios-secondary: #8e8e93; --blur: blur(25px) saturate(180%);
+            --border: 0.5px solid rgba(255, 255, 255, 0.15); --radius: 24px;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        .bg-fixed {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                        url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
-            background-size: cover;
-            background-position: center;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--ios-bg); color: var(--ios-text); font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; overflow-x: hidden; }
+        
+        .wallpaper {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
+            url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            background-size: cover; background-position: center;
         }
 
         header {
-            position: fixed;
-            top: 0; width: 100%; height: 55px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            z-index: 1001;
-            border-bottom: var(--glass-border);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+            height: 44px; background: rgba(0, 0, 0, 0.8); backdrop-filter: var(--blur);
+            border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 8px;
         }
+        .lang-btn { background: transparent; border: none; color: var(--ios-secondary); font-size: 11px; font-weight: 700; padding: 8px 12px; cursor: pointer; border-radius: 18px; transition: 0.3s; }
+        .lang-btn.active { background: var(--ios-accent); color: #000; }
 
-        .lang-nav {
-            display: flex; gap: 4px;
-            background: rgba(255,255,255,0.1);
-            padding: 4px; border-radius: 99px;
-        }
+        .status-panel { margin: 100px auto 0; padding: 0 25px; max-width: 900px; display: flex; justify-content: space-between; align-items: flex-end; }
+        #clock-time { font-size: 4rem; font-weight: 200; letter-spacing: -2px; line-height: 1; }
+        #clock-date { font-size: 1.1rem; font-weight: 500; color: var(--ios-accent); margin-bottom: 10px; }
 
-        .lang-btn {
-            background: transparent; border: none;
-            color: var(--text-muted); font-size: 11px; font-weight: 700;
-            padding: 6px 14px; cursor: pointer; border-radius: 99px;
-            transition: var(--transition);
-        }
-
-        .lang-btn.active { background: var(--accent-color); color: #000; }
-
-        .top-info-bar {
-            position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
-            width: calc(100% - 40px); max-width: 1100px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 30px; background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: var(--glass-blur); border: var(--glass-border);
-            border-radius: 22px; z-index: 1000;
-        }
-
-        #clock-time { font-size: 1.4rem; font-weight: 600; color: var(--accent-color); line-height: 1; }
-        #clock-date { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
-
-        section { padding: 180px 20px 100px; max-width: 1100px; margin: 0 auto; }
-        h2 { font-family: 'Cinzel', serif; font-size: 38px; margin-bottom: 60px; text-align: center; color: var(--accent-color); letter-spacing: 3px; }
-
-        .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 5.5rem); color: var(--accent-color); margin-bottom: 10px; letter-spacing: 5px; }
-        .hero p { font-size: 1.1rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px; }
-
-        .manifesto-box {
-            max-width: 900px; padding: 50px; background: rgba(255, 255, 255, 0.03);
-            border: var(--glass-border); backdrop-filter: var(--glass-blur);
-            border-radius: 35px; text-align: center;
-        }
-
-        #quote-text { font-size: 1.2rem; font-style: italic; min-height: 100px; margin-bottom: 30px; color: #fff; line-height: 1.8; }
-
-        .btn-quote {
-            background: transparent; border: 1.5px solid var(--accent-color);
-            color: var(--accent-color); padding: 12px 30px; border-radius: 99px;
-            cursor: pointer; font-family: 'Cinzel', serif; font-size: 12px; transition: var(--transition);
-        }
-        .btn-quote:hover { background: var(--accent-color); color: #000; }
-
-        .bio-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: start; }
-        .bio-img { width: 100%; border-radius: 30px; border: var(--glass-border); }
+        .widget { background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 25px; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
         
-        .bio-content h3 { color: var(--accent-color); font-family: 'Cinzel', serif; margin-bottom: 20px; font-size: 1.8rem; }
-        .bio-content h4 { color: var(--accent-color); margin: 30px 0 10px; font-size: 1.2rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); display: inline-block; }
-        .bio-content p { margin-bottom: 15px; text-align: justify; }
-        .bio-content ul { list-style: none; margin: 20px 0; }
-        .bio-content ul li { position: relative; padding-left: 25px; margin-bottom: 8px; }
-        .bio-content ul li::before { content: '◈'; position: absolute; left: 0; color: var(--accent-color); }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--ios-accent); text-align: center; margin-bottom: 5px; }
+        .hero p { text-align: center; color: var(--ios-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; margin-bottom: 25px; }
 
-        .quote-block { 
-            border-left: 4px solid var(--accent-color); padding: 20px 30px; margin: 30px 0; 
-            font-style: italic; background: rgba(212, 175, 55, 0.05); border-radius: 0 20px 20px 0; color: #fff;
+        .bio-grid { display: flex; gap: 30px; align-items: start; flex-wrap: wrap; }
+        .bio-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 3px solid var(--ios-accent); flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .bio-content { flex: 1; min-width: 300px; }
+        .bio-content h3 { font-family: 'Cinzel', serif; color: var(--ios-accent); margin-top: 20px; margin-bottom: 10px; font-size: 1.3rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 3px; }
+        .bio-content p { margin-bottom: 15px; text-align: justify; font-size: 1rem; color: #f2f2f7; }
+
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+        .app-link { background: rgba(255,255,255,0.08); border: var(--border); border-radius: 15px; padding: 18px 10px; text-align: center; text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
+        .app-link:active { transform: scale(0.95); }
+
+        h2 { font-size: 1rem; color: var(--ios-accent); text-transform: uppercase; margin: 40px 0 15px 15px; letter-spacing: 1px; font-weight: 700; }
+        
+        .footer { text-align: center; padding: 60px 20px; border-top: var(--border); margin-top: 40px; }
+        .footer-banners { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; align-items: center; }
+        
+        /* СТИЛЬ ДЛЯ БАННЕРА ЛИТРЕС С ТЕКСТОМ */
+        .litres-banner {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 88px; height: 31px; background: #fff; color: #fb5105; 
+            text-decoration: none; font-weight: 900; font-size: 14px; 
+            border-radius: 4px; font-family: Arial, sans-serif; transition: 0.3s;
         }
-
-        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .card {
-            background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px;
-            text-align: center; border: var(--glass-border); transition: var(--transition);
-            text-decoration: none; color: #fff; font-weight: 500;
-        }
-        .card:hover { background: #fff; color: #000; transform: translateY(-5px); }
-
-        .contact-section { text-align: center; border-top: var(--glass-border); padding-top: 100px; }
-        .contact-item { color: var(--accent-color); text-decoration: none; font-size: 1.5rem; font-family: 'Cinzel', serif; display: block; margin: 30px 0; }
-
-        .banners-container {
-            margin-top: 50px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; padding-bottom: 80px;
-        }
-
-        .litres-logo-box {
-            width: 88px; height: 31px; background: #ff6600; display: flex; align-items: center; justify-content: center;
-            border-radius: 2px; border: 1px solid rgba(255, 255, 255, 0.2); transition: var(--transition);
-        }
-        .litres-logo-box:hover { transform: scale(1.05); }
-        .litres-logo-text { color: #fff; font-family: Arial, sans-serif; font-weight: bold; font-size: 12px; }
-
+        .litres-banner:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .footer-banners img { border-radius: 4px; transition: 0.3s; }
+        .footer-banners img:hover { transform: scale(1.05); }
+        
         body.rtl { direction: rtl; text-align: right; }
-        body.rtl .quote-block { border-left: none; border-right: 4px solid var(--accent-color); border-radius: 20px 0 0 20px; }
-        body.rtl .bio-content ul li { padding-left: 0; padding-right: 25px; }
-        body.rtl .bio-content ul li::before { left: auto; right: 0; }
 
-        @media (max-width: 850px) {
-            .bio-grid { grid-template-columns: 1fr; }
-            .top-info-bar { flex-direction: column; top: 110px; text-align: center; height: auto; padding: 15px; }
-            section { padding-top: 280px; }
+        @media (max-width: 600px) { 
+            .status-panel { flex-direction: column; align-items: center; text-align: center; } 
+            .bio-grid { justify-content: center; text-align: center; }
+            .bio-content p { text-align: center; }
         }
     </style>
 </head>
 <body>
-
-    <div class="bg-fixed"></div>
-
+    <div class="wallpaper"></div>
     <header>
         <div class="lang-nav">
-            <button class="lang-btn active" id="btn-ru" onclick="changeLang('ru')">RU</button>
+            <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
             <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
             <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
             <button class="lang-btn" id="btn-ka" onclick="changeLang('ka')">KA</button>
@@ -163,213 +96,129 @@
         </div>
     </header>
 
-    <div class="top-info-bar">
-        <div class="apple-clock">
-            <div id="clock-time">00:00:00</div>
-            <div id="clock-date">...</div>
-        </div>
-        <div class="apple-weather">
-            <div id="m-booked-small-t3-26832">
-                <script type="text/javascript"> 
-                    var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href",'https://s.bookcdn.com/css/w/booked-wzs-widget-160x36.css?v=0.0.1'); document.getElementsByTagName("head")[0].appendChild(css_file); 
-                    function f_load_if(){ var id = 'booked-small-t3-26832'; if (!document.getElementById(id)) { var ifrm = document.createElement("iframe"); ifrm.id = id; ifrm.frameBorder = "0"; ifrm.scrolling = "no"; ifrm.width = "160"; ifrm.height = "36"; ifrm.src = "https://widgets.booked.net/weather/info?action=get_weather_info&ver=3&cityID=33317&type=13&scode=124&ltid=3457&domid=589&anc_id=27495&c1=202020&color=ffffff&bt=1&font=1&fontsize=12&witz=0&cl=ffffff&sc=ffffff&iq=0&id=26832&f_type=1"; document.getElementById('m-booked-small-t3-26832').appendChild(ifrm); } } f_load_if();
-                </script>
-            </div>
-        </div>
+    <div class="status-panel">
+        <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
+        <div id="weather-box"></div>
     </div>
 
-    <main>
-        <section class="hero">
+    <main style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
+        <div class="hero">
             <h1 id="hero-title">Эрих Эрлэнбах</h1>
             <p id="hero-subtitle">Поэт • Писатель • Философ • Композитор</p>
-            <div class="manifesto-box">
-                <div id="quote-text">...</div>
-                <button class="btn-quote" id="btn-quote-text" onclick="showRandomQuote()">Случайная цитата</button>
-            </div>
-        </section>
+        </div>
 
-        <section id="about">
-            <h2 id="about-title">Биография</h2>
+        <div class="widget" style="text-align: center;">
+            <div id="quote-text" style="font-style: italic; color: var(--ios-secondary); margin-bottom: 15px; font-size: 1.1rem;"></div>
+            <button style="background: var(--ios-accent); border: none; padding: 10px 25px; border-radius: 12px; font-weight: 700; cursor: pointer;" onclick="getRandomQuote()">Цитата</button>
+        </div>
+
+        <h2 id="sec-bio">Биография</h2>
+        <div class="widget">
             <div class="bio-grid">
-                <img src="sheridan1.jpg" class="bio-img">
-                <div class="bio-content" id="bio-content"></div>
+                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах">
+                <div class="bio-content" id="bio-text"></div>
             </div>
-        </section>
+        </div>
 
-        <section id="music">
-            <h2 id="music-title">Музыка</h2>
-            <div class="links-grid">
-                <a href="https://music.yandex.ru/artist/25156828" target="_blank" class="card">Yandex Music</a>
-                <a href="https://vk.com/artist/8133192430738481080" target="_blank" class="card">VK Music</a>
-                <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" target="_blank" class="card">Apple Music</a>
-                <a href="https://youtube.com/@ericherlenbach" target="_blank" class="card">YouTube</a>
-                <a href="https://rutube.ru/u/2e/" target="_blank" class="card">RuTube</a>
-                <a href="https://www.tiktok.com/@erich_erlen_bach.2e" target="_blank" class="card">TikTok</a>
-                <a href="http://googleusercontent.com/spotify.com/5" target="_blank" class="card">Spotify</a>
-                <a href="https://music.amazon.de/artists/B0GBVXPCMR" target="_blank" class="card">Amazon</a>
+        <h2 id="sec-media">Медиатека</h2>
+        <div class="widget">
+            <div class="app-grid">
+                <a href="https://open.spotify.com/artist/your-link" class="app-link" target="_blank" style="border-color: #1DB954;">Spotify</a>
+                <a href="https://music.yandex.ru/artist/25156828" class="app-link" target="_blank">Yandex Music</a>
+                <a href="https://vk.com/artist/8133192430738481080" class="app-link" target="_blank">VK Music</a>
+                <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" class="app-link" target="_blank">Apple Music</a>
+                <a href="https://music.amazon.de/artists/B0GBVXPCMR/erich-erlenbach" class="app-link" target="_blank">Amazon Music</a>
+                <a href="https://youtube.com/@ericherlenbach" class="app-link" target="_blank">YouTube</a>
+                <a href="https://rutube.ru/u/2e/" class="app-link" target="_blank">RuTube</a>
             </div>
-        </section>
+        </div>
 
-        <section id="literature">
-            <h2 id="lit-title">Литература</h2>
-            <div class="links-grid">
-                <a href="https://stihi.ru/avtor/sheridan2" target="_blank" class="card">Стихи.ру</a>
-                <a href="https://proza.ru/avtor/sheridan1" target="_blank" class="card">Проза.ру</a>
-                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" class="card">ЛитРес</a>
-                <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" target="_blank" class="card">Google Books</a>
-                <a href="https://www.amazon.com/s?k=Erich+Erlenbach" target="_blank" class="card">Amazon Books</a>
+        <h2 id="sec-lit">Литература</h2>
+        <div class="widget">
+            <div class="app-grid">
+                <a href="https://stihi.ru/avtor/sheridan2" class="app-link" target="_blank">Стихи.ру</a>
+                <a href="https://proza.ru/avtor/sheridan1" class="app-link" target="_blank">Проза.ру</a>
+                <a href="https://www.litres.ru/author/erih-erlenbah/" class="app-link" target="_blank">ЛитРес</a>
+                <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="app-link" target="_blank">Amazon Books</a>
+                <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" class="app-link" target="_blank">Google Books</a>
             </div>
-        </section>
+        </div>
 
-        <section id="contacts" class="contact-section">
-            <h2 id="contact-title">Контакты</h2>
-            <a href="mailto:d.a.tretiakof@gmail.com" class="contact-item">d.a.tretiakof@gmail.com</a>
-            <div class="banners-container">
-                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" style="text-decoration: none;">
-                    <div class="litres-logo-box"><span class="litres-logo-text">LitRes</span></div>
+        <div class="footer">
+            <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700;">d.a.tretiakof@gmail.com</a>
+            <div class="footer-banners">
+                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" class="litres-banner">ЛитРес</a>
+                
+                <a href="https://proza.ru/avtor/sheridan1" target="_blank">
+                    <img src="https://proza.ru/images/author88x31.gif" width="88" height="31" alt="Проза.ру">
                 </a>
-                <a href="https://proza.ru/avtor/sheridan1" target="_blank"><img src="https://proza.ru/images/author88x31.gif" width="88" height="31"></a>
-                <a href="https://stihi.ru/avtor/sheridan2" target="_blank"><img src="https://stihi.ru/images/author88x31.gif" width="88" height="31"></a>
+                <a href="https://stihi.ru/avtor/sheridan2" target="_blank">
+                    <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
+                </a>
             </div>
-        </section>
+        </div>
     </main>
 
     <script>
         const translations = {
             ru: {
                 title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор",
-                about: "Биография", music: "Музыка", lit: "Литература", contacts: "Контакты",
-                quoteBtn: "Случайная цитата", locale: "ru-RU",
-                bio: `
-                    <h3>Единое творческое полотно</h3>
-                    <p>Это творчество представляет собой уникальный синтез искусств, где слово, мысль и звук образуют неразрывную интеллектуальную систему. На протяжении более чем полувека автор выстраивает масштабную художественную вселенную, в которой классические традиции встречаются с передовыми идеями философии и науки.</p>
-                    
-                    <h4>Литературное наследие</h4>
-                    <p><strong>Поэзия:</strong> Строгая форма и богатая метафорика. Автор работает с категориями космогонии, квантовой физики и истории.</p>
-                    <p><strong>Проза:</strong> Глубокое исследование человеческой природы и судеб цивилизаций через жанр философской притчи и прозиметрии.</p>
-                    
-                    <div class="quote-block">
-                        «Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии. Мы не авторы, но соавторы Творца...»
-                    </div>
-
-                    <h4>Биография и Корни</h4>
-                    <p>Эрих Эрленбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная объединяет семь наций и три религии: от Вюртемберга и Баку до Санкт-Петербурга и Еревана.</p>
-                    <p>Фундаментом его мировоззрения стали тбилисские «итальянские дворики» — уникальное пространство гармоничного сосуществования культур.</p>
-                    <ul>
-                        <li>Музыкальная, шахматная школы, хореографическое училище.</li>
-                        <li>Горные лыжи, конный спорт, борьба сётокан, архитектура.</li>
-                        <li>Выпускник ТВАККУ. Более 40 лет службы. Полковник в отставке.</li>
-                        <li>Член Российского союза писателей. Издано более 20 книг.</li>
-                    </ul>
-                `,
-                quotes: ["Музыка — единственный мост между хаосом и порядком.", "Творчество — это высшее поручение.", "Искусство и мысль могут менять мир."]
+                secBio: "Биография", secMedia: "Медиатека", secLit: "Литература", locale: "ru-RU",
+                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжье. Выросший в атмосфере знаменитых "итальянских двориков" Тифлиса, он впитал культуру многоголосия и гармоничного сосуществования, что стало фундаментом его мировоззрения.</p>
+                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он на протяжении полувека выстраивал свою художественную вселенную, получив разностороннее образование: от музыкальной и шахматной школ до хореографического училища и боевых искусств.</p>
+                <h3>Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Как композитор-полистилист и литератор, он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами. Автор более 20 изданных книг и десятков музыкальных опусов (симфоний, кантат, EDM), он рассматривает искусство не как профессию, а как высший способ познания жизни.</p>`
             },
             en: {
                 title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer",
-                about: "Biography", music: "Music", lit: "Literature", contacts: "Contacts",
-                quoteBtn: "Random Quote", locale: "en-US",
-                bio: `
-                    <h3>A Unified Creative Canvas</h3>
-                    <p>This work represents a unique synthesis of arts, where word, thought, and sound form an inseparable intellectual system. For over half a century, the author has been constructing a large-scale artistic universe.</p>
-                    
-                    <h4>Literary Heritage</h4>
-                    <p><strong>Poetry:</strong> Strict form and rich metaphors. Works with categories of cosmogony, quantum physics, and history.</p>
-                    <p><strong>Prose:</strong> A deep exploration of human nature and civilization through philosophical parables and prosimetrum.</p>
-                    
-                    <div class="quote-block">
-                        "Everything that takes shape in sound, rhyme, or prose is but an earthly echo of Heavenly harmony. We are not authors, but co-authors of the Creator."
-                    </div>
-
-                    <h4>Biography and Roots</h4>
-                    <p>Born in 1962 in Tbilisi to opera singers. His lineage unites seven nations and three religions: from the Kingdom of Württemberg and Baku to St. Petersburg and Yerevan.</p>
-                    <ul>
-                        <li>Educated in music, chess, and choreography.</li>
-                        <li>Graduate of the Tbilisi Higher Artillery School.</li>
-                        <li>Over 40 years of service. Retired Colonel.</li>
-                        <li>Member of the Russian Union of Writers. 20+ books published.</li>
-                    </ul>
-                `,
-                quotes: ["Music is the bridge between chaos and order.", "Art and thought can change the world."]
+                secBio: "Biography", secMedia: "Media Library", secLit: "Literature", locale: "en-US",
+                bio: `<h3>Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions. Growing up in the "Italian courtyards" of Tiflis, he embraced a culture of harmony that became the cornerstone of his philosophy.</p>
+                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe for half a century, educated in music, chess, choreography, and martial arts.</p>
+                <h3>Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs. Author of 20+ books and dozens of musical works.</p>`
             },
             de: {
                 title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist",
-                about: "Biografie", music: "Musik", lit: "Literatur", contacts: "Kontakt",
-                quoteBtn: "Zufälliges Zitat", locale: "de-DE",
-                bio: `
-                    <h3>Ein einheitliches kreatives Geflecht</h3>
-                    <p>Dieses Werk stellt eine einzigartige Synthese der Künste dar. Seit mehr als einem halben Jahrhundert erschafft der Autor ein künstlerisches Universum.</p>
-                    <div class="quote-block">"Alles, was in Klang, Reim oder Prosa Gestalt annimmt, ist nur ein irdisches Echo himmlischer Harmonie."</div>
-                    <h4>Biografie und Wurzeln</h4>
-                    <p>Erich Erlenbach wurde 1962 in Tiflis geboren. Sein Stammbaum vereint sieben Nationen und drei Religionen: von Württemberg bis Baku.</p>
-                    <ul>
-                        <li>Ausbildung in Musik, Schach und Choreografie.</li>
-                        <li>Über 40 Jahre Dienst. Oberst a.D.</li>
-                        <li>Mitglied des russischen Schriftstellerverbandes.</li>
-                    </ul>
-                `,
-                quotes: ["Musik ist die Brücke zwischen Chaos und Ordnung."]
+                secBio: "Biografie", secMedia: "Mediathek", secLit: "Literatur", locale: "de-DE",
+                bio: `<h3>Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen. Das Aufwachsen in den "italienischen Höfen" von Tiflis prägte sein harmonisches Weltbild.</p>
+                <h3>Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er über 50 Jahre lang sein künstlerisches Universum, ausgebildet in Musik, Schach, Choreografie und Kampfkunst.</p>
+                <h3>Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Als Komponist und Autor verbindet er klassische Formen mit Quantenphysik und biblischen Themen. Autor von über 20 Büchern.</p>`
             },
             ka: {
                 title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი",
-                about: "ბიოგრაფია", music: "მუსიკა", lit: "ლიტერატურა", contacts: "კონტაქტები",
-                quoteBtn: "ციტატა", locale: "ka-GE",
-                bio: `
-                    <h3>ერთიანი შემოქმედებითი ტილო</h3>
-                    <p>ეს შემოქმედება წარმოადგენს ხელოვნების უნიკალურ სინთეზს. ავტორი ნახევარ საუკუნეზე მეტია აშენებს მასშტაბურ მხატვრულ სამყაროს.</p>
-                    <div class="quote-block">„ყველაფერი, რაც ფორმას იღებს ბგერაში, რითმასა თუ პროზაში, მხოლოდ ზეციური ჰარმონიის მიწიერი გამოძახილია.“</div>
-                    <h4>ბიოგრაფია და ფესვები</h4>
-                    <p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში. მისი გენეალოგია აერთიანებს შვიდ ერსა და სამ რელიგიას.</p>
-                    <ul>
-                        <li>მუსიკალური, საჭადრაკო და ქორეოგრაფიული სასწავლებელი.</li>
-                        <li>თბილისის საარტილერიო სასწავლებლის კურსდამთავრებული.</li>
-                        <li>40 წელზე მეტი სამხედრო სამსახური. თადარიგის პოლკოვნიკი.</li>
-                    </ul>
-                `,
-                quotes: ["მუსიკა ერთადერთი ხიდია ქაოსსა და წესრიგს შორის."]
+                secBio: "ბიოგრაფია", secMedia: "მედიათეკა", secLit: "ლიტერატურა", locale: "ka-GE",
+                bio: `<h3>საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს. თბილისურ "იტალიურ ეზოებში" გატარებულმა ბავშვობამ მასში კულტურათა ჰარმონიული თანაარსებობის განცდა ჩამოაყალიბა.</p>
+                <h3>მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). პარალელურად, იგი 50 წლის განმავლობაში ქმნიდა თავის მხატვრულ სამყაროს. მას აქვს მრავალმხრივი განათლება: მუსიკალური, საჭადრაკო და ქორეოგრაფიული.</p>
+                <h3>მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან. 20-ზე მეტი წიგნის ავტორი.</p>`
             },
             ar: {
                 title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن",
-                about: "السيرة الذاتية", music: "الموسيقى", lit: "الأدب", contacts: "اتصل بنا",
-                quoteBtn: "اقتباس عشوائي", locale: "ar-SA",
-                bio: `
-                    <h3>نسيج إبداعي موحد</h3>
-                    <p>يمثل هذا العمل تركيباً فريداً للفنون. على مدى أكثر من نصف قرن، يبني المؤلف كوناً فنياً تلتقي فيه التقاليد الكلاسيكية مع العلم.</p>
-                    <div class="quote-block">"كل ما يتخذ شكلاً في الصوت أو القافية هو مجرد صدى أرضي للانسجام السماوي."</div>
-                    <h4>السيرة الذاتية والجذور</h4>
-                    <p>ولد إريش إرلنباخ عام 1962 في تبليسي. يجمع نسبه بين سبع دول وثلاث ديانات.</p>
-                    <ul>
-                        <li>خريج الكلية الحربية للمدفعية في تبليسي.</li>
-                        <li>أكثر من 40 عاماً من الخدمة العسكرية. عقيد متقاعد.</li>
-                    </ul>
-                `,
-                quotes: ["الموسيقى هي الجسر الوحيد بين الفوضى والنظام."]
+                secBio: "السيرة الذاتية", secMedia: "المكتبة", secLit: "الأدب", locale: "ar-SA",
+                bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات. نشأ في بيئة تكرس التناغم والحوار بين الثقافات.</p>
+                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بالتوازي مع مسيرته العسكرية، بنى كونه الفني على مدار نصف قرن.</p>
+                <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية. مؤلف لأكثر от 20 كتاباً وعشرات الأعمال الموسيقية.</p>`
             },
             zh: {
                 title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家",
-                about: "传记", music: "音乐", lit: "文学", contacts: "联系方式",
-                quoteBtn: "随机引用", locale: "zh-CN",
-                bio: `
-                    <h3>统一的艺术画布</h3>
-                    <p>这项工作代表了艺术的独特综合。半个多世纪以来，作者一直在构建一个宏大的艺术宇宙。</p>
-                    <div class="quote-block">“任何以声音、韵律或散文形式呈现的事物，都只是上苍和谐的凡间回响。”</div>
-                    <h4>传记与根源</h4>
-                    <p>埃里希·埃尔伦巴赫 1962 年出生于第比利斯。他的血统融合了七个民族和三种宗教。</p>
-                    <ul>
-                        <li>接受过音乐、象棋和舞蹈教育。</li>
-                        <li>服役 40 余年，退役上校。俄罗斯作家协会成员。</li>
-                    </ul>
-                `,
-                quotes: ["音乐是混沌与秩序之间唯一的桥梁。"]
+                secBio: "传记", secMedia: "媒体库", secLit: "文学", locale: "zh-CN",
+                bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。他在军队服役超过40年（退役上校）。</p>
+                <h3>服役之路</h3><p>在职业生涯的同时，他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈和武术教育。</p>
+                <h3>宏大项目</h3><p>作为一名多元风格的作曲家 and 文学家，他将古典形式与量子物理及圣经主题相结合。出版书籍20余部。</p>`
             }
         };
+
+        const kaMonths = ["იანვარი", "თებერვალი", "მარტი", "აპრილი", "მაისი", "ივნისი", "ივლისი", "აგვისტო", "სექტემბერი", "ოქტომბერი", "ნოემბერი", "დეკემბერი"];
+        const kaDays = ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"];
+        const quotes = ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни."];
 
         let currentLang = 'ru';
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU');
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('clock-date').innerText = now.toLocaleDateString(translations[currentLang].locale, options);
+            document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'});
+            if (currentLang === 'ka') {
+                document.getElementById('clock-date').innerText = kaDays[now.getDay()] + ", " + now.getDate() + " " + kaMonths[now.getMonth()];
+            } else {
+                document.getElementById('clock-date').innerText = now.toLocaleDateString(translations[currentLang].locale, { weekday: 'long', month: 'long', day: 'numeric' });
+            }
         }
 
         function changeLang(lang) {
@@ -377,26 +226,22 @@
             const data = translations[lang];
             document.getElementById('hero-title').innerText = data.title;
             document.getElementById('hero-subtitle').innerText = data.subtitle;
-            document.getElementById('about-title').innerText = data.about;
-            document.getElementById('music-title').innerText = data.music;
-            document.getElementById('lit-title').innerText = data.lit;
-            document.getElementById('contact-title').innerText = data.contacts;
-            document.getElementById('bio-content').innerHTML = data.bio;
-            document.getElementById('btn-quote-text').innerText = data.quoteBtn;
+            document.getElementById('sec-bio').innerText = data.secBio;
+            document.getElementById('sec-media').innerText = data.secMedia;
+            document.getElementById('sec-lit').innerText = data.secLit;
+            document.getElementById('bio-text').innerHTML = data.bio;
+            
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
             document.body.classList.toggle('rtl', lang === 'ar');
             updateClock();
-            showRandomQuote();
         }
 
-        function showRandomQuote() {
-            const q = translations[currentLang].quotes;
-            document.getElementById('quote-text').innerText = `«${q[Math.floor(Math.random()*q.length)]}»`;
-        }
+        function getRandomQuote() { document.getElementById('quote-text').innerText = `«${quotes[Math.floor(Math.random() * quotes.length)]}»`; }
+        function loadWeather() { document.getElementById('weather-box').innerHTML = `<iframe src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=3&cityID=33317&type=13&scode=124&ltid=3457&domid=589&anc_id=27495&c1=202020&color=ffffff&bt=1&font=1&fontsize=12&cl=ffffff&sc=ffffff&iq=0&id=26832&f_type=1" width="160" height="36" frameborder="0" scrolling="no"></iframe>`; }
 
         setInterval(updateClock, 1000);
-        window.onload = () => changeLang('ru');
+        window.onload = () => { changeLang('ru'); getRandomQuote(); loadWeather(); };
     </script>
 </body>
 </html>
