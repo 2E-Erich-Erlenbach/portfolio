@@ -43,6 +43,8 @@
         #clock-time { font-size: 4rem; font-weight: 200; letter-spacing: -2px; line-height: 1; }
         #clock-date { font-size: 1.1rem; font-weight: 500; color: var(--ios-accent); margin-bottom: 10px; }
 
+        #weather-box { min-width: 220px; min-height: 100px; display: block; }
+
         .widget { background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 25px; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
         
         .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--ios-accent); text-align: center; margin-bottom: 5px; }
@@ -92,6 +94,7 @@
             <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
             <button class="lang-btn" id="btn-ka" onclick="changeLang('ka')">KA</button>
             <button class="lang-btn" id="btn-ar" onclick="changeLang('ar')">AR</button>
+            <button class="lang-btn" id="btn-he" onclick="changeLang('he')">HE</button>
             <button class="lang-btn" id="btn-zh" onclick="changeLang('zh')">ZH</button>
             <button class="lang-btn" id="btn-ja" onclick="changeLang('ja')">JA</button>
         </div>
@@ -100,16 +103,19 @@
     <div class="status-panel">
         <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
         <div id="weather-box">
-            <a class="weatherwidget-io" href="https://forecast7.com/ru/41base7244base83/tbilisi/" 
+            <a class="weatherwidget-io" href="https://forecast7.com/ru/41p7244p83/tbilisi/" 
                data-label_1="ТБИЛИСИ" data-label_2="ПОГОДА" data-font="Arial" 
                data-icons="Climacons Animated" data-mode="Current" data-theme="pure" 
                data-textcolor="#d4af37">ТБИЛИСИ ПОГОДА</a>
+            <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
         </div>
     </div>
 
     <main style="max-width: 900px; margin: 0 auto; padding: 0 15px;">
         <div class="hero">
-            <h1 id="hero-title">Эрих Эрленбах</h1>
+            <h1 id="hero-title">Эрих Эрлэнбах</h1>
             <p id="hero-subtitle">Поэт • Писатель • Философ • Композитор</p>
         </div>
 
@@ -121,7 +127,7 @@
         <h2 id="sec-bio">Биография</h2>
         <div class="widget">
             <div class="bio-grid">
-                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрленбах">
+                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах">
                 <div class="bio-content" id="bio-text"></div>
             </div>
         </div>
@@ -129,7 +135,7 @@
         <h2 id="sec-media">Медиатека</h2>
         <div class="widget">
             <div class="app-grid">
-                <a href="https://open.spotify.com/artist/your-link" class="app-link" target="_blank" style="border-color: #1DB954;">Spotify</a>
+                <a href="https://open.spotify.com/artist/B0GBVXPCMR" class="app-link" target="_blank" style="border-color: #1DB954;">Spotify</a>
                 <a href="https://music.yandex.ru/artist/25156828" class="app-link" target="_blank">Yandex Music</a>
                 <a href="https://vk.com/artist/8133192430738481080" class="app-link" target="_blank">VK Music</a>
                 <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" class="app-link" target="_blank">Apple Music</a>
@@ -151,7 +157,7 @@
         </div>
 
         <div class="footer">
-            <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700;">d.a.tretiakof@gmail.com</a>
+            <a href="mailto:d.a.tretiakov@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700;">d.a.tretiakov@gmail.com</a>
             <div class="footer-banners">
                 <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" class="litres-banner">ЛитРес</a>
                 <a href="https://proza.ru/avtor/sheridan1" target="_blank">
@@ -167,17 +173,17 @@
     <script>
         const translations = {
             ru: {
-                title: "Эрих Эрленбах", subtitle: "Поэт • Писатель • Философ • Композитор",
+                title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор",
                 secBio: "Биография", secMedia: "Медиатека", secLit: "Литература", locale: "ru-RU",
-                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрленбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p>
-                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он на протяжении полувека выстраивал свою художественную вселенную, получив разностороннее образование: от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p>
-                <h3>Метапроект</h3><p>Творчество Эрленбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Как композитор-полистилист и литератор, он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>`
+                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p>
+                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p>
+                <h3>Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>`
             },
             en: {
                 title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer",
                 secBio: "Biography", secMedia: "Media Library", secLit: "Literature", locale: "en-US",
                 bio: `<h3>Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p>
-                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe for half a century, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p>
+                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p>
                 <h3>Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>`
             },
             de: {
@@ -200,6 +206,13 @@
                 bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p>
                 <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p>
                 <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>`
+            },
+            he: {
+                title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין",
+                secBio: "ביוגרפיה", secMedia: "ספרייה", secLit: "ספרות", locale: "he-IL",
+                bio: `<h3>מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p>
+                <h3>דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p>
+                <h3>מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>`
             },
             ja: {
                 title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家",
@@ -245,7 +258,7 @@
             
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
-            document.body.classList.toggle('rtl', lang === 'ar');
+            document.body.classList.toggle('rtl', lang === 'ar' || lang === 'he');
             updateClock();
         }
 
@@ -253,10 +266,6 @@
 
         setInterval(updateClock, 1000);
         window.onload = () => { changeLang('ru'); getRandomQuote(); };
-    </script>
-    
-    <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
 </body>
 </html>
