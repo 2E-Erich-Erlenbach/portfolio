@@ -3,7 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
     <title>Erich Erlenbach | Official Site</title>
+    <meta name="description" content="Официальный сайт Эриха Эрлэнбаха: поэт, писатель, философ и композитор. Исследование музыки, литературы и метафизики сознания.">
+    <meta name="keywords" content="Эрих Эрлэнбах, Erich Erlenbach, поэт, композитор, философия, литература, музыка, Тбилиси">
+    <link rel="canonical" href="https://ericherlenbach.com">
+    
+    <meta property="og:title" content="Erich Erlenbach | Official Site">
+    <meta property="og:description" content="Поэт • Писатель • Философ • Композитор">
+    <meta property="og:image" content="sheridan1.jpg">
+    <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Erich Erlenbach",
+      "alternateName": "Эрих Эрлэнбах",
+      "jobTitle": "Poet, Writer, Composer, Philosopher",
+      "url": "https://ericherlenbach.com",
+      "sameAs": [
+        "https://music.apple.com/ru/artist/erich-erlenbach/1864018567",
+        "https://youtube.com/@ericherlenbach",
+        "https://stihi.ru/avtor/sheridan2"
+      ]
+    }
+    </script>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGJRX8JFGF"></script>
     <script>
@@ -16,48 +41,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ios-bg: #000; --ios-card: rgba(28, 28, 30, 0.7);
-            --ios-accent: #d4af37; --ios-text: #fff;
-            --ios-secondary: #8e8e93; --blur: blur(25px) saturate(180%);
-            --border: 0.5px solid rgba(255, 255, 255, 0.15); --radius: 24px;
+            /* Темная тема (по умолчанию) */
+            --ios-bg: #000; 
+            --ios-card: rgba(28, 28, 30, 0.7);
+            --ios-accent: #d4af37; 
+            --ios-text: #fff;
+            --ios-secondary: #8e8e93; 
+            --blur: blur(25px) saturate(180%);
+            --border: 0.5px solid rgba(255, 255, 255, 0.15); 
+            --radius: 24px;
+            --wallpaper-url: url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
         }
+
+        /* Светлая тема */
+        body.light-theme {
+            --ios-bg: #f2f2f7;
+            --ios-card: rgba(255, 255, 255, 0.7);
+            --ios-text: #1c1c1e;
+            --ios-secondary: #3a3a3c;
+            --border: 0.5px solid rgba(0, 0, 0, 0.1);
+            --wallpaper-url: url('https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1920');
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--ios-bg); color: var(--ios-text); font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; overflow-x: hidden; }
+        body { background-color: var(--ios-bg); color: var(--ios-text); font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; overflow-x: hidden; transition: background 0.5s ease, color 0.5s ease; }
         
         .wallpaper {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
-            url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), var(--wallpaper-url);
+            background-size: cover; background-position: center;
+            transition: background 0.8s ease;
+        }
+        
+        body.light-theme .wallpaper {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.4)), var(--wallpaper-url);
             background-size: cover; background-position: center;
         }
+
+        /* Дневное солнце */
+        .sun-fx {
+            position: fixed; top: -50px; right: -50px; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255,255,190,0.4) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1; display: none;
+        }
+        body.light-theme .sun-fx { display: block; animation: pulse 10s infinite alternate; }
+        @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
 
         header {
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
             height: 44px; background: rgba(0, 0, 0, 0.8); backdrop-filter: var(--blur);
-            border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 4px;
+            border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 10px;
         }
+        body.light-theme header { background: rgba(255, 255, 255, 0.8); }
+
         .lang-btn { background: transparent; border: none; color: var(--ios-secondary); font-size: 10px; font-weight: 700; padding: 8px 10px; cursor: pointer; border-radius: 18px; transition: 0.3s; }
         .lang-btn.active { background: var(--ios-accent); color: #000; }
+        
+        .theme-toggle {
+            background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0 10px;
+            display: flex; align-items: center; filter: grayscale(1); transition: 0.3s;
+        }
+        .theme-toggle:hover { filter: grayscale(0); transform: rotate(15deg); }
 
         .status-panel { margin: 100px auto 0; padding: 0 25px; max-width: 900px; display: flex; justify-content: space-between; align-items: flex-end; }
         #clock-time { font-size: 4rem; font-weight: 200; letter-spacing: -2px; line-height: 1; }
         #clock-date { font-size: 1.1rem; font-weight: 500; color: var(--ios-accent); margin-bottom: 10px; }
 
-        /* Стили погодного виджета из вашего файла */
         .weather-card {
-            background: var(--ios-card);
-            backdrop-filter: var(--blur);
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-            border: var(--border);
-            min-width: 200px;
+            background: var(--ios-card); backdrop-filter: var(--blur); border-radius: 20px;
+            padding: 15px; text-align: center; border: var(--border); min-width: 200px;
         }
         .weather-city { font-size: 0.9rem; font-weight: 600; color: var(--ios-accent); margin-bottom: 5px; }
-        .weather-temp { font-size: 1.8rem; font-weight: 700; color: #fff; margin: 2px 0; }
+        .weather-temp { font-size: 1.8rem; font-weight: 700; color: var(--ios-text); margin: 2px 0; }
         .weather-desc { font-size: 0.75rem; color: var(--ios-secondary); text-transform: uppercase; }
         .weather-details { display: flex; justify-content: center; gap: 15px; margin-top: 8px; font-size: 0.7rem; color: var(--ios-accent); }
-        .weather-loading, .weather-error { font-size: 0.75rem; color: var(--ios-accent); padding: 10px; }
 
         .widget { background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 25px; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
         
@@ -68,10 +125,10 @@
         .bio-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 3px solid var(--ios-accent); flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .bio-content { flex: 1; min-width: 300px; }
         .bio-content h3 { font-family: 'Cinzel', serif; color: var(--ios-accent); margin-top: 20px; margin-bottom: 10px; font-size: 1.3rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 3px; }
-        .bio-content p { margin-bottom: 15px; text-align: justify; font-size: 1rem; color: #f2f2f7; }
+        .bio-content p { margin-bottom: 15px; text-align: justify; font-size: 1rem; color: var(--ios-text); }
 
         .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-        .app-link { background: rgba(255,255,255,0.08); border: var(--border); border-radius: 15px; padding: 18px 10px; text-align: center; text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
+        .app-link { background: rgba(120,120,120,0.1); border: var(--border); border-radius: 15px; padding: 18px 10px; text-align: center; text-decoration: none; color: var(--ios-text); font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
         .app-link:active { transform: scale(0.95); }
 
         h2 { font-size: 1rem; color: var(--ios-accent); text-transform: uppercase; margin: 40px 0 15px 15px; letter-spacing: 1px; font-weight: 700; }
@@ -82,12 +139,8 @@
         .litres-banner {
             display: inline-flex; align-items: center; justify-content: center;
             width: 88px; height: 31px; background: #fff; color: #fb5105; 
-            text-decoration: none; font-weight: 900; font-size: 14px; 
-            border-radius: 4px; font-family: Arial, sans-serif; transition: 0.3s;
+            text-decoration: none; font-weight: 900; font-size: 14px; border-radius: 4px; transition: 0.3s;
         }
-        .litres-banner:hover { transform: scale(1.05); filter: brightness(1.1); }
-        .footer-banners img { border-radius: 4px; transition: 0.3s; }
-        .footer-banners img:hover { transform: scale(1.05); }
         
         body.rtl { direction: rtl; text-align: right; }
 
@@ -99,9 +152,12 @@
         }
     </style>
 </head>
-<body>
+<body class="dark-theme">
     <div class="wallpaper"></div>
+    <div class="sun-fx"></div>
+
     <header>
+        <button class="theme-toggle" onclick="toggleTheme()" title="Сменить тему">🌓</button>
         <div class="lang-nav">
             <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
             <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
@@ -119,16 +175,16 @@
         
         <div class="weather-card" id="weatherWidget">
             <div class="weather-city">🇬🇪 Tbilisi</div>
-            <div class="weather-loading" id="weatherLoading">🌤️ Загрузка...</div>
+            <div class="weather-loading" id="weatherLoading">🌤️ ...</div>
             <div id="weatherContent" style="display: none;">
                 <div class="weather-temp" id="weatherTemp"></div>
                 <div class="weather-desc" id="weatherDesc"></div>
                 <div class="weather-details">
                     <span>💧 <span id="weatherHumidity"></span>%</span>
-                    <span>🌬️ <span id="weatherWind"></span> м/с</span>
+                    <span>🌬️ <span id="weatherWind"></span></span>
                 </div>
             </div>
-            <div class="weather-error" id="weatherError" style="display: none;">⚠️ Ошибка</div>
+            <div class="weather-error" id="weatherError" style="display: none;">⚠️ Error</div>
         </div>
     </div>
 
@@ -140,7 +196,7 @@
 
         <div class="widget" style="text-align: center;">
             <div id="quote-text" style="font-style: italic; color: var(--ios-secondary); margin-bottom: 15px; font-size: 1.1rem;"></div>
-            <button id="btn-quote" style="background: var(--ios-accent); border: none; padding: 10px 25px; border-radius: 12px; font-weight: 700; cursor: pointer;" onclick="getRandomQuote()">Цитата</button>
+            <button id="btn-quote" style="background: var(--ios-accent); border: none; padding: 10px 25px; border-radius: 12px; font-weight: 700; cursor: pointer; color: #000;" onclick="getRandomQuote()">Цитата</button>
         </div>
 
         <h2 id="sec-bio">Биография</h2>
@@ -235,9 +291,9 @@
                 title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין",
                 secBio: "ביוגרפיה", secMedia: "ספרייה", secLit: "ספרות", locale: "he-IL", btnQuote: "ציטוט",
                 wLoading: "🌤️ טוען...", wError: "⚠️ שגיאה", wDesc: "מזג אוויר נוכחי", wWind: "מ'/ש'",
-                bio: `<h3>מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p>
-                <h3>דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p>
-                <h3>מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>`
+                bio: `<h3>מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, איროפה וגרמני הוולגה.</p>
+                <h3>דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוზიקה ושחმט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיნი ואמנויות לחימה.</p>
+                <h3>מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מאარგ מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>`
             },
             ja: {
                 title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家",
@@ -278,9 +334,6 @@
             const weatherTemp = document.getElementById('weatherTemp'), weatherDesc = document.getElementById('weatherDesc'), weatherHumidity = document.getElementById('weatherHumidity'), weatherWind = document.getElementById('weatherWind');
             const lang = translations[currentLang];
             
-            weatherLoading.innerText = lang.wLoading;
-            weatherError.innerText = lang.wError;
-
             try {
                 const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current_weather=true&hourly=relativehumidity_2m&timezone=auto');
                 if(!resp.ok) throw new Error();
@@ -288,19 +341,19 @@
                 if(data.current_weather) {
                     weatherTemp.innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
                     weatherDesc.innerHTML = lang.wDesc;
-                    
-                    let humidity = '—';
-                    if(data.hourly && data.hourly.relativehumidity_2m) {
-                        humidity = data.hourly.relativehumidity_2m[0];
-                    }
-                    weatherHumidity.innerHTML = humidity; 
+                    let hum = (data.hourly && data.hourly.relativehumidity_2m) ? data.hourly.relativehumidity_2m[0] : '—';
+                    weatherHumidity.innerHTML = hum; 
                     weatherWind.innerHTML = Math.round(data.current_weather.windspeed) + " " + lang.wWind;
-                    
                     weatherLoading.style.display = 'none'; weatherContent.style.display = 'block'; weatherError.style.display = 'none';
-                } else throw new Error();
+                }
             } catch(e) { 
-                weatherLoading.style.display = 'none'; weatherContent.style.display = 'none'; weatherError.style.display = 'block'; 
+                weatherLoading.style.display = 'none'; weatherError.style.display = 'block'; 
             }
+        }
+
+        function toggleTheme() {
+            const isLight = document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
         }
 
         function changeLang(lang) {
@@ -319,15 +372,16 @@
             document.body.classList.toggle('rtl', lang === 'ar' || lang === 'he');
             
             updateClock();
-            fetchWeather(); // Обновляем текст погоды при смене языка
+            fetchWeather();
         }
 
         function getRandomQuote() { document.getElementById('quote-text').innerText = `«${quotes[Math.floor(Math.random() * quotes.length)]}»`; }
 
         setInterval(updateClock, 1000);
-        setInterval(fetchWeather, 30*60*1000); // Обновлять погоду каждые 30 минут
+        setInterval(fetchWeather, 30*60*1000);
 
         window.onload = () => { 
+            if(localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
             changeLang('ru'); 
             getRandomQuote(); 
         };
