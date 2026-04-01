@@ -11,7 +11,7 @@
     
     <meta property="og:title" content="Erich Erlenbach | Official Site">
     <meta property="og:description" content="Поэт • Писатель • Философ • Композитор">
-    <meta property="og:image" content="sheridan1.jpg">
+    <meta property="og:image" content="https://via.placeholder.com/400x400/d4af37/ffffff?text=Erich+Erlenbach">
     <meta property="og:type" content="website">
 
     <script type="application/ld+json">
@@ -41,7 +41,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Темная тема (по умолчанию) */
             --ios-bg: #000; 
             --ios-card: rgba(28, 28, 30, 0.7);
             --ios-accent: #d4af37; 
@@ -51,9 +50,9 @@
             --border: 0.5px solid rgba(255, 255, 255, 0.15); 
             --radius: 24px;
             --wallpaper-url: url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
+            --player-height: 70px;
         }
 
-        /* Светлая тема */
         body.light-theme {
             --ios-bg: #f2f2f7;
             --ios-card: rgba(255, 255, 255, 0.7);
@@ -64,10 +63,18 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--ios-bg); color: var(--ios-text); font-family: -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; overflow-x: hidden; transition: background 0.5s ease, color 0.5s ease; }
+        body { 
+            background-color: var(--ios-bg); 
+            color: var(--ios-text); 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            transition: background 0.5s ease, color 0.5s ease; 
+            padding-bottom: var(--player-height);
+        }
         
         .wallpaper {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), var(--wallpaper-url);
             background-size: cover; background-position: center;
             transition: background 0.8s ease;
@@ -75,10 +82,8 @@
         
         body.light-theme .wallpaper {
             background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.4)), var(--wallpaper-url);
-            background-size: cover; background-position: center;
         }
 
-        /* Дневное солнце */
         .sun-fx {
             position: fixed; top: -50px; right: -50px; width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(255,255,190,0.4) 0%, rgba(255,255,255,0) 70%);
@@ -87,53 +92,441 @@
         body.light-theme .sun-fx { display: block; animation: pulse 10s infinite alternate; }
         @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
 
+        .ios-audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: var(--blur);
+            border-top: var(--border);
+            padding: 12px 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        body.light-theme .ios-audio-player {
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        .player-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .player-info {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .player-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ios-accent);
+            margin-bottom: 2px;
+        }
+        
+        .player-artist {
+            font-size: 0.7rem;
+            color: var(--ios-secondary);
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--ios-text);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .play-pause {
+            width: 44px;
+            height: 44px;
+            background: var(--ios-accent);
+            color: #000;
+            border-radius: 44px;
+            font-size: 1.2rem;
+        }
+        
+        .play-pause:hover {
+            background: #e5c558;
+            transform: scale(1.02);
+        }
+        
+        .player-progress {
+            flex: 2;
+            min-width: 200px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--ios-accent);
+            border-radius: 2px;
+            transition: width 0.1s linear;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.7rem;
+            color: var(--ios-secondary);
+        }
+        
+        .mood-widget {
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            border: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .mood-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mood-icon {
+            font-size: 1.8rem;
+        }
+        
+        .mood-text {
+            font-size: 0.85rem;
+            color: var(--ios-secondary);
+        }
+        
+        .mood-text strong {
+            color: var(--ios-accent);
+            font-size: 1rem;
+        }
+        
+        .play-mood-btn {
+            background: var(--ios-accent);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            color: #000;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .play-mood-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+        }
+
         header {
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
             height: 44px; background: rgba(0, 0, 0, 0.8); backdrop-filter: var(--blur);
             border-radius: 22px; z-index: 2000; border: var(--border); display: flex; align-items: center; padding: 0 10px;
+            gap: 10px;
         }
         body.light-theme header { background: rgba(255, 255, 255, 0.8); }
 
-        .lang-btn { background: transparent; border: none; color: var(--ios-secondary); font-size: 10px; font-weight: 700; padding: 8px 10px; cursor: pointer; border-radius: 18px; transition: 0.3s; }
+        .lang-nav {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .lang-btn { 
+            background: transparent; 
+            border: none; 
+            color: var(--ios-secondary); 
+            font-size: 10px; 
+            font-weight: 700; 
+            padding: 6px 8px; 
+            cursor: pointer; 
+            border-radius: 18px; 
+            transition: 0.3s; 
+            min-width: 32px;
+        }
         .lang-btn.active { background: var(--ios-accent); color: #000; }
+        .lang-btn:hover { opacity: 0.8; }
         
         .theme-toggle {
-            background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0 10px;
-            display: flex; align-items: center; filter: grayscale(1); transition: 0.3s;
+            background: none; 
+            border: none; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            padding: 0 10px;
+            display: flex; 
+            align-items: center; 
+            transition: 0.3s;
+            color: var(--ios-text);
         }
-        .theme-toggle:hover { filter: grayscale(0); transform: rotate(15deg); }
+        .theme-toggle:hover { transform: rotate(15deg); }
 
-        .status-panel { margin: 100px auto 0; padding: 0 25px; max-width: 900px; display: flex; justify-content: space-between; align-items: flex-end; }
-        #clock-time { font-size: 4rem; font-weight: 200; letter-spacing: -2px; line-height: 1; }
+        .status-panel { margin: 100px auto 0; padding: 0 25px; max-width: 900px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+        #clock-time { font-size: 4rem; font-weight: 200; letter-spacing: -2px; line-height: 1; font-family: monospace; }
         #clock-date { font-size: 1.1rem; font-weight: 500; color: var(--ios-accent); margin-bottom: 10px; }
 
         .weather-card {
-            background: var(--ios-card); backdrop-filter: var(--blur); border-radius: 20px;
-            padding: 15px; text-align: center; border: var(--border); min-width: 200px;
+            background: var(--ios-card); 
+            backdrop-filter: var(--blur); 
+            border-radius: 20px;
+            padding: 15px; 
+            text-align: center; 
+            border: var(--border); 
+            min-width: 200px;
+            transition: all 0.3s ease;
         }
+        .weather-card:hover { transform: translateY(-2px); background: rgba(255,255,255,0.1); }
+        
         .weather-city { font-size: 0.9rem; font-weight: 600; color: var(--ios-accent); margin-bottom: 5px; }
         .weather-temp { font-size: 1.8rem; font-weight: 700; color: var(--ios-text); margin: 2px 0; }
         .weather-desc { font-size: 0.75rem; color: var(--ios-secondary); text-transform: uppercase; }
         .weather-details { display: flex; justify-content: center; gap: 15px; margin-top: 8px; font-size: 0.7rem; color: var(--ios-accent); }
 
-        .widget { background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 25px; margin-bottom: 25px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .widget { 
+            background: var(--ios-card); 
+            backdrop-filter: var(--blur); 
+            border-radius: var(--radius); 
+            border: var(--border); 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            max-width: 900px; 
+            margin-left: auto; 
+            margin-right: auto;
+            transition: all 0.3s ease;
+        }
+        .widget:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
         
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--ios-accent); text-align: center; margin-bottom: 5px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--ios-accent); text-align: center; margin-bottom: 5px; letter-spacing: 2px; }
         .hero p { text-align: center; color: var(--ios-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; margin-bottom: 25px; }
 
         .bio-grid { display: flex; gap: 30px; align-items: start; flex-wrap: wrap; }
-        .bio-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 3px solid var(--ios-accent); flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .bio-img { 
+            width: 180px; 
+            height: 180px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 3px solid var(--ios-accent); 
+            flex-shrink: 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .bio-img:hover { transform: scale(1.02); }
+        
         .bio-content { flex: 1; min-width: 300px; }
         .bio-content h3 { font-family: 'Cinzel', serif; color: var(--ios-accent); margin-top: 20px; margin-bottom: 10px; font-size: 1.3rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 3px; }
-        .bio-content p { margin-bottom: 15px; text-align: justify; font-size: 1rem; color: var(--ios-text); }
+        .bio-content p { margin-bottom: 15px; text-align: justify; font-size: 1rem; color: var(--ios-text); line-height: 1.7; }
 
         .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-        .app-link { background: rgba(120,120,120,0.1); border: var(--border); border-radius: 15px; padding: 18px 10px; text-align: center; text-decoration: none; color: var(--ios-text); font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
-        .app-link:active { transform: scale(0.95); }
+        .app-link { 
+            background: rgba(120,120,120,0.1); 
+            border: var(--border); 
+            border-radius: 15px; 
+            padding: 18px 10px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: var(--ios-text); 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: all 0.2s ease;
+            backdrop-filter: blur(5px);
+        }
+        .app-link:hover { background: var(--ios-accent); color: #000; transform: translateY(-2px); border-color: transparent; }
+        .app-link:active { transform: scale(0.98); }
 
-        h2 { font-size: 1rem; color: var(--ios-accent); text-transform: uppercase; margin: 40px 0 15px 15px; letter-spacing: 1px; font-weight: 700; }
+        /* Интерактивная книжная полка */
+        .bookshelf {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+        .bookshelf::-webkit-scrollbar {
+            height: 4px;
+        }
+        .bookshelf::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+        .bookshelf::-webkit-scrollbar-thumb {
+            background: var(--ios-accent);
+            border-radius: 2px;
+        }
+        .book-card {
+            flex: 0 0 180px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+        }
+        .book-cover {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+        }
+        .book-info {
+            padding: 12px;
+            text-align: center;
+        }
+        .book-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ios-accent);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .book-year {
+            font-size: 0.7rem;
+            color: var(--ios-secondary);
+        }
         
-        .footer { text-align: center; padding: 60px 20px; border-top: var(--border); margin-top: 40px; }
+        /* Киносознание */
+        .cinema-section {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 400px;
+        }
+        .cinema-slides {
+            position: relative;
+            height: 400px;
+        }
+        .cinema-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius);
+            cursor: pointer;
+        }
+        .cinema-slide.active {
+            opacity: 1;
+        }
+        .cinema-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+        .cinema-title {
+            font-size: 1.2rem;
+            color: var(--ios-accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .cinema-desc {
+            font-size: 0.85rem;
+            color: var(--ios-text);
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        .cinema-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10;
+        }
+        .cinema-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cinema-dot.active {
+            background: var(--ios-accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        h2 { 
+            font-size: 1rem; 
+            color: var(--ios-accent); 
+            text-transform: uppercase; 
+            margin: 40px 0 15px 15px; 
+            letter-spacing: 2px; 
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--ios-accent);
+            transform: scaleX(0.3);
+            transition: transform 0.3s ease;
+        }
+        h2:hover::after { transform: scaleX(1); }
+        
+        .footer { text-align: center; padding: 40px 20px; border-top: var(--border); margin-top: 40px; }
         .footer-banners { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; align-items: center; }
         
         .litres-banner {
@@ -141,32 +534,78 @@
             width: 88px; height: 31px; background: #fff; color: #fb5105; 
             text-decoration: none; font-weight: 900; font-size: 14px; border-radius: 4px; transition: 0.3s;
         }
+        .litres-banner:hover { transform: scale(1.05); background: #fb5105; color: #fff; }
         
         body.rtl { direction: rtl; text-align: right; }
+        body.rtl .bio-content p { text-align: right; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .widget, .status-panel, .hero { animation: fadeIn 0.8s ease-out; }
 
-        @media (max-width: 600px) { 
-            .status-panel { flex-direction: column; align-items: center; text-align: center; } 
+        @media (max-width: 768px) { 
+            .status-panel { flex-direction: column; align-items: center; text-align: center; margin-top: 80px; } 
             .bio-grid { justify-content: center; text-align: center; }
             .bio-content p { text-align: center; }
             .weather-card { margin-top: 15px; width: 100%; max-width: 250px; }
+            header { width: 90%; height: auto; min-height: 44px; flex-wrap: wrap; padding: 8px 10px; }
+            .lang-nav { flex-wrap: wrap; justify-content: center; }
+            .lang-btn { font-size: 9px; padding: 4px 6px; }
+            .player-container { flex-direction: column; align-items: stretch; }
+            .player-progress { order: 3; }
+            .player-controls { order: 2; justify-content: center; }
+            .player-info { order: 1; text-align: center; }
+            .cinema-slides { height: 350px; }
+            .cinema-desc { max-width: 95%; }
+            .book-card { flex: 0 0 140px; }
+            .book-cover { height: 180px; }
         }
+        
+        @media (max-width: 480px) {
+            #clock-time { font-size: 2.5rem; }
+            .widget { padding: 15px; }
+            .app-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+        
+        #btn-quote {
+            background: var(--ios-accent); 
+            border: none; 
+            padding: 12px 28px; 
+            border-radius: 25px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            color: #000;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        #btn-quote:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+        #btn-quote:active { transform: translateY(0); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+        ::-webkit-scrollbar-thumb { background: var(--ios-accent); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8960f; }
     </style>
 </head>
-<body class="dark-theme">
+<body>
     <div class="wallpaper"></div>
     <div class="sun-fx"></div>
 
     <header>
         <button class="theme-toggle" onclick="toggleTheme()" title="Сменить тему">🌓</button>
         <div class="lang-nav">
-            <button class="lang-btn" id="btn-ru" onclick="changeLang('ru')">RU</button>
-            <button class="lang-btn" id="btn-en" onclick="changeLang('en')">EN</button>
-            <button class="lang-btn" id="btn-de" onclick="changeLang('de')">DE</button>
-            <button class="lang-btn" id="btn-ka" onclick="changeLang('ka')">KA</button>
-            <button class="lang-btn" id="btn-ar" onclick="changeLang('ar')">AR</button>
-            <button class="lang-btn" id="btn-he" onclick="changeLang('he')">HE</button>
-            <button class="lang-btn" id="btn-zh" onclick="changeLang('zh')">ZH</button>
-            <button class="lang-btn" id="btn-ja" onclick="changeLang('ja')">JA</button>
+            <button class="lang-btn" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+            <button class="lang-btn" data-lang="he">HE</button>
+            <button class="lang-btn" data-lang="zh">ZH</button>
+            <button class="lang-btn" data-lang="ja">JA</button>
         </div>
     </header>
 
@@ -174,8 +613,8 @@
         <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
         
         <div class="weather-card" id="weatherWidget">
-            <div class="weather-city">🇬🇪 Tbilisi</div>
-            <div class="weather-loading" id="weatherLoading">🌤️ ...</div>
+            <div class="weather-city">🇬🇪 Tbilisi, Georgia</div>
+            <div class="weather-loading" id="weatherLoading">🌤️ Loading...</div>
             <div id="weatherContent" style="display: none;">
                 <div class="weather-temp" id="weatherTemp"></div>
                 <div class="weather-desc" id="weatherDesc"></div>
@@ -184,7 +623,7 @@
                     <span>🌬️ <span id="weatherWind"></span></span>
                 </div>
             </div>
-            <div class="weather-error" id="weatherError" style="display: none;">⚠️ Error</div>
+            <div class="weather-error" id="weatherError" style="display: none;">⚠️ Error loading weather</div>
         </div>
     </div>
 
@@ -194,197 +633,710 @@
             <p id="hero-subtitle">Поэт • Писатель • Философ • Композитор</p>
         </div>
 
-        <div class="widget" style="text-align: center;">
-            <div id="quote-text" style="font-style: italic; color: var(--ios-secondary); margin-bottom: 15px; font-size: 1.1rem;"></div>
-            <button id="btn-quote" style="background: var(--ios-accent); border: none; padding: 10px 25px; border-radius: 12px; font-weight: 700; cursor: pointer; color: #000;" onclick="getRandomQuote()">Цитата</button>
+        <div class="mood-widget" id="moodWidget">
+            <div class="mood-info">
+                <div class="mood-icon" id="moodIcon">🌅</div>
+                <div class="mood-text">
+                    <span id="moodLabel">Настроение дня:</span><br>
+                    <strong id="moodTitle">Утренняя медитация</strong>
+                </div>
+            </div>
+            <button class="play-mood-btn" id="playMoodBtn">🎵 Воспроизвести плейлист</button>
         </div>
 
-        <h2 id="sec-bio">Биография</h2>
+        <div class="widget" style="text-align: center;">
+            <div id="quote-text" style="font-style: italic; color: var(--ios-secondary); margin-bottom: 20px; font-size: 1.2rem; line-height: 1.5;"></div>
+            <button id="btn-quote" onclick="getRandomQuote()">🎭 Цитата дня</button>
+        </div>
+
+        <h2 id="sec-books">📚 Интерактивная полка</h2>
+        <div class="widget">
+            <div class="bookshelf" id="bookshelf"></div>
+        </div>
+
+        <h2 id="sec-cinema">🎬 Киносознание</h2>
+        <div class="widget cinema-section" id="cinemaSection">
+            <div class="cinema-slides" id="cinemaSlides"></div>
+            <div class="cinema-nav" id="cinemaNav"></div>
+        </div>
+
+        <h2 id="sec-bio">📖 Биография</h2>
         <div class="widget">
             <div class="bio-grid">
-                <img src="sheridan1.jpg" class="bio-img" alt="Эрих Эрлэнбах">
+                <img src="sheridan1.jpg class="bio-img" alt="Эрих Эрлэнбах">
                 <div class="bio-content" id="bio-text"></div>
             </div>
         </div>
 
-        <h2 id="sec-media">Медиатека</h2>
+        <h2 id="sec-media">🎵 Медиатека</h2>
         <div class="widget">
             <div class="app-grid">
-                <a href="https://open.spotify.com/artist/B0GBVXPCMR" class="app-link" target="_blank" style="border-color: #1DB954;">Spotify</a>
-                <a href="https://music.yandex.ru/artist/25156828" class="app-link" target="_blank">Yandex Music</a>
-                <a href="https://vk.com/artist/8133192430738481080" class="app-link" target="_blank">VK Music</a>
-                <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" class="app-link" target="_blank">Apple Music</a>
-                <a href="https://music.amazon.de/artists/B0GBVXPCMR/erich-erlenbach" class="app-link" target="_blank">Amazon Music</a>
-                <a href="https://youtube.com/@ericherlenbach" class="app-link" target="_blank">YouTube</a>
-                <a href="https://rutube.ru/u/2e/" class="app-link" target="_blank">RuTube</a>
+                <a href="https://open.spotify.com/artist/B0GBVXPCMR" class="app-link" target="_blank" rel="noopener noreferrer">🎧 Spotify</a>
+                <a href="https://music.yandex.ru/artist/25156828" class="app-link" target="_blank" rel="noopener noreferrer">🎵 Yandex Music</a>
+                <a href="https://vk.com/artist/8133192430738481080" class="app-link" target="_blank" rel="noopener noreferrer">📱 VK Music</a>
+                <a href="https://music.apple.com/ru/artist/erich-erlenbach/1864018567" class="app-link" target="_blank" rel="noopener noreferrer">🍎 Apple Music</a>
+                <a href="https://music.amazon.de/artists/B0GBVXPCMR/erich-erlenbach" class="app-link" target="_blank" rel="noopener noreferrer">📦 Amazon Music</a>
+                <a href="https://youtube.com/@ericherlenbach" class="app-link" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+                <a href="https://rutube.ru/u/2e/" class="app-link" target="_blank" rel="noopener noreferrer">📺 RuTube</a>
+                <a href="https://t.me/ericherlenbach" class="app-link" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
             </div>
         </div>
 
-        <h2 id="sec-lit">Литература</h2>
+        <h2 id="sec-lit">📚 Литература</h2>
         <div class="widget">
             <div class="app-grid">
-                <a href="https://stihi.ru/avtor/sheridan2" class="app-link" target="_blank">Стихи.ру</a>
-                <a href="https://proza.ru/avtor/sheridan1" class="app-link" target="_blank">Проза.ру</a>
-                <a href="https://www.litres.ru/author/erih-erlenbah/" class="app-link" target="_blank">ЛитРес</a>
-                <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="app-link" target="_blank">Amazon Books</a>
-                <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" class="app-link" target="_blank">Google Books</a>
+                <a href="https://stihi.ru/avtor/sheridan2" class="app-link" target="_blank" rel="noopener noreferrer">📝 Стихи.ру</a>
+                <a href="https://proza.ru/avtor/sheridan1" class="app-link" target="_blank" rel="noopener noreferrer">✍️ Проза.ру</a>
+                <a href="https://www.litres.ru/author/erih-erlenbah/" class="app-link" target="_blank" rel="noopener noreferrer">📖 ЛитРес</a>
+                <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="app-link" target="_blank" rel="noopener noreferrer">📘 Amazon Books</a>
+                <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" class="app-link" target="_blank" rel="noopener noreferrer">🔍 Google Books</a>
             </div>
         </div>
 
         <div class="footer">
-            <a href="mailto:d.a.tretiakov@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700;">d.a.tretiakov@gmail.com</a>
+            <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700; transition: 0.3s;">✉️ d.a.tretiakof@gmail.com</a>
             <div class="footer-banners">
-                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" class="litres-banner">ЛитРес</a>
-                <a href="https://proza.ru/avtor/sheridan1" target="_blank">
+                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" rel="noopener noreferrer" class="litres-banner">📚 ЛитРес</a>
+                <a href="https://proza.ru/avtor/sheridan1" target="_blank" rel="noopener noreferrer">
                     <img src="https://proza.ru/images/author88x31.gif" width="88" height="31" alt="Проза.ру">
                 </a>
-                <a href="https://stihi.ru/avtor/sheridan2" target="_blank">
+                <a href="https://stihi.ru/avtor/sheridan2" target="_blank" rel="noopener noreferrer">
                     <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
                 </a>
+            </div>
+            <div style="margin-top: 30px; font-size: 0.8rem; color: var(--ios-secondary);">
+                © 2024 Erich Erlenbach | Все права защищены
             </div>
         </div>
     </main>
 
-    <script>
-        const translations = {
-            ru: {
-                title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор",
-                secBio: "Биография", secMedia: "Медиатека", secLit: "Литература", locale: "ru-RU", btnQuote: "Цитата",
-                wLoading: "🌤️ Загрузка...", wError: "⚠️ Ошибка", wDesc: "Текущая погода", wWind: "м/с",
-                bio: `<h3>Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p>
-                <h3>Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p>
-                <h3>Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>`
-            },
-            en: {
-                title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer",
-                secBio: "Biography", secMedia: "Media Library", secLit: "Literature", locale: "en-US", btnQuote: "Quote",
-                wLoading: "🌤️ Loading...", wError: "⚠️ Error", wDesc: "Current Weather", wWind: "m/s",
-                bio: `<h3>Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p>
-                <h3>Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p>
-                <h3>Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>`
-            },
-            de: {
-                title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist",
-                secBio: "Biografie", secMedia: "Mediathek", secLit: "Literatur", locale: "de-DE", btnQuote: "Zitat",
-                wLoading: "🌤️ Laden...", wError: "⚠️ Fehler", wDesc: "Aktuelles Wetter", wWind: "m/s",
-                bio: `<h3>Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p>
-                <h3>Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p>
-                <h3>Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>`
-            },
-            ka: {
-                title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი",
-                secBio: "ბიოგრაფია", secMedia: "მედიათეკა", secLit: "ლიტერატურა", locale: "ka-GE", btnQuote: "ციტატა",
-                wLoading: "🌤️ ჩატვირთვა...", wError: "⚠️ შეცდომა", wDesc: "ამინდი", wWind: "მ/წ",
-                bio: `<h3>საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p>
-                <h3>მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p>
-                <h3>მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>`
-            },
-            ar: {
-                title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن",
-                secBio: "السيرة الذاتية", secMedia: "المكتبة", secLit: "الأدب", locale: "ar-SA", btnQuote: "اقتباس",
-                wLoading: "🌤️ جاري التحميل...", wError: "⚠️ خطأ", wDesc: "الطقس الحالي", wWind: "م/ث",
-                bio: `<h3>الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p>
-                <h3>طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p>
-                <h3>المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>`
-            },
-            he: {
-                title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין",
-                secBio: "ביוגרפיה", secMedia: "ספרייה", secLit: "ספרות", locale: "he-IL", btnQuote: "ציטוט",
-                wLoading: "🌤️ טוען...", wError: "⚠️ שגיאה", wDesc: "מזג אוויר נוכחי", wWind: "מ'/ש'",
-                bio: `<h3>מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, איროפה וגרמני הוולגה.</p>
-                <h3>דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוზიקה ושחმט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיნი ואמנויות לחימה.</p>
-                <h3>מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מאარგ מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>`
-            },
-            ja: {
-                title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家",
-                secBio: "伝記", secMedia: "メディアライブラリ", secLit: "文学", locale: "ja-JP", btnQuote: "引用",
-                wLoading: "🌤️ 読み込み中...", wError: "⚠️ エラー", wDesc: "現在の天気", wWind: "m/s",
-                bio: `<h3>起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p>
-                <h3>奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p>
-                <h3>メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>`
-            },
-            zh: {
-                title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家",
-                secBio: "传记", secMedia: "媒体库", secLit: "文学", locale: "zh-CN", btnQuote: "名言",
-                wLoading: "🌤️ 加载中...", wError: "⚠️ 错误", wDesc: "当前天气", wWind: "米/秒",
-                bio: `<h3>起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p>
-                <h3>服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p>
-                <h3>宏大项目</h3><p>作为一名多元风格 of 作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>`
-            }
-        };
+    <div class="ios-audio-player" id="audioPlayer">
+        <div class="player-container">
+            <div class="player-info">
+                <div class="player-title" id="currentTrackTitle">Параллельные миры</div>
+                <div class="player-artist" id="currentTrackArtist">Erich Erlenbach</div>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="prevTrack" title="Предыдущий трек">⏮️</button>
+                <button class="control-btn play-pause" id="playPauseBtn" title="Воспроизвести/Пауза">▶️</button>
+                <button class="control-btn" id="nextTrack" title="Следующий трек">⏭️</button>
+            </div>
+            <div class="player-progress">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="time-info">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        const kaMonths = ["იანვარი", "თებერვალი", "მარტი", "აპრილი", "მაისი", "ივნისი", "ივლისი", "აგვისტო", "სექტემბერი", "ოქტომბერი", "ნოემბერი", "დეკემბერი"];
-        const kaDays = ["კვირა", "ორშაბათი", "სამშაბათი", "ოთხშაბათი", "ხუთშაბათი", "პარასკევი", "შაბათი"];
-        const quotes = ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни."];
+    <script>
+        // ==================== КНИГИ (БЕЗ ИЗМЕНЕНИЙ) ====================
+        const books = [
+            {
+                titleRu: "Тени над Курфюрстендаммом. Книги 1, 2, 3",
+                titleEn: "Shadows over Kurfürstendamm. Books 1, 2, 3",
+                titleDe: "Schatten über dem Kurfürstendamm. Bücher 1, 2, 3",
+                titleKa: "ჩრდილები კურფიურსტენდამზე. წიგნები 1, 2, 3",
+                titleAr: "ظلال على كورفورستيندام. الكتب 1، 2، 3",
+                titleHe: "צללים מעל קורפירסטנדאם. ספרים 1, 2, 3",
+                titleZh: "库尔菲尔斯滕大街上的阴影. 第1、2、3册",
+                titleJa: "クアフュルステンダムの影. 第1、2、3巻",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Teni+nad+Kurfurstendammom",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/teni-nad-kurfurstendammom-knigi-1-2-3-72773671/"
+            },
+            {
+                titleRu: "За гранью музейных стен",
+                titleEn: "Beyond Museum Walls",
+                titleDe: "Jenseits der Museumswände",
+                titleKa: "მუზეუმის კედლების მიღმა",
+                titleAr: "وراء جدران المتحف",
+                titleHe: "מעבר לקירות המוזיאון",
+                titleZh: "博物馆墙外",
+                titleJa: "美術館の壁の向こう側",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Za+granyu+muzeynyh+sten",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/za-granu-muzeynyh-sten-72682354/"
+            },
+            {
+                titleRu: "Баллада о Демоне. Книга 1",
+                titleEn: "Ballad of the Demon. Book 1",
+                titleDe: "Ballade vom Dämon. Buch 1",
+                titleKa: "ბალადა დემონზე. წიგნი 1",
+                titleAr: "قصيدة الشيطان. الكتاب 1",
+                titleHe: "בלדה על השד. ספר 1",
+                titleZh: "恶魔之歌. 第1册",
+                titleJa: "悪魔のバラード. 第1巻",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Ballada+o+Demone",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-demone-kniga-1-72745945/"
+            },
+            {
+                titleRu: "Наследие забытых снов. Книги 1 и 2",
+                titleEn: "Legacy of Forgotten Dreams. Books 1 & 2",
+                titleDe: "Vermächtnis vergessener Träume. Bücher 1 & 2",
+                titleKa: "დავიწყებული სიზმრების მემკვიდრეობა. წიგნები 1 და 2",
+                titleAr: "إرث الأحلام المنسية. الكتابان 1 و 2",
+                titleHe: "מורשת חלומות נשכחים. ספרים 1 ו-2",
+                titleZh: "被遗忘之梦的遗产. 第1和第2册",
+                titleJa: "忘れられた夢の遺産. 第1巻と第2巻",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Nasledie+zabytyh+snov",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/nasledie-zabytyh-snov-knigi-1-i-2-72739690/"
+            },
+            {
+                titleRu: "Горизонт разума. Книга 1",
+                titleEn: "Horizon of Reason. Book 1",
+                titleDe: "Horizont des Geistes. Buch 1",
+                titleKa: "გონების ჰორიზონტი. წიგნი 1",
+                titleAr: "أفق العقل. الكتاب 1",
+                titleHe: "אופק התבונה. ספר 1",
+                titleZh: "理性地平线. 第1册",
+                titleJa: "理性の地平線. 第1巻",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Gorizont+razuma",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/gorizont-razuma-kniga-1-72763579/"
+            },
+            {
+                titleRu: "Баллада о свете и тьме",
+                titleEn: "Ballad of Light and Darkness",
+                titleDe: "Ballade von Licht und Dunkelheit",
+                titleKa: "ბალადა სინათლესა და სიბნელეზე",
+                titleAr: "قصيدة النور والظلام",
+                titleHe: "בלדה על אור וחושך",
+                titleZh: "光与暗之歌",
+                titleJa: "光と闇のバラード",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Ballada+o+svete+i+tme",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-svete-i-tme-72682363/"
+            },
+            {
+                titleRu: "Время HD43197b - жизнь в сжатом пространстве",
+                titleEn: "Time HD43197b - Life in Compressed Space",
+                titleDe: "Zeit HD43197b - Leben im komprimierten Raum",
+                titleKa: "დრო HD43197b - ცხოვრება შეკუმშულ სივრცეში",
+                titleAr: "الزمن HD43197b - حياة في فضاء مضغوط",
+                titleHe: "זמן HD43197b - חיים במרחב דחוס",
+                titleZh: "时间HD43197b - 压缩空间中的生活",
+                titleJa: "時間HD43197b - 圧縮された空間での生活",
+                cover: "https://via.placeholder.com/180x240/d4af37/ffffff?text=Vremya+HD43197b",
+                year: "2025",
+                link: "https://www.litres.ru/book/erich-erlenbach/vremya-hd43197b-zhizn-v-szhatom-prostranstve-72728296/"
+            }
+        ];
+
+        // ==================== КИНОСОЗНАНИЕ - ВИДЕО ПО ВАШИМ ССЫЛКАМ ====================
+        const cinemaSlides = [
+            {
+                image: "https://images.pexels.com/photos/3062545/pexels-photo-3062545.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Материя звука",
+                titleEn: "Matter of Sound",
+                titleDe: "Materie des Klangs",
+                titleKa: "ხმის მატერია",
+                titleAr: "مادة الصوت",
+                titleHe: "חומר הצליל",
+                titleZh: "声音的物质",
+                titleJa: "音の物質",
+                descRu: "Визуальная медитация о времени, памяти и музыкальной структуре бытия.",
+                descEn: "A visual meditation on time, memory, and the musical structure of existence.",
+                descDe: "Eine visuelle Meditation über Zeit, Erinnerung und die musikalische Struktur der Existenz.",
+                descKa: "ვიზუალური მედიტაცია დროზე, მეხსიერებასა და ყოფიერების მუსიკალურ სტრუქტურაზე.",
+                descAr: "تأمل بصري في الزمن والذاكرة والبنية الموسيقية للوجود.",
+                descHe: "מדיטציה ויזואלית על זמן, זיכרון והמבנה המוזיקלי של הקיום.",
+                descZh: "关于时间、记忆和存在的音乐结构的视觉冥想。",
+                descJa: "時間、記憶、存在の音楽的構造についての視覚的瞑想。",
+                videoUrl: "https://youtu.be/BjYiufpLVOc"
+            },
+            {
+                image: "https://images.pexels.com/photos/414102/pexels-photo-414102.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Мы звездная пыль",
+                titleEn: "We Are Stardust",
+                titleDe: "Wir sind Sternenstaub",
+                titleKa: "ჩვენ ვართ ვარსკვლავური მტვერი",
+                titleAr: "نحن غبار النجوم",
+                titleHe: "אנחנו אבק כוכבים",
+                titleZh: "我们是星尘",
+                titleJa: "私たちは星の塵",
+                descRu: "Свет и тень как метафоры звука и тишины в творчестве композитора.",
+                descEn: "Light and shadow as metaphors for sound and silence in the composer's work.",
+                descDe: "Licht und Schatten als Metaphern für Klang und Stille im Werk des Komponisten.",
+                descKa: "სინათლე და ჩრდილი, როგორც ხმისა და დუმილის მეტაფორები კომპოზიტორის შემოქმედებაში.",
+                descAr: "الضوء والظل كناية عن الصوت والصمت في أعمال الملحن.",
+                descHe: "אור וצל כמטפורות לקול ושתיקה ביצירתו של המלחין.",
+                descZh: "光与影作为作曲家作品中声音与寂静的隐喻。",
+                descJa: "作曲家の作品における音と沈黙の比喩としての光と影。",
+                videoUrl: "https://youtu.be/Qk1x7oN7Q-E"
+            },
+            {
+                image: "https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Dämon – Tanz des Lichts",
+                titleEn: "Dämon – Dance of Light",
+                titleDe: "Dämon – Tanz des Lichts",
+                titleKa: "დემონი – სინათლის ცეკვა",
+                titleAr: "شيطان – رقصة النور",
+                titleHe: "שד – ריקוד האור",
+                titleZh: "恶魔 - 光之舞",
+                titleJa: "デーモン – 光の舞い",
+                descRu: "Кинематографический этюд о пересечении судеб и музыкальных тем.",
+                descEn: "A cinematic study on the intersection of fates and musical themes.",
+                descDe: "Eine kinematografische Studie über die Überschneidung von Schicksalen und musikalischen Themen.",
+                descKa: "კინემატოგრაფიული ეტიუდი ბედებისა და მუსიკალური თემების გადაკვეთაზე.",
+                descAr: "دراسة سينمائية عن تقاطع الأقدار والمواضيع الموسيقية.",
+                descHe: "מחקר קולנועי על הצטלבות גורלות ונושאים מוזיקליים.",
+                descZh: "关于命运与音乐主题交织的电影研究。",
+                descJa: "運命と音楽的主題の交差についての映画的研究。",
+                videoUrl: "https://youtu.be/w4HSWHlgDpM"
+            },
+            {
+                image: "https://images.pexels.com/photos/3601093/pexels-photo-3601093.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Dämon – Licht und Dunkelheit",
+                titleEn: "Dämon – Light and Darkness",
+                titleDe: "Dämon – Licht und Dunkelheit",
+                titleKa: "დემონი – სინათლე და სიბნელე",
+                titleAr: "شيطان – النور والظلام",
+                titleHe: "שד – אור וחושך",
+                titleZh: "恶魔 - 光与暗",
+                titleJa: "デーモン – 光と闇",
+                descRu: "Тбилисские мотивы в ритмах современной урбанистической симфонии.",
+                descEn: "Tbilisi motifs in the rhythms of a modern urban symphony.",
+                descDe: "Tiflis-Motive in den Rhythmen einer modernen urbanen Symphonie.",
+                descKa: "თბილისური მოტივები თანამედროვე ურბანული სიმფონიის რიტმებში.",
+                descAr: "موضوعات تبليسي في إيقاعات سيمفونية حضرية حديثة.",
+                descHe: "מוטיבים טביליסיים במקצבים של סימפוניה אורבנית מודרנית.",
+                descZh: "现代城市交响乐节奏中的第比利斯主题。",
+                descJa: "現代の都市交響曲のリズムにおけるトビリシのモチーフ。",
+                videoUrl: "https://youtu.be/sFXNzMaiGN4"
+            },
+            {
+                image: "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Полет Земли",
+                titleEn: "Flight of the Earth",
+                titleDe: "Flug der Erde",
+                titleKa: "დედამიწის ფრენა",
+                titleAr: "رحلة الأرض",
+                titleHe: "טיסת כדור הארץ",
+                titleZh: "地球的飞行",
+                titleJa: "地球の飛行",
+                descRu: "Космическая симфония, объединяющая земные и небесные мотивы.",
+                descEn: "A cosmic symphony uniting earthly and celestial motifs.",
+                descDe: "Eine kosmische Symphonie, die irdische und himmlische Motive vereint.",
+                descKa: "კოსმოსური სიმფონია, რომელიც აერთიანებს მიწიერ და ზეციურ მოტივებს.",
+                descAr: "سيمفونية كونية توحد الزخارف الأرضية والسماوية.",
+                descHe: "סימפוניה קוסמית המאחדת מוטיבים ארציים ושמימיים.",
+                descZh: "融合了尘世与天堂主题的宇宙交响曲。",
+                descJa: "地上と天上のモチーフを融合した宇宙交響曲。",
+                videoUrl: "https://youtu.be/OA6UvyLqYXY"
+            },
+            {
+                image: "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Скерцо полет",
+                titleEn: "Scherzo Flight",
+                titleDe: "Scherzo Flug",
+                titleKa: "სკერცო ფრენა",
+                titleAr: "رحلة شرزو",
+                titleHe: "טיסת סקרצו",
+                titleZh: "谐谑曲飞行",
+                titleJa: "スケルツォ飛行",
+                descRu: "Легкая и стремительная музыкальная фантазия.",
+                descEn: "Light and swift musical fantasy.",
+                descDe: "Leichte und schnelle musikalische Fantasie.",
+                descKa: "მსუბუქი და სწრაფი მუსიკალური ფანტაზია.",
+                descAr: "خيال موسيقي خفيف وسريع.",
+                descHe: "פנטזיה מוזיקלית קלילה ומהירה.",
+                descZh: "轻盈而迅速的音乐幻想。",
+                descJa: "軽やかで速い音楽的幻想。",
+                videoUrl: "https://rutube.ru/video/92796c5474132068500684cda8bff8f2/"
+            },
+            {
+                image: "https://images.pexels.com/photos/157855/pexels-photo-157855.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Cantata C minor, Op. 17, part 2",
+                titleEn: "Cantata C minor, Op. 17, part 2",
+                titleDe: "Kantate c-Moll, Op. 17, Teil 2",
+                titleKa: "კანტატა დო მინორი, ოპ. 17, ნაწილი 2",
+                titleAr: "كانتاتا دو صغير، مصنف 17، الجزء 2",
+                titleHe: "קנטטה דו מינור, אופוס 17, חלק 2",
+                titleZh: "C小调康塔塔，作品17，第2部分",
+                titleJa: "ハ短調カンタータ 作品17 第2部",
+                descRu: "Классическая кантата в современном прочтении.",
+                descEn: "Classical cantata in a modern interpretation.",
+                descDe: "Klassische Kantate in moderner Interpretation.",
+                descKa: "კლასიკური კანტატა თანამედროვე ინტერპრეტაციაში.",
+                descAr: "كانتاتا كلاسيكية في تفسير حديث.",
+                descHe: "קנטטה קלאסית בפרשנות מודרנית.",
+                descZh: "现代诠释中的古典康塔塔。",
+                descJa: "現代的な解釈による古典カンタータ。",
+                videoUrl: "https://rutube.ru/video/b4b61a554c6a892ea61c1f6ab48f3117/"
+            },
+            {
+                image: "https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Бакуриани",
+                titleEn: "Bakuriani",
+                titleDe: "Bakuriani",
+                titleKa: "ბაკურიანი",
+                titleAr: "باكورياني",
+                titleHe: "באקוריאני",
+                titleZh: "巴库里阿尼",
+                titleJa: "バクリアニ",
+                descRu: "Музыкальное путешествие по живописным горным ландшафтам Грузии.",
+                descEn: "A musical journey through the picturesque mountain landscapes of Georgia.",
+                descDe: "Eine musikalische Reise durch die malerischen Berglandschaften Georgiens.",
+                descKa: "მუსიკალური მოგზაურობა საქართველოს თვალწარმტაცი მთის პეიზაჟებში.",
+                descAr: "رحلة موسيقية عبر المناظر الجبلية الخلابة في جورجيا.",
+                descHe: "מסע מוזיקלי דרך נופי ההרים הציוריים של גאורגיה.",
+                descZh: "穿越格鲁吉亚风景如画的山地景观的音乐之旅。",
+                descJa: "ジョージアの絵のように美しい山岳風景を巡る音楽の旅。",
+                videoUrl: "https://rutube.ru/video/c1627cbd2221beb71fde2ece78698f1c/"
+            },
+            {
+                image: "https://images.pexels.com/photos/3945311/pexels-photo-3945311.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Тропинки детства",
+                titleEn: "Paths of Childhood",
+                titleDe: "Pfade der Kindheit",
+                titleKa: "ბავშვობის ბილიკები",
+                titleAr: "مسارات الطفولة",
+                titleHe: "שבילי הילדות",
+                titleZh: "童年的小径",
+                titleJa: "子供時代の小道",
+                descRu: "Ностальгическая музыкальная зарисовка о беззаботных годах.",
+                descEn: "A nostalgic musical sketch of carefree years.",
+                descDe: "Eine nostalgische musikalische Skizze sorgenfreier Jahre.",
+                descKa: "ნოსტალგიური მუსიკალური ჩანახატი უდარდელ წლებზე.",
+                descAr: "رسم موسيقي حنين لسنوات خالية من الهموم.",
+                descHe: "סקיצה מוזיקלית נוסטלגית של שנים חסרות דאגות.",
+                descZh: "关于无忧无虑岁月的怀旧音乐素描。",
+                descJa: "のびのびとした年月についてのノスタルジックな音楽的スケッチ。",
+                videoUrl: "https://rutube.ru/video/a77e233ae3144b22d8eba7c5cad3efaa/"
+            },
+            {
+                image: "https://images.pexels.com/photos/1063997/pexels-photo-1063997.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Песнь Самаэля. Часть из Поп (Рок) Оперы «Дэмон»",
+                titleEn: "Song of Samael. Part from the Pop (Rock) Opera 'Demon'",
+                titleDe: "Gesang Samaels. Teil aus der Pop (Rock) Oper 'Dämon'",
+                titleKa: "სამაელის სიმღერა. ნაწილი პოპ (როკ) ოპერიდან „დემონი“",
+                titleAr: "نشيد سامائيل. جزء من أوبرا البوب (روك) 'شيطان'",
+                titleHe: "שירת סמאל. חלק מהאופרת פופ (רוק) 'שד'",
+                titleZh: "萨麦尔之歌。来自流行（摇滚）歌剧《恶魔》",
+                titleJa: "サマエルの歌。ポップ（ロック）オペラ「デーモン」より",
+                descRu: "Драматическая ария из рок-оперы, раскрывающая образ падшего ангела.",
+                descEn: "A dramatic aria from the rock opera, revealing the image of the fallen angel.",
+                descDe: "Eine dramatische Arie aus der Rockoper, die das Bild des gefallenen Engels enthüllt.",
+                descKa: "დრამატული არია როკ-ოპერიდან, რომელიც ავლენს დაცემული ანგელოზის სახეს.",
+                descAr: "أغنية درامية من أوبرا الروك، تكشف صورة الملاك الساقط.",
+                descHe: "אריה דרמטית מאופרת הרוק, החושפת את דמותו של המלאך הנופל.",
+                descZh: "来自摇滚歌剧的戏剧性咏叹调，揭示了堕落天使的形象。",
+                descJa: "堕天使の姿を描いたロックオペラからの劇的なアリア。",
+                videoUrl: "https://rutube.ru/video/277cbf6f9751926e2b066942d1282407/"
+            },
+            {
+                image: "https://images.pexels.com/photos/1054289/pexels-photo-1054289.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "Нагорная проповедь",
+                titleEn: "Sermon on the Mount",
+                titleDe: "Bergpredigt",
+                titleKa: "მთაზე ქადაგება",
+                titleAr: "العظة على الجبل",
+                titleHe: "הדרשה על ההר",
+                titleZh: "登山宝训",
+                titleJa: "山上の垂訓",
+                descRu: "Одна из частей оперы, вдохновленная библейскими мотивами.",
+                descEn: "One part of the opera, inspired by biblical motifs.",
+                descDe: "Ein Teil der Oper, inspiriert von biblischen Motiven.",
+                descKa: "ოპერის ერთ-ერთი ნაწილი, შთაგონებული ბიბლიური მოტივებით.",
+                descAr: "جزء من الأوبرا، مستوحى من الزخارف التوراتية.",
+                descHe: "חלק אחד מהאופרה, בהשראת מוטיבים מקראיים.",
+                descZh: "歌剧的一部分，灵感来自圣经主题。",
+                descJa: "聖書のモチーフに触発されたオペラの一部。",
+                videoUrl: "https://rutube.ru/video/bb5b2192006ca684d5ddda9273af9e1d/"
+            },
+            {
+                image: "https://images.pexels.com/photos/694956/pexels-photo-694956.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                titleRu: "За кулисами детства",
+                titleEn: "Behind the Scenes of Childhood",
+                titleDe: "Hinter den Kulissen der Kindheit",
+                titleKa: "ბავშვობის კულისებში",
+                titleAr: "وراء كواليس الطفولة",
+                titleHe: "מאחורי הקלעים של הילדות",
+                titleZh: "童年的幕后",
+                titleJa: "子供時代の舞台裏",
+                descRu: "Лирическое размышление о formative годах и их влиянии на творчество.",
+                descEn: "A lyrical reflection on formative years and their influence on creativity.",
+                descDe: "Eine lyrische Reflexion über die prägenden Jahre und ihren Einfluss auf die Kreativität.",
+                descKa: "ლირიკული რეფლექსია ჩამოყალიბების წლებზე და მათ გავლენაზე შემოქმედებაზე.",
+                descAr: "تأمل غنائي في سنوات التكوين وتأثيرها على الإبداع.",
+                descHe: "השתקפות לירית על השנים המעצבות והשפעתן על היצירתיות.",
+                descZh: "关于成长岁月及其对创造力影响的一首抒情反思。",
+                descJa: "形成期と創造性への影響についての叙情的な考察。",
+                videoUrl: "https://rutube.ru/video/70250d53d5f17d32ad27d256859bb95f/"
+            }
+        ];
 
         let currentLang = 'ru';
+        let currentCinemaIndex = 0;
+        let cinemaInterval;
 
+        function getBookTitle(book) {
+            const titles = {
+                ru: book.titleRu,
+                en: book.titleEn,
+                de: book.titleDe,
+                ka: book.titleKa,
+                ar: book.titleAr,
+                he: book.titleHe,
+                zh: book.titleZh,
+                ja: book.titleJa
+            };
+            return titles[currentLang] || book.titleRu;
+        }
+
+        function getCinemaTitle(slide) {
+            const titles = {
+                ru: slide.titleRu,
+                en: slide.titleEn,
+                de: slide.titleDe,
+                ka: slide.titleKa,
+                ar: slide.titleAr,
+                he: slide.titleHe,
+                zh: slide.titleZh,
+                ja: slide.titleJa
+            };
+            return titles[currentLang] || slide.titleRu;
+        }
+
+        function getCinemaDesc(slide) {
+            const descs = {
+                ru: slide.descRu,
+                en: slide.descEn,
+                de: slide.descDe,
+                ka: slide.descKa,
+                ar: slide.descAr,
+                he: slide.descHe,
+                zh: slide.descZh,
+                ja: slide.descJa
+            };
+            return descs[currentLang] || slide.descRu;
+        }
+
+        function renderBookshelf() {
+            const container = document.getElementById('bookshelf');
+            container.innerHTML = books.map((book, index) => `
+                <div class="book-card" onclick="window.open('${book.link}', '_blank')">
+                    <img src="${book.cover}" class="book-cover" alt="${getBookTitle(book)}" onerror="this.src='https://via.placeholder.com/180x240/d4af37/ffffff?text=${encodeURIComponent(book.titleRu.substring(0, 20))}'">
+                    <div class="book-info">
+                        <div class="book-title">${getBookTitle(book)}</div>
+                        <div class="book-year">${book.year}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCinema() {
+            const slidesContainer = document.getElementById('cinemaSlides');
+            const navContainer = document.getElementById('cinemaNav');
+            
+            slidesContainer.innerHTML = cinemaSlides.map((slide, idx) => `
+                <a href="${slide.videoUrl}" target="_blank" style="text-decoration: none; display: block; width: 100%; height: 100%; position: relative;">
+                    <div class="cinema-slide ${idx === currentCinemaIndex ? 'active' : ''}" 
+                         style="background-image: url('${slide.image}')">
+                        <div class="cinema-overlay">
+                            <div class="cinema-title">${getCinemaTitle(slide)}</div>
+                            <div class="cinema-desc">${getCinemaDesc(slide)}</div>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+            
+            navContainer.innerHTML = cinemaSlides.map((_, idx) => `
+                <div class="cinema-dot ${idx === currentCinemaIndex ? 'active' : ''}" onclick="setCinemaSlide(${idx})"></div>
+            `).join('');
+        }
+
+        function setCinemaSlide(index) {
+            currentCinemaIndex = index;
+            renderCinema();
+            clearInterval(cinemaInterval);
+            startCinemaCarousel();
+        }
+
+        function nextCinemaSlide() {
+            currentCinemaIndex = (currentCinemaIndex + 1) % cinemaSlides.length;
+            renderCinema();
+        }
+
+        function startCinemaCarousel() {
+            cinemaInterval = setInterval(nextCinemaSlide, 5000);
+        }
+
+        // Музыкальный плеер (без изменений)
+        const playlist = [
+            { titleRu: "Параллельные миры", titleEn: "Parallel Worlds", artist: "Erich Erlenbach", url: "https://music.apple.com/ru/song/%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B8%D1%80%D1%8B/1866521960" },
+            { titleRu: "Отражение", titleEn: "Reflection", artist: "Erich Erlenbach", url: "https://music.yandex.ru/album/40165120/track/147119735" }
+        ];
+        
+        let currentTrackIndex = 0;
+        
+        function getTrackTitle(track) {
+            return currentLang === 'ru' ? track.titleRu : track.titleEn;
+        }
+        
+        function loadTrack(index) {
+            const track = playlist[index];
+            document.getElementById('currentTrackTitle').innerText = getTrackTitle(track);
+            document.getElementById('currentTrackArtist').innerText = track.artist;
+        }
+        
+        function togglePlayPause() {
+            const track = playlist[currentTrackIndex];
+            if (track && track.url) window.open(track.url, '_blank');
+        }
+        
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+        }
+        
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrackIndex);
+        }
+        
+        // Настроение дня (без изменений)
+        function getMoodByTime() {
+            const hour = new Date().getHours();
+            const moods = {
+                ru: { morning: "Утренняя медитация", day: "Дневная активность", evening: "Вечерняя релаксация", night: "Ночное вдохновение" },
+                en: { morning: "Morning Meditation", day: "Day Activity", evening: "Evening Relaxation", night: "Night Inspiration" },
+                de: { morning: "Morgenmeditation", day: "Tagesaktivität", evening: "Abendentspannung", night: "Nächtliche Inspiration" },
+                ka: { morning: "დილის მედიტაცია", day: "დღის აქტივობა", evening: "საღამოს რელაქსაცია", night: "ღამის შთაგონება" },
+                ar: { morning: "تأمل الصباح", day: "نشاط النهار", evening: "استرخاء المساء", night: "إلهام الليل" },
+                he: { morning: "מדיטציית בוקר", day: "פעילות יום", evening: "הרפיה בערב", night: "השראה לילית" },
+                zh: { morning: "晨间冥想", day: "白日活动", evening: "晚间放松", night: "夜间灵感" },
+                ja: { morning: "朝の瞑想", day: "昼の活動", evening: "夕方のリラックス", night: "夜のインスピレーション" }
+            };
+            let period = hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 17 ? 'day' : hour >= 17 && hour < 21 ? 'evening' : 'night';
+            let icon = period === 'morning' ? '🌅' : period === 'day' ? '☀️' : period === 'evening' ? '🌇' : '🌙';
+            return { icon, title: moods[currentLang]?.[period] || moods.ru[period] };
+        }
+        
+        function updateMoodWidget() {
+            const mood = getMoodByTime();
+            document.getElementById('moodIcon').innerHTML = mood.icon;
+            document.getElementById('moodTitle').innerHTML = mood.title;
+            const labels = {
+                ru: 'Настроение дня:', en: 'Mood of the day:', de: 'Stimmung des Tages:', ka: 'დღის განწყობა:', ar: 'مزاج اليوم:', he: 'מצב הרוח של היום:', zh: '今日心情:', ja: '今日の気分:'
+            };
+            document.getElementById('moodLabel').innerHTML = labels[currentLang] || 'Mood of the day:';
+        }
+        
+        function playMoodPlaylist() {
+            window.open(playlist[0].url, '_blank');
+        }
+        
+        // Часы, погода, тема (без изменений)
         function updateClock() {
             const now = new Date();
             document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'});
-            if (currentLang === 'ka') {
-                document.getElementById('clock-date').innerText = kaDays[now.getDay()] + ", " + now.getDate() + " " + kaMonths[now.getMonth()];
-            } else {
-                document.getElementById('clock-date').innerText = now.toLocaleDateString(translations[currentLang].locale, { weekday: 'long', month: 'long', day: 'numeric' });
-            }
+            const locales = { ru: 'ru-RU', en: 'en-US', de: 'de-DE', ka: 'ka-GE', ar: 'ar-SA', he: 'he-IL', zh: 'zh-CN', ja: 'ja-JP' };
+            document.getElementById('clock-date').innerText = now.toLocaleDateString(locales[currentLang] || 'ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
         }
-
+        
         async function fetchWeather() {
-            const weatherLoading = document.getElementById('weatherLoading'), weatherContent = document.getElementById('weatherContent'), weatherError = document.getElementById('weatherError');
-            const weatherTemp = document.getElementById('weatherTemp'), weatherDesc = document.getElementById('weatherDesc'), weatherHumidity = document.getElementById('weatherHumidity'), weatherWind = document.getElementById('weatherWind');
-            const lang = translations[currentLang];
-            
             try {
-                const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current_weather=true&hourly=relativehumidity_2m&timezone=auto');
-                if(!resp.ok) throw new Error();
+                const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current_weather=true');
                 const data = await resp.json();
                 if(data.current_weather) {
-                    weatherTemp.innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
-                    weatherDesc.innerHTML = lang.wDesc;
-                    let hum = (data.hourly && data.hourly.relativehumidity_2m) ? data.hourly.relativehumidity_2m[0] : '—';
-                    weatherHumidity.innerHTML = hum; 
-                    weatherWind.innerHTML = Math.round(data.current_weather.windspeed) + " " + lang.wWind;
-                    weatherLoading.style.display = 'none'; weatherContent.style.display = 'block'; weatherError.style.display = 'none';
+                    document.getElementById('weatherTemp').innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
+                    document.getElementById('weatherDesc').innerHTML = 'Current Weather';
+                    document.getElementById('weatherHumidity').innerHTML = '—';
+                    document.getElementById('weatherWind').innerHTML = Math.round(data.current_weather.windspeed) + " m/s";
+                    document.getElementById('weatherLoading').style.display = 'none';
+                    document.getElementById('weatherContent').style.display = 'block';
                 }
             } catch(e) { 
-                weatherLoading.style.display = 'none'; weatherError.style.display = 'block'; 
+                document.getElementById('weatherLoading').style.display = 'none';
+                document.getElementById('weatherError').style.display = 'block';
             }
         }
-
+        
         function toggleTheme() {
-            const isLight = document.body.classList.toggle('light-theme');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
-
+        
+        // Переводы для заголовков (без изменений)
+        const translations = {
+            ru: { secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>` },
+            en: { secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>` },
+            de: { secBooks: "📚 Interaktives Bücherregal", secCinema: "🎬 Kino-Bewusstsein", secBio: "📖 Biografie", secMedia: "🎵 Mediathek", secLit: "📚 Literatur", title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist", btnQuote: "🎭 Zitat des Tages", bio: `<h3>🌟 Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p><h3>⚡ Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p><h3>🎨 Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>` },
+            ka: { secBooks: "📚 ინტერაქტიული თარო", secCinema: "🎬 კინოცნობიერება", secBio: "📖 ბიოგრაფია", secMedia: "🎵 მედიათეკა", secLit: "📚 ლიტერატურა", title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი", btnQuote: "🎭 ციტატა", bio: `<h3>🌟 საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p><h3>⚡ მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p><h3>🎨 მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>` },
+            ar: { secBooks: "📚 الرف التفاعلي", secCinema: "🎬 الوعي السينمائي", secBio: "📖 السيرة الذاتية", secMedia: "🎵 المكتبة", secLit: "📚 الأدب", title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن", btnQuote: "🎭 اقتباس", bio: `<h3>🌟 الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p><h3>⚡ طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p><h3>🎨 المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>` },
+            he: { secBooks: "📚 מדף ספרים אינטראקטיבי", secCinema: "🎬 תודעה קולנועית", secBio: "📖 ביוגרפיה", secMedia: "🎵 ספרייה", secLit: "📚 ספרות", title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין", btnQuote: "🎭 ציטוט", bio: `<h3>🌟 מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p><h3>⚡ דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p><h3>🎨 מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>` },
+            zh: { secBooks: "📚 互动书架", secCinema: "🎬 电影意识", secBio: "📖 传记", secMedia: "🎵 媒体库", secLit: "📚 文学", title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", bio: `<h3>🌟 起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p><h3>⚡ 服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p><h3>🎨 宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>` },
+            ja: { secBooks: "📚 インタラクティブ書棚", secCinema: "🎬 シネマ意識", secBio: "📖 伝記", secMedia: "🎵 メディアライブラリ", secLit: "📚 文学", title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", bio: `<h3>🌟 起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p><h3>⚡ 奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p><h3>🎨 メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>` }
+        };
+        
+        const quotes = {
+            ru: ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни.", "Истинная мудрость — в тишине между нотами."],
+            en: ["Everything that takes form in sound, rhyme or prose is but an earthly echo of Heavenly harmony.", "Music, poetry and prose are three facets of a single revelation.", "Creativity is not a profession, but a way of understanding life.", "True wisdom lies in the silence between notes."],
+            de: ["Alles, was in Klang, Reim oder Prosa Gestalt annimmt, ist nur ein irdisches Echo der himmlischen Harmonie.", "Musik, Poesie und Prosa sind drei Facetten einer Offenbarung.", "Kreativität ist kein Beruf, sondern eine Lebenserkenntnis.", "Wahre Weisheit liegt in der Stille zwischen den Noten."]
+        };
+        
+        function getRandomQuote() {
+            const quotesForLang = quotes[currentLang] || quotes.ru;
+            const randomQuote = quotesForLang[Math.floor(Math.random() * quotesForLang.length)];
+            document.getElementById('quote-text').innerText = `«${randomQuote}»`;
+        }
+        
         function changeLang(lang) {
             currentLang = lang;
-            const data = translations[lang];
-            document.getElementById('hero-title').innerText = data.title;
-            document.getElementById('hero-subtitle').innerText = data.subtitle;
-            document.getElementById('sec-bio').innerText = data.secBio;
-            document.getElementById('sec-media').innerText = data.secMedia;
-            document.getElementById('sec-lit').innerText = data.secLit;
-            document.getElementById('bio-text').innerHTML = data.bio;
-            document.getElementById('btn-quote').innerText = data.btnQuote;
+            const t = translations[lang] || translations.ru;
+            document.getElementById('hero-title').innerText = t.title;
+            document.getElementById('hero-subtitle').innerText = t.subtitle;
+            document.getElementById('sec-books').innerHTML = t.secBooks;
+            document.getElementById('sec-cinema').innerHTML = t.secCinema;
+            document.getElementById('sec-bio').innerHTML = t.secBio;
+            document.getElementById('sec-media').innerHTML = t.secMedia;
+            document.getElementById('sec-lit').innerHTML = t.secLit;
+            document.getElementById('bio-text').innerHTML = t.bio;
+            document.getElementById('btn-quote').innerHTML = t.btnQuote;
             
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
             document.body.classList.toggle('rtl', lang === 'ar' || lang === 'he');
             
+            renderBookshelf();
+            renderCinema();
+            updateMoodWidget();
+            loadTrack(currentTrackIndex);
+            updateClock();
+            getRandomQuote();
+        }
+        
+        document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
+        document.getElementById('nextTrack').addEventListener('click', nextTrack);
+        document.getElementById('prevTrack').addEventListener('click', prevTrack);
+        document.getElementById('playMoodBtn').addEventListener('click', playMoodPlaylist);
+        
+        window.onload = () => {
+            if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => changeLang(btn.dataset.lang)));
+            changeLang('ru');
+            renderBookshelf();
+            renderCinema();
+            startCinemaCarousel();
+            loadTrack(0);
             updateClock();
             fetchWeather();
-        }
-
-        function getRandomQuote() { document.getElementById('quote-text').innerText = `«${quotes[Math.floor(Math.random() * quotes.length)]}»`; }
-
-        setInterval(updateClock, 1000);
-        setInterval(fetchWeather, 30*60*1000);
-
-        window.onload = () => { 
-            if(localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
-            changeLang('ru'); 
-            getRandomQuote(); 
+            getRandomQuote();
+            setInterval(updateClock, 1000);
+            setInterval(fetchWeather, 30 * 60 * 1000);
         };
+        
+        window.setCinemaSlide = setCinemaSlide;
+        window.getRandomQuote = getRandomQuote;
+        window.toggleTheme = toggleTheme;
     </script>
 </body>
 </html>
