@@ -431,76 +431,72 @@
             color: var(--ios-secondary);
         }
         
-        /* Киносознание */
+        /* Киносознание - горизонтальный скролл (как у книг) */
         .cinema-section {
             position: relative;
             border-radius: var(--radius);
             overflow: hidden;
-            min-height: 400px;
         }
         .cinema-slides {
-            position: relative;
-            height: 400px;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
         }
-        .cinema-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .cinema-slides::-webkit-scrollbar {
+            height: 4px;
+        }
+        .cinema-slides::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+        .cinema-slides::-webkit-scrollbar-thumb {
+            background: var(--ios-accent);
+            border-radius: 2px;
+        }
+        .cinema-card {
+            flex: 0 0 280px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            text-decoration: none;
+            display: block;
+        }
+        .cinema-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+        }
+        .cinema-card-image {
             width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
+            height: 180px;
             background-size: cover;
             background-position: center;
-            border-radius: var(--radius);
-            cursor: pointer;
         }
-        .cinema-slide.active {
-            opacity: 1;
-        }
-        .cinema-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 30px 20px 20px;
+        .cinema-card-info {
+            padding: 12px;
             text-align: center;
         }
-        .cinema-title {
-            font-size: 1.2rem;
-            color: var(--ios-accent);
-            margin-bottom: 8px;
+        .cinema-card-title {
+            font-size: 0.9rem;
             font-weight: 600;
+            color: var(--ios-accent);
+            margin-bottom: 4px;
         }
-        .cinema-desc {
-            font-size: 0.85rem;
-            color: var(--ios-text);
-            max-width: 80%;
-            margin: 0 auto;
+        .cinema-card-desc {
+            font-size: 0.7rem;
+            color: var(--ios-secondary);
         }
         .cinema-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            z-index: 10;
-        }
-        .cinema-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .cinema-dot.active {
-            background: var(--ios-accent);
-            width: 24px;
-            border-radius: 4px;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: var(--ios-secondary);
         }
 
         h2 { 
@@ -558,8 +554,7 @@
             .player-progress { order: 3; }
             .player-controls { order: 2; justify-content: center; }
             .player-info { order: 1; text-align: center; }
-            .cinema-slides { height: 350px; }
-            .cinema-desc { max-width: 95%; }
+            .cinema-card { flex: 0 0 240px; }
             .book-card { flex: 0 0 140px; }
             .book-cover { height: 180px; }
         }
@@ -568,6 +563,7 @@
             #clock-time { font-size: 2.5rem; }
             .widget { padding: 15px; }
             .app-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+            .cinema-card { flex: 0 0 200px; }
         }
         
         #btn-quote {
@@ -655,9 +651,9 @@
         </div>
 
         <h2 id="sec-cinema">🎬 Киносознание</h2>
-        <div class="widget cinema-section" id="cinemaSection">
+        <div class="widget cinema-section">
             <div class="cinema-slides" id="cinemaSlides"></div>
-            <div class="cinema-nav" id="cinemaNav"></div>
+            <div class="cinema-nav" id="cinemaNav">← Листайте вправо →</div>
         </div>
 
         <h2 id="sec-bio">📖 Биография</h2>
@@ -829,7 +825,7 @@
             }
         ];
 
-        // ==================== КИНОСОЗНАНИЕ - ВИДЕО ПО ВАШИМ ССЫЛКАМ ====================
+        // ==================== КИНОСОЗНАНИЕ - ВИДЕО (БЕЗ ИЗМЕНЕНИЙ) ====================
         const cinemaSlides = [
             {
                 image: "Zvuk.jpg",
@@ -1074,8 +1070,6 @@
         ];
 
         let currentLang = 'ru';
-        let currentCinemaIndex = 0;
-        let cinemaInterval;
 
         function getBookTitle(book) {
             const titles = {
@@ -1133,40 +1127,16 @@
         }
 
         function renderCinema() {
-            const slidesContainer = document.getElementById('cinemaSlides');
-            const navContainer = document.getElementById('cinemaNav');
-            
-            slidesContainer.innerHTML = cinemaSlides.map((slide, idx) => `
-                <a href="${slide.videoUrl}" target="_blank" style="text-decoration: none; display: block; width: 100%; height: 100%; position: relative;">
-                    <div class="cinema-slide ${idx === currentCinemaIndex ? 'active' : ''}" 
-                         style="background-image: url('${slide.image}')">
-                        <div class="cinema-overlay">
-                            <div class="cinema-title">${getCinemaTitle(slide)}</div>
-                            <div class="cinema-desc">${getCinemaDesc(slide)}</div>
-                        </div>
+            const container = document.getElementById('cinemaSlides');
+            container.innerHTML = cinemaSlides.map(slide => `
+                <a href="${slide.videoUrl}" target="_blank" class="cinema-card">
+                    <div class="cinema-card-image" style="background-image: url('${slide.image}')"></div>
+                    <div class="cinema-card-info">
+                        <div class="cinema-card-title">${getCinemaTitle(slide)}</div>
+                        <div class="cinema-card-desc">${getCinemaDesc(slide)}</div>
                     </div>
                 </a>
             `).join('');
-            
-            navContainer.innerHTML = cinemaSlides.map((_, idx) => `
-                <div class="cinema-dot ${idx === currentCinemaIndex ? 'active' : ''}" onclick="setCinemaSlide(${idx})"></div>
-            `).join('');
-        }
-
-        function setCinemaSlide(index) {
-            currentCinemaIndex = index;
-            renderCinema();
-            clearInterval(cinemaInterval);
-            startCinemaCarousel();
-        }
-
-        function nextCinemaSlide() {
-            currentCinemaIndex = (currentCinemaIndex + 1) % cinemaSlides.length;
-            renderCinema();
-        }
-
-        function startCinemaCarousel() {
-            cinemaInterval = setInterval(nextCinemaSlide, 5000);
         }
 
         // Музыкальный плеер (без изменений)
@@ -1325,7 +1295,6 @@
             changeLang('ru');
             renderBookshelf();
             renderCinema();
-            startCinemaCarousel();
             loadTrack(0);
             updateClock();
             fetchWeather();
@@ -1334,7 +1303,6 @@
             setInterval(fetchWeather, 30 * 60 * 1000);
         };
         
-        window.setCinemaSlide = setCinemaSlide;
         window.getRandomQuote = getRandomQuote;
         window.toggleTheme = toggleTheme;
     </script>
