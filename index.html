@@ -92,6 +92,49 @@
         body.light-theme .sun-fx { display: block; animation: pulse 10s infinite alternate; }
         @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
 
+        /* Telegram Chat Button */
+        .telegram-chat {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #0088cc;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+        }
+        .telegram-chat:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .telegram-chat svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        body.light-theme .telegram-chat {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .telegram-chat {
+                bottom: 80px;
+                right: 15px;
+                width: 48px;
+                height: 48px;
+            }
+            .telegram-chat svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
         .ios-audio-player {
             position: fixed;
             bottom: 0;
@@ -313,12 +356,28 @@
             padding: 15px; 
             text-align: center; 
             border: var(--border); 
-            min-width: 200px;
+            min-width: 220px;
             transition: all 0.3s ease;
         }
         .weather-card:hover { transform: translateY(-2px); background: rgba(255,255,255,0.1); }
         
-        .weather-city { font-size: 0.9rem; font-weight: 600; color: var(--ios-accent); margin-bottom: 5px; }
+        .weather-city-select {
+            background: transparent;
+            border: none;
+            color: var(--ios-accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+            margin-bottom: 5px;
+            border-bottom: 1px dashed var(--ios-accent);
+            padding: 2px 4px;
+        }
+        .weather-city-select option {
+            background: var(--ios-bg);
+            color: var(--ios-text);
+        }
         .weather-temp { font-size: 1.8rem; font-weight: 700; color: var(--ios-text); margin: 2px 0; }
         .weather-desc { font-size: 0.75rem; color: var(--ios-secondary); text-transform: uppercase; }
         .weather-details { display: flex; justify-content: center; gap: 15px; margin-top: 8px; font-size: 0.7rem; color: var(--ios-accent); }
@@ -546,7 +605,7 @@
             .status-panel { flex-direction: column; align-items: center; text-align: center; margin-top: 80px; } 
             .bio-grid { justify-content: center; text-align: center; }
             .bio-content p { text-align: center; }
-            .weather-card { margin-top: 15px; width: 100%; max-width: 250px; }
+            .weather-card { margin-top: 15px; width: 100%; max-width: 280px; }
             header { width: 90%; height: auto; min-height: 44px; flex-wrap: wrap; padding: 8px 10px; }
             .lang-nav { flex-wrap: wrap; justify-content: center; }
             .lang-btn { font-size: 9px; padding: 4px 6px; }
@@ -609,7 +668,18 @@
         <div><div id="clock-date">...</div><div id="clock-time">00:00</div></div>
         
         <div class="weather-card" id="weatherWidget">
-            <div class="weather-city">🇬🇪 Tbilisi, Georgia</div>
+            <select id="citySelect" class="weather-city-select">
+                <option value="41.7151,44.8271">🇬🇪 Тбилиси, Грузия</option>
+                <option value="52.5200,13.4050">🇩🇪 Берлин, Германия</option>
+                <option value="48.8566,2.3522">🇫🇷 Париж, Франция</option>
+                <option value="40.7128,-74.0060">🇺🇸 Нью-Йорк, США</option>
+                <option value="51.5074,-0.1278">🇬🇧 Лондон, Великобритания</option>
+                <option value="55.7558,37.6173">🇷🇺 Москва, Россия</option>
+                <option value="35.6895,139.6917">🇯🇵 Токио, Япония</option>
+                <option value="31.2304,121.4737">🇨🇳 Шанхай, Китай</option>
+                <option value="41.9028,12.4964">🇮🇹 Рим, Италия</option>
+                <option value="40.4168,-3.7038">🇪🇸 Мадрид, Испания</option>
+            </select>
             <div class="weather-loading" id="weatherLoading">🌤️ Loading...</div>
             <div id="weatherContent" style="display: none;">
                 <div class="weather-temp" id="weatherTemp"></div>
@@ -706,10 +776,17 @@
         </div>
     </main>
 
+    <!-- Telegram Chat Button -->
+    <a href="https://t.me/ErichErlenbach" target="_blank" class="telegram-chat" title="Написать в Telegram">
+        <svg viewBox="0 0 24 24" fill="white">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.07-.2-.09-.06-.23-.04-.33-.02-.14.03-2.33 1.48-3.28 2.09-.23.15-.48.18-.69.18-.45 0-1.07-.25-1.67-.46-.7-.24-1.26-.37-1.21-.78.03-.21.31-.43.86-.66 1.58-.69 3.28-1.4 4.62-1.84 1.34-.44 2.42-.73 3.17-.87.75-.14 1.37-.1 1.81.14.44.24.69.63.61 1.06z"/>
+        </svg>
+    </a>
+
     <div class="ios-audio-player" id="audioPlayer">
         <div class="player-container">
             <div class="player-info">
-                <div class="player-title" id="currentTrackTitle">Параллельные миры</div>
+                <div class="player-title" id="currentTrackTitle">2E_A_little_rain_1</div>
                 <div class="player-artist" id="currentTrackArtist">Erich Erlenbach</div>
             </div>
             <div class="player-controls">
@@ -1139,40 +1216,209 @@
             `).join('');
         }
 
-        // Музыкальный плеер (без изменений)
+        // ==================== ПЛЕЙЛИСТ ИЗ 46 ТРЕКОВ ====================
         const playlist = [
-            { titleRu: "Параллельные миры", titleEn: "Parallel Worlds", artist: "Erich Erlenbach", url: "https://music.apple.com/ru/song/%D0%BF%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BC%D0%B8%D1%80%D1%8B/1866521960" },
-            { titleRu: "Отражение", titleEn: "Reflection", artist: "Erich Erlenbach", url: "https://music.yandex.ru/album/40165120/track/147119735" }
+            { titleRu: "A little rain", titleEn: "A little rain", artist: "Erich Erlenbach", url: "1_2E_A_little_rain_1.mp3" },
+            { titleRu: "Blues under the starry sky", titleEn: "Blues under the starry sky", artist: "Erich Erlenbach", url: "2_2E_Blues_under_the_starry_sky.mp3" },
+            { titleRu: "Breeze", titleEn: "Breeze", artist: "Erich Erlenbach", url: "3_2E_Breeze.mp3" },
+            { titleRu: "Classic Baroque violin G minor", titleEn: "Classic Baroque violin G minor", artist: "Erich Erlenbach", url: "4_2E_Classic_Baroque_violin_G_minor.mp3" },
+            { titleRu: "Classic Song based on S. Yesenin's poem", titleEn: "Classic Song based on S. Yesenin's poem", artist: "Erich Erlenbach", url: "5_2E_Classic_Song_based_onS.Yesenins_poem.mp3" },
+            { titleRu: "Classic Suite Bb major part 2", titleEn: "Classic Suite Bb major part 2", artist: "Erich Erlenbach", url: "6_2E_Classic_Suite_Bb_major_part_2.mp3" },
+            { titleRu: "Classic Suite D minor part 1", titleEn: "Classic Suite D minor part 1", artist: "Erich Erlenbach", url: "7_2E_Classic_Suite_D_minor_part_1.mp3" },
+            { titleRu: "Cozy rain", titleEn: "Cozy rain", artist: "Erich Erlenbach", url: "8_2E_Cozy_rain.mp3" },
+            { titleRu: "Dance of Golden Lights", titleEn: "Dance of Golden Lights", artist: "Erich Erlenbach", url: "9_2E_Dance_of_Golden_Lights.mp3" },
+            { titleRu: "Fantasy", titleEn: "Fantasy", artist: "Erich Erlenbach", url: "10_2E_Fantasy.mp3" },
+            { titleRu: "Guitar Blues", titleEn: "Guitar Blues", artist: "Erich Erlenbach", url: "11_2E_Guitar_Blues.mp3" },
+            { titleRu: "Mondes Parallèles", titleEn: "Mondes Parallèles", artist: "Erich Erlenbach", url: "12_2E_Mondes_Paralleles.mp3" },
+            { titleRu: "On the way to the dream", titleEn: "On the way to the dream", artist: "Erich Erlenbach", url: "13_2E_On_the_way_to_the_dream.mp3" },
+            { titleRu: "Sunrise", titleEn: "Sunrise", artist: "Erich Erlenbach", url: "14_2E_Sunrise.mp3" },
+            { titleRu: "Sunset Blues Part 1", titleEn: "Sunset Blues Part 1", artist: "Erich Erlenbach", url: "15_2E_Sunset_Blues_Part_1.mp3" },
+            { titleRu: "Sunset Blues Part 2", titleEn: "Sunset Blues Part 2", artist: "Erich Erlenbach", url: "16_2E_Sunset_Blues_Part_2.mp3" },
+            { titleRu: "The flute sings", titleEn: "The flute sings", artist: "Erich Erlenbach", url: "17_2E-The_flute_sings.mp3" },
+            { titleRu: "The path to the dream 1", titleEn: "The path to the dream 1", artist: "Erich Erlenbach", url: "18_2E_The_path_to_the_dream_1.mp3" },
+            { titleRu: "The path to the dream 2", titleEn: "The path to the dream 2", artist: "Erich Erlenbach", url: "19_2E_The_path_to_the_dream_2.mp3" },
+            { titleRu: "Waltz of the Surf", titleEn: "Waltz of the Surf", artist: "Erich Erlenbach", url: "20_2E_Waltz_of_the_Surf.mp3" },
+            { titleRu: "Bagatelle Op. 1", titleEn: "Bagatelle Op. 1", artist: "Erich Erlenbach", url: "21_Bagatelle_Op._1.mp3" },
+            { titleRu: "Bagatelle Op. 2", titleEn: "Bagatelle Op. 2", artist: "Erich Erlenbach", url: "22_Bagatelle_Op._2.mp3" },
+            { titleRu: "Bagatelle Op. 3", titleEn: "Bagatelle Op. 3", artist: "Erich Erlenbach", url: "23_Bagatelle_Op._3.mp3" },
+            { titleRu: "Bagatelle Op. 4", titleEn: "Bagatelle Op. 4", artist: "Erich Erlenbach", url: "24_Bagatelle_Op._4.mp3" },
+            { titleRu: "Bagatelle Op. 5", titleEn: "Bagatelle Op. 5", artist: "Erich Erlenbach", url: "25_Bagatelle_Op._5.mp3" },
+            { titleRu: "Bagatelle Op. 6", titleEn: "Bagatelle Op. 6", artist: "Erich Erlenbach", url: "26_Bagatelle_Op._6.mp3" },
+            { titleRu: "Bagatelle Op. 7", titleEn: "Bagatelle Op. 7", artist: "Erich Erlenbach", url: "27_Bagatelle_Op._7.mp3" },
+            { titleRu: "Bagatelle Op. 9", titleEn: "Bagatelle Op. 9", artist: "Erich Erlenbach", url: "28_Bagatelle_Op._9.mp3" },
+            { titleRu: "Bosch - The Seven Deadly Sins", titleEn: "Bosch - The Seven Deadly Sins", artist: "Erich Erlenbach", url: "29_Bosch_The_Seven_Deadly_Sins_and_the_Four_Last_Things.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Center)", titleEn: "Bosch - Garden of Earthly Delights (Center)", artist: "Erich Erlenbach", url: "30_Bosch_Triptych_Center_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Center 2)", titleEn: "Bosch - Garden of Earthly Delights (Center 2)", artist: "Erich Erlenbach", url: "31_Bosch_Triptych_Center_The_Garden_of_Earthly_Delights1.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Right)", titleEn: "Bosch - Garden of Earthly Delights (Right)", artist: "Erich Erlenbach", url: "32_Bosch_Triptych_right_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - The Seven Deadly Sins (Triptych)", titleEn: "Bosch - The Seven Deadly Sins (Triptych)", artist: "Erich Erlenbach", url: "33_Bosch_Triptych_The_Seven_Deadly_Sins_and_the_Four_Last_Things.mp3" },
+            { titleRu: "Bosch - Left Triptych", titleEn: "Bosch - Left Triptych", artist: "Erich Erlenbach", url: "34_Bosch_Left_Triptych_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - Triptych of Revelations", titleEn: "Bosch - Triptych of Revelations", artist: "Erich Erlenbach", url: "35_Bosch_Triptych_of_Revelations.mp3" },
+            { titleRu: "Dämon - Abbild", titleEn: "Dämon - Abbild", artist: "Erich Erlenbach", url: "36_Daemon_Abbild.mp3" },
+            { titleRu: "Dämon - Frucht der Erkenntnis", titleEn: "Dämon - Fruit of Knowledge", artist: "Erich Erlenbach", url: "37_Daemon_Frucht_der_Erkenntnis_1.mp3" },
+            { titleRu: "Dämon - Atem des Lebens", titleEn: "Dämon - Breath of Life", artist: "Erich Erlenbach", url: "38_Daemon_Atem_des_Lebens.mp3" },
+            { titleRu: "Damon - Edenic Love", titleEn: "Damon - Edenic Love", artist: "Erich Erlenbach", url: "39_Daemon_Edenic_Love.mp3" },
+            { titleRu: "Dämon - Im Garten Eden", titleEn: "Dämon - In the Garden of Eden", artist: "Erich Erlenbach", url: "40_Daemon_Im_Garten_Eden.mp3" },
+            { titleRu: "Dämon - Licht und Dunkelheit", titleEn: "Dämon - Light and Darkness", artist: "Erich Erlenbach", url: "41_Daemon_Licht_und_Dunkelheit.mp3" },
+            { titleRu: "Dämon - Samaels Urteil", titleEn: "Dämon - Samael's Judgment", artist: "Erich Erlenbach", url: "42_Daemon_Samaels_Urteil.mp3" },
+            { titleRu: "Demon - Dance of Light", titleEn: "Demon - Dance of Light", artist: "Erich Erlenbach", url: "43_Daemon_Dance_of_Light.mp3" },
+            { titleRu: "Demon - Exiles from Paradise", titleEn: "Demon - Exiles from Paradise", artist: "Erich Erlenbach", url: "44_Daemon_Exiles_from_Paradise.mp3" },
+            { titleRu: "Seasons - Winter Introduction 1", titleEn: "Seasons - Winter Introduction 1", artist: "Erich Erlenbach", url: "45_Seasons_Winter_Introduction_1.mp3" },
+            { titleRu: "Seasons - Winter Introduction 2", titleEn: "Seasons - Winter Introduction 2", artist: "Erich Erlenbach", url: "46_Seasons_Winter_Introduction_2.mp3" }
         ];
-        
+
         let currentTrackIndex = 0;
-        
+        let audio = new Audio();
+        let isPlaying = false;
+
         function getTrackTitle(track) {
             return currentLang === 'ru' ? track.titleRu : track.titleEn;
         }
-        
+
         function loadTrack(index) {
             const track = playlist[index];
+            if (!track) return;
+            
+            audio.src = track.url;
+            audio.load();
+            
             document.getElementById('currentTrackTitle').innerText = getTrackTitle(track);
             document.getElementById('currentTrackArtist').innerText = track.artist;
+            
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('currentTime').innerText = '0:00';
+            document.getElementById('totalTime').innerText = '0:00';
+            
+            if (isPlaying) {
+                audio.play().catch(e => console.log('Playback error:', e));
+            }
+            
+            updatePlayPauseButton();
         }
-        
+
+        function updatePlayPauseButton() {
+            const btn = document.getElementById('playPauseBtn');
+            btn.innerHTML = isPlaying ? '⏸️' : '▶️';
+        }
+
         function togglePlayPause() {
-            const track = playlist[currentTrackIndex];
-            if (track && track.url) window.open(track.url, '_blank');
+            if (audio.src) {
+                if (isPlaying) {
+                    audio.pause();
+                } else {
+                    audio.play().catch(e => console.log('Playback error:', e));
+                }
+                isPlaying = !isPlaying;
+                updatePlayPauseButton();
+            } else {
+                loadTrack(0);
+                audio.play().catch(e => console.log('Playback error:', e));
+                isPlaying = true;
+                updatePlayPauseButton();
+            }
         }
-        
+
         function nextTrack() {
             currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
             loadTrack(currentTrackIndex);
+            if (!isPlaying) {
+                audio.play().catch(e => console.log('Playback error:', e));
+                isPlaying = true;
+                updatePlayPauseButton();
+            }
         }
-        
+
         function prevTrack() {
             currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
             loadTrack(currentTrackIndex);
+            if (!isPlaying) {
+                audio.play().catch(e => console.log('Playback error:', e));
+                isPlaying = true;
+                updatePlayPauseButton();
+            }
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                document.getElementById('progressFill').style.width = percent + '%';
+                document.getElementById('currentTime').innerText = formatTime(audio.currentTime);
+                document.getElementById('totalTime').innerText = formatTime(audio.duration);
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            nextTrack();
+        });
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        document.getElementById('progressBar').addEventListener('click', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            if (audio.duration) {
+                audio.currentTime = percent * audio.duration;
+            }
+        });
+
+        document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
+        document.getElementById('nextTrack').addEventListener('click', nextTrack);
+        document.getElementById('prevTrack').addEventListener('click', prevTrack);
+
+        // ==================== ПОГОДА С ВЫБОРОМ ГОРОДА ====================
+        let currentLat = 41.7151;
+        let currentLon = 44.8271;
+        
+        async function fetchWeather() {
+            const weatherLoading = document.getElementById('weatherLoading');
+            const weatherContent = document.getElementById('weatherContent');
+            const weatherError = document.getElementById('weatherError');
+            const weatherTemp = document.getElementById('weatherTemp');
+            const weatherDesc = document.getElementById('weatherDesc');
+            const weatherHumidity = document.getElementById('weatherHumidity');
+            const weatherWind = document.getElementById('weatherWind');
+            
+            try {
+                const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current_weather=true&hourly=relativehumidity_2m&timezone=auto`);
+                if(!resp.ok) throw new Error();
+                const data = await resp.json();
+                if(data.current_weather) {
+                    weatherTemp.innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
+                    weatherDesc.innerHTML = 'Current Weather';
+                    let hum = (data.hourly && data.hourly.relativehumidity_2m) ? data.hourly.relativehumidity_2m[0] : '—';
+                    weatherHumidity.innerHTML = hum; 
+                    weatherWind.innerHTML = Math.round(data.current_weather.windspeed) + " m/s";
+                    weatherLoading.style.display = 'none';
+                    weatherContent.style.display = 'block';
+                    weatherError.style.display = 'none';
+                }
+            } catch(e) { 
+                weatherLoading.style.display = 'none';
+                weatherError.style.display = 'block';
+                console.error('Weather fetch error:', e);
+            }
         }
         
-        // Настроение дня (без изменений)
+        document.getElementById('citySelect').addEventListener('change', (e) => {
+            const [lat, lon] = e.target.value.split(',');
+            currentLat = parseFloat(lat);
+            currentLon = parseFloat(lon);
+            fetchWeather();
+            localStorage.setItem('selectedCity', e.target.value);
+        });
+        
+        const savedCity = localStorage.getItem('selectedCity');
+        if (savedCity) {
+            document.getElementById('citySelect').value = savedCity;
+            const [lat, lon] = savedCity.split(',');
+            currentLat = parseFloat(lat);
+            currentLon = parseFloat(lon);
+        }
+
+        // Настроение дня
         function getMoodByTime() {
             const hour = new Date().getHours();
             const moods = {
@@ -1189,7 +1435,7 @@
             let icon = period === 'morning' ? '🌅' : period === 'day' ? '☀️' : period === 'evening' ? '🌇' : '🌙';
             return { icon, title: moods[currentLang]?.[period] || moods.ru[period] };
         }
-        
+
         function updateMoodWidget() {
             const mood = getMoodByTime();
             document.getElementById('moodIcon').innerHTML = mood.icon;
@@ -1199,43 +1445,29 @@
             };
             document.getElementById('moodLabel').innerHTML = labels[currentLang] || 'Mood of the day:';
         }
-        
+
         function playMoodPlaylist() {
-            window.open(playlist[0].url, '_blank');
+            if (playlist.length > 0) {
+                currentTrackIndex = 0;
+                loadTrack(0);
+                audio.play().catch(e => console.log('Playback error:', e));
+                isPlaying = true;
+                updatePlayPauseButton();
+            }
         }
-        
-        // Часы, погода, тема (без изменений)
+
         function updateClock() {
             const now = new Date();
             document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'});
             const locales = { ru: 'ru-RU', en: 'en-US', de: 'de-DE', ka: 'ka-GE', ar: 'ar-SA', he: 'he-IL', zh: 'zh-CN', ja: 'ja-JP' };
             document.getElementById('clock-date').innerText = now.toLocaleDateString(locales[currentLang] || 'ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
         }
-        
-        async function fetchWeather() {
-            try {
-                const resp = await fetch('https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current_weather=true');
-                const data = await resp.json();
-                if(data.current_weather) {
-                    document.getElementById('weatherTemp').innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
-                    document.getElementById('weatherDesc').innerHTML = 'Current Weather';
-                    document.getElementById('weatherHumidity').innerHTML = '—';
-                    document.getElementById('weatherWind').innerHTML = Math.round(data.current_weather.windspeed) + " m/s";
-                    document.getElementById('weatherLoading').style.display = 'none';
-                    document.getElementById('weatherContent').style.display = 'block';
-                }
-            } catch(e) { 
-                document.getElementById('weatherLoading').style.display = 'none';
-                document.getElementById('weatherError').style.display = 'block';
-            }
-        }
-        
+
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
-        
-        // Переводы для заголовков (без изменений)
+
         const translations = {
             ru: { secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>` },
             en: { secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>` },
@@ -1246,19 +1478,19 @@
             zh: { secBooks: "📚 互动书架", secCinema: "🎬 电影意识", secBio: "📖 传记", secMedia: "🎵 媒体库", secLit: "📚 文学", title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", bio: `<h3>🌟 起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p><h3>⚡ 服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p><h3>🎨 宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>` },
             ja: { secBooks: "📚 インタラクティブ書棚", secCinema: "🎬 シネマ意識", secBio: "📖 伝記", secMedia: "🎵 メディアライブラリ", secLit: "📚 文学", title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", bio: `<h3>🌟 起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p><h3>⚡ 奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p><h3>🎨 メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>` }
         };
-        
+
         const quotes = {
             ru: ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни.", "Истинная мудрость — в тишине между нотами."],
             en: ["Everything that takes form in sound, rhyme or prose is but an earthly echo of Heavenly harmony.", "Music, poetry and prose are three facets of a single revelation.", "Creativity is not a profession, but a way of understanding life.", "True wisdom lies in the silence between notes."],
             de: ["Alles, was in Klang, Reim oder Prosa Gestalt annimmt, ist nur ein irdisches Echo der himmlischen Harmonie.", "Musik, Poesie und Prosa sind drei Facetten einer Offenbarung.", "Kreativität ist kein Beruf, sondern eine Lebenserkenntnis.", "Wahre Weisheit liegt in der Stille zwischen den Noten."]
         };
-        
+
         function getRandomQuote() {
             const quotesForLang = quotes[currentLang] || quotes.ru;
             const randomQuote = quotesForLang[Math.floor(Math.random() * quotesForLang.length)];
             document.getElementById('quote-text').innerText = `«${randomQuote}»`;
         }
-        
+
         function changeLang(lang) {
             currentLang = lang;
             const t = translations[lang] || translations.ru;
@@ -1279,14 +1511,16 @@
             renderBookshelf();
             renderCinema();
             updateMoodWidget();
-            loadTrack(currentTrackIndex);
+            const currentTrack = playlist[currentTrackIndex];
+            if (currentTrack) {
+                document.getElementById('currentTrackTitle').innerText = getTrackTitle(currentTrack);
+            }
             updateClock();
             getRandomQuote();
         }
-        
-        document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
-        document.getElementById('nextTrack').addEventListener('click', nextTrack);
-        document.getElementById('prevTrack').addEventListener('click', prevTrack);
+
+        loadTrack(0);
+
         document.getElementById('playMoodBtn').addEventListener('click', playMoodPlaylist);
         
         window.onload = () => {
@@ -1295,9 +1529,8 @@
             changeLang('ru');
             renderBookshelf();
             renderCinema();
-            loadTrack(0);
-            updateClock();
             fetchWeather();
+            updateClock();
             getRandomQuote();
             setInterval(updateClock, 1000);
             setInterval(fetchWeather, 30 * 60 * 1000);
