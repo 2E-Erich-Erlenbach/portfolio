@@ -962,6 +962,7 @@
     </main>
 
     <!-- Footer with Contacts and Chat -->
+        <!-- Footer with Contacts and Chat -->
     <div class="footer-contacts" id="footer-contacts">
         <div class="contacts-title" id="footerContactsTitle">КОНТАКТЫ / ЧАТ С АВТОРОМ</div>
         <div class="contact-email">
@@ -982,6 +983,13 @@
                 <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
             </a>
         </div>
+        
+        <!-- СЧЁТЧИК ПОСЕЩЕНИЙ -->
+        <div style="margin-top: 20px; font-size: 0.8rem; color: var(--ios-secondary);">
+            <script type="text/javascript" src="https://www.freevisitorcounters.com/auth.php?id=2ccde1fbc793a2478a62f5db62f1591c3b209f39"></script>
+            <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1363559/t/5"></script>
+        </div>
+        
         <div class="copyright">
             © 2024 Erich Erlenbach | Все права защищены
         </div>
@@ -1505,7 +1513,7 @@
             { titleRu: "Bosch - Left Triptych", titleEn: "Bosch - Left Triptych", artist: "Erich Erlenbach", url: "34_Bosch_Left_Triptych_The_Garden_of_Earthly_Delights.mp3" },
             { titleRu: "Bosch - Triptych of Revelations", titleEn: "Bosch - Triptych of Revelations", artist: "Erich Erlenbach", url: "35_Bosch_Triptych_of_Revelations.mp3" },
             { titleRu: "Dämon - Abbild", titleEn: "Dämon - Abbild", artist: "Erich Erlenbach", url: "36_Daemon_Abbild.mp3" },
-            { titleRu: "Dämon - Frucht der Erkenntnis", titleEn: "Dämon - Fruit of Knowledge", artist: "Erich Erlenbach", url: "37_Daemon_Frucht_der_Erkenntnis 1.mp3" },
+            { titleRu: "Dämon - Frucht der Erkenntnis", titleEn: "Dämon - Fruit of Knowledge", artist: "Erich Erlenbach", url: "37_Daemon_Frucht_der_Erkenntnis_1.mp3" },
             { titleRu: "Dämon - Atem des Lebens", titleEn: "Dämon - Breath of Life", artist: "Erich Erlenbach", url: "38_Daemon_Atem_des_Lebens.mp3" },
             { titleRu: "Damon - Edenic Love", titleEn: "Damon - Edenic Love", artist: "Erich Erlenbach", url: "39_Daemon_Edenic_Love.mp3" },
             { titleRu: "Dämon - Im Garten Eden", titleEn: "Dämon - In the Garden of Eden", artist: "Erich Erlenbach", url: "40_Daemon_Im_Garten_Eden.mp3" },
@@ -1719,7 +1727,7 @@
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
 
-        // Smooth scrolling and active menu highlighting
+       // Smooth scrolling and active menu highlighting
         function initNavigation() {
             const navButtons = document.querySelectorAll('.nav-btn');
             const sections = {
@@ -1742,19 +1750,41 @@
                 }
             }
 
-            function setActiveButton() {
+                        function setActiveButton() {
                 let current = '';
                 const scrollPosition = window.scrollY + 150;
-                for (const [id, element] of Object.entries(sections)) {
+                // Получаем все секции, которые мы отслеживаем
+                const sectionsList = Object.entries(sections);
+                
+                // Проходим по всем секциям, чтобы найти активную
+                for (let i = 0; i < sectionsList.length; i++) {
+                    const [id, element] = sectionsList[i];
                     if (element) {
                         const offsetTop = element.offsetTop;
                         const offsetBottom = offsetTop + element.offsetHeight;
+                        
+                        // Условие: текущая позиция скролла находится в пределах высоты секции
                         if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
                             current = id;
                             break;
                         }
                     }
                 }
+                
+                // Особый случай для последней секции "КОНТАКТЫ", если скролл в самом низу страницы
+                if (!current && sections['footer-contacts']) {
+                    const footerElement = sections['footer-contacts'];
+                    const footerTop = footerElement.offsetTop;
+                    const windowHeight = window.innerHeight;
+                    const documentHeight = document.documentElement.scrollHeight;
+                    
+                    // Если мы докрутили до самого низа (с небольшой погрешностью)
+                    if (window.scrollY + windowHeight >= documentHeight - 50) {
+                        current = 'footer-contacts';
+                    }
+                }
+                
+                // Применяем активный класс к кнопкам
                 navButtons.forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.dataset.target === current) {
