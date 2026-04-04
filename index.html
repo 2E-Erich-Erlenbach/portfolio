@@ -94,7 +94,7 @@
         body.light-theme .sun-fx { display: block; animation: pulse 10s infinite alternate; }
         @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
 
-        /* Telegram Chat Button */
+        /* Telegram Chat Button (floating) */
         .telegram-chat {
             position: fixed;
             bottom: 90px;
@@ -399,7 +399,7 @@
             border-radius: 40px;
             margin: 20px auto 30px;
             padding: 8px 16px;
-            max-width: 900px;
+            max-width: 1000px;
             border: var(--border);
             overflow-x: auto;
             white-space: nowrap;
@@ -419,16 +419,16 @@
         }
         .nav-links {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
         }
         .nav-btn {
             background: rgba(255,255,255,0.05);
             border: var(--border);
             color: var(--ios-text);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -456,8 +456,8 @@
                 padding: 6px 12px;
             }
             .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.7rem;
+                padding: 5px 10px;
+                font-size: 0.65rem;
             }
             .nav-links {
                 justify-content: flex-start;
@@ -666,15 +666,72 @@
         }
         h2:hover::after { transform: scaleX(1); }
         
-        .footer { text-align: center; padding: 40px 20px; border-top: var(--border); margin-top: 40px; }
-        .footer-banners { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; align-items: center; }
-        
+        /* Footer sections */
+        .footer-contacts {
+            text-align: center;
+            padding: 30px 20px 20px;
+            border-top: var(--border);
+            margin-top: 40px;
+        }
+        .footer-contacts .contact-email {
+            margin-bottom: 15px;
+        }
+        .footer-contacts .contact-email a {
+            color: var(--ios-accent);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .footer-contacts .contact-email a:hover {
+            opacity: 0.8;
+        }
+        .footer-contacts .chat-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--ios-accent);
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-bottom: 25px;
+        }
+        .footer-contacts .chat-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212,175,55,0.3);
+        }
+        .footer-banners {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
         .litres-banner {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 88px; height: 31px; background: #fff; color: #fb5105; 
-            text-decoration: none; font-weight: 900; font-size: 14px; border-radius: 4px; transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 88px;
+            height: 31px;
+            background: #fff;
+            color: #fb5105;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: 0.3s;
         }
         .litres-banner:hover { transform: scale(1.05); background: #fb5105; color: #fff; }
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--ios-secondary);
+        }
         
         body.rtl { direction: rtl; text-align: right; }
         body.rtl .bio-content p { text-align: right; }
@@ -710,6 +767,9 @@
             .cinema-card { flex: 0 0 200px; }
             .weather-city-select {
                 font-size: 0.7rem;
+            }
+            .footer-contacts .contact-email a {
+                font-size: 1rem;
             }
         }
         
@@ -792,7 +852,7 @@
             <button class="nav-btn" data-target="bio" data-key="navBio">БИОГРАФИЯ АВТОРА</button>
             <button class="nav-btn" data-target="media" data-key="navMedia">МЕДИАТЕКА</button>
             <button class="nav-btn" data-target="lit" data-key="navLit">ЛИТЕРАТУРА</button>
-            <button class="nav-btn" data-target="footer" data-key="navContacts">КОНТАКТЫ/ЧАТ С АВТОРОМ</button>
+            <button class="nav-btn" data-target="footer-contacts" data-key="navContacts">КОНТАКТЫ / ЧАТ С АВТОРОМ</button>
         </div>
     </div>
 
@@ -872,28 +932,34 @@
                 <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" class="app-link" target="_blank" rel="noopener noreferrer">🔍 Google Books</a>
             </div>
         </div>
-
-        <!-- ПОЛНОСТЬЮ ВОССТАНОВЛЕННЫЙ ФУТЕР С КОНТАКТАМИ -->
-        <div class="footer" id="footer">
-            <div style="margin-bottom: 20px;">
-                <a href="mailto:d.a.tretiakof@gmail.com" style="color: var(--ios-accent); text-decoration: none; font-size: 1.3rem; font-weight: 700; transition: 0.3s;">✉️ d.a.tretiakof@gmail.com</a>
-            </div>
-            <div class="footer-banners">
-                <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" rel="noopener noreferrer" class="litres-banner">📚 ЛитРес</a>
-                <a href="https://proza.ru/avtor/sheridan1" target="_blank" rel="noopener noreferrer">
-                    <img src="https://proza.ru/images/author88x31.gif" width="88" height="31" alt="Проза.ру">
-                </a>
-                <a href="https://stihi.ru/avtor/sheridan2" target="_blank" rel="noopener noreferrer">
-                    <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
-                </a>
-            </div>
-            <div style="margin-top: 30px; font-size: 0.8rem; color: var(--ios-secondary);">
-                © 2024 Erich Erlenbach | Все права защищены
-            </div>
-        </div>
     </main>
 
-    <!-- Telegram Chat Button -->
+    <!-- Footer with Contacts and Chat -->
+    <div class="footer-contacts" id="footer-contacts">
+        <div class="contact-email">
+            <a href="mailto:d.a.tretiakof@gmail.com">✉️ d.a.tretiakof@gmail.com</a>
+        </div>
+        <a href="https://t.me/ericherlenbach" target="_blank" class="chat-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.07-.2-.09-.06-.23-.04-.33-.02-.14.03-2.33 1.48-3.28 2.09-.23.15-.48.18-.69.18-.45 0-1.07-.25-1.67-.46-.7-.24-1.26-.37-1.21-.78.03-.21.31-.43.86-.66 1.58-.69 3.28-1.4 4.62-1.84 1.34-.44 2.42-.73 3.17-.87.75-.14 1.37-.1 1.81.14.44.24.69.63.61 1.06z"/>
+            </svg>
+            Telegram Chat
+        </a>
+        <div class="footer-banners">
+            <a href="https://www.litres.ru/author/erih-erlenbah/" target="_blank" rel="noopener noreferrer" class="litres-banner">📚 ЛитРес</a>
+            <a href="https://proza.ru/avtor/sheridan1" target="_blank" rel="noopener noreferrer">
+                <img src="https://proza.ru/images/author88x31.gif" width="88" height="31" alt="Проза.ру">
+            </a>
+            <a href="https://stihi.ru/avtor/sheridan2" target="_blank" rel="noopener noreferrer">
+                <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
+            </a>
+        </div>
+        <div class="copyright">
+            © 2024 Erich Erlenbach | Все права защищены
+        </div>
+    </div>
+
+    <!-- Telegram Floating Chat Button -->
     <a href="https://t.me/ericherlenbach" target="_blank" class="telegram-chat" title="Написать в Telegram">
         <svg viewBox="0 0 24 24" fill="white">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.07-.2-.09-.06-.23-.04-.33-.02-.14.03-2.33 1.48-3.28 2.09-.23.15-.48.18-.69.18-.45 0-1.07-.25-1.67-.46-.7-.24-1.26-.37-1.21-.78.03-.21.31-.43.86-.66 1.58-.69 3.28-1.4 4.62-1.84 1.34-.44 2.42-.73 3.17-.87.75-.14 1.37-.1 1.81.14.44.24.69.63.61 1.06z"/>
@@ -1636,7 +1702,7 @@
                 bio: document.getElementById('bio'),
                 media: document.getElementById('media'),
                 lit: document.getElementById('lit'),
-                footer: document.getElementById('footer')
+                'footer-contacts': document.getElementById('footer-contacts')
             };
 
             function scrollToElement(element) {
