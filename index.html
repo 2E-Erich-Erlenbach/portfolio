@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -694,9 +695,6 @@
             transform: scaleX(0.3);
             transition: transform 0.3s ease;
         }
-        .footer-contacts .contacts-title:hover::after {
-            transform: scaleX(1);
-        }
         .footer-contacts .contact-email {
             margin-bottom: 15px;
         }
@@ -946,6 +944,7 @@
                 <a href="https://youtube.com/@ericherlenbach" class="app-link" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
                 <a href="https://rutube.ru/u/2e/" class="app-link" target="_blank" rel="noopener noreferrer">📺 RuTube</a>
                 <a href="https://t.me/ericherlenbach" class="app-link" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+                <a href="https://on.soundcloud.com/dCAveXcvtrt1Bjnqwu" class="app-link" target="_blank" rel="noopener noreferrer">☁️ SoundCloud</a>
             </div>
         </div>
 
@@ -957,6 +956,7 @@
                 <a href="https://www.litres.ru/author/erih-erlenbah/" class="app-link" target="_blank" rel="noopener noreferrer">📖 ЛитРес</a>
                 <a href="https://www.amazon.com/s?k=Erich+Erlenbach" class="app-link" target="_blank" rel="noopener noreferrer">📘 Amazon Books</a>
                 <a href="https://www.google.nl/books/edition/_/0AWaEQAAQBAJ" class="app-link" target="_blank" rel="noopener noreferrer">🔍 Google Books</a>
+                <a href="https://books.apple.com/lv/author/erich-erlenbach/id1853329405" class="app-link" target="_blank" rel="noopener noreferrer">🍎 Apple Books</a>
             </div>
         </div>
     </main>
@@ -964,6 +964,13 @@
     <!-- Footer with Contacts and Chat -->
     <div class="footer-contacts" id="footer-contacts">
         <div class="contacts-title" id="footerContactsTitle">КОНТАКТЫ / ЧАТ С АВТОРОМ</div>
+        
+        <!-- ИНФОРМАЦИЯ О САМОЗАНЯТОМ (реальные данные) -->
+        <div style="margin-bottom: 20px; font-size: 0.85rem; color: var(--ios-secondary);">
+            <div>Третьяков Дмитрий Александрович</div>
+            <div>ИНН: 507803117299</div>
+        </div>
+        
         <div class="contact-email">
             <a href="mailto:d.a.tretiakof@gmail.com">✉️ d.a.tretiakof@gmail.com</a>
         </div>
@@ -982,8 +989,24 @@
                 <img src="https://stihi.ru/images/author88x31.gif" width="88" height="31" alt="Стихи.ру">
             </a>
         </div>
+        
+        <!-- СЧЁТЧИК ПОСЕЩЕНИЙ -->
+        <div style="margin-top: 20px; font-size: 0.8rem; color: var(--ios-secondary);">
+            <span>👥 Просмотров: </span>
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=erich-erlenbach-portfolio" 
+                 alt="Visitor Counter" 
+                 style="display: inline-block; vertical-align: middle; margin-left: 5px; border-radius: 12px;">
+        </div>
+        
+        <!-- ЮРИДИЧЕСКИЕ ССЫЛКИ (замените ссылки, когда создадите страницы) -->
+        <div style="margin: 15px 0; font-size: 0.75rem;">
+            <a href="/privacy" style="color: var(--ios-accent); text-decoration: none;">Политика конфиденциальности</a>
+            &nbsp;|&nbsp;
+            <a href="/ofert" style="color: var(--ios-accent); text-decoration: none;">Договор оферты</a>
+        </div>
+        
         <div class="copyright">
-            © 2024 Erich Erlenbach | Все права защищены
+            © 2025 Erich Erlenbach | Все права защищены
         </div>
     </div>
 
@@ -1719,7 +1742,7 @@
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
 
-       // Smooth scrolling and active menu highlighting
+        // Smooth scrolling and active menu highlighting
         function initNavigation() {
             const navButtons = document.querySelectorAll('.nav-btn');
             const sections = {
@@ -1742,41 +1765,30 @@
                 }
             }
 
-                        function setActiveButton() {
+            function setActiveButton() {
                 let current = '';
                 const scrollPosition = window.scrollY + 150;
-                // Получаем все секции, которые мы отслеживаем
                 const sectionsList = Object.entries(sections);
-                
-                // Проходим по всем секциям, чтобы найти активную
                 for (let i = 0; i < sectionsList.length; i++) {
                     const [id, element] = sectionsList[i];
                     if (element) {
                         const offsetTop = element.offsetTop;
                         const offsetBottom = offsetTop + element.offsetHeight;
-                        
-                        // Условие: текущая позиция скролла находится в пределах высоты секции
                         if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
                             current = id;
                             break;
                         }
                     }
                 }
-                
-                // Особый случай для последней секции "КОНТАКТЫ", если скролл в самом низу страницы
                 if (!current && sections['footer-contacts']) {
                     const footerElement = sections['footer-contacts'];
                     const footerTop = footerElement.offsetTop;
                     const windowHeight = window.innerHeight;
                     const documentHeight = document.documentElement.scrollHeight;
-                    
-                    // Если мы докрутили до самого низа (с небольшой погрешностью)
                     if (window.scrollY + windowHeight >= documentHeight - 50) {
                         current = 'footer-contacts';
                     }
                 }
-                
-                // Применяем активный класс к кнопкам
                 navButtons.forEach(btn => {
                     btn.classList.remove('active');
                     if (btn.dataset.target === current) {
@@ -1792,6 +1804,8 @@
                     if (targetElement) {
                         e.preventDefault();
                         scrollToElement(targetElement);
+                        navButtons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
                     }
                 });
             });
@@ -1909,7 +1923,6 @@
             document.getElementById('sampleNoteText').innerText = t.sampleNoteText;
             document.getElementById('footerContactsTitle').innerText = t.footerContactsTitle;
             
-            // Обновление навигационного меню
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 const key = btn.dataset.key;
                 if (key && t[key]) {
@@ -1917,7 +1930,6 @@
                 }
             });
             
-            // Обновление списка городов в погоде
             document.querySelectorAll('#citySelect option').forEach(option => {
                 const key = option.dataset.key;
                 if (key && t[key]) {
@@ -1941,7 +1953,6 @@
         }
 
         loadTrack(0);
-
         document.getElementById('playMoodBtn').addEventListener('click', playMoodPlaylist);
         
         window.onload = () => {
@@ -1963,3 +1974,4 @@
     </script>
 </body>
 </html>
+```
