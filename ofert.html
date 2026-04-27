@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Публичная оферта | Erich Erlenbach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ios-bg: #000; 
+            --ios-card: rgba(28, 28, 30, 0.7);
+            --ios-accent: #d4af37; 
+            --ios-text: #fff;
+            --ios-secondary: #8e8e93; 
+            --blur: blur(25px) saturate(180%);
+            --border: 0.5px solid rgba(255, 255, 255, 0.15); 
+            --radius: 24px;
+        }
+        body.light-theme {
+            --ios-bg: #f2f2f7;
+            --ios-card: rgba(255, 255, 255, 0.7);
+            --ios-text: #1c1c1e;
+            --ios-secondary: #3a3a3c;
+            --border: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--ios-bg); 
+            color: var(--ios-text); 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            line-height: 1.6; 
+            padding: 40px 20px;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border-radius: var(--radius);
+            border: var(--border);
+            padding: 40px;
+        }
+        h1, h2 { color: var(--ios-accent); font-family: 'Cinzel', serif; margin-bottom: 20px; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.3rem; margin-top: 30px; }
+        p, li { margin-bottom: 15px; color: var(--ios-text); }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--ios-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover { opacity: 0.8; }
+        .lang-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: var(--blur);
+            border-radius: 30px;
+            padding: 6px 12px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 100;
+            border: var(--border);
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--ios-secondary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+        .lang-btn.active {
+            background: var(--ios-accent);
+            color: #000;
+        }
+        .lang-btn:hover { opacity: 0.8; }
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border: var(--border);
+            border-radius: 30px;
+            padding: 8px 16px;
+            cursor: pointer;
+            color: var(--ios-accent);
+            font-size: 0.8rem;
+            z-index: 100;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 25px; }
+            h1 { font-size: 1.5rem; }
+            .lang-bar {
+                top: 10px;
+                right: 10px;
+                padding: 4px 8px;
+            }
+            .lang-btn { font-size: 8px; padding: 2px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-bar">
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="ka">KA</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+        <button class="lang-btn" data-lang="he">HE</button>
+        <button class="lang-btn" data-lang="zh">ZH</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+    </div>
+    <div class="theme-switch" id="themeSwitch">🌓 Тёмная тема</div>
+    <div class="container" id="contentContainer"></div>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Публичная оферта на приобретение цифровых товаров",
+                executor: "Исполнитель: Третьяков Дмитрий Александрович",
+                inn: "ИНН: 507803117299",
+                email: "Контактный email: d.a.tretiakof@gmail.com",
+                site: "Сайт: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "Настоящий документ является официальным предложением (офертой) Исполнителя любому физическому лицу (Покупателю) заключить договор купли-продажи цифровых товаров (электронных книг, музыкальных композиций, аудио-файлов) на изложенных ниже условиях.",
+                sect1_title: "1. Термины и определения",
+                sect1_text: "1.1. Оферта – настоящий документ «Публичная оферта на приобретение цифровых товаров», размещенный в сети Интернет по адресу: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. Акцепт Оферты – полное и безоговорочное принятие Оферты Покупателем путем совершения действий по оплате Товара.<br>1.3. Товар – предоставляемые Исполнителем за плату цифровые товары: электронные книги, музыкальные композиции, аудио-файлы, доступные для приобретения на Сайте.<br>1.4. Сайт – интернет-сайт Исполнителя, расположенный по адресу: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. Предмет Договора",
+                sect2_text: "2.1. Исполнитель обязуется передать в собственность Покупателю выбранный им Товар, а Покупатель обязуется принять и оплатить его на условиях настоящей Оферты.<br>2.2. Все Товары, представленные на Сайте, являются цифровыми и предоставляются в электронном виде.",
+                sect3_title: "3. Стоимость и порядок оплаты",
+                sect3_text: "3.1. Стоимость каждого Товара указывается на Сайте в момент его оплаты.<br>3.2. Оплата Товара осуществляется Покупателем в российских рублях с использованием доступных платёжных систем.<br>3.3. Фактом оплаты Товара Покупатель подтверждает, что полностью ознакомлен и согласен с условиями настоящей Оферты.",
+                sect4_title: "4. Порядок передачи Товара",
+                sect4_text: "4.1. Передача Товара осуществляется в течение 5 минут с момента подтверждения оплаты.<br>4.2. Доступ к Товару предоставляется в виде ссылки для скачивания, которая отправляется на адрес электронной почты, указанный Покупателем при оплате.",
+                sect5_title: "5. Возврат денежных средств",
+                sect5_text: "5.1. В соответствии с законодательством РФ (п. 4 ст. 26.1 Закона «О защите прав потребителей»), Покупатель не вправе отказаться от Товара надлежащего качества.<br>5.2. Возврат денежных средств возможен только в случае предоставления Товара ненадлежащего качества.",
+                sect6_title: "6. Реквизиты Исполнителя",
+                sect6_text: "Третьяков Дмитрий Александрович<br>ИНН: 507803117299<br>Email: d.a.tretiakof@gmail.com",
+                back: "← Вернуться на главную"
+            },
+            en: {
+                title: "Public Offer for the Purchase of Digital Goods",
+                executor: "Executor: Dmitry Alexandrovich Tretyakov",
+                inn: "Tax ID (INN): 507803117299",
+                email: "Contact email: d.a.tretiakof@gmail.com",
+                site: "Site: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "This document is an official offer (public offer) of the Executor to any individual (Buyer) to conclude a contract for the sale of digital goods (e-books, musical compositions, audio files) on the terms set out below.",
+                sect1_title: "1. Terms and Definitions",
+                sect1_text: "1.1. Offer – this document 'Public Offer for the Purchase of Digital Goods', posted on the Internet at: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. Acceptance of the Offer – full and unconditional acceptance of the Offer by the Buyer by taking actions to pay for the Goods.<br>1.3. Goods – digital goods provided by the Executor for a fee: electronic books, musical compositions, audio files, available for purchase on the Site.<br>1.4. Site – the Executor's website located at: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. Subject of the Contract",
+                sect2_text: "2.1. The Executor undertakes to transfer to the Buyer the Goods selected by him, and the Buyer undertakes to accept and pay for them under the terms of this Offer.<br>2.2. All Goods presented on the Site are digital and are provided in electronic form.",
+                sect3_title: "3. Price and Payment Procedure",
+                sect3_text: "3.1. The price of each Goods is indicated on the Site at the time of payment.<br>3.2. Payment for the Goods is made by the Buyer in Russian rubles using available payment systems.<br>3.3. By paying for the Goods, the Buyer confirms that he has fully read and agrees to the terms of this Offer.",
+                sect4_title: "4. Procedure for Transferring Goods",
+                sect4_text: "4.1. The Goods are transferred within 5 minutes from the moment of payment confirmation.<br>4.2. Access to the Goods is provided in the form of a download link sent to the email address specified by the Buyer at the time of payment.",
+                sect5_title: "5. Refund of Funds",
+                sect5_text: "5.1. In accordance with the legislation of the Russian Federation (clause 4 of Article 26.1 of the Law 'On Protection of Consumer Rights'), the Buyer is not entitled to refuse Goods of proper quality.<br>5.2. Refund of funds is possible only in the case of providing Goods of inadequate quality.",
+                sect6_title: "6. Executor's Details",
+                sect6_text: "Dmitry Alexandrovich Tretyakov<br>INN: 507803117299<br>Email: d.a.tretiakof@gmail.com",
+                back: "← Back to homepage"
+            },
+            de: {
+                title: "Öffentliches Angebot für den Kauf digitaler Waren",
+                executor: "Ausführender: Dmitri Alexandrowitsch Tretjakow",
+                inn: "Steuer-ID (INN): 507803117299",
+                email: "Kontakt E-Mail: d.a.tretiakof@gmail.com",
+                site: "Website: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "Dieses Dokument ist ein offizielles Angebot (öffentliches Angebot) des Ausführenden an jede natürliche Person (Käufer), einen Kaufvertrag für digitale Waren (E-Books, Musikkompositionen, Audiodateien) zu den nachstehenden Bedingungen abzuschließen.",
+                sect1_title: "1. Begriffe und Definitionen",
+                sect1_text: "1.1. Angebot – dieses Dokument 'Öffentliches Angebot für den Kauf digitaler Waren', veröffentlicht im Internet unter: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. Annahme des Angebots – vollständige und bedingungslose Annahme des Angebots durch den Käufer durch Zahlung der Ware.<br>1.3. Ware – vom Ausführenden gegen Entgelt bereitgestellte digitale Waren: elektronische Bücher, Musikkompositionen, Audiodateien, die auf der Website erworben werden können.<br>1.4. Website – die Website des Ausführenden unter: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. Vertragsgegenstand",
+                sect2_text: "2.1. Der Ausführende verpflichtet sich, dem Käufer die von ihm ausgewählte Ware zu übereignen, und der Käufer verpflichtet sich, diese unter den Bedingungen dieses Angebots zu akzeptieren und zu bezahlen.<br>2.2. Alle auf der Website präsentierten Waren sind digital und werden in elektronischer Form bereitgestellt.",
+                sect3_title: "3. Preis und Zahlungsverfahren",
+                sect3_text: "3.1. Der Preis jeder Ware wird auf der Website zum Zeitpunkt der Zahlung angegeben.<br>3.2. Die Zahlung für die Ware erfolgt durch den Käufer in russischen Rubel über verfügbare Zahlungssysteme.<br>3.3. Mit der Zahlung der Ware bestätigt der Käufer, dass er die Bedingungen dieses Angebots vollständig gelesen hat und ihnen zustimmt.",
+                sect4_title: "4. Verfahren zur Warenübergabe",
+                sect4_text: "4.1. Die Übergabe der Ware erfolgt innerhalb von 5 Minuten nach Bestätigung der Zahlung.<br>4.2. Der Zugang zur Ware wird in Form eines Download-Links gewährt, der an die vom Käufer bei der Zahlung angegebene E-Mail-Adresse gesendet wird.",
+                sect5_title: "5. Rückerstattung von Geldern",
+                sect5_text: "5.1. Gemäß der Gesetzgebung der Russischen Föderation (Absatz 4 von Artikel 26.1 des Gesetzes 'Über den Schutz der Verbraucherrechte') ist der Käufer nicht berechtigt, Ware von angemessener Qualität zu verweigern.<br>5.2. Eine Rückerstattung ist nur möglich, wenn die Ware von unangemessener Qualität geliefert wird.",
+                sect6_title: "6. Angaben zum Ausführenden",
+                sect6_text: "Dmitri Alexandrowitsch Tretjakow<br>INN: 507803117299<br>E-Mail: d.a.tretiakof@gmail.com",
+                back: "← Zurück zur Startseite"
+            },
+            ka: {
+                title: "საჯარო შეთავაზება ციფრული საქონლის შესაძენად",
+                executor: "შემსრულებელი: დმიტრი ალექსანდრეს ძე ტრეტიაკოვი",
+                inn: "საიდენტიფიკაციო ნომერი (INN): 507803117299",
+                email: "საკონტაქტო ელ.ფოსტა: d.a.tretiakof@gmail.com",
+                site: "ვებსაიტი: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "ეს დოკუმენტი წარმოადგენს შემსრულებლის ოფიციალურ შეთავაზებას (საჯარო ოფერტას) ნებისმიერი ფიზიკური პირისთვის (მყიდველი), რათა დაიდოს ყიდვა-გაყიდვის ხელშეკრულება ციფრულ საქონელზე (ელექტრონული წიგნები, მუსიკალური კომპოზიციები, აუდიო ფაილები) ქვემოთ მოყვანილი პირობებით.",
+                sect1_title: "1. ტერმინები და განმარტებები",
+                sect1_text: "1.1. ოფერტა – ეს დოკუმენტი „საჯარო შეთავაზება ციფრული საქონლის შესაძენად“, განთავსებული ინტერნეტში მისამართზე: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. ოფერტის მიღება – მყიდველის მიერ ოფერტის სრული და უპირობო მიღება საქონლის გადახდის ქმედებების განხორციელებით.<br>1.3. საქონელი – შემსრულებლის მიერ ანაზღაურების სანაცვლოდ გათვალისწინებული ციფრული საქონელი: ელექტრონული წიგნები, მუსიკალური კომპოზიციები, აუდიო ფაილები, ხელმისაწვდომი საიტზე შესაძენად.<br>1.4. საიტი – შემსრულებლის ვებსაიტი, რომელიც მდებარეობს მისამართზე: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. ხელშეკრულების საგანი",
+                sect2_text: "2.1. შემსრულებელი იღებს ვალდებულებას, გადასცეს მყიდველს მის მიერ არჩეული საქონელი საკუთრებაში, ხოლო მყიდველი იღებს ვალდებულებას, მიიღოს და გადაიხადოს იგი ამ ოფერტის პირობებით.<br>2.2. საიტზე წარმოდგენილი ყველა საქონელი არის ციფრული და გათვალისწინებულია ელექტრონული ფორმით.",
+                sect3_title: "3. ღირებულება და გადახდის წესი",
+                sect3_text: "3.1. თითოეული საქონლის ღირებულება მითითებულია საიტზე გადახდის მომენტში.<br>3.2. საქონლის გადახდა ხდება მყიდველის მიერ რუსულ რუბლებში ხელმისაწვდომი საგადახდო სისტემების გამოყენებით.<br>3.3. საქონლის გადახდის ფაქტით, მყიდველი ადასტურებს, რომ სრულად გაეცნო და ეთანხმება ამ ოფერტის პირობებს.",
+                sect4_title: "4. საქონლის გადაცემის წესი",
+                sect4_text: "4.1. საქონლის გადაცემა ხდება გადახდის დადასტურებიდან 5 წუთში.<br>4.2. საქონელზე წვდომა გათვალისწინებულია ჩამოტვირთვის ბმულის სახით, რომელიც იგზავნება მყიდველის მიერ გადახდისას მითითებულ ელექტრონული ფოსტის მისამართზე.",
+                sect5_title: "5. თანხის დაბრუნება",
+                sect5_text: "5.1. რუსეთის ფედერაციის კანონმდებლობის შესაბამისად (კანონის „მომხმარებელთა უფლებების დაცვის შესახებ“ 26.1 მუხლის მე-4 პუნქტი), მყიდველს არ აქვს უფლება უარი თქვას სათანადო ხარისხის საქონელზე.<br>5.2. თანხის დაბრუნება შესაძლებელია მხოლოდ არასათანადო ხარისხის საქონლის მიწოდების შემთხვევაში.",
+                sect6_title: "6. შემსრულებლის რეკვიზიტები",
+                sect6_text: "დმიტრი ალექსანდრეს ძე ტრეტიაკოვი<br>INN: 507803117299<br>Email: d.a.tretiakof@gmail.com",
+                back: "← მთავარ გვერდზე დაბრუნება"
+            },
+            ar: {
+                title: "العرض العام لشراء السلع الرقمية",
+                executor: "المنفذ: ديمتري ألكساندروفيتش تريتياكوف",
+                inn: "الرقم الضريبي (INN): 507803117299",
+                email: "البريد الإلكتروني للاتصال: d.a.tretiakof@gmail.com",
+                site: "الموقع: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "هذا المستند هو عرض رسمي (عرض عام) من المنفذ لأي فرد (المشتري) لإبرام عقد بيع وشراء السلع الرقمية (الكتب الإلكترونية، المقطوعات الموسيقية، الملفات الصوتية) بالشروط المبينة أدناه.",
+                sect1_title: "1. المصطلحات والتعريفات",
+                sect1_text: "1.1. العرض – هذا المستند 'العرض العام لشراء السلع الرقمية'، المنشور على الإنترنت على العنوان: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. قبول العرض – القبول الكامل وغير المشروط للعرض من قبل المشتري من خلال دفع ثمن السلعة.<br>1.3. السلع – السلع الرقمية التي يقدمها المنفذ مقابل رسوم: الكتب الإلكترونية، المقطوعات الموسيقية، الملفات الصوتية، المتاحة للشراء على الموقع.<br>1.4. الموقع – موقع المنفذ على الإنترنت على العنوان: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. موضوع العقد",
+                sect2_text: "2.1. يلتزم المنفذ بنقل ملكية السلعة التي اختارها المشتري إلى المشتري، ويلتزم المشتري بقبولها ودفع ثمنها وفقًا لشروط هذا العرض.<br>2.2. جميع السلع المعروضة على الموقع هي سلع رقمية ويتم تقديمها في شكل إلكتروني.",
+                sect3_title: "3. السعر وإجراءات الدفع",
+                sect3_text: "3.1. يشار إلى سعر كل سلعة على الموقع في وقت الدفع.<br>3.2. يتم دفع ثمن السلعة من قبل المشتري بالروبل الروسي باستخدام أنظمة الدفع المتاحة.<br>3.3. بدفع ثمن السلعة، يؤكد المشتري أنه قد اطلع بالكامل على شروط هذا العرض ويوافق عليها.",
+                sect4_title: "4. إجراءات تسليم السلع",
+                sect4_text: "4.1. يتم تسليم السلعة في غضون 5 دقائق من لحظة تأكيد الدفع.<br>4.2. يتم توفير الوصول إلى السلعة على شكل رابط تنزيل يتم إرساله إلى عنوان البريد الإلكتروني الذي حدده المشتري عند الدفع.",
+                sect5_title: "5. استرداد الأموال",
+                sect5_text: "5.1. وفقًا لتشريعات الاتحاد الروسي (البند 4 من المادة 26.1 من قانون 'حماية حقوق المستهلك')، لا يحق للمشتري رفض السلعة ذات الجودة المناسبة.<br>5.2. استرداد الأموال ممكن فقط في حالة تقديم سلعة ذات جودة غير مناسبة.",
+                sect6_title: "6. تفاصيل المنفذ",
+                sect6_text: "ديمتري ألكساندروفيتش تريتياكوف<br>INN: 507803117299<br>البريد الإلكتروني: d.a.tretiakof@gmail.com",
+                back: "← العودة إلى الصفحة الرئيسية"
+            },
+            he: {
+                title: "הצעה פומבית לרכישת מוצרים דיגיטליים",
+                executor: "המבצע: דמיטרי אלכסנדרוביץ' טרטיאקוב",
+                inn: "מספר זהות משלם המסים (INN): 507803117299",
+                email: "אימייל ליצירת קשר: d.a.tretiakof@gmail.com",
+                site: "אתר אינטרנט: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "מסמך זה הוא הצעה רשמית (הצעה פומבית) של המבצע לכל אדם (הקונה) לכרות חוזה מכר של מוצרים דיגיטליים (ספרים אלקטרוניים, יצירות מוזיקליות, קבצי אודיו) בתנאים המפורטים להלן.",
+                sect1_title: "1. מונחים והגדרות",
+                sect1_text: "1.1. הצעה – מסמך זה 'הצעה פומבית לרכישת מוצרים דיגיטליים', שפורסם באינטרנט בכתובת: https://2e-erich-erlenbach.github.io/portfolio/ofert.html.<br>1.2. קבלת ההצעה – קבלת ההצעה באופן מלא ובלתי מותנה על ידי הקונה על ידי ביצוע פעולות לתשלום עבור המוצר.<br>1.3. מוצרים – מוצרים דיגיטליים הניתנים על ידי המבצע תמורת תשלום: ספרים אלקטרוניים, יצירות מוזיקליות, קבצי אודיו, הזמינים לרכישה באתר.<br>1.4. אתר – האתר של המבצע בכתובת: https://2e-erich-erlenbach.github.io/portfolio.",
+                sect2_title: "2. נושא החוזה",
+                sect2_text: "2.1. המבצע מתחייב להעביר לקונה את המוצר שבחר, והקונה מתחייב לקבלו ולשלם עבורו בתנאי הצעה זו.<br>2.2. כל המוצרים המוצגים באתר הינם דיגיטליים וניתנים בצורה אלקטרונית.",
+                sect3_title: "3. מחיר והליך תשלום",
+                sect3_text: "3.1. מחיר כל מוצר מצוין באתר בזמן התשלום.<br>3.2. תשלום עבור המוצר מתבצע על ידי הקונה ברובלים רוסיים באמצעות מערכות תשלום זמינות.<br>3.3. בתשלום עבור המוצר, הקונה מאשר כי קרא את תנאי הצעה זו ומסכים להם.",
+                sect4_title: "4. הליך העברת המוצרים",
+                sect4_text: "4.1. המוצר יועבר תוך 5 דקות מרגע אישור התשלום.<br>4.2. הגישה למוצר ניתנת בצורת קישור להורדה הנשלח לכתובת הדוא\"ל שצוינה על ידי הקונה בעת התשלום.",
+                sect5_title: "5. החזר כספים",
+                sect5_text: "5.1. בהתאם לחקיקה של הפדרציה הרוסית (סעיף 4 של סעיף 26.1 לחוק 'הגנת זכויות הצרכן'), לקונה אין זכות לסרב למוצר באיכות ראויה.<br>5.2. החזר כספים אפשרי רק במקרה של אספקת מוצר באיכות בלתי הולמת.",
+                sect6_title: "6. פרטי המבצע",
+                sect6_text: "דמיטרי אלכסנדרוביץ' טרטיאקוב<br>INN: 507803117299<br>אימייל: d.a.tretiakof@gmail.com",
+                back: "← חזרה לעמוד הראשי"
+            },
+            zh: {
+                title: "购买数字商品的公开要约",
+                executor: "执行者：德米特里·亚历山德罗维奇·特列季亚科夫",
+                inn: "纳税人识别号 (INN)：507803117299",
+                email: "联系邮箱：d.a.tretiakof@gmail.com",
+                site: "网站：https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "本文件是执行者向任何个人（买方）提出的正式要约（公开要约），以按照下述条款签订数字商品（电子书、音乐作品、音频文件）的买卖合同。",
+                sect1_title: "1. 术语和定义",
+                sect1_text: "1.1. 要约 – 本文件《购买数字商品的公开要约》，发布于互联网地址：https://2e-erich-erlenbach.github.io/portfolio/ofert.html。<br>1.2. 接受要约 – 买方通过支付商品价款完全无条件接受要约。<br>1.3. 商品 – 执行者有偿提供的数字商品：电子书、音乐作品、音频文件，可在网站上购买。<br>1.4. 网站 – 执行者的网站，地址为：https://2e-erich-erlenbach.github.io/portfolio。",
+                sect2_title: "2. 合同标的",
+                sect2_text: "2.1. 执行者承诺将买方选择的商品所有权转让给买方，买方承诺按照本要约的条款接受并支付商品价款。<br>2.2. 网站上展示的所有商品均为数字商品，以电子形式提供。",
+                sect3_title: "3. 价格和付款程序",
+                sect3_text: "3.1. 每件商品的价格在付款时显示在网站上。<br>3.2. 买方以俄罗斯卢布通过可用的支付系统支付商品价款。<br>3.3. 支付商品价款即表示买方确认已完全阅读并同意本要约的条款。",
+                sect4_title: "4. 商品交付程序",
+                sect4_text: "4.1. 商品在付款确认后5分钟内交付。<br>4.2. 商品以下载链接的形式提供，该链接将发送至买方在付款时指定的电子邮件地址。",
+                sect5_title: "5. 退款",
+                sect5_text: "5.1. 根据俄罗斯联邦法律（《消费者权益保护法》第26.1条第4款），买方无权拒绝质量合格的商品。<br>5.2. 仅在提供质量不合格的商品时才可能退款。",
+                sect6_title: "6. 执行者详细信息",
+                sect6_text: "德米特里·亚历山德罗维奇·特列季亚科夫<br>INN: 507803117299<br>电子邮件：d.a.tretiakof@gmail.com",
+                back: "← 返回首页"
+            },
+            ja: {
+                title: "デジタル商品購入のための公開オファー",
+                executor: "実行者：ドミトリー・アレクサンドロヴィチ・トレチャコフ",
+                inn: "納税者番号 (INN)：507803117299",
+                email: "連絡先メールアドレス: d.a.tretiakof@gmail.com",
+                site: "ウェブサイト: https://2e-erich-erlenbach.github.io/portfolio",
+                offer_text: "この文書は、実行者から任意の個人（購入者）に対して、デジタル商品（電子書籍、楽曲、音声ファイル）の売買契約を以下の条件で締結するための公式な提案（公開オファー）です。",
+                sect1_title: "1. 用語と定義",
+                sect1_text: "1.1. オファー – この文書「デジタル商品購入のための公開オファー」は、インターネット上（https://2e-erich-erlenbach.github.io/portfolio/ofert.html）に掲載されています。<br>1.2. オファーの承諾 – 購入者が商品の対価を支払う行為によって、オファーを完全かつ無条件に受け入れること。<br>1.3. 商品 – 実行者が有料で提供するデジタル商品：電子書籍、楽曲、音声ファイル。サイトで購入可能。<br>1.4. サイト – 実行者のウェブサイト（https://2e-erich-erlenbach.github.io/portfolio）。",
+                sect2_title: "2. 契約の対象",
+                sect2_text: "2.1. 実行者は、購入者が選択した商品の所有権を購入者に譲渡することを約束し、購入者は本オファーの条件に従ってそれらを受け入れ、支払うことを約束します。<br>2.2. サイトに表示されるすべての商品はデジタルであり、電子形式で提供されます。",
+                sect3_title: "3. 価格と支払い手順",
+                sect3_text: "3.1. 各商品の価格は、支払い時にサイトに表示されます。<br>3.2. 商品の支払いは、購入者が利用可能な決済システムを使用してロシア・ルーブルで行います。<br>3.3. 商品を支払うことにより、購入者は本オファーの条件を完全に読み、同意したことを確認します。",
+                sect4_title: "4. 商品の譲渡手順",
+                sect4_text: "4.1. 商品は、支払い確認後5分以内に譲渡されます。<br>4.2. 商品へのアクセスは、購入者が支払い時に指定した電子メールアドレスに送信されるダウンロードリンクの形式で提供されます。",
+                sect5_title: "5. 返金",
+                sect5_text: "5.1. ロシア連邦の法律（「消費者権利保護法」第26.1条第4項）に従い、購入者は適切な品質の商品を拒否する権利を有しません。<br>5.2. 返金は、不適切な品質の商品が提供された場合にのみ可能です。",
+                sect6_title: "6. 実行者詳細",
+                sect6_text: "ドミトリー・アレクサンドロヴィチ・トレチャコフ<br>INN: 507803117299<br>電子メール: d.a.tretiakof@gmail.com",
+                back: "← ホームページに戻る"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function renderContent() {
+            const t = translations[currentLang];
+            const container = document.getElementById('contentContainer');
+            container.innerHTML = `
+                <h1>${t.title}</h1>
+                <p><strong>${t.executor}</strong><br>
+                <strong>${t.inn}</strong><br>
+                ${t.email}<br>
+                ${t.site}</p>
+                <p>${t.offer_text}</p>
+                <h2>${t.sect1_title}</h2>
+                <p>${t.sect1_text}</p>
+                <h2>${t.sect2_title}</h2>
+                <p>${t.sect2_text}</p>
+                <h2>${t.sect3_title}</h2>
+                <p>${t.sect3_text}</p>
+                <h2>${t.sect4_title}</h2>
+                <p>${t.sect4_text}</p>
+                <h2>${t.sect5_title}</h2>
+                <p>${t.sect5_text}</p>
+                <h2>${t.sect6_title}</h2>
+                <p>${t.sect6_text}</p>
+                <a href="https://2e-erich-erlenbach.github.io/portfolio" class="back-link">${t.back}</a>
+            `;
+        }
+
+        function changeLang(lang) {
+            currentLang = lang;
+            renderContent();
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            document.body.dir = (lang === 'ar' || lang === 'he') ? 'rtl' : 'ltr';
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => changeLang(btn.dataset.lang));
+        });
+
+        const themeSwitch = document.getElementById('themeSwitch');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
+        themeSwitch.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const isLight = document.body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeSwitch.innerText = isLight ? '☀️ Светлая тема' : '🌓 Тёмная тема';
+        });
+        if (document.body.classList.contains('light-theme')) themeSwitch.innerText = '☀️ Светлая тема';
+        else themeSwitch.innerText = '🌓 Тёмная тема';
+
+        changeLang('ru');
+    </script>
+</body>
+</html>
