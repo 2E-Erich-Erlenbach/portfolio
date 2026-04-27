@@ -49,7 +49,7 @@
             --blur: blur(25px) saturate(180%);
             --border: 0.5px solid rgba(255, 255, 255, 0.15); 
             --radius: 24px;
-            --wallpaper-url: url('bg-dark.jpg');
+            --wallpaper-url: url('https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920');
             --player-height: 70px;
             --header-height: 44px;
             --sticky-menu-top: 70px;
@@ -61,7 +61,7 @@
             --ios-text: #1c1c1e;
             --ios-secondary: #3a3a3c;
             --border: 0.5px solid rgba(0, 0, 0, 0.1);
-            --wallpaper-url: url('bg-light.jpg');
+            --wallpaper-url: url('https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1920');
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -482,7 +482,7 @@
         .widget:hover { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
         
         .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--ios-accent); text-align: center; margin-bottom: 5px; letter-spacing: 2px; }
-        .hero p { text-align: center; color: var(--ios-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; margin-bottom: 5px; }
+        .hero p { text-align: center; color: var(--ios-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.85rem; margin-bottom: 25px; }
 
         .bio-grid { display: flex; gap: 30px; align-items: start; flex-wrap: wrap; }
         .bio-img { 
@@ -754,12 +754,6 @@
             color: var(--ios-secondary);
         }
         
-        /* Платёжные иконки (цветные) */
-        .payment-icons img {
-            height: 30px;
-            width: auto;
-        }
-        
         body.rtl { direction: rtl; text-align: right; }
         body.rtl .bio-content p { text-align: right; }
         
@@ -785,7 +779,6 @@
             .cinema-card { flex: 0 0 240px; }
             .book-card { flex: 0 0 140px; }
             .book-cover { height: 180px; }
-            .payment-icons img { height: 24px; }
         }
         
         @media (max-width: 480px) {
@@ -802,7 +795,6 @@
             .footer-contacts .contacts-title {
                 font-size: 0.9rem;
             }
-            .payment-icons img { height: 20px; }
         }
         
         #btn-quote {
@@ -892,13 +884,6 @@
         <div class="hero" id="top">
             <h1 id="hero-title">Эрих Эрлэнбах</h1>
             <p id="hero-subtitle">Поэт • Писатель • Философ • Композитор</p>
-            <div class="union-badge" style="text-align: center; margin: 15px auto 10px;">
-                <div id="unionText" style="font-size: 0.85rem; color: var(--ios-accent); font-weight: 500; letter-spacing: 0.5px; margin-bottom: 8px;">Член Российского союза писателей</div>
-                <a href="https://rossp.ru/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,55,0.1); padding: 6px 14px; border-radius: 30px; text-decoration: none; transition: all 0.2s ease; border: 1px solid rgba(212,175,55,0.3);">
-                    <img src="images/rossp_logo.png" alt="Российский союз писателей" style="height: 24px; width: auto;" onerror="this.style.display='none'">
-                    <span style="color: var(--ios-accent); font-size: 0.75rem; font-weight: 500;">rossp.ru</span>
-                </a>
-            </div>
         </div>
 
         <div class="mood-widget" id="moodWidget">
@@ -917,6 +902,7 @@
             <button id="btn-quote" onclick="getRandomQuote()">🎭 Цитата дня</button>
         </div>
 
+        <!-- ПОЯСНЕНИЕ О ВЫБОРКЕ ПРОИЗВЕДЕНИЙ -->
         <div class="widget note-widget" style="text-align: center; background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 20px 25px; margin-bottom: 25px;">
             <div style="font-size: 2rem; margin-bottom: 10px;">🎼</div>
             <div style="font-size: 0.9rem; color: var(--ios-accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px;" id="sampleNoteTitle">
@@ -972,31 +958,13 @@
                 <a href="https://books.apple.com/lv/author/erich-erlenbach/id1853329405" class="app-link" target="_blank" rel="noopener noreferrer">🍎 Apple Books</a>
             </div>
         </div>
-
-        <div class="widget payment-widget" style="text-align: center;">
-            <div class="payment-icons" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px;">
-                <img src="images/mastercard.svg" alt="Mastercard" style="height: 30px; width: auto;">
-                <img src="images/maestro.svg" alt="Maestro" style="height: 30px; width: auto;">
-                <img src="images/paypal.svg" alt="PayPal" style="height: 30px; width: auto;">
-                <img src="images/mir.svg" alt="МИР" style="height: 30px; width: auto;">
-                <img src="images/visa.svg" alt="Visa" style="height: 30px; width: auto;">
-                <img src="images/applepay.svg" alt="Apple Pay" style="height: 30px; width: auto;">
-                <img src="images/googlepay.svg" alt="Google Pay" style="height: 30px; width: auto;">
-                <img src="images/amex.svg" alt="American Express" style="height: 30px; width: auto;">
-                <img src="images/girocard.svg" alt="Girocard" style="height: 30px; width: auto;">
-                <img src="images/jcb.svg" alt="JCB" style="height: 30px; width: auto;">
-                <img src="images/discover.svg" alt="Discover" style="height: 30px; width: auto;">
-                <img src="images/unionpay.svg" alt="UnionPay" style="height: 30px; width: auto;">
-            </div>
-            <div style="margin-top: 15px; font-size: 0.75rem; color: var(--ios-secondary);" id="paymentLabel">
-                Принимаем к оплате
-            </div>
-        </div>
     </main>
 
+    <!-- Footer with Contacts and Chat -->
     <div class="footer-contacts" id="footer-contacts">
         <div class="contacts-title" id="footerContactsTitle">КОНТАКТЫ / ЧАТ С АВТОРОМ</div>
         
+        <!-- ИНФОРМАЦИЯ О САМОЗАНЯТОМ (теперь переводится) -->
         <div style="margin-bottom: 20px; font-size: 0.85rem; color: var(--ios-secondary);">
             <div id="legalName">Музыкальный менеджер: Третьяков Дмитрий Александрович</div>
             <div id="legalInn">ИНН: 507803117299</div>
@@ -1021,6 +989,7 @@
             </a>
         </div>
         
+        <!-- СЧЁТЧИК ПОСЕЩЕНИЙ -->
         <div style="margin-top: 20px; font-size: 0.8rem; color: var(--ios-secondary);">
             <span>👥 Просмотров: </span>
             <img src="https://visitor-badge.laobi.icu/badge?page_id=erich-erlenbach-portfolio" 
@@ -1028,10 +997,11 @@
                  style="display: inline-block; vertical-align: middle; margin-left: 5px; border-radius: 12px;">
         </div>
         
+        <!-- ЮРИДИЧЕСКИЕ ССЫЛКИ -->
         <div style="margin: 15px 0; font-size: 0.75rem;">
-            <a href="privacy.html" id="privacyLink" style="color: var(--ios-accent); text-decoration: none;">Политика конфиденциальности</a>
+            <a href="/privacy" style="color: var(--ios-accent); text-decoration: none;">Политика конфиденциальности</a>
             &nbsp;|&nbsp;
-            <a href="ofert.html" id="ofertLink" style="color: var(--ios-accent); text-decoration: none;">Договор оферты</a>
+            <a href="/ofert" style="color: var(--ios-accent); text-decoration: none;">Договор оферты</a>
         </div>
         
         <div class="copyright">
@@ -1039,6 +1009,7 @@
         </div>
     </div>
 
+    <!-- Telegram Floating Chat Button -->
     <a href="https://t.me/ericherlenbach" target="_blank" class="telegram-chat" title="Написать в Telegram">
         <svg viewBox="0 0 24 24" fill="white">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.07-.2-.09-.06-.23-.04-.33-.02-.14.03-2.33 1.48-3.28 2.09-.23.15-.48.18-.69.18-.45 0-1.07-.25-1.67-.46-.7-.24-1.26-.37-1.21-.78.03-.21.31-.43.86-.66 1.58-.69 3.28-1.4 4.62-1.84 1.34-.44 2.42-.73 3.17-.87.75-.14 1.37-.1 1.81.14.44.24.69.63.61 1.06z"/>
@@ -1164,7 +1135,7 @@
             }
         ];
 
-        // ==================== КИНОСОЗНАНИЕ ====================
+        // ==================== КИНОСОЗНАНИЕ - ВИДЕО ====================
         const cinemaSlides = [
             {
                 image: "behind_the_holy_hill.jpg",
@@ -1565,7 +1536,7 @@
             { titleRu: "Demon - Dance of Light", titleEn: "Demon - Dance of Light", artist: "Erich Erlenbach", url: "43_Daemon_Dance_of_Light.mp3" },
             { titleRu: "Demon - Exiles from Paradise", titleEn: "Demon - Exiles from Paradise", artist: "Erich Erlenbach", url: "44_Daemon_Exiles_from_Paradise.mp3" },
             { titleRu: "Seasons - Winter Introduction 1", titleEn: "Seasons - Winter Introduction 1", artist: "Erich Erlenbach", url: "45_Seasons_Winter_Introduction_1.mp3" },
-            { titleRu: "Seasons - Winter Introduction 2", titleEn: "Seasons - Winter Introduction 2", artist: "Erich Erlenbach", url: "46_Seasons_Winter_Introduction_2.mp3" ]
+            { titleRu: "Seasons - Winter Introduction 2", titleEn: "Seasons - Winter Introduction 2", artist: "Erich Erlenbach", url: "46_Seasons_Winter_Introduction_2.mp3" }
         ];
 
         let currentTrackIndex = 0;
@@ -1666,9 +1637,7 @@
             }
         });
 
-        document.getElementById(‘play
-
-PauseBtn').addEventListener('click', togglePlayPause);
+        document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
         document.getElementById('nextTrack').addEventListener('click', nextTrack);
         document.getElementById('prevTrack').addEventListener('click', prevTrack);
 
@@ -1844,7 +1813,7 @@ PauseBtn').addEventListener('click', togglePlayPause);
             setActiveButton();
         }
 
-        // ==================== ПЕРЕВОДЫ ====================
+        // ==================== ПЕРЕВОДЫ (включая ФИО и ИНН) ====================
         const translations = {
             ru: { 
                 secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", 
@@ -1854,10 +1823,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "КОНТАКТЫ / ЧАТ С АВТОРОМ",
                 legalName: "Музыкальный менеджер: Третьяков Дмитрий Александрович",
                 legalInn: "ИНН: 507803117299",
-                privacyLinkText: "Политика конфиденциальности",
-                ofertLinkText: "Договор оферты",
-                paymentLabel: "Принимаем к оплате",
-                unionMembership: "Член Российского союза писателей",
                 cityTbilisi: "🇬🇪 Тбилиси, Грузия", cityBerlin: "🇩🇪 Берлин, Германия", cityParis: "🇫🇷 Париж, Франция", cityNewYork: "🇺🇸 Нью-Йорк, США", cityLondon: "🇬🇧 Лондон, Великобритания", cityMoscow: "🇷🇺 Москва, Россия", cityTokyo: "🇯🇵 Токио, Япония", cityShanghai: "🇨🇳 Шанхай, Китай", cityRome: "🇮🇹 Рим, Италия", cityMadrid: "🇪🇸 Мадрид, Испания", cityRiyadh: "🇸🇦 Эр-Рияд, Саудовская Аравия",
                 bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>` 
             },
@@ -1869,10 +1834,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "CONTACTS / CHAT WITH AUTHOR",
                 legalName: "Music Manager: Dmitry Alexandrovich Tretyakov",
                 legalInn: "Tax ID (INN): 507803117299",
-                privacyLinkText: "Privacy Policy",
-                ofertLinkText: "Terms of Offer",
-                paymentLabel: "Accepted payment methods",
-                unionMembership: "Member of the Russian Union of Writers",
                 cityTbilisi: "🇬🇪 Tbilisi, Georgia", cityBerlin: "🇩🇪 Berlin, Germany", cityParis: "🇫🇷 Paris, France", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, United Kingdom", cityMoscow: "🇷🇺 Moscow, Russia", cityTokyo: "🇯🇵 Tokyo, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rome, Italy", cityMadrid: "🇪🇸 Madrid, Spain", cityRiyadh: "🇸🇦 Riyadh, Saudi Arabia",
                 bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>` 
             },
@@ -1884,10 +1845,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "KONTAKTE / CHAT MIT DEM AUTOR",
                 legalName: "Musikmanager: Dmitri Alexandrowitsch Tretjakow",
                 legalInn: "Steuer-ID (INN): 507803117299",
-                privacyLinkText: "Datenschutzerklärung",
-                ofertLinkText: "Angebotsbedingungen",
-                paymentLabel: "Akzeptierte Zahlungsmethoden",
-                unionMembership: "Mitglied des Russischen Schriftstellerverbandes",
                 cityTbilisi: "🇬🇪 Tiflis, Georgien", cityBerlin: "🇩🇪 Berlin, Deutschland", cityParis: "🇫🇷 Paris, Frankreich", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, Vereinigtes Königreich", cityMoscow: "🇷🇺 Moskau, Russland", cityTokyo: "🇯🇵 Tokio, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rom, Italien", cityMadrid: "🇪🇸 Madrid, Spanien", cityRiyadh: "🇸🇦 Riad, Saudi-Arabien",
                 bio: `<h3>🌟 Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p><h3>⚡ Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p><h3>🎨 Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>` 
             },
@@ -1899,10 +1856,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "კონტაქტები / ჩატი ავტორთან",
                 legalName: "მუსიკალური მენეჯერი: დმიტრი ალექსანდრეს ძე ტრეტიაკოვი",
                 legalInn: "საიდენტიფიკაციო ნომერი (INN): 507803117299",
-                privacyLinkText: "კონფიდენციალურობის პოლიტიკა",
-                ofertLinkText: "საჯარო შეთავაზება",
-                paymentLabel: "გადახდის მიღება",
-                unionMembership: "რუსეთის მწერალთა კავშირის წევრი",
                 cityTbilisi: "🇬🇪 თბილისი, საქართველო", cityBerlin: "🇩🇪 ბერლინი, გერმანია", cityParis: "🇫🇷 პარიზი, საფრანგეთი", cityNewYork: "🇺🇸 ნიუ-იორკი, აშშ", cityLondon: "🇬🇧 ლონდონი, გაერთიანებული სამეფო", cityMoscow: "🇷🇺 მოსკოვი, რუსეთი", cityTokyo: "🇯🇵 ტოკიო, იაპონია", cityShanghai: "🇨🇳 შანხაი, ჩინეთი", cityRome: "🇮🇹 რომი, იტალია", cityMadrid: "🇪🇸 მადრიდი, ესპანეთი", cityRiyadh: "🇸🇦 ერ-რიადი, საუდის არაბეთი",
                 bio: `<h3>🌟 საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p><h3>⚡ მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p><h3>🎨 მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>` 
             },
@@ -1914,10 +1867,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "جهات الاتصال / الدردشة مع المؤلف",
                 legalName: "مدير الموسيقى: ديمتري ألكساندروفيتش تريتياكوف",
                 legalInn: "الرقم الضريبي (INN): 507803117299",
-                privacyLinkText: "سياسة الخصوصية",
-                ofertLinkText: "شروط العرض",
-                paymentLabel: "طرق الدفع المقبولة",
-                unionMembership: "عضو في اتحاد الكتاب الروس",
                 cityTbilisi: "🇬🇪 تبليسي، جورجيا", cityBerlin: "🇩🇪 برلين، ألمانيا", cityParis: "🇫🇷 باريس، فرنسا", cityNewYork: "🇺🇸 نيويورك، الولايات المتحدة", cityLondon: "🇬🇧 لندن، المملكة المتحدة", cityMoscow: "🇷🇺 موسكو، روسيا", cityTokyo: "🇯🇵 طوكيو، اليابان", cityShanghai: "🇨🇳 شنغهاي، الصين", cityRome: "🇮🇹 روما، إيطاليا", cityMadrid: "🇪🇸 مدريد، إسبانيا", cityRiyadh: "🇸🇦 الرياض، المملكة العربية السعودية",
                 bio: `<h3>🌟 الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p><h3>⚡ طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p><h3>🎨 المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>` 
             },
@@ -1929,10 +1878,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "יצירת קשר / צ'אט עם המחבר",
                 legalName: "מנהל מוזיקלי: דמיטרי אלכסנדרוביץ' טרטיאקוב",
                 legalInn: "מספר זהות משלם המסים (INN): 507803117299",
-                privacyLinkText: "מדיניות פרטיות",
-                ofertLinkText: "תנאי הצעה",
-                paymentLabel: "אמצעי תשלום מקובלים",
-                unionMembership: "חבר באיגוד הסופרים הרוסי",
                 cityTbilisi: "🇬🇪 טביליסי, גאורגיה", cityBerlin: "🇩🇪 ברלין, גרמניה", cityParis: "🇫🇷 פריז, צרפת", cityNewYork: "🇺🇸 ניו יורק, ארה\"ב", cityLondon: "🇬🇧 לונדון, בריטניה", cityMoscow: "🇷🇺 מוסקבה, רוסיה", cityTokyo: "🇯🇵 טוקיו, יפן", cityShanghai: "🇨🇳 שנגחאי, סין", cityRome: "🇮🇹 רומא, איטליה", cityMadrid: "🇪🇸 מדריד, ספרד", cityRiyadh: "🇸🇦 ריאד, ערב הסעודית",
                 bio: `<h3>🌟 מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p><h3>⚡ דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p><h3>🎨 מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>` 
             },
@@ -1944,10 +1889,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "联系方式 / 与作者聊天",
                 legalName: "音乐经理：德米特里·亚历山德罗维奇·特列季亚科夫",
                 legalInn: "纳税人识别号 (INN)：507803117299",
-                privacyLinkText: "隐私政策",
-                ofertLinkText: "要约条款",
-                paymentLabel: "接受支付方式",
-                unionMembership: "俄罗斯作家联盟成员",
                 cityTbilisi: "🇬🇪 第比利斯，格鲁吉亚", cityBerlin: "🇩🇪 柏林，德国", cityParis: "🇫🇷 巴黎，法国", cityNewYork: "🇺🇸 纽约，美国", cityLondon: "🇬🇧 伦敦，英国", cityMoscow: "🇷🇺 莫斯科，俄罗斯", cityTokyo: "🇯🇵 东京，日本", cityShanghai: "🇨🇳 上海，中国", cityRome: "🇮🇹 罗马，意大利", cityMadrid: "🇪🇸 马德里，西班牙", cityRiyadh: "🇸🇦 利雅得，沙特阿拉伯",
                 bio: `<h3>🌟 起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p><h3>⚡ 服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p><h3>🎨 宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>` 
             },
@@ -1959,10 +1900,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
                 footerContactsTitle: "連絡先 / 著者とのチャット",
                 legalName: "音楽マネージャー：ドミトリー・アレクサンドロヴィチ・トレチャコフ",
                 legalInn: "納税者番号 (INN)：507803117299",
-                privacyLinkText: "プライバシーポリシー",
-                ofertLinkText: "契約条件",
-                paymentLabel: "お支払い方法",
-                unionMembership: "ロシア作家連合の会員",
                 cityTbilisi: "🇬🇪 トビリシ、ジョージア", cityBerlin: "🇩🇪 ベルリン、ドイツ", cityParis: "🇫🇷 パリ、フランス", cityNewYork: "🇺🇸 ニューヨーク、アメリカ", cityLondon: "🇬🇧 ロンドン、イギリス", cityMoscow: "🇷🇺 モスクワ、ロシア", cityTokyo: "🇯🇵 東京、日本", cityShanghai: "🇨🇳 上海、中国", cityRome: "🇮🇹 ローマ、イタリア", cityMadrid: "🇪🇸 マドリード、スペイン", cityRiyadh: "🇸🇦 リヤド、サウジアラビア",
                 bio: `<h3>🌟 起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p><h3>⚡ 奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p><h3>🎨 メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>` 
             }
@@ -2002,10 +1939,6 @@ PauseBtn').addEventListener('click', togglePlayPause);
             document.getElementById('footerContactsTitle').innerText = t.footerContactsTitle;
             document.getElementById('legalName').innerText = t.legalName;
             document.getElementById('legalInn').innerText = t.legalInn;
-            document.getElementById('privacyLink').innerText = t.privacyLinkText;
-            document.getElementById('ofertLink').innerText = t.ofertLinkText;
-            document.getElementById('paymentLabel').innerText = t.paymentLabel;
-            document.getElementById('unionText').innerText = t.unionMembership;
             
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 const key = btn.dataset.key;
