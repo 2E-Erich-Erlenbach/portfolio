@@ -94,7 +94,6 @@
         body.light-theme .sun-fx { display: block; animation: pulse 10s infinite alternate; }
         @keyframes pulse { from { opacity: 0.5; transform: scale(1); } to { opacity: 0.8; transform: scale(1.1); } }
 
-        /* Telegram Chat Button */
         .telegram-chat {
             position: fixed;
             bottom: 90px;
@@ -389,7 +388,6 @@
         .weather-desc { font-size: 0.75rem; color: var(--ios-secondary); text-transform: uppercase; }
         .weather-details { display: flex; justify-content: center; gap: 15px; margin-top: 8px; font-size: 0.7rem; color: var(--ios-accent); }
 
-        /* Sticky Navigation Menu */
         .sticky-nav {
             position: sticky;
             top: 80px;
@@ -518,7 +516,6 @@
         .app-link:hover { background: var(--ios-accent); color: #000; transform: translateY(-2px); border-color: transparent; }
         .app-link:active { transform: scale(0.98); }
 
-        /* Интерактивная книжная полка */
         .bookshelf {
             display: flex;
             gap: 20px;
@@ -575,7 +572,6 @@
             color: var(--ios-secondary);
         }
         
-        /* Киносознание - горизонтальный скролл (как у книг) */
         .cinema-section {
             position: relative;
             border-radius: var(--radius);
@@ -666,7 +662,6 @@
         }
         h2:hover::after { transform: scaleX(1); }
         
-        /* Footer sections */
         .footer-contacts {
             text-align: center;
             padding: 30px 20px 20px;
@@ -866,7 +861,6 @@
         </div>
     </div>
 
-    <!-- Sticky Navigation Menu -->
     <div class="sticky-nav">
         <div class="nav-links" id="navLinks">
             <button class="nav-btn" data-target="top" data-key="navHome">НАЧАЛО</button>
@@ -902,7 +896,6 @@
             <button id="btn-quote" onclick="getRandomQuote()">🎭 Цитата дня</button>
         </div>
 
-        <!-- ПОЯСНЕНИЕ О ВЫБОРКЕ ПРОИЗВЕДЕНИЙ -->
         <div class="widget note-widget" style="text-align: center; background: var(--ios-card); backdrop-filter: var(--blur); border-radius: var(--radius); border: var(--border); padding: 20px 25px; margin-bottom: 25px;">
             <div style="font-size: 2rem; margin-bottom: 10px;">🎼</div>
             <div style="font-size: 0.9rem; color: var(--ios-accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 8px;" id="sampleNoteTitle">
@@ -960,11 +953,9 @@
         </div>
     </main>
 
-    <!-- Footer with Contacts and Chat -->
     <div class="footer-contacts" id="footer-contacts">
         <div class="contacts-title" id="footerContactsTitle">КОНТАКТЫ / ЧАТ С АВТОРОМ</div>
         
-        <!-- ИНФОРМАЦИЯ О САМОЗАНЯТОМ (теперь переводится) -->
         <div style="margin-bottom: 20px; font-size: 0.85rem; color: var(--ios-secondary);">
             <div id="legalName">Музыкальный менеджер: Третьяков Дмитрий Александрович</div>
             <div id="legalInn">ИНН: 507803117299</div>
@@ -989,7 +980,6 @@
             </a>
         </div>
         
-        <!-- СЧЁТЧИК ПОСЕЩЕНИЙ -->
         <div style="margin-top: 20px; font-size: 0.8rem; color: var(--ios-secondary);">
             <span>👥 Просмотров: </span>
             <img src="https://visitor-badge.laobi.icu/badge?page_id=erich-erlenbach-portfolio" 
@@ -997,11 +987,10 @@
                  style="display: inline-block; vertical-align: middle; margin-left: 5px; border-radius: 12px;">
         </div>
         
-        <!-- ЮРИДИЧЕСКИЕ ССЫЛКИ -->
         <div style="margin: 15px 0; font-size: 0.75rem;">
-            <a href="privacy" style="color: var(--ios-accent); text-decoration: none;">Политика конфиденциальности</a>
+            <a href="/privacy" id="privacyLink" style="color: var(--ios-accent); text-decoration: none;">Политика конфиденциальности</a>
             &nbsp;|&nbsp;
-            <a href="ofert" style="color: var(--ios-accent); text-decoration: none;">Договор оферты</a>
+            <a href="/ofert" id="ofertLink" style="color: var(--ios-accent); text-decoration: none;">Договор оферты</a>
         </div>
         
         <div class="copyright">
@@ -1009,7 +998,6 @@
         </div>
     </div>
 
-    <!-- Telegram Floating Chat Button -->
     <a href="https://t.me/ericherlenbach" target="_blank" class="telegram-chat" title="Написать в Telegram">
         <svg viewBox="0 0 24 24" fill="white">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.66-.35-1.02.22-1.61.15-.15 2.71-2.48 2.76-2.69.01-.03.02-.14-.07-.2-.09-.06-.23-.04-.33-.02-.14.03-2.33 1.48-3.28 2.09-.23.15-.48.18-.69.18-.45 0-1.07-.25-1.67-.46-.7-.24-1.26-.37-1.21-.78.03-.21.31-.43.86-.66 1.58-.69 3.28-1.4 4.62-1.84 1.34-.44 2.42-.73 3.17-.87.75-.14 1.37-.1 1.81.14.44.24.69.63.61 1.06z"/>
@@ -1042,454 +1030,64 @@
     <script>
         // ==================== КНИГИ ====================
         const books = [
-            {
-                titleRu: "Тени над Курфюрстендаммом. Книги 1, 2, 3",
-                titleEn: "Shadows over Kurfürstendamm. Books 1, 2, 3",
-                titleDe: "Schatten über dem Kurfürstendamm. Bücher 1, 2, 3",
-                titleKa: "ჩრდილები კურფიურსტენდამზე. წიგნები 1, 2, 3",
-                titleAr: "ظلال على كورفورستيندام. الكتب 1، 2، 3",
-                titleHe: "צללים מעל קורפירסטנדאם. ספרים 1, 2, 3",
-                titleZh: "库尔菲尔斯滕大街上的阴影. 第1、2、3册",
-                titleJa: "クアフュルステンダムの影. 第1、2、3巻",
-                cover: "Teni nad Kurfur.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/teni-nad-kurfurstendammom-knigi-1-2-3-72773671/"
-            },
-            {
-                titleRu: "За гранью музейных стен",
-                titleEn: "Beyond Museum Walls",
-                titleDe: "Jenseits der Museumswände",
-                titleKa: "მუზეუმის კედლების მიღმა",
-                titleAr: "وراء جدران المتحف",
-                titleHe: "מעבר לקירות המוזיאון",
-                titleZh: "博物馆墙外",
-                titleJa: "美術館の壁の向こう側",
-                cover: "Za ganiu mezei.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/za-granu-muzeynyh-sten-72682354/"
-            },
-            {
-                titleRu: "Баллада о Демоне. Книга 1",
-                titleEn: "Ballad of the Demon. Book 1",
-                titleDe: "Ballade vom Dämon. Buch 1",
-                titleKa: "ბალადა დემონზე. წიგნი 1",
-                titleAr: "قصيدة الشيطان. الكتاب 1",
-                titleHe: "בלדה על השד. ספר 1",
-                titleZh: "恶魔之歌. 第1册",
-                titleJa: "悪魔のバラード. 第1巻",
-                cover: "Demon1.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-demone-kniga-1-72745945/"
-            },
-            {
-                titleRu: "Наследие забытых снов. Книги 1 и 2",
-                titleEn: "Legacy of Forgotten Dreams. Books 1 & 2",
-                titleDe: "Vermächtnis vergessener Träume. Bücher 1 & 2",
-                titleKa: "დავიწყებული სიზმრების მემკვიდრეობა. წიგნები 1 და 2",
-                titleAr: "إرث الأحلام المنسية. الكتابان 1 و 2",
-                titleHe: "מורשת חלומות נשכחים. ספרים 1 ו-2",
-                titleZh: "被遗忘之梦的遗产. 第1和第2册",
-                titleJa: "忘れられた夢の遺産. 第1巻と第2巻",
-                cover: "Nasledie snov.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/nasledie-zabytyh-snov-knigi-1-i-2-72739690/"
-            },
-            {
-                titleRu: "Горизонт разума. Книга 1",
-                titleEn: "Horizon of Reason. Book 1",
-                titleDe: "Horizont des Geistes. Buch 1",
-                titleKa: "გონების ჰორიზონტი. წიგნი 1",
-                titleAr: "أفق العقل. الكتاب 1",
-                titleHe: "אופק התבונה. ספר 1",
-                titleZh: "理性地平线. 第1册",
-                titleJa: "理性の地平線. 第1巻",
-                cover: "Gorizon razuma1.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/gorizont-razuma-kniga-1-72763579/"
-            },
-            {
-                titleRu: "Баллада о свете и тьме",
-                titleEn: "Ballad of Light and Darkness",
-                titleDe: "Ballade von Licht und Dunkelheit",
-                titleKa: "ბალადა სინათლესა და სიბნელეზე",
-                titleAr: "قصيدة النور والظلام",
-                titleHe: "בלדה על אור וחושך",
-                titleZh: "光与暗之歌",
-                titleJa: "光と闇のバラード",
-                cover: "Ballada o Svete.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-svete-i-tme-72682363/"
-            },
-            {
-                titleRu: "Время HD43197b - жизнь в сжатом пространстве",
-                titleEn: "Time HD43197b - Life in Compressed Space",
-                titleDe: "Zeit HD43197b - Leben im komprimierten Raum",
-                titleKa: "დრო HD43197b - ცხოვრება შეკუმშულ სივრცეში",
-                titleAr: "الزمن HD43197b - حياة في فضاء مضغوط",
-                titleHe: "זמן HD43197b - חיים במרחב דחוס",
-                titleZh: "时间HD43197b - 压缩空间中的生活",
-                titleJa: "時間HD43197b - 圧縮された空間での生活",
-                cover: "Vremia HD.jpeg",
-                year: "2025",
-                link: "https://www.litres.ru/book/erich-erlenbach/vremya-hd43197b-zhizn-v-szhatom-prostranstve-72728296/"
-            }
+            { titleRu: "Тени над Курфюрстендаммом. Книги 1, 2, 3", titleEn: "Shadows over Kurfürstendamm. Books 1, 2, 3", titleDe: "Schatten über dem Kurfürstendamm. Bücher 1, 2, 3", titleKa: "ჩრდილები კურფიურსტენდამზე. წიგნები 1, 2, 3", titleAr: "ظلال على كورفورستيندام. الكتب 1، 2، 3", titleHe: "צללים מעל קורפירסטנדאם. ספרים 1, 2, 3", titleZh: "库尔菲尔斯滕大街上的阴影. 第1、2、3册", titleJa: "クアフュルステンダムの影. 第1、2、3巻", cover: "Teni nad Kurfur.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/teni-nad-kurfurstendammom-knigi-1-2-3-72773671/" },
+            { titleRu: "За гранью музейных стен", titleEn: "Beyond Museum Walls", titleDe: "Jenseits der Museumswände", titleKa: "მუზეუმის კედლების მიღმა", titleAr: "وراء جدران المتحف", titleHe: "מעבר לקירות המוזיאון", titleZh: "博物馆墙外", titleJa: "美術館の壁の向こう側", cover: "Za ganiu mezei.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/za-granu-muzeynyh-sten-72682354/" },
+            { titleRu: "Баллада о Демоне. Книга 1", titleEn: "Ballad of the Demon. Book 1", titleDe: "Ballade vom Dämon. Buch 1", titleKa: "ბალადა დემონზე. წიგნი 1", titleAr: "قصيدة الشيطان. الكتاب 1", titleHe: "בלדה על השד. ספר 1", titleZh: "恶魔之歌. 第1册", titleJa: "悪魔のバラード. 第1巻", cover: "Demon1.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-demone-kniga-1-72745945/" },
+            { titleRu: "Наследие забытых снов. Книги 1 и 2", titleEn: "Legacy of Forgotten Dreams. Books 1 & 2", titleDe: "Vermächtnis vergessener Träume. Bücher 1 & 2", titleKa: "დავიწყებული სიზმრების მემკვიდრეობა. წიგნები 1 და 2", titleAr: "إرث الأحلام المنسية. الكتابان 1 و 2", titleHe: "מורשת חלומות נשכחים. ספרים 1 ו-2", titleZh: "被遗忘之梦的遗产. 第1和第2册", titleJa: "忘れられた夢の遺産. 第1巻と第2巻", cover: "Nasledie snov.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/nasledie-zabytyh-snov-knigi-1-i-2-72739690/" },
+            { titleRu: "Горизонт разума. Книга 1", titleEn: "Horizon of Reason. Book 1", titleDe: "Horizont des Geistes. Buch 1", titleKa: "გონების ჰორიზონტი. წიგნი 1", titleAr: "أفق العقل. الكتاب 1", titleHe: "אופק התבונה. ספר 1", titleZh: "理性地平线. 第1册", titleJa: "理性の地平線. 第1巻", cover: "Gorizon razuma1.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/gorizont-razuma-kniga-1-72763579/" },
+            { titleRu: "Баллада о свете и тьме", titleEn: "Ballad of Light and Darkness", titleDe: "Ballade von Licht und Dunkelheit", titleKa: "ბალადა სინათლესა და სიბნელეზე", titleAr: "قصيدة النور والظلام", titleHe: "בלדה על אור וחושך", titleZh: "光与暗之歌", titleJa: "光と闇のバラード", cover: "Ballada o Svete.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/ballada-o-svete-i-tme-72682363/" },
+            { titleRu: "Время HD43197b - жизнь в сжатом пространстве", titleEn: "Time HD43197b - Life in Compressed Space", titleDe: "Zeit HD43197b - Leben im komprimierten Raum", titleKa: "დრო HD43197b - ცხოვრება შეკუმშულ სივრცეში", titleAr: "الزمن HD43197b - حياة في فضاء مضغوط", titleHe: "זמן HD43197b - חיים במרחב דחוס", titleZh: "时间HD43197b - 压缩空间中的生活", titleJa: "時間HD43197b - 圧縮された空間での生活", cover: "Vremia HD.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/vremya-hd43197b-zhizn-v-szhatom-prostranstve-72728296/" }
         ];
 
-        // ==================== КИНОСОЗНАНИЕ - ВИДЕО ====================
+        // ==================== КИНОСОЗНАНИЕ ====================
         const cinemaSlides = [
-            {
-                image: "behind_the_holy_hill.jpg",
-                titleRu: "Behind the Holy Hill",
-                titleEn: "Behind the Holy Hill",
-                titleDe: "Hinter dem heiligen Hügel",
-                titleKa: "წმინდა გორის მიღმა",
-                titleAr: "خلف التل المقدس",
-                titleHe: "מאחורי הגבעה הקדושה",
-                titleZh: "圣山之后",
-                titleJa: "聖なる丘の向こう側",
-                descRu: "Кинематографическое путешествие в мистические ландшафты, где время замирает, а музыка становится мостом между реальностями.",
-                descEn: "A cinematic journey into mystical landscapes where time stands still and music becomes a bridge between realities.",
-                descDe: "Eine filmische Reise in mystische Landschaften, in denen die Zeit stillsteht und Musik zur Brücke zwischen Realitäten wird.",
-                descKa: "კინემატოგრაფიული მოგზაურობა მისტიკურ ლანდშაფტებში, სადაც დრო ჩერდება და მუსიკა ხდება ხიდი რეალობებს შორის.",
-                descAr: "رحلة سينمائية إلى مناظر طبيعية صوفية حيث يتوقف الزمن وتصبح الموسيقى جسراً بين الحقائق.",
-                descHe: "מסע קולנועי לנופים מיסטיים שבהם הזמן עומד מלכת והמוזיקה הופכת לגשר בין מציאויות.",
-                descZh: "进入神秘景观的电影之旅，时间静止，音乐成为现实之间的桥梁。",
-                descJa: "時間が止まり、音楽が現実の間の架け橋となる神秘的な風景への映画的旅。",
-                videoUrl: "https://youtu.be/PRMxm0K9KKk"
-            },
-            {
-                image: "soul_of_tiflis_jazz.jpg",
-                titleRu: "The Soul of Tiflis Jazz",
-                titleEn: "The Soul of Tiflis Jazz",
-                titleDe: "Die Seele des Tiflis-Jazz",
-                titleKa: "თბილისური ჯაზის სული",
-                titleAr: "روح جاز تيفليس",
-                titleHe: "נשמת הג'אז של טיפליס",
-                titleZh: "第比利斯爵士之魂",
-                titleJa: "ティフリスジャズの魂",
-                descRu: "Джазовая импровизация, рожденная в старых дворах Тбилиси, где переплетаются грузинская меланхолия и ритмы современного города.",
-                descEn: "A jazz improvisation born in the old courtyards of Tbilisi, where Georgian melancholy intertwines with the rhythms of the modern city.",
-                descDe: "Eine Jazzimprovisation, geboren in den alten Höfen von Tiflis, wo georgische Melancholie mit den Rhythmen der modernen Stadt verflochten ist.",
-                descKa: "ჯაზური იმპროვიზაცია, დაბადებული თბილისის ძველ ეზოებში, სადაც ქართული მელანქოლია თანამედროვე ქალაქის რიტმებს ერწყმის.",
-                descAr: "ارتجال جاز ولد في ساحات تبليسي القديمة، حيث يتشابك الكآبة الجورجية مع إيقاعات المدينة الحديثة.",
-                descHe: "אימפרוביזציית ג'אז שנולדה בחצרותיה הישנות של טביליסי, שם מלנכוליה גאורגית משתלבת עם המקצבים של העיר המודרנית.",
-                descZh: "诞生于第比利斯古老庭院的爵士即兴创作，格鲁吉亚的忧郁与现代城市的节奏交织在一起。",
-                descJa: "トビリシの古い中庭で生まれたジャズの即興演奏。ジョージアの憂鬱と現代都市のリズムが絡み合う。",
-                videoUrl: "https://youtu.be/O-V4_txJ2eg"
-            },
-            {
-                image: "Zvuk.jpg",
-                titleRu: "Материя звука",
-                titleEn: "Matter of Sound",
-                titleDe: "Materie des Klangs",
-                titleKa: "ხმის მატერია",
-                titleAr: "مادة الصوت",
-                titleHe: "חומר הצליל",
-                titleZh: "声音的物质",
-                titleJa: "音の物質",
-                descRu: "Визуальная медитация о времени, памяти и музыкальной структуре бытия.",
-                descEn: "A visual meditation on time, memory, and the musical structure of existence.",
-                descDe: "Eine visuelle Meditation über Zeit, Erinnerung und die musikalische Struktur der Existenz.",
-                descKa: "ვიზუალური მედიტაცია დროზე, მეხსიერებასა და ყოფიერების მუსიკალურ სტრუქტურაზე.",
-                descAr: "تأمل بصري في الزمن والذاكرة والبنية الموسيقية للوجود.",
-                descHe: "מדיטציה ויזואלית על זמן, זיכרון והמבנה המוזיקלי של הקיום.",
-                descZh: "关于时间、记忆和存在的音乐结构的视觉冥想。",
-                descJa: "時間、記憶、存在の音楽的構造についての視覚的瞑想。",
-                videoUrl: "https://youtu.be/BjYiufpLVOc"
-            },
-            {
-                image: "Zvezdnaia pily.jpg",
-                titleRu: "Мы звездная пыль",
-                titleEn: "We Are Stardust",
-                titleDe: "Wir sind Sternenstaub",
-                titleKa: "ჩვენ ვართ ვარსკვლავური მტვერი",
-                titleAr: "نحن غبار النجوم",
-                titleHe: "אנחנו אבק כוכבים",
-                titleZh: "我们是星尘",
-                titleJa: "私たちは星の塵",
-                descRu: "Свет и тень как метафоры звука и тишины в творчестве композитора.",
-                descEn: "Light and shadow as metaphors for sound and silence in the composer's work.",
-                descDe: "Licht und Schatten als Metaphern für Klang und Stille im Werk des Komponisten.",
-                descKa: "სინათლე და ჩრდილი, როგორც ხმისა და დუმილის მეტაფორები კომპოზიტორის შემოქმედებაში.",
-                descAr: "الضوء والظل كناية عن الصوت والصمت في أعمال الملحن.",
-                descHe: "אור וצל כמטפורות לקול ושתיקה ביצירתו של המלחין.",
-                descZh: "光与影作为作曲家作品中声音与寂静的隐喻。",
-                descJa: "作曲家の作品における音と沈黙の比喩としての光と影。",
-                videoUrl: "https://youtu.be/Qk1x7oN7Q-E"
-            },
-            {
-                image: "Tanec Sveta.jpg",
-                titleRu: "Dämon – Tanz des Lichts",
-                titleEn: "Dämon – Dance of Light",
-                titleDe: "Dämon – Tanz des Lichts",
-                titleKa: "დემონი – სინათლის ცეკვა",
-                titleAr: "شيطان – رقصة النور",
-                titleHe: "שד – ריקוד האור",
-                titleZh: "恶魔 - 光之舞",
-                titleJa: "デーモン – 光の舞い",
-                descRu: "Кинематографический этюд о пересечении судеб и музыкальных тем.",
-                descEn: "A cinematic study on the intersection of fates and musical themes.",
-                descDe: "Eine kinematografische Studie über die Überschneidung von Schicksalen und musikalischen Themen.",
-                descKa: "კინემატოგრაფიული ეტიუდი ბედებისა და მუსიკალური თემების გადაკვეთაზე.",
-                descAr: "دراسة سينمائية عن تقاطع الأقدار والمواضيع الموسيقية.",
-                descHe: "מחקר קולנועי על הצטלבות גורלות ונושאים מוזיקליים.",
-                descZh: "关于命运与音乐主题交织的电影研究。",
-                descJa: "運命と音楽的主題の交差についての映画的研究。",
-                videoUrl: "https://youtu.be/w4HSWHlgDpM"
-            },
-            {
-                image: "Tanec Sveta i nochi.jpg",
-                titleRu: "Dämon – Licht und Dunkelheit",
-                titleEn: "Dämon – Light and Darkness",
-                titleDe: "Dämon – Licht und Dunkelheit",
-                titleKa: "დემონი – სინათლე და სიბნელე",
-                titleAr: "شيطان – النور والظلام",
-                titleHe: "שד – אור וחושך",
-                titleZh: "恶魔 - 光与暗",
-                titleJa: "デーモン – 光と闇",
-                descRu: "Тбилисские мотивы в ритмах современной урбанистической симфонии.",
-                descEn: "Tbilisi motifs in the rhythms of a modern urban symphony.",
-                descDe: "Tiflis-Motive in den Rhythmen einer modernen urbanen Symphonie.",
-                descKa: "თბილისური მოტივები თანამედროვე ურბანული სიმფონიის რიტმებში.",
-                descAr: "موضوعات تبليسي في إيقاعات سيمفونية حضرية حديثة.",
-                descHe: "מוטיבים טביליסיים במקצבים של סימפוניה אורבנית מודרנית.",
-                descZh: "现代城市交响乐节奏中的第比利斯主题。",
-                descJa: "現代の都市交響曲のリズムにおけるトビリシのモチーフ。",
-                videoUrl: "https://youtu.be/sFXNzMaiGN4"
-            },
-            {
-                image: "Polet Zemli.jpg",
-                titleRu: "Полет Земли",
-                titleEn: "Flight of the Earth",
-                titleDe: "Flug der Erde",
-                titleKa: "დედამიწის ფრენა",
-                titleAr: "رحلة الأرض",
-                titleHe: "טיסת כדור הארץ",
-                titleZh: "地球的飞行",
-                titleJa: "地球の飛行",
-                descRu: "Космическая симфония, объединяющая земные и небесные мотивы.",
-                descEn: "A cosmic symphony uniting earthly and celestial motifs.",
-                descDe: "Eine kosmische Symphonie, die irdische und himmlische Motive vereint.",
-                descKa: "კოსმოსური სიმფონია, რომელიც აერთიანებს მიწიერ და ზეციურ მოტივებს.",
-                descAr: "سيمفونية كونية توحد الزخارف الأرضية والسماوية.",
-                descHe: "סימפוניה קוסמית המאחדת מוטיבים ארציים ושמימיים.",
-                descZh: "融合了尘世与天堂主题的宇宙交响曲。",
-                descJa: "地上と天上のモチーフを融合した宇宙交響曲。",
-                videoUrl: "https://youtu.be/OA6UvyLqYXY"
-            },
-            {
-                image: "Scerco.jpg",
-                titleRu: "Скерцо полет",
-                titleEn: "Scherzo Flight",
-                titleDe: "Scherzo Flug",
-                titleKa: "სკერცო ფრენა",
-                titleAr: "رحلة شرزو",
-                titleHe: "טיסת סקרצו",
-                titleZh: "谐谑曲飞行",
-                titleJa: "スケルツォ飛行",
-                descRu: "Легкая и стремительная музыкальная фантазия.",
-                descEn: "Light and swift musical fantasy.",
-                descDe: "Leichte und schnelle musikalische Fantasie.",
-                descKa: "მსუბუქი და სწრაფი მუსიკალური ფანტაზია.",
-                descAr: "خيال موسيقي خفيف وسريع.",
-                descHe: "פנטזיה מוזיקלית קלילה ומהירה.",
-                descZh: "轻盈而迅速的音乐幻想。",
-                descJa: "軽やかで速い音楽的幻想。",
-                videoUrl: "https://rutube.ru/video/92796c5474132068500684cda8bff8f2/"
-            },
-            {
-                image: "Cantata.jpg",
-                titleRu: "Cantata C minor, Op. 17, part 2",
-                titleEn: "Cantata C minor, Op. 17, part 2",
-                titleDe: "Kantate c-Moll, Op. 17, Teil 2",
-                titleKa: "კანტატა დო მინორი, ოპ. 17, ნაწილი 2",
-                titleAr: "كانتاتا دو صغير، مصنف 17، الجزء 2",
-                titleHe: "קנטטה דו מינור, אופוס 17, חלק 2",
-                titleZh: "C小调康塔塔，作品17，第2部分",
-                titleJa: "ハ短調カンタータ 作品17 第2部",
-                descRu: "Классическая кантата в современном прочтении.",
-                descEn: "Classical cantata in a modern interpretation.",
-                descDe: "Klassische Kantate in moderner Interpretation.",
-                descKa: "კლასიკური კანტატა თანამედროვე ინტერპრეტაციაში.",
-                descAr: "كانتاتا كلاسيكية في تفسير حديث.",
-                descHe: "קנטטה קלאסית בפרשנות מודרנית.",
-                descZh: "现代诠释中的古典康塔塔。",
-                descJa: "現代的な解釈による古典カンタータ。",
-                videoUrl: "https://rutube.ru/video/b4b61a554c6a892ea61c1f6ab48f3117/"
-            },
-            {
-                image: "Bakuriani.jpg",
-                titleRu: "Бакуриани",
-                titleEn: "Bakuriani",
-                titleDe: "Bakuriani",
-                titleKa: "ბაკურიანი",
-                titleAr: "باكورياني",
-                titleHe: "באקוריאני",
-                titleZh: "巴库里阿尼",
-                titleJa: "バクリアニ",
-                descRu: "Музыкальное путешествие по живописным горным ландшафтам Грузии.",
-                descEn: "A musical journey through the picturesque mountain landscapes of Georgia.",
-                descDe: "Eine musikalische Reise durch die malerischen Berglandschaften Georgiens.",
-                descKa: "მუსიკალური მოგზაურობა საქართველოს თვალწარმტაცი მთის პეიზაჟებში.",
-                descAr: "رحلة موسيقية عبر المناظر الجبلية الخلابة في جورجيا.",
-                descHe: "מסע מוזיקלי דרך נופי ההרים הציוריים של גאורגיה.",
-                descZh: "穿越格鲁吉亚风景如画的山地景观的音乐之旅。",
-                descJa: "ジョージアの絵のように美しい山岳風景を巡る音楽の旅。",
-                videoUrl: "https://rutube.ru/video/c1627cbd2221beb71fde2ece78698f1c/"
-            },
-            {
-                image: "Doroga.jpg",
-                titleRu: "Тропинки детства",
-                titleEn: "Paths of Childhood",
-                titleDe: "Pfade der Kindheit",
-                titleKa: "ბავშვობის ბილიკები",
-                titleAr: "مسارات الطفولة",
-                titleHe: "שבילי הילדות",
-                titleZh: "童年的小径",
-                titleJa: "子供時代の小道",
-                descRu: "Ностальгическая музыкальная зарисовка о беззаботных годах.",
-                descEn: "A nostalgic musical sketch of carefree years.",
-                descDe: "Eine nostalgische musikalische Skizze sorgenfreier Jahre.",
-                descKa: "ნოსტალგიური მუსიკალური ჩანახატი უდარდელ წლებზე.",
-                descAr: "رسم موسيقي حنين لسنوات خالية من الهموم.",
-                descHe: "סקיצה מוזיקלית נוסטלגית של שנים חסרות דאגות.",
-                descZh: "关于无忧无虑岁月的怀旧音乐素描。",
-                descJa: "のびのびとした年月についてのノスタルジックな音楽的スケッチ。",
-                videoUrl: "https://rutube.ru/video/a77e233ae3144b22d8eba7c5cad3efaa/"
-            },
-            {
-                image: "Demon.jpg",
-                titleRu: "Песнь Самаэля. Часть из Поп (Рок) Оперы «Дэмон»",
-                titleEn: "Song of Samael. Part from the Pop (Rock) Opera 'Demon'",
-                titleDe: "Gesang Samaels. Teil aus der Pop (Rock) Oper 'Dämon'",
-                titleKa: "სამაელის სიმღერა. ნაწილი პოპ (როკ) ოპერიდან „დემონი“",
-                titleAr: "نشيد سامائيل. جزء من أوبرا البوب (روك) 'شيطان'",
-                titleHe: "שירת סמאל. חלק מהאופרת פופ (רוק) 'שד'",
-                titleZh: "萨麦尔之歌。来自流行（摇滚）歌剧《恶魔》",
-                titleJa: "サマエルの歌。ポップ（ロック）オペラ「デーモン」より",
-                descRu: "Драматическая ария из рок-оперы, раскрывающая образ падшего ангела.",
-                descEn: "A dramatic aria from the rock opera, revealing the image of the fallen angel.",
-                descDe: "Eine dramatische Arie aus der Rockoper, die das Bild des gefallenen Engels enthüllt.",
-                descKa: "დრამატული არია როკ-ოპერიდან, რომელიც ავლენს დაცემული ანგელოზის სახეს.",
-                descAr: "أغنية درامية من أوبرا الروك، تكشف صورة الملاك الساقط.",
-                descHe: "אריה דרמטית מאופרת הרוק, החושפת את דמותו של המלאך הנופל.",
-                descZh: "来自摇滚歌剧的戏剧性咏叹调，揭示了堕落天使的形象。",
-                descJa: "堕天使の姿を描いたロックオペラからの劇的なアリア。",
-                videoUrl: "https://rutube.ru/video/277cbf6f9751926e2b066942d1282407/"
-            },
-            {
-                image: "Nagornaia.jpg",
-                titleRu: "Нагорная проповедь",
-                titleEn: "Sermon on the Mount",
-                titleDe: "Bergpredigt",
-                titleKa: "მთაზე ქადაგება",
-                titleAr: "العظة على الجبل",
-                titleHe: "הדרשה על ההר",
-                titleZh: "登山宝训",
-                titleJa: "山上の垂訓",
-                descRu: "Одна из частей оперы, вдохновленная библейскими мотивами.",
-                descEn: "One part of the opera, inspired by biblical motifs.",
-                descDe: "Ein Teil der Oper, inspiriert von biblischen Motiven.",
-                descKa: "ოპერის ერთ-ერთი ნაწილი, შთაგონებული ბიბლიური მოტივებით.",
-                descAr: "جزء من الأوبرا، مستوحى من الزخارف التوراتية.",
-                descHe: "חלק אחד מהאופרה, בהשראת מוטיבים מקראיים.",
-                descZh: "歌剧的一部分，灵感来自圣经主题。",
-                descJa: "聖書のモチーフに触発されたオペラの一部。",
-                videoUrl: "https://rutube.ru/video/bb5b2192006ca684d5ddda9273af9e1d/"
-            },
-            {
-                image: "Teatr.jpg",
-                titleRu: "За кулисами детства",
-                titleEn: "Behind the Scenes of Childhood",
-                titleDe: "Hinter den Kulissen der Kindheit",
-                titleKa: "ბავშვობის კულისებში",
-                titleAr: "وراء كواليس الطفولة",
-                titleHe: "מאחורי הקלעים של הילדות",
-                titleZh: "童年的幕后",
-                titleJa: "子供時代の舞台裏",
-                descRu: "Лирическое размышление о formative годах и их влиянии на творчество.",
-                descEn: "A lyrical reflection on formative years and their influence on creativity.",
-                descDe: "Eine lyrische Reflexion über die prägenden Jahre und ihren Einfluss auf die Kreativität.",
-                descKa: "ლირიკული რეფლექსია ჩამოყალიბების წლებზე და მათ გავლენაზე შემოქმედებაზე.",
-                descAr: "تأمل غنائي في سنوات التكوين وتأثيرها على الإبداع.",
-                descHe: "השתקפות לירית על השנים המעצבות והשפעתן על היצירתיות.",
-                descZh: "关于成长岁月及其对创造力影响的一首抒情反思。",
-                descJa: "形成期と創造性への影響についての叙情的な考察。",
-                videoUrl: "https://rutube.ru/video/70250d53d5f17d32ad27d256859bb95f/"
-            }
+            { image: "behind_the_holy_hill.jpg", titleRu: "Behind the Holy Hill", titleEn: "Behind the Holy Hill", titleDe: "Hinter dem heiligen Hügel", titleKa: "წმინდა გორის მიღმა", titleAr: "خلف التل المقدس", titleHe: "מאחורי הגבעה הקדושה", titleZh: "圣山之后", titleJa: "聖なる丘の向こう側", descRu: "Кинематографическое путешествие в мистические ландшафты, где время замирает, а музыка становится мостом между реальностями.", descEn: "A cinematic journey into mystical landscapes where time stands still and music becomes a bridge between realities.", descDe: "Eine filmische Reise in mystische Landschaften, in denen die Zeit stillsteht und Musik zur Brücke zwischen Realitäten wird.", descKa: "კინემატოგრაფიული მოგზაურობა მისტიკურ ლანდშაფტებში, სადაც დრო ჩერდება და მუსიკა ხდება ხიდი რეალობებს შორის.", descAr: "رحلة سينمائية إلى مناظر طبيعية صوفية حيث يتوقف الزمن وتصبح الموسيقى جسراً بين الحقائق.", descHe: "מסע קולנועי לנופים מיסטיים שבהם הזמן עומד מלכת והמוזיקה הופכת לגשר בין מציאויות.", descZh: "进入神秘景观的电影之旅，时间静止，音乐成为现实之间的桥梁。", descJa: "時間が止まり、音楽が現実の間の架け橋となる神秘的な風景への映画的旅。", videoUrl: "https://youtu.be/PRMxm0K9KKk" },
+            { image: "soul_of_tiflis_jazz.jpg", titleRu: "The Soul of Tiflis Jazz", titleEn: "The Soul of Tiflis Jazz", titleDe: "Die Seele des Tiflis-Jazz", titleKa: "თბილისური ჯაზის სული", titleAr: "روح جاز تيفليس", titleHe: "נשמת הג'אז של טיפליס", titleZh: "第比利斯爵士之魂", titleJa: "ティフリスジャズの魂", descRu: "Джазовая импровизация, рожденная в старых дворах Тбилиси, где переплетаются грузинская меланхолия и ритмы современного города.", descEn: "A jazz improvisation born in the old courtyards of Tbilisi, where Georgian melancholy intertwines with the rhythms of the modern city.", descDe: "Eine Jazzimprovisation, geboren in den alten Höfen von Tiflis, wo georgische Melancholie mit den Rhythmen der modernen Stadt verflochten ist.", descKa: "ჯაზური იმპროვიზაცია, დაბადებული თბილისის ძველ ეზოებში, სადაც ქართული მელანქოლია თანამედროვე ქალაქის რიტმებს ერწყმის.", descAr: "ارتجال جاز ولد في ساحات تبليسي القديمة، حيث يتشابك الكآبة الجورجية مع إيقاعات المدينة الحديثة.", descHe: "אימפרוביזציית ג'אז שנולדה בחצרותיה הישנות של טביליסי, שם מלנכוליה גאורגית משתלבת עם המקצבים של העיר המודרנית.", descZh: "诞生于第比利斯古老庭院的爵士即兴创作，格鲁吉亚的忧郁与现代城市的节奏交织在一起。", descJa: "トビリシの古い中庭で生まれたジャズの即興演奏。ジョージアの憂鬱と現代都市のリズムが絡み合う。", videoUrl: "https://youtu.be/O-V4_txJ2eg" },
+            { image: "Zvuk.jpg", titleRu: "Материя звука", titleEn: "Matter of Sound", titleDe: "Materie des Klangs", titleKa: "ხმის მატერია", titleAr: "مادة الصوت", titleHe: "חומר הצליל", titleZh: "声音的物质", titleJa: "音の物質", descRu: "Визуальная медитация о времени, памяти и музыкальной структуре бытия.", descEn: "A visual meditation on time, memory, and the musical structure of existence.", descDe: "Eine visuelle Meditation über Zeit, Erinnerung und die musikalische Struktur der Existenz.", descKa: "ვიზუალური მედიტაცია დროზე, მეხსიერებასა და ყოფიერების მუსიკალურ სტრუქტურაზე.", descAr: "تأمل بصري في الزمن والذاكرة والبنية الموسيقية للوجود.", descHe: "מדיטציה ויזואלית על זמן, זיכרון והמבנה המוזיקלי של הקיום.", descZh: "关于时间、记忆和存在的音乐结构的视觉冥想。", descJa: "時間、記憶、存在の音楽的構造についての視覚的瞑想。", videoUrl: "https://youtu.be/BjYiufpLVOc" },
+            { image: "Zvezdnaia pily.jpg", titleRu: "Мы звездная пыль", titleEn: "We Are Stardust", titleDe: "Wir sind Sternenstaub", titleKa: "ჩვენ ვართ ვარსკვლავური მტვერი", titleAr: "نحن غبار النجوم", titleHe: "אנחנו אבק כוכבים", titleZh: "我们是星尘", titleJa: "私たちは星の塵", descRu: "Свет и тень как метафоры звука и тишины в творчестве композитора.", descEn: "Light and shadow as metaphors for sound and silence in the composer's work.", descDe: "Licht und Schatten als Metaphern für Klang und Stille im Werk des Komponisten.", descKa: "სინათლე და ჩრდილი, როგორც ხმისა და დუმილის მეტაფორები კომპოზიტორის შემოქმედებაში.", descAr: "الضوء والظل كناية عن الصوت والصمت في أعمال الملحن.", descHe: "אור וצל כמטפורות לקול ושתיקה ביצירתו של המלחין.", descZh: "光与影作为作曲家作品中声音与寂静的隐喻。", descJa: "作曲家の作品における音と沈黙の比喩としての光と影。", videoUrl: "https://youtu.be/Qk1x7oN7Q-E" },
+            { image: "Tanec Sveta.jpg", titleRu: "Dämon – Tanz des Lichts", titleEn: "Dämon – Dance of Light", titleDe: "Dämon – Tanz des Lichts", titleKa: "დემონი – სინათლის ცეკვა", titleAr: "شيطان – رقصة النور", titleHe: "שד – ריקוד האור", titleZh: "恶魔 - 光之舞", titleJa: "デーモン – 光の舞い", descRu: "Кинематографический этюд о пересечении судеб и музыкальных тем.", descEn: "A cinematic study on the intersection of fates and musical themes.", descDe: "Eine kinematografische Studie über die Überschneidung von Schicksalen und musikalischen Themen.", descKa: "კინემატოგრაფიული ეტიუდი ბედებისა და მუსიკალური თემების გადაკვეთაზე.", descAr: "دراسة سينمائية عن تقاطع الأقدار والمواضيع الموسيقية.", descHe: "מחקר קולנועי על הצטלבות גורלות ונושאים מוזיקליים.", descZh: "关于命运与音乐主题交织的电影研究。", descJa: "運命と音楽的主題の交差についての映画的研究。", videoUrl: "https://youtu.be/w4HSWHlgDpM" },
+            { image: "Tanec Sveta i nochi.jpg", titleRu: "Dämon – Licht und Dunkelheit", titleEn: "Dämon – Light and Darkness", titleDe: "Dämon – Licht und Dunkelheit", titleKa: "დემონი – სინათლე და სიბნელე", titleAr: "شيطان – النور والظلام", titleHe: "שד – אור וחושך", titleZh: "恶魔 - 光与暗", titleJa: "デーモン – 光と闇", descRu: "Тбилисские мотивы в ритмах современной урбанистической симфонии.", descEn: "Tbilisi motifs in the rhythms of a modern urban symphony.", descDe: "Tiflis-Motive in den Rhythmen einer modernen urbanen Symphonie.", descKa: "თბილისური მოტივები თანამედროვე ურბანული სიმფონიის რიტმებში.", descAr: "موضوعات تبليسي في إيقاعات سيمفونية حضرية حديثة.", descHe: "מוטיבים טביליסיים במקצבים של סימפוניה אורבנית מודרנית.", descZh: "现代城市交响乐节奏中的第比利斯主题。", descJa: "現代の都市交響曲のリズムにおけるトビリシのモチーフ。", videoUrl: "https://youtu.be/sFXNzMaiGN4" },
+            { image: "Polet Zemli.jpg", titleRu: "Полет Земли", titleEn: "Flight of the Earth", titleDe: "Flug der Erde", titleKa: "დედამიწის ფრენა", titleAr: "رحلة الأرض", titleHe: "טיסת כדור הארץ", titleZh: "地球的飞行", titleJa: "地球の飛行", descRu: "Космическая симфония, объединяющая земные и небесные мотивы.", descEn: "A cosmic symphony uniting earthly and celestial motifs.", descDe: "Eine kosmische Symphonie, die irdische und himmlische Motive vereint.", descKa: "კოსმოსური სიმფონია, რომელიც აერთიანებს მიწიერ და ზეციურ მოტივებს.", descAr: "سيمفونية كونية توحد الزخارف الأرضية والسماوية.", descHe: "סימפוניה קוסמית המאחדת מוטיבים ארציים ושמימיים.", descZh: "融合了尘世与天堂主题的宇宙交响曲。", descJa: "地上と天上のモチーフを融合した宇宙交響曲。", videoUrl: "https://youtu.be/OA6UvyLqYXY" },
+            { image: "Scerco.jpg", titleRu: "Скерцо полет", titleEn: "Scherzo Flight", titleDe: "Scherzo Flug", titleKa: "სკერცო ფრენა", titleAr: "رحلة شرزو", titleHe: "טיסת סקרצו", titleZh: "谐谑曲飞行", titleJa: "スケルツォ飛行", descRu: "Легкая и стремительная музыкальная фантазия.", descEn: "Light and swift musical fantasy.", descDe: "Leichte und schnelle musikalische Fantasie.", descKa: "მსუბუქი და სწრაფი მუსიკალური ფანტაზია.", descAr: "خيال موسيقي خفيف وسريع.", descHe: "פנטזיה מוזיקלית קלילה ומהירה.", descZh: "轻盈而迅速的音乐幻想。", descJa: "軽やかで速い音楽的幻想。", videoUrl: "https://rutube.ru/video/92796c5474132068500684cda8bff8f2/" },
+            { image: "Cantata.jpg", titleRu: "Cantata C minor, Op. 17, part 2", titleEn: "Cantata C minor, Op. 17, part 2", titleDe: "Kantate c-Moll, Op. 17, Teil 2", titleKa: "კანტატა დო მინორი, ოპ. 17, ნაწილი 2", titleAr: "كانتاتا دو صغير، مصنف 17، الجزء 2", titleHe: "קנטטה דו מינור, אופוס 17, חלק 2", titleZh: "C小调康塔塔，作品17，第2部分", titleJa: "ハ短調カンタータ 作品17 第2部", descRu: "Классическая кантата в современном прочтении.", descEn: "Classical cantata in a modern interpretation.", descDe: "Klassische Kantate in moderner Interpretation.", descKa: "კლასიკური კანტატა თანამედროვე ინტერპრეტაციაში.", descAr: "كانتاتا كلاسيكية في تفسير حديث.", descHe: "קנטטה קלאסית בפרשנות מודרנית.", descZh: "现代诠释中的古典康塔塔。", descJa: "現代的な解釈による古典カンタータ。", videoUrl: "https://rutube.ru/video/b4b61a554c6a892ea61c1f6ab48f3117/" },
+            { image: "Bakuriani.jpg", titleRu: "Бакуриани", titleEn: "Bakuriani", titleDe: "Bakuriani", titleKa: "ბაკურიანი", titleAr: "باكورياني", titleHe: "באקוריאני", titleZh: "巴库里阿尼", titleJa: "バクリアニ", descRu: "Музыкальное путешествие по живописным горным ландшафтам Грузии.", descEn: "A musical journey through the picturesque mountain landscapes of Georgia.", descDe: "Eine musikalische Reise durch die malerischen Berglandschaften Georgiens.", descKa: "მუსიკალური მოგზაურობა საქართველოს თვალწარმტაცი მთის პეიზაჟებში.", descAr: "رحلة موسيقية عبر المناظر الجبلية الخلابة في جورجيا.", descHe: "מסע מוזיקלי דרך נופי ההרים הציוריים של גאורגיה.", descZh: "穿越格鲁吉亚风景如画的山地景观的音乐之旅。", descJa: "ジョージアの絵のように美しい山岳風景を巡る音楽の旅。", videoUrl: "https://rutube.ru/video/c1627cbd2221beb71fde2ece78698f1c/" },
+            { image: "Doroga.jpg", titleRu: "Тропинки детства", titleEn: "Paths of Childhood", titleDe: "Pfade der Kindheit", titleKa: "ბავშვობის ბილიკები", titleAr: "مسارات الطفولة", titleHe: "שבילי הילדות", titleZh: "童年的小径", titleJa: "子供時代の小道", descRu: "Ностальгическая музыкальная зарисовка о беззаботных годах.", descEn: "A nostalgic musical sketch of carefree years.", descDe: "Eine nostalgische musikalische Skizze sorgenfreier Jahre.", descKa: "ნოსტალგიური მუსიკალური ჩანახატი უდარდელ წლებზე.", descAr: "رسم موسيقي حنين لسنوات خالية من الهموم.", descHe: "סקיצה מוזיקלית נוסטלגית של שנים חסרות דאגות.", descZh: "关于无忧无虑岁月的怀旧音乐素描。", descJa: "のびのびとした年月についてのノスタルジックな音楽的スケッチ。", videoUrl: "https://rutube.ru/video/a77e233ae3144b22d8eba7c5cad3efaa/" },
+            { image: "Demon.jpg", titleRu: "Песнь Самаэля. Часть из Поп (Рок) Оперы «Дэмон»", titleEn: "Song of Samael. Part from the Pop (Rock) Opera 'Demon'", titleDe: "Gesang Samaels. Teil aus der Pop (Rock) Oper 'Dämon'", titleKa: "სამაელის სიმღერა. ნაწილი პოპ (როკ) ოპერიდან „დემონი“", titleAr: "نشيد سامائيل. جزء من أوبرا البوب (روك) 'شيطان'", titleHe: "שירת סמאל. חלק מהאופרת פופ (רוק) 'שד'", titleZh: "萨麦尔之歌。来自流行（摇滚）歌剧《恶魔》", titleJa: "サマエルの歌。ポップ（ロック）オペラ「デーモン」より", descRu: "Драматическая ария из рок-оперы, раскрывающая образ падшего ангела.", descEn: "A dramatic aria from the rock opera, revealing the image of the fallen angel.", descDe: "Eine dramatische Arie aus der Rockoper, die das Bild des gefallenen Engels enthüllt.", descKa: "დრამატული არია როკ-ოპერიდან, რომელიც ავლენს დაცემული ანგელოზის სახეს.", descAr: "أغنية درامية من أوبرا الروك، تكشف صورة الملاك الساقط.", descHe: "אריה דרמטית מאופרת הרוק, החושפת את דמותו של המלאך הנופל.", descZh: "来自摇滚歌剧的戏剧性咏叹调，揭示了堕落天使的形象。", descJa: "堕天使の姿を描いたロックオペラからの劇的なアリア。", videoUrl: "https://rutube.ru/video/277cbf6f9751926e2b066942d1282407/" },
+            { image: "Nagornaia.jpg", titleRu: "Нагорная проповедь", titleEn: "Sermon on the Mount", titleDe: "Bergpredigt", titleKa: "მთაზე ქადაგება", titleAr: "العظة على الجبل", titleHe: "הדרשה על ההר", titleZh: "登山宝训", titleJa: "山上の垂訓", descRu: "Одна из частей оперы, вдохновленная библейскими мотивами.", descEn: "One part of the opera, inspired by biblical motifs.", descDe: "Ein Teil der Oper, inspiriert von biblischen Motiven.", descKa: "ოპერის ერთ-ერთი ნაწილი, შთაგონებული ბიბლიური მოტივებით.", descAr: "جزء من الأوبرا، مستوحى من الزخارف التوراتية.", descHe: "חלק אחד מהאופרה, בהשראת מוטיבים מקראיים.", descZh: "歌剧的一部分，灵感来自圣经主题。", descJa: "聖書のモチーフに触発されたオペラの一部。", videoUrl: "https://rutube.ru/video/bb5b2192006ca684d5ddda9273af9e1d/" },
+            { image: "Teatr.jpg", titleRu: "За кулисами детства", titleEn: "Behind the Scenes of Childhood", titleDe: "Hinter den Kulissen der Kindheit", titleKa: "ბავშვობის კულისებში", titleAr: "وراء كواليس الطفولة", titleHe: "מאחורי הקלעים של הילדות", titleZh: "童年的幕后", titleJa: "子供時代の舞台裏", descRu: "Лирическое размышление о formative годах и их влиянии на творчество.", descEn: "A lyrical reflection on formative years and their influence on creativity.", descDe: "Eine lyrische Reflexion über die prägenden Jahre und ihren Einfluss auf die Kreativität.", descKa: "ლირიკული რეფლექსია ჩამოყალიბების წლებზე და მათ გავლენაზე შემოქმედებაზე.", descAr: "تأمل غنائي في سنوات التكوين وتأثيرها على الإبداع.", descHe: "השתקפות לירית על השנים המעצבות והשפעתן על היצירתיות.", descZh: "关于成长岁月及其对创造力影响的一首抒情反思。", descJa: "形成期と創造性への影響についての叙情的な考察。", videoUrl: "https://rutube.ru/video/70250d53d5f17d32ad27d256859bb95f/" }
         ];
 
         let currentLang = 'ru';
+        let currentTrackIndex = 0;
+        let audio = new Audio();
+        let isPlaying = false;
 
         function getBookTitle(book) {
-            const titles = {
-                ru: book.titleRu,
-                en: book.titleEn,
-                de: book.titleDe,
-                ka: book.titleKa,
-                ar: book.titleAr,
-                he: book.titleHe,
-                zh: book.titleZh,
-                ja: book.titleJa
-            };
+            const titles = { ru: book.titleRu, en: book.titleEn, de: book.titleDe, ka: book.titleKa, ar: book.titleAr, he: book.titleHe, zh: book.titleZh, ja: book.titleJa };
             return titles[currentLang] || book.titleRu;
         }
 
         function getCinemaTitle(slide) {
-            const titles = {
-                ru: slide.titleRu,
-                en: slide.titleEn,
-                de: slide.titleDe,
-                ka: slide.titleKa,
-                ar: slide.titleAr,
-                he: slide.titleHe,
-                zh: slide.titleZh,
-                ja: slide.titleJa
-            };
+            const titles = { ru: slide.titleRu, en: slide.titleEn, de: slide.titleDe, ka: slide.titleKa, ar: slide.titleAr, he: slide.titleHe, zh: slide.titleZh, ja: slide.titleJa };
             return titles[currentLang] || slide.titleRu;
         }
 
         function getCinemaDesc(slide) {
-            const descs = {
-                ru: slide.descRu,
-                en: slide.descEn,
-                de: slide.descDe,
-                ka: slide.descKa,
-                ar: slide.descAr,
-                he: slide.descHe,
-                zh: slide.descZh,
-                ja: slide.descJa
-            };
+            const descs = { ru: slide.descRu, en: slide.descEn, de: slide.descDe, ka: slide.descKa, ar: slide.descAr, he: slide.descHe, zh: slide.descZh, ja: slide.descJa };
             return descs[currentLang] || slide.descRu;
         }
 
         function renderBookshelf() {
             const container = document.getElementById('bookshelfContainer');
-            container.innerHTML = books.map((book, index) => `
-                <div class="book-card" onclick="window.open('${book.link}', '_blank')">
-                    <img src="${book.cover}" class="book-cover" alt="${getBookTitle(book)}" onerror="this.src='https://via.placeholder.com/180x240/d4af37/ffffff?text=${encodeURIComponent(book.titleRu.substring(0, 20))}'">
-                    <div class="book-info">
-                        <div class="book-title">${getBookTitle(book)}</div>
-                        <div class="book-year">${book.year}</div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = books.map(book => `<div class="book-card" onclick="window.open('${book.link}', '_blank')"><img src="${book.cover}" class="book-cover" alt="${getBookTitle(book)}" onerror="this.src='https://via.placeholder.com/180x240/d4af37/ffffff?text=${encodeURIComponent(book.titleRu.substring(0, 20))}'"><div class="book-info"><div class="book-title">${getBookTitle(book)}</div><div class="book-year">${book.year}</div></div></div>`).join('');
         }
 
         function renderCinema() {
             const container = document.getElementById('cinemaSlides');
-            container.innerHTML = cinemaSlides.map(slide => `
-                <a href="${slide.videoUrl}" target="_blank" class="cinema-card">
-                    <div class="cinema-card-image" style="background-image: url('${slide.image}')"></div>
-                    <div class="cinema-card-info">
-                        <div class="cinema-card-title">${getCinemaTitle(slide)}</div>
-                        <div class="cinema-card-desc">${getCinemaDesc(slide)}</div>
-                    </div>
-                </a>
-            `).join('');
+            container.innerHTML = cinemaSlides.map(slide => `<a href="${slide.videoUrl}" target="_blank" class="cinema-card"><div class="cinema-card-image" style="background-image: url('${slide.image}')"></div><div class="cinema-card-info"><div class="cinema-card-title">${getCinemaTitle(slide)}</div><div class="cinema-card-desc">${getCinemaDesc(slide)}</div></div></a>`).join('');
         }
 
-        // ==================== ПЛЕЙЛИСТ ИЗ 46 ТРЕКОВ ====================
+        // ==================== ПЛЕЙЛИСТ ====================
         const playlist = [
             { titleRu: "A little rain", titleEn: "A little rain", artist: "Erich Erlenbach", url: "1_2E_A_little_rain_1.mp3" },
             { titleRu: "Blues under the starry sky", titleEn: "Blues under the starry sky", artist: "Erich Erlenbach", url: "2_2E_Blues_under_the_starry_sky.mp3" },
@@ -1539,10 +1137,6 @@
             { titleRu: "Seasons - Winter Introduction 2", titleEn: "Seasons - Winter Introduction 2", artist: "Erich Erlenbach", url: "46_Seasons_Winter_Introduction_2.mp3" }
         ];
 
-        let currentTrackIndex = 0;
-        let audio = new Audio();
-        let isPlaying = false;
-
         function getTrackTitle(track) {
             return currentLang === 'ru' ? track.titleRu : track.titleEn;
         }
@@ -1550,36 +1144,25 @@
         function loadTrack(index) {
             const track = playlist[index];
             if (!track) return;
-            
             audio.src = track.url;
             audio.load();
-            
             document.getElementById('currentTrackTitle').innerText = getTrackTitle(track);
             document.getElementById('currentTrackArtist').innerText = track.artist;
-            
             document.getElementById('progressFill').style.width = '0%';
             document.getElementById('currentTime').innerText = '0:00';
             document.getElementById('totalTime').innerText = '0:00';
-            
-            if (isPlaying) {
-                audio.play().catch(e => console.log('Playback error:', e));
-            }
-            
+            if (isPlaying) audio.play().catch(e => console.log('Playback error:', e));
             updatePlayPauseButton();
         }
 
         function updatePlayPauseButton() {
-            const btn = document.getElementById('playPauseBtn');
-            btn.innerHTML = isPlaying ? '⏸️' : '▶️';
+            document.getElementById('playPauseBtn').innerHTML = isPlaying ? '⏸️' : '▶️';
         }
 
         function togglePlayPause() {
             if (audio.src) {
-                if (isPlaying) {
-                    audio.pause();
-                } else {
-                    audio.play().catch(e => console.log('Playback error:', e));
-                }
+                if (isPlaying) audio.pause();
+                else audio.play().catch(e => console.log('Playback error:', e));
                 isPlaying = !isPlaying;
                 updatePlayPauseButton();
             } else {
@@ -1612,16 +1195,13 @@
 
         audio.addEventListener('timeupdate', () => {
             if (audio.duration) {
-                const percent = (audio.currentTime / audio.duration) * 100;
-                document.getElementById('progressFill').style.width = percent + '%';
+                document.getElementById('progressFill').style.width = (audio.currentTime / audio.duration) * 100 + '%';
                 document.getElementById('currentTime').innerText = formatTime(audio.currentTime);
                 document.getElementById('totalTime').innerText = formatTime(audio.duration);
             }
         });
 
-        audio.addEventListener('ended', () => {
-            nextTrack();
-        });
+        audio.addEventListener('ended', () => { nextTrack(); });
 
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
@@ -1632,49 +1212,36 @@
         document.getElementById('progressBar').addEventListener('click', (e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
-            if (audio.duration) {
-                audio.currentTime = percent * audio.duration;
-            }
+            if (audio.duration) audio.currentTime = percent * audio.duration;
         });
 
         document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
         document.getElementById('nextTrack').addEventListener('click', nextTrack);
         document.getElementById('prevTrack').addEventListener('click', prevTrack);
 
-        // ==================== ПОГОДА С ВЫБОРОМ ГОРОДА ====================
-        let currentLat = 41.7151;
-        let currentLon = 44.8271;
-        
+        // ==================== ПОГОДА ====================
+        let currentLat = 41.7151, currentLon = 44.8271;
         async function fetchWeather() {
-            const weatherLoading = document.getElementById('weatherLoading');
-            const weatherContent = document.getElementById('weatherContent');
-            const weatherError = document.getElementById('weatherError');
-            const weatherTemp = document.getElementById('weatherTemp');
-            const weatherDesc = document.getElementById('weatherDesc');
-            const weatherHumidity = document.getElementById('weatherHumidity');
-            const weatherWind = document.getElementById('weatherWind');
-            
+            const weatherLoading = document.getElementById('weatherLoading'), weatherContent = document.getElementById('weatherContent'), weatherError = document.getElementById('weatherError'), weatherTemp = document.getElementById('weatherTemp'), weatherDesc = document.getElementById('weatherDesc'), weatherHumidity = document.getElementById('weatherHumidity'), weatherWind = document.getElementById('weatherWind');
             try {
                 const resp = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${currentLat}&longitude=${currentLon}&current_weather=true&hourly=relativehumidity_2m&timezone=auto`);
-                if(!resp.ok) throw new Error();
+                if (!resp.ok) throw new Error();
                 const data = await resp.json();
-                if(data.current_weather) {
+                if (data.current_weather) {
                     weatherTemp.innerHTML = `🌡️ ${Math.round(data.current_weather.temperature)}°C`;
                     weatherDesc.innerHTML = 'Current Weather';
-                    let hum = (data.hourly && data.hourly.relativehumidity_2m) ? data.hourly.relativehumidity_2m[0] : '—';
-                    weatherHumidity.innerHTML = hum; 
+                    weatherHumidity.innerHTML = (data.hourly && data.hourly.relativehumidity_2m) ? data.hourly.relativehumidity_2m[0] : '—';
                     weatherWind.innerHTML = Math.round(data.current_weather.windspeed) + " m/s";
                     weatherLoading.style.display = 'none';
                     weatherContent.style.display = 'block';
                     weatherError.style.display = 'none';
                 }
-            } catch(e) { 
+            } catch (e) {
                 weatherLoading.style.display = 'none';
                 weatherError.style.display = 'block';
-                console.error('Weather fetch error:', e);
             }
         }
-        
+
         document.getElementById('citySelect').addEventListener('change', (e) => {
             const [lat, lon] = e.target.value.split(',');
             currentLat = parseFloat(lat);
@@ -1682,7 +1249,7 @@
             fetchWeather();
             localStorage.setItem('selectedCity', e.target.value);
         });
-        
+
         const savedCity = localStorage.getItem('selectedCity');
         if (savedCity) {
             document.getElementById('citySelect').value = savedCity;
@@ -1691,10 +1258,12 @@
             currentLon = parseFloat(lon);
         }
 
-        // Настроение дня
+        // ==================== НАСТРОЕНИЕ ДНЯ ====================
         function getMoodByTime() {
             const hour = new Date().getHours();
-            const moods = {
+            let period = hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 17 ? 'day' : hour >= 17 && hour < 21 ? 'evening' : 'night';
+            const icons = { morning: '🌅', day: '☀️', evening: '🌇', night: '🌙' };
+            const titles = {
                 ru: { morning: "Утренняя медитация", day: "Дневная активность", evening: "Вечерняя релаксация", night: "Ночное вдохновение" },
                 en: { morning: "Morning Meditation", day: "Day Activity", evening: "Evening Relaxation", night: "Night Inspiration" },
                 de: { morning: "Morgenmeditation", day: "Tagesaktivität", evening: "Abendentspannung", night: "Nächtliche Inspiration" },
@@ -1704,18 +1273,14 @@
                 zh: { morning: "晨间冥想", day: "白日活动", evening: "晚间放松", night: "夜间灵感" },
                 ja: { morning: "朝の瞑想", day: "昼の活動", evening: "夕方のリラックス", night: "夜のインスピレーション" }
             };
-            let period = hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 17 ? 'day' : hour >= 17 && hour < 21 ? 'evening' : 'night';
-            let icon = period === 'morning' ? '🌅' : period === 'day' ? '☀️' : period === 'evening' ? '🌇' : '🌙';
-            return { icon, title: moods[currentLang]?.[period] || moods.ru[period] };
+            return { icon: icons[period], title: (titles[currentLang]?.[period]) || titles.ru[period] };
         }
 
         function updateMoodWidget() {
             const mood = getMoodByTime();
             document.getElementById('moodIcon').innerHTML = mood.icon;
             document.getElementById('moodTitle').innerHTML = mood.title;
-            const labels = {
-                ru: 'Настроение дня:', en: 'Mood of the day:', de: 'Stimmung des Tages:', ka: 'დღის განწყობა:', ar: 'مزاج اليوم:', he: 'מצב הרוח של היום:', zh: '今日心情:', ja: '今日の気分:'
-            };
+            const labels = { ru: 'Настроение дня:', en: 'Mood of the day:', de: 'Stimmung des Tages:', ka: 'დღის განწყობა:', ar: 'مزاج اليوم:', he: 'מצב הרוח של היום:', zh: '今日心情:', ja: '今日の気分:' };
             document.getElementById('moodLabel').innerHTML = labels[currentLang] || 'Mood of the day:';
         }
 
@@ -1729,9 +1294,10 @@
             }
         }
 
+        // ==================== ЧАСЫ ====================
         function updateClock() {
             const now = new Date();
-            document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'});
+            document.getElementById('clock-time').innerText = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
             const locales = { ru: 'ru-RU', en: 'en-US', de: 'de-DE', ka: 'ka-GE', ar: 'ar-SA', he: 'he-IL', zh: 'zh-CN', ja: 'ja-JP' };
             document.getElementById('clock-date').innerText = now.toLocaleDateString(locales[currentLang] || 'ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
         }
@@ -1741,170 +1307,41 @@
             localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
 
-        // Smooth scrolling and active menu highlighting
+        // ==================== НАВИГАЦИЯ ====================
         function initNavigation() {
             const navButtons = document.querySelectorAll('.nav-btn');
-            const sections = {
-                top: document.getElementById('top'),
-                quote: document.getElementById('quote'),
-                bookshelf: document.getElementById('bookshelf'),
-                cinema: document.getElementById('cinema'),
-                bio: document.getElementById('bio'),
-                media: document.getElementById('media'),
-                lit: document.getElementById('lit'),
-                'footer-contacts': document.getElementById('footer-contacts')
-            };
-
-            function scrollToElement(element) {
-                if (element) {
-                    const offset = 100;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-            }
-
+            const sections = { top: document.getElementById('top'), quote: document.getElementById('quote'), bookshelf: document.getElementById('bookshelf'), cinema: document.getElementById('cinema'), bio: document.getElementById('bio'), media: document.getElementById('media'), lit: document.getElementById('lit'), 'footer-contacts': document.getElementById('footer-contacts') };
+            function scrollToElement(element) { if (element) { const offset = 100; window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' }); } }
             function setActiveButton() {
                 let current = '';
                 const scrollPosition = window.scrollY + 150;
-                const sectionsList = Object.entries(sections);
-                for (let i = 0; i < sectionsList.length; i++) {
-                    const [id, element] = sectionsList[i];
+                for (const [id, element] of Object.entries(sections)) {
                     if (element) {
                         const offsetTop = element.offsetTop;
                         const offsetBottom = offsetTop + element.offsetHeight;
-                        if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-                            current = id;
-                            break;
-                        }
+                        if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) { current = id; break; }
                     }
                 }
-                if (!current && sections['footer-contacts']) {
-                    const footerElement = sections['footer-contacts'];
-                    const footerTop = footerElement.offsetTop;
-                    const windowHeight = window.innerHeight;
-                    const documentHeight = document.documentElement.scrollHeight;
-                    if (window.scrollY + windowHeight >= documentHeight - 50) {
-                        current = 'footer-contacts';
-                    }
-                }
-                navButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.target === current) {
-                        btn.classList.add('active');
-                    }
-                });
+                if (!current && sections['footer-contacts'] && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50) { current = 'footer-contacts'; }
+                navButtons.forEach(btn => { btn.classList.remove('active'); if (btn.dataset.target === current) btn.classList.add('active'); });
             }
-
-            navButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const targetId = btn.dataset.target;
-                    const targetElement = sections[targetId];
-                    if (targetElement) {
-                        e.preventDefault();
-                        scrollToElement(targetElement);
-                        navButtons.forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                    }
-                });
-            });
-
+            navButtons.forEach(btn => { btn.addEventListener('click', (e) => { const targetId = btn.dataset.target; const targetElement = sections[targetId]; if (targetElement) { e.preventDefault(); scrollToElement(targetElement); navButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); } }); });
             window.addEventListener('scroll', setActiveButton);
             setActiveButton();
         }
 
-        // ==================== ПЕРЕВОДЫ (включая ФИО и ИНН) ====================
+        // ==================== ПЕРЕВОДЫ (полные для всех языков) ====================
         const translations = {
-            ru: { 
-                secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", 
-                sampleNoteTitle: "Избранное из творческого наследия", 
-                sampleNoteText: "Ниже представлена лишь малая часть произведений Эриха Эрлэнбаха. Более полное собрание сочинений, включая литературные работы, музыкальные альбомы и философские эссе, доступны по ссылкам в разделах «Медиатека» и «Литература», которые пополняются из архива автора.",
-                navHome: "НАЧАЛО", navQuote: "ЦИТАТЫ ДНЯ", navBookshelf: "ИНТЕРАКТИВНАЯ ПОЛКА", navCinema: "КИНОСОЗНАНИЕ", navBio: "БИОГРАФИЯ АВТОРА", navMedia: "МЕДИАТЕКА", navLit: "ЛИТЕРАТУРА", navContacts: "КОНТАКТЫ / ЧАТ С АВТОРОМ",
-                footerContactsTitle: "КОНТАКТЫ / ЧАТ С АВТОРОМ",
-                legalName: "Музыкальный менеджер: Третьяков Дмитрий Александрович",
-                legalInn: "ИНН: 507803117299",
-                cityTbilisi: "🇬🇪 Тбилиси, Грузия", cityBerlin: "🇩🇪 Берлин, Германия", cityParis: "🇫🇷 Париж, Франция", cityNewYork: "🇺🇸 Нью-Йорк, США", cityLondon: "🇬🇧 Лондон, Великобритания", cityMoscow: "🇷🇺 Москва, Россия", cityTokyo: "🇯🇵 Токио, Япония", cityShanghai: "🇨🇳 Шанхай, Китай", cityRome: "🇮🇹 Рим, Италия", cityMadrid: "🇪🇸 Мадрид, Испания", cityRiyadh: "🇸🇦 Эр-Рияд, Саудовская Аравия",
-                bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>`            
-           },
-            en: { 
-                secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", 
-                sampleNoteTitle: "A Selection from the Creative Legacy", 
-                sampleNoteText: "Below is just a small part of Erich Erlenbach's works. A more complete collection of writings, music albums, and philosophical essays is available via the links in the 'Media Library' and 'Literature' sections, which are continually updated from the author's archive.",
-                navHome: "HOME", navQuote: "QUOTE OF THE DAY", navBookshelf: "INTERACTIVE BOOKSHELF", navCinema: "CINEMA CONSCIOUSNESS", navBio: "AUTHOR'S BIOGRAPHY", navMedia: "MEDIA LIBRARY", navLit: "LITERATURE", navContacts: "CONTACTS / CHAT WITH AUTHOR",
-                footerContactsTitle: "CONTACTS / CHAT WITH AUTHOR",
-                legalName: "Music Manager: Dmitry Alexandrovich Tretyakov",
-                legalInn: "Tax ID (INN): 507803117299",
-                cityTbilisi: "🇬🇪 Tbilisi, Georgia", cityBerlin: "🇩🇪 Berlin, Germany", cityParis: "🇫🇷 Paris, France", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, United Kingdom", cityMoscow: "🇷🇺 Moscow, Russia", cityTokyo: "🇯🇵 Tokyo, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rome, Italy", cityMadrid: "🇪🇸 Madrid, Spain", cityRiyadh: "🇸🇦 Riyadh, Saudi Arabia",
-                bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>`
-            },
-            de: { 
-                secBooks: "📚 Interaktives Bücherregal", secCinema: "🎬 Kino-Bewusstsein", secBio: "📖 Biografie", secMedia: "🎵 Mediathek", secLit: "📚 Literatur", title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist", btnQuote: "🎭 Zitat des Tages", 
-                sampleNoteTitle: "Eine Auswahl aus dem kreativen Erbe", 
-                sampleNoteText: "Unten sehen Sie nur einen kleinen Teil der Werke von Erich Erlenbach. Eine vollständigere Sammlung von Schriften, Musikalben und philosophischen Essays ist über die Links in den Bereichen 'Mediathek' und 'Literatur' verfügbar, die aus dem Archiv des Autors ergänzt werden.",
-                navHome: "START", navQuote: "ZITAT DES TAGES", navBookshelf: "INTERAKTIVES BÜCHERREGAL", navCinema: "KINO-BEWUSSTSEIN", navBio: "BIOGRAFIE DES AUTORS", navMedia: "MEDIATHEK", navLit: "LITERATUR", navContacts: "KONTAKTE / CHAT MIT DEM AUTOR",
-                footerContactsTitle: "KONTAKTE / CHAT MIT DEM AUTOR",
-                legalName: "Musikmanager: Dmitri Alexandrowitsch Tretjakow",
-                legalInn: "Steuer-ID (INN): 507803117299",
-                cityTbilisi: "🇬🇪 Tiflis, Georgien", cityBerlin: "🇩🇪 Berlin, Deutschland", cityParis: "🇫🇷 Paris, Frankreich", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, Vereinigtes Königreich", cityMoscow: "🇷🇺 Moskau, Russland", cityTokyo: "🇯🇵 Tokio, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rom, Italien", cityMadrid: "🇪🇸 Madrid, Spanien", cityRiyadh: "🇸🇦 Riad, Saudi-Arabien",
-                bio: `<h3>🌟 Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p><h3>⚡ Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p><h3>🎨 Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>`
-            },
-            ka: { 
-                secBooks: "📚 ინტერაქტიული თარო", secCinema: "🎬 კინოცნობიერება", secBio: "📖 ბიოგრაფია", secMedia: "🎵 მედიათეკა", secLit: "📚 ლიტერატურა", title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი", btnQuote: "🎭 ციტატა", 
-                sampleNoteTitle: "შემოქმედებული მემკვიდრეობიდან", 
-                sampleNoteText: "ქვემოთ წარმოდგენილია ერიხ ერლენბახის ნაწარმოებების მხოლოდ მცირე ნაწილი. ნაწარმოებთა უფრო სრული კოლექცია, მათ შორის ლიტერატურული ნამუშევრები, მუსიკალური ალბომები და ფილოსოფიური ესეები, ხელმისაწვდომია ბმულებით განყოფილებებში „მედიათეკა“ და „ლიტერატურა“, რომლებიც ავტორის არქივიდან ივსება.",
-                navHome: "მთავარი", navQuote: "დღის ციტატა", navBookshelf: "ინტერაქტიული თარო", navCinema: "კინოცნობიერება", navBio: "ავტორის ბიოგრაფია", navMedia: "მედიათეკა", navLit: "ლიტერატურა", navContacts: "კონტაქტები / ჩატი ავტორთან",
-                footerContactsTitle: "კონტაქტები / ჩატი ავტორთან",
-                legalName: "მუსიკალური მენეჯერი: დმიტრი ალექსანდრეს ძე ტრეტიაკოვი",
-                legalInn: "საიდენტიფიკაციო ნომერი (INN): 507803117299",
-                cityTbilisi: "🇬🇪 თბილისი, საქართველო", cityBerlin: "🇩🇪 ბერლინი, გერმანია", cityParis: "🇫🇷 პარიზი, საფრანგეთი", cityNewYork: "🇺🇸 ნიუ-იორკი, აშშ", cityLondon: "🇬🇧 ლონდონი, გაერთიანებული სამეფო", cityMoscow: "🇷🇺 მოსკოვი, რუსეთი", cityTokyo: "🇯🇵 ტოკიო, იაპონია", cityShanghai: "🇨🇳 შანხაი, ჩინეთი", cityRome: "🇮🇹 რომი, იტალია", cityMadrid: "🇪🇸 მადრიდი, ესპანეთი", cityRiyadh: "🇸🇦 ერ-რიადი, საუდის არაბეთი",
-                bio: `<h3>🌟 საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p><h3>⚡ მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p><h3>🎨 მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>`
-            },
-            ar: { 
-                secBooks: "📚 الرف التفاعلي", secCinema: "🎬 الوعي السينمائي", secBio: "📖 السيرة الذاتية", secMedia: "🎵 المكتبة", secLit: "📚 الأدب", title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن", btnQuote: "🎭 اقتباس", 
-                sampleNoteTitle: "مختارات من الإرث الإبداعي", 
-                sampleNoteText: "أدناه جزء صغير فقط من أعمال إريش إرلنباخ. مجموعة أكثر اكتمالاً من الكتابات والألبومات الموسيقية والمقالات الفلسفية متاحة عبر الروابط في قسمي 'المكتبة' و 'الأدب'، والتي يتم تحديثها باستمرار من أرشيف المؤلف.",
-                navHome: "الرئيسية", navQuote: "اقتباس اليوم", navBookshelf: "الرف التفاعلي", navCinema: "الوعي السينمائي", navBio: "سيرة المؤلف", navMedia: "المكتبة", navLit: "الأدب", navContacts: "جهات الاتصال / الدردشة مع المؤلف",
-                footerContactsTitle: "جهات الاتصال / الدردشة مع المؤلف",
-                legalName: "مدير الموسيقى: ديمتري ألكساندروفيتش تريتياكوف",
-                legalInn: "الرقم الضريبي (INN): 507803117299",
-                cityTbilisi: "🇬🇪 تبليسي، جورجيا", cityBerlin: "🇩🇪 برلين، ألمانيا", cityParis: "🇫🇷 باريس، فرنسا", cityNewYork: "🇺🇸 نيويورك، الولايات المتحدة", cityLondon: "🇬🇧 لندن، المملكة المتحدة", cityMoscow: "🇷🇺 موسكو، روسيا", cityTokyo: "🇯🇵 طوكيو، اليابان", cityShanghai: "🇨🇳 شنغهاي، الصين", cityRome: "🇮🇹 روما، إيطاليا", cityMadrid: "🇪🇸 مدريد، إسبانيا", cityRiyadh: "🇸🇦 الرياض، المملكة العربية السعودية",
-                bio: `<h3>🌟 الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p><h3>⚡ طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p><h3>🎨 المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>`
-            },
-            he: { 
-                secBooks: "📚 מדף ספרים אינטראקטיבי", secCinema: "🎬 תודעה קולנועית", secBio: "📖 ביוגרפיה", secMedia: "🎵 ספרייה", secLit: "📚 ספרות", title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין", btnQuote: "🎭 ציטוט", 
-                sampleNoteTitle: "מבחר מהמורשת היצירתית", 
-                sampleNoteText: "להלן רק חלק קטן מיצירותיו של אריך ארלנבך. אוסף שלם יותר של כתבים, אלבומי מוזיקה ומאמרים פילוסופיים זמין דרך הקישורים במדורים 'ספרייה' ו'ספרות', המתעדכנים באופן שוטף מארכיון המחבר.",
-                navHome: "דף הבית", navQuote: "ציטוט היום", navBookshelf: "מדף ספרים אינטראקטיבי", navCinema: "תודעה קולנועית", navBio: "ביוגרפיה של המחבר", navMedia: "ספרייה", navLit: "ספרות", navContacts: "יצירת קשר / צ'אט עם המחבר",
-                footerContactsTitle: "יצירת קשר / צ'אט עם המחבר",
-                legalName: "מנהל מוזיקלי: דמיטרי אלכסנדרוביץ' טרטיאקוב",
-                legalInn: "מספר זהות משלם המסים (INN): 507803117299",
-                cityTbilisi: "🇬🇪 טביליסי, גאורגיה", cityBerlin: "🇩🇪 ברלין, גרמניה", cityParis: "🇫🇷 פריז, צרפת", cityNewYork: "🇺🇸 ניו יורק, ארה\"ב", cityLondon: "🇬🇧 לונדון, בריטניה", cityMoscow: "🇷🇺 מוסקבה, רוסיה", cityTokyo: "🇯🇵 טוקיו, יפן", cityShanghai: "🇨🇳 שנגחאי, סין", cityRome: "🇮🇹 רומא, איטליה", cityMadrid: "🇪🇸 מדריד, ספרד", cityRiyadh: "🇸🇦 ריאד, ערב הסעודית",
-                bio: `<h3>🌟 מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p><h3>⚡ דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חצי מאה, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p><h3>🎨 מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>`
-            },
-            zh: { 
-                secBooks: "📚 互动书架", secCinema: "🎬 电影意识", secBio: "📖 传记", secMedia: "🎵 媒体库", secLit: "📚 文学", title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", 
-                sampleNoteTitle: "创意遗产精选", 
-                sampleNoteText: "以下仅是埃里希·埃尔伦巴赫作品的一小部分。更完整的作品集，包括文学作品、音乐专辑和哲学散文，可通过'媒体库'和'文学'部分的链接获取，这些内容会从作者档案中持续更新。",
-                navHome: "首页", navQuote: "每日名言", navBookshelf: "互动书架", navCinema: "电影意识", navBio: "作者传记", navMedia: "媒体库", navLit: "文学", navContacts: "联系方式 / 与作者聊天",
-                footerContactsTitle: "联系方式 / 与作者聊天",
-                legalName: "音乐经理：德米特里·亚历山德罗维奇·特列季亚科夫",
-                legalInn: "纳税人识别号 (INN)：507803117299",
-                cityTbilisi: "🇬🇪 第比利斯，格鲁吉亚", cityBerlin: "🇩🇪 柏林，德国", cityParis: "🇫🇷 巴黎，法国", cityNewYork: "🇺🇸 纽约，美国", cityLondon: "🇬🇧 伦敦，英国", cityMoscow: "🇷🇺 莫斯科，俄罗斯", cityTokyo: "🇯🇵 东京，日本", cityShanghai: "🇨🇳 上海，中国", cityRome: "🇮🇹 罗马，意大利", cityMadrid: "🇪🇸 马德里，西班牙", cityRiyadh: "🇸🇦 利雅得，沙特阿拉伯",
-                bio: `<h3>🌟 起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p><h3>⚡ 服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p><h3>🎨 宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>`
-            },
-            ja: { 
-                secBooks: "📚 インタラクティブ書棚", secCinema: "🎬 シネマ意識", secBio: "📖 伝記", secMedia: "🎵 メディアライブラリ", secLit: "📚 文学", title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", 
-                sampleNoteTitle: "創造的遺産からのセレクション", 
-                sampleNoteText: "以下はエーリヒ・エルレンバッハの作品のほんの一部です。文学作品、音楽アルバム、哲学的エッセイを含むより完全な作品集は、「メディアライブラリ」および「文学」セクションのリンクからご覧いただけます。これらのセクションは作者のアーカイブから随時更新されています。",
-                navHome: "ホーム", navQuote: "今日の名言", navBookshelf: "インタラクティブ書棚", navCinema: "シネマ意識", navBio: "著者略歴", navMedia: "メディアライブラリ", navLit: "文学", navContacts: "連絡先 / 著者とのチャット",
-                footerContactsTitle: "連絡先 / 著者とのチャット",
-                legalName: "音楽マネージャー：ドミトリー・アレクサンドロヴィチ・トレチャコフ",
-                legalInn: "納税者番号 (INN)：507803117299",
-                cityTbilisi: "🇬🇪 トビリシ、ジョージア", cityBerlin: "🇩🇪 ベルリン、ドイツ", cityParis: "🇫🇷 パリ、フランス", cityNewYork: "🇺🇸 ニューヨーク、アメリカ", cityLondon: "🇬🇧 ロンドン、イギリス", cityMoscow: "🇷🇺 モスクワ、ロシア", cityTokyo: "🇯🇵 東京、日本", cityShanghai: "🇨🇳 上海、中国", cityRome: "🇮🇹 ローマ、イタリア", cityMadrid: "🇪🇸 マドリード、スペイン", cityRiyadh: "🇸🇦 リヤド、サウジアラビア",
-                bio: `<h3>🌟 起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p><h3>⚡ 奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p><h3>🎨 メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>`
-            }
+            ru: { secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", sampleNoteTitle: "Избранное из творческого наследия", sampleNoteText: "Ниже представлена лишь малая часть произведений Эриха Эрлэнбаха. Более полное собрание сочинений, включая литературные работы, музыкальные альбомы и философские эссе, доступны по ссылкам в разделах «Медиатека» и «Литература», которые пополняются из архива автора.", navHome: "НАЧАЛО", navQuote: "ЦИТАТЫ ДНЯ", navBookshelf: "ИНТЕРАКТИВНАЯ ПОЛКА", navCinema: "КИНОСОЗНАНИЕ", navBio: "БИОГРАФИЯ АВТОРА", navMedia: "МЕДИАТЕКА", navLit: "ЛИТЕРАТУРА", navContacts: "КОНТАКТЫ / ЧАТ С АВТОРОМ", footerContactsTitle: "КОНТАКТЫ / ЧАТ С АВТОРОМ", legalName: "Музыкальный менеджер: Третьяков Дмитрий Александрович", legalInn: "ИНН: 507803117299", privacyLinkText: "Политика конфиденциальности", ofertLinkText: "Договор оферты", playMoodBtn: "Воспроизвести плейлист", cityTbilisi: "🇬🇪 Тбилиси, Грузия", cityBerlin: "🇩🇪 Берлин, Германия", cityParis: "🇫🇷 Париж, Франция", cityNewYork: "🇺🇸 Нью-Йорк, США", cityLondon: "🇬🇧 Лондон, Великобритания", cityMoscow: "🇷🇺 Москва, Россия", cityTokyo: "🇯🇵 Токио, Япония", cityShanghai: "🇨🇳 Шанхай, Китай", cityRome: "🇮🇹 Рим, Италия", cityMadrid: "🇪🇸 Мадрид, Испания", cityRiyadh: "🇸🇦 Эр-Рияд, Саудовская Аравия", bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>` },
+            en: { secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", sampleNoteTitle: "A Selection from the Creative Legacy", sampleNoteText: "Below is just a small part of Erich Erlenbach's works. A more complete collection of writings, music albums, and philosophical essays is available via the links in the 'Media Library' and 'Literature' sections, which are continually updated from the author's archive.", navHome: "HOME", navQuote: "QUOTE OF THE DAY", navBookshelf: "INTERACTIVE BOOKSHELF", navCinema: "CINEMA CONSCIOUSNESS", navBio: "AUTHOR'S BIOGRAPHY", navMedia: "MEDIA LIBRARY", navLit: "LITERATURE", navContacts: "CONTACTS / CHAT WITH AUTHOR", footerContactsTitle: "CONTACTS / CHAT WITH AUTHOR", legalName: "Music Manager: Dmitry Alexandrovich Tretyakov", legalInn: "Tax ID (INN): 507803117299", privacyLinkText: "Privacy Policy", ofertLinkText: "Terms of Offer", playMoodBtn: "Play playlist", cityTbilisi: "🇬🇪 Tbilisi, Georgia", cityBerlin: "🇩🇪 Berlin, Germany", cityParis: "🇫🇷 Paris, France", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, United Kingdom", cityMoscow: "🇷🇺 Moscow, Russia", cityTokyo: "🇯🇵 Tokyo, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rome, Italy", cityMadrid: "🇪🇸 Madrid, Spain", cityRiyadh: "🇸🇦 Riyadh, Saudi Arabia", bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>` },
+            de: { secBooks: "📚 Interaktives Bücherregal", secCinema: "🎬 Kino-Bewusstsein", secBio: "📖 Biografie", secMedia: "🎵 Mediathek", secLit: "📚 Literatur", title: "Erich Erlenbach", subtitle: "Dichter • Schriftsteller • Philosoph • Komponist", btnQuote: "🎭 Zitat des Tages", sampleNoteTitle: "Eine Auswahl aus dem kreativen Erbe", sampleNoteText: "Unten sehen Sie nur einen kleinen Teil der Werke von Erich Erlenbach. Eine vollständigere Sammlung von Schriften, Musikalben und philosophischen Essays ist über die Links in den Bereichen 'Mediathek' und 'Literatur' verfügbar, die aus dem Archiv des Autors ergänzt werden.", navHome: "START", navQuote: "ZITAT DES TAGES", navBookshelf: "INTERAKTIVES BÜCHERREGAL", navCinema: "KINO-BEWUSSTSEIN", navBio: "BIOGRAFIE DES AUTORS", navMedia: "MEDIATHEK", navLit: "LITERATUR", navContacts: "KONTAKTE / CHAT MIT DEM AUTOR", footerContactsTitle: "KONTAKTE / CHAT MIT DEM AUTOR", legalName: "Musikmanager: Dmitri Alexandrowitsch Tretjakow", legalInn: "Steuer-ID (INN): 507803117299", privacyLinkText: "Datenschutzrichtlinie", ofertLinkText: "Angebotsbedingungen", playMoodBtn: "Playlist abspielen", cityTbilisi: "🇬🇪 Tiflis, Georgien", cityBerlin: "🇩🇪 Berlin, Deutschland", cityParis: "🇫🇷 Paris, Frankreich", cityNewYork: "🇺🇸 New York, USA", cityLondon: "🇬🇧 London, Vereinigtes Königreich", cityMoscow: "🇷🇺 Moskau, Russland", cityTokyo: "🇯🇵 Tokio, Japan", cityShanghai: "🇨🇳 Shanghai, China", cityRome: "🇮🇹 Rom, Italien", cityMadrid: "🇪🇸 Madrid, Spanien", cityRiyadh: "🇸🇦 Riad, Saudi-Arabien", bio: `<h3>🌟 Ursprung & Synthese</h3><p>Geboren 1962 in Tiflis als Sohn von Opernsängern. Seine Herkunft vereint sieben Nationen und drei Religionen.</p><h3>⚡ Dienstweg</h3><p>Über 40 Jahre Dienst beim Militär (Oberst a.D.). Gleichzeitig schuf er sein künstlerisches Universum, ausgebildet von Musik- und Schachschulen bis hin zur Ballettschule, dem Reitsport, Skifahren und den Kampfkünsten.</p><h3>🎨 Das Metaprojekt</h3><p>Sein Schaffen ist ein Gesamtkunstwerk, in dem Musik und Literatur verschmelzen. Er verbindet klassische Formen mit Quantenphysik und biblischen Themen.</p>` },
+            ka: { secBooks: "📚 ინტერაქტიული თარო", secCinema: "🎬 კინოცნობიერება", secBio: "📖 ბიოგრაფია", secMedia: "🎵 მედიათეკა", secLit: "📚 ლიტერატურა", title: "ერიხ ერლენბახი", subtitle: "პოეტი • მწერალი • ფილოსოფოსი • კომპოზიტორი", btnQuote: "🎭 ციტატა", sampleNoteTitle: "შემოქმედებული მემკვიდრეობიდან", sampleNoteText: "ქვემოთ წარმოდგენილია ერიხ ერლენბახის ნაწარმოებების მხოლოდ მცირე ნაწილი. ნაწარმოებთა უფრო სრული კოლექცია, მათ შორის ლიტერატურული ნამუშევრები, მუსიკალური ალბომები და ფილოსოფიური ესეები, ხელმისაწვდომია ბმულებით განყოფილებებში „მედიათეკა“ და „ლიტერატურა“, რომლებიც ავტორის არქივიდან ივსება.", navHome: "მთავარი", navQuote: "დღის ციტატა", navBookshelf: "ინტერაქტიული თარო", navCinema: "კინოცნობიერება", navBio: "ავტორის ბიოგრაფია", navMedia: "მედიათეკა", navLit: "ლიტერატურა", navContacts: "კონტაქტები / ჩატი ავტორთან", footerContactsTitle: "კონტაქტები / ჩატი ავტორთან", legalName: "მუსიკალური მენეჯერი: დმიტრი ალექსანდრეს ძე ტრეტიაკოვი", legalInn: "საიდენტიფიკაციო ნომერი (INN): 507803117299", privacyLinkText: "კონფიდენციალურობის პოლიტიკა", ofertLinkText: "შეთავაზების პირობები", playMoodBtn: "პლეილისტის დაკვრა", cityTbilisi: "🇬🇪 თბილისი, საქართველო", cityBerlin: "🇩🇪 ბერლინი, გერმანია", cityParis: "🇫🇷 პარიზი, საფრანგეთი", cityNewYork: "🇺🇸 ნიუ-იორკი, აშშ", cityLondon: "🇬🇧 ლონდონი, გაერთიანებული სამეფო", cityMoscow: "🇷🇺 მოსკოვი, რუსეთი", cityTokyo: "🇯🇵 ტოკიო, იაპონია", cityShanghai: "🇨🇳 შანხაი, ჩინეთი", cityRome: "🇮🇹 რომი, იტალია", cityMadrid: "🇪🇸 მადრიდი, ესპანეთი", cityRiyadh: "🇸🇦 ერ-რიადი, საუდის არაბეთი", bio: `<h3>🌟 საწყისები და სინთეზი</h3><p>ერიხ ერლენბახი დაიბადა 1962 წელს თბილისში, ოპერის მომღერლების ოჯახში. მისი წარმომავლობა შვიდ ერსა და სამ რელიგიას აერთიანებს.</p><h3>⚡ მსახურების გზა</h3><p>ერიხმა 40 წელზე მეტი სამხედრო სამსახურს მიუძღვნა (თადარიგის პოლკოვნიკი). 50 წლის განმავლობაში იგი ქმნიდა თავის მხატვრულ სამყაროს: მუსიკალური და საჭადრაკო სკოლებიდან ქორეოგრაფიულ სასწავლებლამდე, საცხენოსნო და სამთო-სათხილამურო სპორტსა და საბრძოლო ხელოვნებამდე.</p><h3>🎨 მეტაპროექტი</h3><p>ერლენბახის შემოქმედება ერთიანი ტილოა, სადაც მუსიკა და პოეზია ერთმანეთს ავსებს. იგი აერთიანებს კლასიკურ ფორმებს კვანტურ ფიზიკასთან და ბიბლიურ სიუჟეტებთან.</p>` },
+            ar: { secBooks: "📚 الرف التفاعلي", secCinema: "🎬 الوعي السينمائي", secBio: "📖 السيرة الذاتية", secMedia: "🎵 المكتبة", secLit: "📚 الأدب", title: "إريش إرلنباخ", subtitle: "شاعر • كاتب • فيلسوف • ملحن", btnQuote: "🎭 اقتباس", sampleNoteTitle: "مختارات من الإرث الإبداعي", sampleNoteText: "أدناه جزء صغير فقط من أعمال إريش إرلنباخ. مجموعة أكثر اكتمالاً من الكتابات والألبومات الموسيقية والمقالات الفلسفية متاحة عبر الروابط في قسمي 'المكتبة' و 'الأدب'، والتي يتم تحديثها باستمرار من أرشيف المؤلف.", navHome: "الرئيسية", navQuote: "اقتباس اليوم", navBookshelf: "الرف التفاعلي", navCinema: "الوعي السينمائي", navBio: "سيرة المؤلف", navMedia: "المكتبة", navLit: "الأدب", navContacts: "جهات الاتصال / الدردشة مع المؤلف", footerContactsTitle: "جهات الاتصال / الدردشة مع المؤلف", legalName: "مدير الموسيقى: ديمتري ألكساندروفيتش تريتياكوف", legalInn: "الرقم الضريبي (INN): 507803117299", privacyLinkText: "سياسة الخصوصية", ofertLinkText: "شروط العرض", playMoodBtn: "تشغيل قائمة التشغيل", cityTbilisi: "🇬🇪 تبليسي، جورجيا", cityBerlin: "🇩🇪 برلين، ألمانيا", cityParis: "🇫🇷 باريس، فرنسا", cityNewYork: "🇺🇸 نيويورك، الولايات المتحدة", cityLondon: "🇬🇧 لندن، المملكة المتحدة", cityMoscow: "🇷🇺 موسكو، روسيا", cityTokyo: "🇯🇵 طوكيو، اليابان", cityShanghai: "🇨🇳 شنغهاي، الصين", cityRome: "🇮🇹 روما، إيطاليا", cityMadrid: "🇪🇸 مدريد، إسبانيا", cityRiyadh: "🇸🇦 الرياض، المملكة العربية السعودية", bio: `<h3>🌟 الأصول والتركيب</h3><p>ولد عام 1962 في تبليسي لعائلة من فناني الأوبرا. يجمع نسبه بين سبع أمم وثلاث ديانات.</p><h3>⚡ طريق الخدمة</h3><p>كرس أكثر من 40 عاماً للخدمة العسكرية (عقيد متقاعد). بنى كونه الفني من مدارس الموسيقى والشطرنج إلى مدرسة الكوريغرافيا، والفروسية، والتزلج على الجليد، وفنون الدفاع عن النفس.</p><h3>🎨 المشروع الجامع</h3><p>عمله يمزج بين الأشكال الكلاسيكية ومفاهيم الفيزياء الكوانتية والقصص الكتابية.</p>` },
+            he: { secBooks: "📚 מדף ספרים אינטראקטיבי", secCinema: "🎬 תודעה קולנועית", secBio: "📖 ביוגרפיה", secMedia: "🎵 ספרייה", secLit: "📚 ספרות", title: "אריך ארלנבך", subtitle: "משורר • סופר • פילוסוף • מלחין", btnQuote: "🎭 ציטוט", sampleNoteTitle: "מבחר מהמורשת היצירתית", sampleNoteText: "להלן רק חלק קטן מיצירותיו של אריך ארלנבך. אוסף שלם יותר של כתבים, אלבומי מוזיקה ומאמרים פילוסופיים זמין דרך הקישורים במדורים 'ספרייה' ו'ספרות', המתעדכנים באופן שוטף מארכיון המחבר.", navHome: "דף הבית", navQuote: "ציטוט היום", navBookshelf: "מדף ספרים אינטראקטיבי", navCinema: "תודעה קולנועית", navBio: "ביוגרפיה של המחבר", navMedia: "ספרייה", navLit: "ספרות", navContacts: "יצירת קשר / צ'אט עם המחבר", footerContactsTitle: "יצירת קשר / צ'אט עם המחבר", legalName: "מנהל מוזיקלי: דמיטרי אלכסנדרוביץ' טרטיאקוב", legalInn: "מספר זהות משלם המסים (INN): 507803117299", privacyLinkText: "מדיניות פרטיות", ofertLinkText: "תנאי הצעה", playMoodBtn: "הפעל פלייליסט", cityTbilisi: "🇬🇪 טביליסי, גאורגיה", cityBerlin: "🇩🇪 ברלין, גרמניה", cityParis: "🇫🇷 פריז, צרפת", cityNewYork: "🇺🇸 ניו יורק, ארה\"ב", cityLondon: "🇬🇧 לונדון, בריטניה", cityMoscow: "🇷🇺 מוסקבה, רוסיה", cityTokyo: "🇯🇵 טוקיו, יפן", cityShanghai: "🇨🇳 שנגחאי, סין", cityRome: "🇮🇹 רומא, איטליה", cityMadrid: "🇪🇸 מדריד, ספרד", cityRiyadh: "🇸🇦 ריאד, ערב הסעודית", bio: `<h3>🌟 מקורות וסינתזה</h3><p>אריך ארלנבך נולד בשנת 1962 בטביליסי למשפחה של אמני אופרה. מוצאו הוא שילוב ייחודי של שבעה לאומים ושלוש דתות, המאחד את הקווקז, אירופה וגרמני הוולגה.</p><h3>⚡ דרך השירות</h3><p>אריך הקדיש למעלה מ-40 שנה לשירות צבאי (אל"מ בדימוס). במקביל לקריירה הצבאית, הוא בנה את היקום האמנותי שלו במשך חמישה עשורים, תוך רכישת השכלה מגוונת: מבתי ספר למוזיקה ושחמט ועד למכללה לכוריאוגרפיה, רכיבה על סוסים, סקי אלפיני ואמנויות לחימה.</p><h3>🎨 מטא-פרויקט</h3><p>יצירתו של ארלנבך היא מארג מאוחד שבו מוזיקה, שירה ופרוזה הם היבטים של התגלות אחת. הוא משלב צורות קלאסיות עם מושגי פיזיקה קוונטית ומוטיבים מקראיים.</p>` },
+            zh: { secBooks: "📚 互动书架", secCinema: "🎬 电影意识", secBio: "📖 传记", secMedia: "🎵 媒体库", secLit: "📚 文学", title: "埃里希·埃尔伦巴赫", subtitle: "诗人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", sampleNoteTitle: "创意遗产精选", sampleNoteText: "以下仅是埃里希·埃尔伦巴赫作品的一小部分。更完整的作品集，包括文学作品、音乐专辑和哲学散文，可通过'媒体库'和'文学'部分的链接获取，这些内容会从作者档案中持续更新。", navHome: "首页", navQuote: "每日名言", navBookshelf: "互动书架", navCinema: "电影意识", navBio: "作者传记", navMedia: "媒体库", navLit: "文学", navContacts: "联系方式 / 与作者聊天", footerContactsTitle: "联系方式 / 与作者聊天", legalName: "音乐经理：德米特里·亚历山德罗维奇·特列季亚科夫", legalInn: "纳税人识别号 (INN)：507803117299", privacyLinkText: "隐私政策", ofertLinkText: "报价条款", playMoodBtn: "播放播放列表", cityTbilisi: "🇬🇪 第比利斯，格鲁吉亚", cityBerlin: "🇩🇪 柏林，德国", cityParis: "🇫🇷 巴黎，法国", cityNewYork: "🇺🇸 纽约，美国", cityLondon: "🇬🇧 伦敦，英国", cityMoscow: "🇷🇺 莫斯科，俄罗斯", cityTokyo: "🇯🇵 东京，日本", cityShanghai: "🇨🇳 上海，中国", cityRome: "🇮🇹 罗马，意大利", cityMadrid: "🇪🇸 马德里，西班牙", cityRiyadh: "🇸🇦 利雅得，沙特阿拉伯", bio: `<h3>🌟 起源与综合</h3><p>1962年出生于第比利斯歌剧世家。他的血统融合了七个民族和三种宗教。</p><h3>⚡ 服役之路</h3><p>在军队服役超过40年（退役上校）。他用了半个世纪的时间构建艺术宇宙，涵盖了音乐、国际象棋、舞蹈、马术、高山滑雪和武术教育。</p><h3>🎨 宏大项目</h3><p>作为一名多元风格的作曲家和文学家，他将古典形式与量子物理及圣经主题相结合。</p>` },
+            ja: { secBooks: "📚 インタラクティブ書棚", secCinema: "🎬 シネマ意識", secBio: "📖 伝記", secMedia: "🎵 メディアライブラリ", secLit: "📚 文学", title: "エーリヒ・エルレンバッハ", subtitle: "詩人 • 作家 • 哲学家 • 作曲家", btnQuote: "🎭 名言", sampleNoteTitle: "創造的遺産からのセレクション", sampleNoteText: "以下はエーリヒ・エルレンバッハの作品のほんの一部です。文学作品、音楽アルバム、哲学的エッセイを含むより完全な作品集は、「メディアライブラリ」および「文学」セクションのリンクからご覧いただけます。これらのセクションは作者のアーカイブから随時更新されています。", navHome: "ホーム", navQuote: "今日の名言", navBookshelf: "インタラクティブ書棚", navCinema: "シネマ意識", navBio: "著者略歴", navMedia: "メディアライブラリ", navLit: "文学", navContacts: "連絡先 / 著者とのチャット", footerContactsTitle: "連絡先 / 著者とのチャット", legalName: "音楽マネージャー：ドミトリー・アレクサンドロヴィチ・トレチャコフ", legalInn: "納税者番号 (INN)：507803117299", privacyLinkText: "プライバシーポリシー", ofertLinkText: "オファー条件", playMoodBtn: "プレイリストを再生", cityTbilisi: "🇬🇪 トビリシ、ジョージア", cityBerlin: "🇩🇪 ベルリン、ドイツ", cityParis: "🇫🇷 パリ、フランス", cityNewYork: "🇺🇸 ニューヨーク、アメリカ", cityLondon: "🇬🇧 ロンドン、イギリス", cityMoscow: "🇷🇺 モスクワ、ロシア", cityTokyo: "🇯🇵 東京、日本", cityShanghai: "🇨🇳 上海、中国", cityRome: "🇮🇹 ローマ、イタリア", cityMadrid: "🇪🇸 マドリード、スペイン", cityRiyadh: "🇸🇦 リヤド、サウジアラビア", bio: `<h3>🌟 起源と総合</h3><p>1962年トビリシのオペラ歌手の家庭に生まれる。彼の血統は7つの民族と3つの宗教を融合させている。</p><h3>⚡ 奉仕の道</h3><p>40年以上軍に勤務（退役大佐）。音楽やチェスの学校から、振付学校、乗馬、アルペンスキー、そして武道に至るまで、半世紀にわたり芸術的世界を築いてきた。</p><h3>🎨 メタプロジェクト</h3><p>音楽、詩、散文が一つの啓示の側面となる。古典的な形式と量子物理学や聖書のモチーフを融合させている。</p>` }
         };
-        
+
         const quotes = {
             ru: ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни.", "Истинная мудрость — в тишине между нотами."],
             en: ["Everything that takes form in sound, rhyme or prose is but an earthly echo of Heavenly harmony.", "Music, poetry and prose are three facets of a single revelation.", "Creativity is not a profession, but a way of understanding life.", "True wisdom lies in the silence between notes."],
@@ -1916,11 +1353,7 @@
             ja: ["音、韻文、散文で形を成すものはすべて、天上の調和の地上でのこだまに過ぎない。", "音楽、詩、散文は一つの啓示の三つの側面である。", "創造性は職業ではなく、人生を認識する方法である。", "真の知恵は音符の間の沈黙にある。"]
         };
 
-        function getRandomQuote() {
-            const quotesForLang = quotes[currentLang] || quotes.ru;
-            const randomQuote = quotesForLang[Math.floor(Math.random() * quotesForLang.length)];
-            document.getElementById('quote-text').innerText = `«${randomQuote}»`;
-        }
+        function getRandomQuote() { const q = quotes[currentLang] || quotes.ru; document.getElementById('quote-text').innerText = `«${q[Math.floor(Math.random() * q.length)]}»`; }
 
         function changeLang(lang) {
             currentLang = lang;
@@ -1939,20 +1372,12 @@
             document.getElementById('footerContactsTitle').innerText = t.footerContactsTitle;
             document.getElementById('legalName').innerText = t.legalName;
             document.getElementById('legalInn').innerText = t.legalInn;
+            document.getElementById('privacyLink').innerText = t.privacyLinkText;
+            document.getElementById('ofertLink').innerText = t.ofertLinkText;
+            document.getElementById('playMoodBtnText').innerText = t.playMoodBtn;
             
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                const key = btn.dataset.key;
-                if (key && t[key]) {
-                    btn.innerText = t[key];
-                }
-            });
-            
-            document.querySelectorAll('#citySelect option').forEach(option => {
-                const key = option.dataset.key;
-                if (key && t[key]) {
-                    option.innerText = t[key];
-                }
-            });
+            document.querySelectorAll('.nav-btn').forEach(btn => { const key = btn.dataset.key; if (key && t[key]) btn.innerText = t[key]; });
+            document.querySelectorAll('#citySelect option').forEach(option => { const key = option.dataset.key; if (key && t[key]) option.innerText = t[key]; });
             
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
@@ -1961,16 +1386,13 @@
             renderBookshelf();
             renderCinema();
             updateMoodWidget();
-            const currentTrack = playlist[currentTrackIndex];
-            if (currentTrack) {
-                document.getElementById('currentTrackTitle').innerText = getTrackTitle(currentTrack);
-            }
+            if (playlist[currentTrackIndex]) document.getElementById('currentTrackTitle').innerText = getTrackTitle(playlist[currentTrackIndex]);
             updateClock();
             getRandomQuote();
         }
 
-        loadTrack(0);
         document.getElementById('playMoodBtn').addEventListener('click', playMoodPlaylist);
+        loadTrack(0);
         
         window.onload = () => {
             if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
