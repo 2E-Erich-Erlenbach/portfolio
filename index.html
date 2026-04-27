@@ -1071,50 +1071,93 @@
             { titleRu: "Время HD43197b - жизнь в сжатом пространстве", titleEn: "Time HD43197b - Life in Compressed Space", titleDe: "Zeit HD43197b - Leben im komprimierten Raum", titleKa: "დრო HD43197b - ცხოვრება შეკუმშულ სივრცეში", titleAr: "الزمن HD43197b - حياة في فضاء مضغوط", titleHe: "זמן HD43197b - חיים במרחב דחוס", titleZh: "时间HD43197b - 压缩空间中的生活", titleJa: "時間HD43197b - 圧縮された空間での生活", cover: "Vremia HD.jpeg", year: "2025", link: "https://www.litres.ru/book/erich-erlenbach/vremya-hd43197b-zhizn-v-szhatom-prostranstve-72728296/" }
         ];
 
-        // ==================== КИНОСОЗНАНИЕ (сокращённо, но рабочий массив) ====================
+        // ==================== КИНОСОЗНАНИЕ - ВСЕ 14 ВИДЕО ====================
         const cinemaSlides = [
-            { image: "behind_the_holy_hill.jpg", titleRu: "Behind the Holy Hill", titleEn: "Behind the Holy Hill", titleDe: "Hinter dem heiligen Hügel", titleKa: "წმინდა გორის მიღმა", titleAr: "خلف التل المقدس", titleHe: "מאחורי הגבעה הקדושה", titleZh: "圣山之后", titleJa: "聖なる丘の向こう側", descRu: "Кинематографическое путешествие в мистические ландшафты...", descEn: "A cinematic journey into mystical landscapes...", descDe: "Eine filmische Reise in mystische Landschaften...", descKa: "კინემატოგრაფიული მოგზაურობა...", descAr: "رحلة سينمائية...", descHe: "מסע קולנועי...", descZh: "电影之旅...", descJa: "映画的旅...", videoUrl: "https://youtu.be/PRMxm0K9KKk" },
-            { image: "soul_of_tiflis_jazz.jpg", titleRu: "The Soul of Tiflis Jazz", titleEn: "The Soul of Tiflis Jazz", titleDe: "Die Seele des Tiflis-Jazz", titleKa: "თბილისური ჯაზის სული", titleAr: "روح جاز تيفليس", titleHe: "נשמת הג'אז של טיפליס", titleZh: "第比利斯爵士之魂", titleJa: "ティフリスジャズの魂", descRu: "Джазовая импровизация, рожденная в старых дворах Тбилиси...", descEn: "A jazz improvisation born in the old courtyards of Tbilisi...", descDe: "Eine Jazzimprovisation, geboren in den alten Höfen von Tiflis...", descKa: "ჯაზური იმპროვიზაცია, დაბადებული თბილისის ძველ ეზოებში...", descAr: "ارتجال جاز ولد في ساحات تبليسي القديمة...", descHe: "אימפרוביזציית ג'אז שנולדה בחצרותיה הישנות של טביליסי...", descZh: "诞生于第比利斯古老庭院的爵士即兴创作...", descJa: "トビリシの古い中庭で生まれたジャズの即興演奏...", videoUrl: "https://youtu.be/O-V4_txJ2eg" }
+            { image: "behind_the_holy_hill.jpg", titleRu: "Behind the Holy Hill", titleEn: "Behind the Holy Hill", titleDe: "Hinter dem heiligen Hügel", titleKa: "წმინდა გორის მიღმა", titleAr: "خلف التل المقدس", titleHe: "מאחורי הגבעה הקדושה", titleZh: "圣山之后", titleJa: "聖なる丘の向こう側", descRu: "Кинематографическое путешествие в мистические ландшафты, где время замирает, а музыка становится мостом между реальностями.", descEn: "A cinematic journey into mystical landscapes where time stands still and music becomes a bridge between realities.", videoUrl: "https://youtu.be/PRMxm0K9KKk" },
+            { image: "soul_of_tiflis_jazz.jpg", titleRu: "The Soul of Tiflis Jazz", titleEn: "The Soul of Tiflis Jazz", titleDe: "Die Seele des Tiflis-Jazz", titleKa: "თბილისური ჯაზის სული", titleAr: "روح جاز تيفليس", titleHe: "נשמת הג'אז של טיפליס", titleZh: "第比利斯爵士之魂", titleJa: "ティフリスジャズの魂", descRu: "Джазовая импровизация, рожденная в старых дворах Тбилиси, где переплетаются грузинская меланхолия и ритмы современного города.", descEn: "A jazz improvisation born in the old courtyards of Tbilisi, where Georgian melancholy intertwines with the rhythms of the modern city.", videoUrl: "https://youtu.be/O-V4_txJ2eg" },
+            { image: "Zvuk.jpg", titleRu: "Материя звука", titleEn: "Matter of Sound", descRu: "Визуальная медитация о времени, памяти и музыкальной структуре бытия.", descEn: "A visual meditation on time, memory, and the musical structure of existence.", videoUrl: "https://youtu.be/BjYiufpLVOc" },
+            { image: "Zvezdnaia pily.jpg", titleRu: "Мы звездная пыль", titleEn: "We Are Stardust", descRu: "Свет и тень как метафоры звука и тишины в творчестве композитора.", descEn: "Light and shadow as metaphors for sound and silence in the composer's work.", videoUrl: "https://youtu.be/Qk1x7oN7Q-E" },
+            { image: "Tanec Sveta.jpg", titleRu: "Dämon – Tanz des Lichts", titleEn: "Dämon – Dance of Light", descRu: "Кинематографический этюд о пересечении судеб и музыкальных тем.", descEn: "A cinematic study on the intersection of fates and musical themes.", videoUrl: "https://youtu.be/w4HSWHlgDpM" },
+            { image: "Tanec Sveta i nochi.jpg", titleRu: "Dämon – Licht und Dunkelheit", titleEn: "Dämon – Light and Darkness", descRu: "Тбилисские мотивы в ритмах современной урбанистической симфонии.", descEn: "Tbilisi motifs in the rhythms of a modern urban symphony.", videoUrl: "https://youtu.be/sFXNzMaiGN4" },
+            { image: "Polet Zemli.jpg", titleRu: "Полет Земли", titleEn: "Flight of the Earth", descRu: "Космическая симфония, объединяющая земные и небесные мотивы.", descEn: "A cosmic symphony uniting earthly and celestial motifs.", videoUrl: "https://youtu.be/OA6UvyLqYXY" },
+            { image: "Scerco.jpg", titleRu: "Скерцо полет", titleEn: "Scherzo Flight", descRu: "Легкая и стремительная музыкальная фантазия.", descEn: "Light and swift musical fantasy.", videoUrl: "https://rutube.ru/video/92796c5474132068500684cda8bff8f2/" },
+            { image: "Cantata.jpg", titleRu: "Cantata C minor, Op. 17, part 2", titleEn: "Cantata C minor, Op. 17, part 2", descRu: "Классическая кантата в современном прочтении.", descEn: "Classical cantata in a modern interpretation.", videoUrl: "https://rutube.ru/video/b4b61a554c6a892ea61c1f6ab48f3117/" },
+            { image: "Bakuriani.jpg", titleRu: "Бакуриани", titleEn: "Bakuriani", descRu: "Музыкальное путешествие по живописным горным ландшафтам Грузии.", descEn: "A musical journey through the picturesque mountain landscapes of Georgia.", videoUrl: "https://rutube.ru/video/c1627cbd2221beb71fde2ece78698f1c/" },
+            { image: "Doroga.jpg", titleRu: "Тропинки детства", titleEn: "Paths of Childhood", descRu: "Ностальгическая музыкальная зарисовка о беззаботных годах.", descEn: "A nostalgic musical sketch of carefree years.", videoUrl: "https://rutube.ru/video/a77e233ae3144b22d8eba7c5cad3efaa/" },
+            { image: "Demon.jpg", titleRu: "Песнь Самаэля. Часть из Поп (Рок) Оперы «Дэмон»", titleEn: "Song of Samael. Part from the Pop (Rock) Opera 'Demon'", descRu: "Драматическая ария из рок-оперы, раскрывающая образ падшего ангела.", descEn: "A dramatic aria from the rock opera, revealing the image of the fallen angel.", videoUrl: "https://rutube.ru/video/277cbf6f9751926e2b066942d1282407/" },
+            { image: "Nagornaia.jpg", titleRu: "Нагорная проповедь", titleEn: "Sermon on the Mount", descRu: "Одна из частей оперы, вдохновленная библейскими мотивами.", descEn: "One part of the opera, inspired by biblical motifs.", videoUrl: "https://rutube.ru/video/bb5b2192006ca684d5ddda9273af9e1d/" },
+            { image: "Teatr.jpg", titleRu: "За кулисами детства", titleEn: "Behind the Scenes of Childhood", descRu: "Лирическое размышление о formative годах и их влиянии на творчество.", descEn: "A lyrical reflection on formative years and their influence on creativity.", videoUrl: "https://rutube.ru/video/70250d53d5f17d32ad27d256859bb95f/" }
         ];
 
         let currentLang = 'ru';
-
-        function getBookTitle(book) {
-            const titles = { ru: book.titleRu, en: book.titleEn, de: book.titleDe, ka: book.titleKa, ar: book.titleAr, he: book.titleHe, zh: book.titleZh, ja: book.titleJa };
-            return titles[currentLang] || book.titleRu;
-        }
-
-        function getCinemaTitle(slide) {
-            const titles = { ru: slide.titleRu, en: slide.titleEn, de: slide.titleDe, ka: slide.titleKa, ar: slide.titleAr, he: slide.titleHe, zh: slide.titleZh, ja: slide.titleJa };
-            return titles[currentLang] || slide.titleRu;
-        }
-
-        function getCinemaDesc(slide) {
-            const descs = { ru: slide.descRu, en: slide.descEn, de: slide.descDe, ka: slide.descKa, ar: slide.descAr, he: slide.descHe, zh: slide.descZh, ja: slide.descJa };
-            return descs[currentLang] || slide.descRu;
-        }
-
-        function renderBookshelf() {
-            const container = document.getElementById('bookshelfContainer');
-            container.innerHTML = books.map(book => `<div class="book-card" onclick="window.open('${book.link}', '_blank')"><img src="${book.cover}" class="book-cover" alt="${getBookTitle(book)}" onerror="this.src='https://via.placeholder.com/180x240/d4af37/ffffff?text=${encodeURIComponent(book.titleRu.substring(0, 20))}'"><div class="book-info"><div class="book-title">${getBookTitle(book)}</div><div class="book-year">${book.year}</div></div></div>`).join('');
-        }
-
-        function renderCinema() {
-            const container = document.getElementById('cinemaSlides');
-            container.innerHTML = cinemaSlides.map(slide => `<a href="${slide.videoUrl}" target="_blank" class="cinema-card"><div class="cinema-card-image" style="background-image: url('${slide.image}')"></div><div class="cinema-card-info"><div class="cinema-card-title">${getCinemaTitle(slide)}</div><div class="cinema-card-desc">${getCinemaDesc(slide)}</div></div></a>`).join('');
-        }
-
-        // ==================== ПЛЕЙЛИСТ ====================
-        const playlist = [
-            { titleRu: "A little rain", titleEn: "A little rain", artist: "Erich Erlenbach", url: "1_2E_A_little_rain_1.mp3" },
-            { titleRu: "Blues under the starry sky", titleEn: "Blues under the starry sky", artist: "Erich Erlenbach", url: "2_2E_Blues_under_the_starry_sky.mp3" }
-        ];
-
         let currentTrackIndex = 0;
         let audio = new Audio();
         let isPlaying = false;
 
+        // ==================== ПЛЕЙЛИСТ ИЗ 46 ТРЕКОВ ====================
+        const playlist = [
+            { titleRu: "A little rain", titleEn: "A little rain", artist: "Erich Erlenbach", url: "1_2E_A_little_rain_1.mp3" },
+            { titleRu: "Blues under the starry sky", titleEn: "Blues under the starry sky", artist: "Erich Erlenbach", url: "2_2E_Blues_under_the_starry_sky.mp3" },
+            { titleRu: "Breeze", titleEn: "Breeze", artist: "Erich Erlenbach", url: "3_2E_Breeze.mp3" },
+            { titleRu: "Classic Baroque violin G minor", titleEn: "Classic Baroque violin G minor", artist: "Erich Erlenbach", url: "4_2E_Classic_Baroque_violin_G_minor.mp3" },
+            { titleRu: "Classic Song based on S. Yesenin's poem", titleEn: "Classic Song based on S. Yesenin's poem", artist: "Erich Erlenbach", url: "5_2E_Classic_Song_based_onS.Yesenins_poem.mp3" },
+            { titleRu: "Classic Suite Bb major part 2", titleEn: "Classic Suite Bb major part 2", artist: "Erich Erlenbach", url: "6_2E_Classic_Suite_Bb_major_part_2.mp3" },
+            { titleRu: "Classic Suite D minor part 1", titleEn: "Classic Suite D minor part 1", artist: "Erich Erlenbach", url: "7_2E_Classic_Suite_D_minor_part_1.mp3" },
+            { titleRu: "Cozy rain", titleEn: "Cozy rain", artist: "Erich Erlenbach", url: "8_2E_Cozy_rain.mp3" },
+            { titleRu: "Dance of Golden Lights", titleEn: "Dance of Golden Lights", artist: "Erich Erlenbach", url: "9_2E_Dance_of_Golden_Lights.mp3" },
+            { titleRu: "Fantasy", titleEn: "Fantasy", artist: "Erich Erlenbach", url: "10_2E_Fantasy.mp3" },
+            { titleRu: "Guitar Blues", titleEn: "Guitar Blues", artist: "Erich Erlenbach", url: "11_2E_Guitar_Blues.mp3" },
+            { titleRu: "Mondes Parallèles", titleEn: "Mondes Parallèles", artist: "Erich Erlenbach", url: "12_2E_Mondes_Paralleles.mp3" },
+            { titleRu: "On the way to the dream", titleEn: "On the way to the dream", artist: "Erich Erlenbach", url: "13_2E_On_the_way_to_the_dream.mp3" },
+            { titleRu: "Sunrise", titleEn: "Sunrise", artist: "Erich Erlenbach", url: "14_2E_Sunrise.mp3" },
+            { titleRu: "Sunset Blues Part 1", titleEn: "Sunset Blues Part 1", artist: "Erich Erlenbach", url: "15_2E_Sunset_Blues_Part_1.mp3" },
+            { titleRu: "Sunset Blues Part 2", titleEn: "Sunset Blues Part 2", artist: "Erich Erlenbach", url: "16_2E_Sunset_Blues_Part_2.mp3" },
+            { titleRu: "The flute sings", titleEn: "The flute sings", artist: "Erich Erlenbach", url: "17_2E-The_flute_sings.mp3" },
+            { titleRu: "The path to the dream 1", titleEn: "The path to the dream 1", artist: "Erich Erlenbach", url: "18_2E_The_path_to_the_dream_1.mp3" },
+            { titleRu: "The path to the dream 2", titleEn: "The path to the dream 2", artist: "Erich Erlenbach", url: "19_2E_The_path_to_the_dream_2.mp3" },
+            { titleRu: "Waltz of the Surf", titleEn: "Waltz of the Surf", artist: "Erich Erlenbach", url: "20_2E_Waltz_of_the_Surf.mp3" },
+            { titleRu: "Bagatelle Op. 1", titleEn: "Bagatelle Op. 1", artist: "Erich Erlenbach", url: "21_Bagatelle_Op._1.mp3" },
+            { titleRu: "Bagatelle Op. 2", titleEn: "Bagatelle Op. 2", artist: "Erich Erlenbach", url: "22_Bagatelle_Op._2.mp3" },
+            { titleRu: "Bagatelle Op. 3", titleEn: "Bagatelle Op. 3", artist: "Erich Erlenbach", url: "23_Bagatelle_Op._3.mp3" },
+            { titleRu: "Bagatelle Op. 4", titleEn: "Bagatelle Op. 4", artist: "Erich Erlenbach", url: "24_Bagatelle_Op._4.mp3" },
+            { titleRu: "Bagatelle Op. 5", titleEn: "Bagatelle Op. 5", artist: "Erich Erlenbach", url: "25_Bagatelle_Op._5.mp3" },
+            { titleRu: "Bagatelle Op. 6", titleEn: "Bagatelle Op. 6", artist: "Erich Erlenbach", url: "26_Bagatelle_Op._6.mp3" },
+            { titleRu: "Bagatelle Op. 7", titleEn: "Bagatelle Op. 7", artist: "Erich Erlenbach", url: "27_Bagatelle_Op._7.mp3" },
+            { titleRu: "Bagatelle Op. 9", titleEn: "Bagatelle Op. 9", artist: "Erich Erlenbach", url: "28_Bagatelle_Op._9.mp3" },
+            { titleRu: "Bosch - The Seven Deadly Sins", titleEn: "Bosch - The Seven Deadly Sins", artist: "Erich Erlenbach", url: "29_Bosch_The_Seven_Deadly_Sins_and_the_Four_Last_Things.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Center)", titleEn: "Bosch - Garden of Earthly Delights (Center)", artist: "Erich Erlenbach", url: "30_Bosch_Triptych_Center_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Center 2)", titleEn: "Bosch - Garden of Earthly Delights (Center 2)", artist: "Erich Erlenbach", url: "31_Bosch_Triptych_Center_The_Garden_of_Earthly_Delights1.mp3" },
+            { titleRu: "Bosch - Garden of Earthly Delights (Right)", titleEn: "Bosch - Garden of Earthly Delights (Right)", artist: "Erich Erlenbach", url: "32_Bosch_Triptych_right_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - The Seven Deadly Sins (Triptych)", titleEn: "Bosch - The Seven Deadly Sins (Triptych)", artist: "Erich Erlenbach", url: "33_Bosch_Triptych_The_Seven_Deadly_Sins_and_the_Four_Last_Things.mp3" },
+            { titleRu: "Bosch - Left Triptych", titleEn: "Bosch - Left Triptych", artist: "Erich Erlenbach", url: "34_Bosch_Left_Triptych_The_Garden_of_Earthly_Delights.mp3" },
+            { titleRu: "Bosch - Triptych of Revelations", titleEn: "Bosch - Triptych of Revelations", artist: "Erich Erlenbach", url: "35_Bosch_Triptych_of_Revelations.mp3" },
+            { titleRu: "Dämon - Abbild", titleEn: "Dämon - Abbild", artist: "Erich Erlenbach", url: "36_Daemon_Abbild.mp3" },
+            { titleRu: "Dämon - Frucht der Erkenntnis", titleEn: "Dämon - Fruit of Knowledge", artist: "Erich Erlenbach", url: "37_Daemon_Frucht_der_Erkenntnis_1.mp3" },
+            { titleRu: "Dämon - Atem des Lebens", titleEn: "Dämon - Breath of Life", artist: "Erich Erlenbach", url: "38_Daemon_Atem_des_Lebens.mp3" },
+            { titleRu: "Damon - Edenic Love", titleEn: "Damon - Edenic Love", artist: "Erich Erlenbach", url: "39_Daemon_Edenic_Love.mp3" },
+            { titleRu: "Dämon - Im Garten Eden", titleEn: "Dämon - In the Garden of Eden", artist: "Erich Erlenbach", url: "40_Daemon_Im_Garten_Eden.mp3" },
+            { titleRu: "Dämon - Licht und Dunkelheit", titleEn: "Dämon - Light and Darkness", artist: "Erich Erlenbach", url: "41_Daemon_Licht_und_Dunkelheit.mp3" },
+            { titleRu: "Dämon - Samaels Urteil", titleEn: "Dämon - Samael's Judgment", artist: "Erich Erlenbach", url: "42_Daemon_Samaels_Urteil.mp3" },
+            { titleRu: "Demon - Dance of Light", titleEn: "Demon - Dance of Light", artist: "Erich Erlenbach", url: "43_Daemon_Dance_of_Light.mp3" },
+            { titleRu: "Demon - Exiles from Paradise", titleEn: "Demon - Exiles from Paradise", artist: "Erich Erlenbach", url: "44_Daemon_Exiles_from_Paradise.mp3" },
+            { titleRu: "Seasons - Winter Introduction 1", titleEn: "Seasons - Winter Introduction 1", artist: "Erich Erlenbach", url: "45_Seasons_Winter_Introduction_1.mp3" },
+            { titleRu: "Seasons - Winter Introduction 2", titleEn: "Seasons - Winter Introduction 2", artist: "Erich Erlenbach", url: "46_Seasons_Winter_Introduction_2.mp3" }
+        ];
+
+        // ==================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====================
+        function getBookTitle(book) { const titles = { ru: book.titleRu, en: book.titleEn, de: book.titleDe, ka: book.titleKa, ar: book.titleAr, he: book.titleHe, zh: book.titleZh, ja: book.titleJa }; return titles[currentLang] || book.titleRu; }
+        function getCinemaTitle(slide) { const titles = { ru: slide.titleRu, en: slide.titleEn, de: slide.titleDe, ka: slide.titleKa, ar: slide.titleAr, he: slide.titleHe, zh: slide.titleZh, ja: slide.titleJa }; return titles[currentLang] || slide.titleRu; }
+        function getCinemaDesc(slide) { const descs = { ru: slide.descRu, en: slide.descEn, de: slide.descDe, ka: slide.descKa, ar: slide.descAr, he: slide.descHe, zh: slide.descZh, ja: slide.descJa }; return descs[currentLang] || slide.descRu; }
         function getTrackTitle(track) { return currentLang === 'ru' ? track.titleRu : track.titleEn; }
+
+        function renderBookshelf() {
+            document.getElementById('bookshelfContainer').innerHTML = books.map(book => `<div class="book-card" onclick="window.open('${book.link}', '_blank')"><img src="${book.cover}" class="book-cover" alt="${getBookTitle(book)}" onerror="this.src='https://via.placeholder.com/180x240/d4af37/ffffff?text=${encodeURIComponent(book.titleRu.substring(0, 20))}'"><div class="book-info"><div class="book-title">${getBookTitle(book)}</div><div class="book-year">${book.year}</div></div></div>`).join('');
+        }
+
+        function renderCinema() {
+            document.getElementById('cinemaSlides').innerHTML = cinemaSlides.map(slide => `<a href="${slide.videoUrl}" target="_blank" class="cinema-card"><div class="cinema-card-image" style="background-image: url('${slide.image}')"></div><div class="cinema-card-info"><div class="cinema-card-title">${getCinemaTitle(slide)}</div><div class="cinema-card-desc">${getCinemaDesc(slide)}</div></div></a>`).join('');
+        }
+
         function loadTrack(index) {
             const track = playlist[index];
             if (!track) return;
@@ -1128,6 +1171,7 @@
             if (isPlaying) audio.play().catch(e => console.log('Playback error:', e));
             updatePlayPauseButton();
         }
+
         function updatePlayPauseButton() { document.getElementById('playPauseBtn').innerHTML = isPlaying ? '⏸️' : '▶️'; }
         function togglePlayPause() {
             if (audio.src) {
@@ -1139,13 +1183,15 @@
         }
         function nextTrack() { currentTrackIndex = (currentTrackIndex + 1) % playlist.length; loadTrack(currentTrackIndex); if (!isPlaying) { audio.play().catch(e => console.log('Playback error:', e)); isPlaying = true; updatePlayPauseButton(); } }
         function prevTrack() { currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length; loadTrack(currentTrackIndex); if (!isPlaying) { audio.play().catch(e => console.log('Playback error:', e)); isPlaying = true; updatePlayPauseButton(); } }
+        function formatTime(seconds) { const mins = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${mins}:${secs < 10 ? '0' : ''}${secs}`; }
+        
         audio.addEventListener('timeupdate', () => { if (audio.duration) { document.getElementById('progressFill').style.width = (audio.currentTime / audio.duration) * 100 + '%'; document.getElementById('currentTime').innerText = formatTime(audio.currentTime); document.getElementById('totalTime').innerText = formatTime(audio.duration); } });
         audio.addEventListener('ended', () => { nextTrack(); });
-        function formatTime(seconds) { const mins = Math.floor(seconds / 60); const secs = Math.floor(seconds % 60); return `${mins}:${secs < 10 ? '0' : ''}${secs}`; }
         document.getElementById('progressBar').addEventListener('click', (e) => { const rect = e.currentTarget.getBoundingClientRect(); const percent = (e.clientX - rect.left) / rect.width; if (audio.duration) audio.currentTime = percent * audio.duration; });
         document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
         document.getElementById('nextTrack').addEventListener('click', nextTrack);
         document.getElementById('prevTrack').addEventListener('click', prevTrack);
+        document.getElementById('playMoodBtn').addEventListener('click', () => { if (playlist.length > 0) { currentTrackIndex = 0; loadTrack(0); audio.play().catch(e => console.log('Playback error:', e)); isPlaying = true; updatePlayPauseButton(); } });
 
         // ==================== ПОГОДА ====================
         let currentLat = 41.7151, currentLon = 44.8271;
@@ -1180,7 +1226,6 @@
             return { icon: icons[period], title: titles[currentLang]?.[period] || titles.ru[period] };
         }
         function updateMoodWidget() { const mood = getMoodByTime(); document.getElementById('moodIcon').innerHTML = mood.icon; document.getElementById('moodTitle').innerHTML = mood.title; const labels = { ru: 'Настроение дня:', en: 'Mood of the day:' }; document.getElementById('moodLabel').innerHTML = labels[currentLang] || 'Mood of the day:'; }
-        function playMoodPlaylist() { if (playlist.length > 0) { currentTrackIndex = 0; loadTrack(0); audio.play().catch(e => console.log('Playback error:', e)); isPlaying = true; updatePlayPauseButton(); } }
 
         // ==================== ЧАСЫ ====================
         function updateClock() {
@@ -1190,14 +1235,13 @@
             document.getElementById('clock-date').innerText = now.toLocaleDateString(locales[currentLang] || 'ru-RU', { weekday: 'long', month: 'long', day: 'numeric' });
         }
 
-        // ==================== ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ====================
         function toggleTheme() { document.body.classList.toggle('light-theme'); localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark'); }
 
         // ==================== НАВИГАЦИЯ ====================
         function initNavigation() {
             const navButtons = document.querySelectorAll('.nav-btn');
             const sections = { top: document.getElementById('top'), quote: document.getElementById('quote'), bookshelf: document.getElementById('bookshelf'), cinema: document.getElementById('cinema'), bio: document.getElementById('bio'), media: document.getElementById('media'), lit: document.getElementById('lit'), 'footer-contacts': document.getElementById('footer-contacts') };
-            function scrollToElement(element) { if (element) { const offset = 100; const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - offset; window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); } }
+            function scrollToElement(element) { if (element) { const offset = 100; window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' }); } }
             function setActiveButton() {
                 let current = '';
                 const scrollPosition = window.scrollY + 150;
@@ -1211,13 +1255,16 @@
 
         // ==================== ПЕРЕВОДЫ ====================
         const translations = {
-            ru: { secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", sampleNoteTitle: "Избранное из творческого наследия", sampleNoteText: "Ниже представлена лишь малая часть произведений Эриха Эрлэнбаха...", navHome: "НАЧАЛО", navQuote: "ЦИТАТЫ ДНЯ", navBookshelf: "ИНТЕРАКТИВНАЯ ПОЛКА", navCinema: "КИНОСОЗНАНИЕ", navBio: "БИОГРАФИЯ АВТОРА", navMedia: "МЕДИАТЕКА", navLit: "ЛИТЕРАТУРА", navContacts: "КОНТАКТЫ / ЧАТ С АВТОРОМ", footerContactsTitle: "КОНТАКТЫ / ЧАТ С АВТОРОМ", legalName: "Музыкальный менеджер: Третьяков Дмитрий Александрович", legalInn: "ИНН: 507803117299", privacyLinkText: "Политика конфиденциальности", ofertLinkText: "Договор оферты", paymentLabel: "Принимаем к оплате", unionMembership: "Член Российского союза писателей", bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов...</p>` },
-            en: { secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", sampleNoteTitle: "A Selection from the Creative Legacy", sampleNoteText: "Below is just a small part of Erich Erlenbach's works...", navHome: "HOME", navQuote: "QUOTE OF THE DAY", navBookshelf: "INTERACTIVE BOOKSHELF", navCinema: "CINEMA CONSCIOUSNESS", navBio: "AUTHOR'S BIOGRAPHY", navMedia: "MEDIA LIBRARY", navLit: "LITERATURE", navContacts: "CONTACTS / CHAT WITH AUTHOR", footerContactsTitle: "CONTACTS / CHAT WITH AUTHOR", legalName: "Music Manager: Dmitry Alexandrovich Tretyakov", legalInn: "Tax ID (INN): 507803117299", privacyLinkText: "Privacy Policy", ofertLinkText: "Terms of Offer", paymentLabel: "Accepted payment methods", unionMembership: "Member of the Russian Union of Writers", bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers...</p>` }
+            ru: { secBooks: "📚 Интерактивная полка", secCinema: "🎬 Киносознание", secBio: "📖 Биография", secMedia: "🎵 Медиатека", secLit: "📚 Литература", title: "Эрих Эрлэнбах", subtitle: "Поэт • Писатель • Философ • Композитор", btnQuote: "🎭 Цитата дня", sampleNoteTitle: "Избранное из творческого наследия", sampleNoteText: "Ниже представлена лишь малая часть произведений Эриха Эрлэнбаха. Более полное собрание сочинений, включая литературные работы, музыкальные альбомы и философские эссе, доступны по ссылкам в разделах «Медиатека» и «Литература», которые пополняются из архива автора.", navHome: "НАЧАЛО", navQuote: "ЦИТАТЫ ДНЯ", navBookshelf: "ИНТЕРАКТИВНАЯ ПОЛКА", navCinema: "КИНОСОЗНАНИЕ", navBio: "БИОГРАФИЯ АВТОРА", navMedia: "МЕДИАТЕКА", navLit: "ЛИТЕРАТУРА", navContacts: "КОНТАКТЫ / ЧАТ С АВТОРОМ", footerContactsTitle: "КОНТАКТЫ / ЧАТ С АВТОРОМ", legalName: "Музыкальный менеджер: Третьяков Дмитрий Александрович", legalInn: "ИНН: 507803117299", privacyLinkText: "Политика конфиденциальности", ofertLinkText: "Договор оферты", paymentLabel: "Принимаем к оплате", unionMembership: "Член Российского союза писателей", bio: `<h3>🌟 Истоки и Синтез</h3><p>Эрих Эрлэнбах родился в 1962 году в Тбилиси в семье оперных артистов. Его родословная — это уникальное сплетение семи наций и трёх религий, объединившее Кавказ, Европу и немцев Поволжья.</p><h3>⚡ Путь Служения</h3><p>Более 40 лет Эрих посвятил службе в войсках (полковник в отставке). Параллельно с военной карьерой он выстраивал свою художественную вселенную, получив образование от музыкальной и шахматной школ до хореографического училища, конного, горнолыжного спорта и боевых искусств.</p><h3>🎨 Метапроект</h3><p>Творчество Эрлэнбаха — это единое полотно, где музыка, стих и проза являются гранями одного откровения. Он соединяет строгую форму классики с концепциями квантовой физики и библейскими сюжетами.</p>` },
+            en: { secBooks: "📚 Interactive Bookshelf", secCinema: "🎬 Cinema Consciousness", secBio: "📖 Biography", secMedia: "🎵 Media Library", secLit: "📚 Literature", title: "Erich Erlenbach", subtitle: "Poet • Writer • Philosopher • Composer", btnQuote: "🎭 Quote of the Day", sampleNoteTitle: "A Selection from the Creative Legacy", sampleNoteText: "Below is just a small part of Erich Erlenbach's works. A more complete collection of writings, music albums, and philosophical essays is available via the links in the 'Media Library' and 'Literature' sections, which are continually updated from the author's archive.", navHome: "HOME", navQuote: "QUOTE OF THE DAY", navBookshelf: "INTERACTIVE BOOKSHELF", navCinema: "CINEMA CONSCIOUSNESS", navBio: "AUTHOR'S BIOGRAPHY", navMedia: "MEDIA LIBRARY", navLit: "LITERATURE", navContacts: "CONTACTS / CHAT WITH AUTHOR", footerContactsTitle: "CONTACTS / CHAT WITH AUTHOR", legalName: "Music Manager: Dmitry Alexandrovich Tretyakov", legalInn: "Tax ID (INN): 507803117299", privacyLinkText: "Privacy Policy", ofertLinkText: "Terms of Offer", paymentLabel: "Accepted payment methods", unionMembership: "Member of the Russian Union of Writers", bio: `<h3>🌟 Origins & Synthesis</h3><p>Born in 1962 in Tbilisi to opera singers, Erich Erlenbach's heritage unites seven nations and three religions.</p><h3>⚡ Path of Service</h3><p>Erich served in the military for over 40 years (retired Colonel). Alongside his career, he developed an artistic universe, educated from music and chess schools to the choreographic college, equestrianism, alpine skiing, and martial arts.</p><h3>🎨 Meta-Project</h3><p>His work is a unified canvas where music, poetry, and prose are facets of one revelation. He blends classical forms with quantum physics and biblical motifs.</p>` }
         };
-        for (let lang of ['de', 'ka', 'ar', 'he', 'zh', 'ja']) { translations[lang] = { ...translations.ru, locale: lang }; }
+        for (let lang of ['de', 'ka', 'ar', 'he', 'zh', 'ja']) { translations[lang] = { ...translations.ru }; }
 
-        const quotes = { ru: ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии."], en: ["Everything that takes form in sound, rhyme or prose is but an earthly echo of Heavenly harmony."] };
-        function getRandomQuote() { const q = quotes[currentLang] || quotes.ru; document.getElementById('quote-text').innerText = `«${q[0]}»`; }
+        const quotes = {
+            ru: ["Всё, что обретает форму в звуке, в рифме или в прозе, есть лишь земное эхо Небесной гармонии.", "Музыка, стих и проза — три грани единого откровения.", "Творчество — это не профессия, а способ познания жизни.", "Истинная мудрость — в тишине между нотами."],
+            en: ["Everything that takes form in sound, rhyme or prose is but an earthly echo of Heavenly harmony.", "Music, poetry and prose are three facets of a single revelation.", "Creativity is not a profession, but a way of understanding life.", "True wisdom lies in the silence between notes."]
+        };
+        function getRandomQuote() { const q = quotes[currentLang] || quotes.ru; document.getElementById('quote-text').innerText = `«${q[Math.floor(Math.random() * q.length)]}»`; }
 
         function changeLang(lang) {
             currentLang = lang;
@@ -1253,7 +1300,6 @@
             getRandomQuote();
         }
 
-        document.getElementById('playMoodBtn').addEventListener('click', playMoodPlaylist);
         window.onload = () => {
             if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
             document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => changeLang(btn.dataset.lang)));
