@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Политика конфиденциальности | Erich Erlenbach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ios-bg: #000; 
+            --ios-card: rgba(28, 28, 30, 0.7);
+            --ios-accent: #d4af37; 
+            --ios-text: #fff;
+            --ios-secondary: #8e8e93; 
+            --blur: blur(25px) saturate(180%);
+            --border: 0.5px solid rgba(255, 255, 255, 0.15); 
+            --radius: 24px;
+        }
+        body.light-theme {
+            --ios-bg: #f2f2f7;
+            --ios-card: rgba(255, 255, 255, 0.7);
+            --ios-text: #1c1c1e;
+            --ios-secondary: #3a3a3c;
+            --border: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--ios-bg); 
+            color: var(--ios-text); 
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+            line-height: 1.6; 
+            padding: 40px 20px;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border-radius: var(--radius);
+            border: var(--border);
+            padding: 40px;
+        }
+        h1, h2 { color: var(--ios-accent); font-family: 'Cinzel', serif; margin-bottom: 20px; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.3rem; margin-top: 30px; }
+        p, li { margin-bottom: 15px; color: var(--ios-text); }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--ios-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover { opacity: 0.8; }
+        .lang-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: var(--blur);
+            border-radius: 30px;
+            padding: 6px 12px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 100;
+            border: var(--border);
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--ios-secondary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+        .lang-btn.active {
+            background: var(--ios-accent);
+            color: #000;
+        }
+        .lang-btn:hover { opacity: 0.8; }
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border: var(--border);
+            border-radius: 30px;
+            padding: 8px 16px;
+            cursor: pointer;
+            color: var(--ios-accent);
+            font-size: 0.8rem;
+            z-index: 100;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 25px; }
+            h1 { font-size: 1.5rem; }
+            .lang-bar {
+                top: 10px;
+                right: 10px;
+                padding: 4px 8px;
+            }
+            .lang-btn { font-size: 8px; padding: 2px 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-bar">
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="ka">KA</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+        <button class="lang-btn" data-lang="he">HE</button>
+        <button class="lang-btn" data-lang="zh">ZH</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+    </div>
+    <div class="theme-switch" id="themeSwitch">🌓 Тёмная тема</div>
+    <div class="container" id="contentContainer"></div>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Политика конфиденциальности",
+                operator: "Оператор: Третьяков Дмитрий Александрович",
+                inn: "ИНН: 507803117299",
+                email: "Email: d.a.tretiakof@gmail.com",
+                section1_title: "1. Общие положения",
+                section1_text: "1.1. Настоящая Политика конфиденциальности (далее – Политика) действует в отношении всей информации, которую Оператор может получить о пользователе во время использования им сайта <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> (далее – Сайт).<br>1.2. Используя Сайт, Пользователь выражает свое полное согласие с условиями настоящей Политики.",
+                section2_title: "2. Какие данные собираются",
+                section2_text: "2.1. Оператор собирает и обрабатывает следующую информацию:<br>- данные, предоставленные Пользователем при оформлении заказа (ФИО, адрес электронной почты, номер телефона);<br>- техническая информация, автоматически передаваемая Сайтом в процессе его использования (IP-адрес, информация о браузере, реферер, время доступа и т.д.).",
+                section3_title: "3. Цели обработки данных",
+                section3_text: "3.1. Оператор обрабатывает персональные данные Пользователя в следующих целях:<br>- идентификация Пользователя для оформления заказа и предоставления доступа к приобретенным цифровым товарам;<br>- связь с Пользователем в случае необходимости (подтверждение заказа, техническая поддержка);<br>- улучшение качества работы Сайта, проведение статистических и иных исследований.",
+                section4_title: "4. Условия обработки и передачи данных",
+                section4_text: "4.1. Оператор обрабатывает персональные данные Пользователя исключительно на условиях, предусмотренных Федеральным законом № 152-ФЗ «О персональных данных».<br>4.2. Оператор не раскрывает персональные данные Пользователя третьим лицам, за исключением случаев, прямо предусмотренных законодательством РФ.<br>4.3. Для проведения платежей Оператор может передавать необходимую информацию платёжной системе (ЮKassa, Robokassa и др.). Передача данных осуществляется в соответствии с договором и политикой конфиденциальности этой системы.",
+                section5_title: "5. Хранение и защита данных",
+                section5_text: "5.1. Оператор принимает необходимые организационные и технические меры для защиты персональных данных от неправомерного доступа, уничтожения, изменения, блокирования, копирования, распространения.<br>5.2. Персональные данные Пользователя хранятся в течение срока, необходимого для выполнения целей их обработки, если иное не предусмотрено законодательством РФ.",
+                section6_title: "6. Права Пользователя",
+                section6_text: "6.1. Пользователь вправе:<br>- требовать от Оператора уточнения своих персональных данных, их блокирования или уничтожения;<br>- отозвать свое согласие на обработку персональных данных путем направления письменного уведомления Оператору по электронной почте <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                section7_title: "7. Изменение Политики конфиденциальности",
+                section7_text: "7.1. Оператор оставляет за собой право вносить изменения в настоящую Политику. Изменения вступают в силу с момента их публикации на Сайте.",
+                section8_title: "8. Контактная информация",
+                section8_text: "По всем вопросам, связанным с обработкой персональных данных, можно обращаться по адресу <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                back: "← Вернуться на главную"
+            },
+            en: {
+                title: "Privacy Policy",
+                operator: "Operator: Dmitry Alexandrovich Tretyakov",
+                inn: "Tax ID (INN): 507803117299",
+                email: "Email: d.a.tretiakof@gmail.com",
+                section1_title: "1. General Provisions",
+                section1_text: "1.1. This Privacy Policy applies to all information that the Operator may receive about the user during their use of the website <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> (hereinafter – the Site).<br>1.2. By using the Site, the User expresses their full consent to the terms of this Policy.",
+                section2_title: "2. What Data is Collected",
+                section2_text: "2.1. The Operator collects and processes the following information:<br>- data provided by the User when placing an order (full name, email address, phone number);<br>- technical information automatically transmitted by the Site during its use (IP address, browser information, referrer, access time, etc.).",
+                section3_title: "3. Purposes of Data Processing",
+                section3_text: "3.1. The Operator processes the User's personal data for the following purposes:<br>- identification of the User for order processing and providing access to purchased digital goods;<br>- communication with the User if necessary (order confirmation, technical support);<br>- improving the quality of the Site, conducting statistical and other research.",
+                section4_title: "4. Conditions for Processing and Transfer of Data",
+                section4_text: "4.1. The Operator processes the User's personal data solely under the terms of Federal Law No. 152-FZ 'On Personal Data'.<br>4.2. The Operator does not disclose the User's personal data to third parties, except as expressly provided by the legislation of the Russian Federation.<br>4.3. To process payments, the Operator may transfer necessary information to the payment system (YooKassa, Robokassa, etc.). Data transfer is carried out in accordance with the agreement and privacy policy of that system.",
+                section5_title: "5. Storage and Protection of Data",
+                section5_text: "5.1. The Operator takes necessary organizational and technical measures to protect personal data from unauthorized access, destruction, alteration, blocking, copying, distribution.<br>5.2. The User's personal data is stored for the period necessary to fulfill the purposes of their processing, unless otherwise provided by the legislation of the Russian Federation.",
+                section6_title: "6. User Rights",
+                section6_text: "6.1. The User has the right to:<br>- demand that the Operator clarify their personal data, block or destroy it;<br>- withdraw their consent to the processing of personal data by sending a written notice to the Operator at <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                section7_title: "7. Changes to the Privacy Policy",
+                section7_text: "7.1. The Operator reserves the right to make changes to this Policy. Changes take effect upon their publication on the Site.",
+                section8_title: "8. Contact Information",
+                section8_text: "For all questions related to the processing of personal data, please contact <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                back: "← Back to homepage"
+            },
+            de: {
+                title: "Datenschutzerklärung",
+                operator: "Betreiber: Dmitri Alexandrowitsch Tretjakow",
+                inn: "Steuer-ID (INN): 507803117299",
+                email: "E-Mail: d.a.tretiakof@gmail.com",
+                section1_title: "1. Allgemeine Bestimmungen",
+                section1_text: "1.1. Diese Datenschutzerklärung gilt für alle Informationen, die der Betreiber über den Benutzer während der Nutzung der Website <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> (nachfolgend „Website“) erhalten kann.<br>1.2. Durch die Nutzung der Website erklärt der Benutzer sein vollständiges Einverständnis mit den Bedingungen dieser Richtlinie.",
+                section2_title: "2. Welche Daten werden erhoben?",
+                section2_text: "2.1. Der Betreiber sammelt und verarbeitet die folgenden Informationen:<br>- vom Benutzer bei der Bestellung bereitgestellte Daten (vollständiger Name, E-Mail-Adresse, Telefonnummer);<br>- technische Informationen, die von der Website während ihrer Nutzung automatisch übermittelt werden (IP-Adresse, Browserinformationen, Referrer, Zugriffszeit usw.).",
+                section3_title: "3. Zwecke der Datenverarbeitung",
+                section3_text: "3.1. Der Betreiber verarbeitet die personenbezogenen Daten des Benutzers für folgende Zwecke:<br>- Identifizierung des Benutzers zur Auftragsabwicklung und Gewährung des Zugriffs auf erworbene digitale Güter;<br>- Kommunikation mit dem Benutzer bei Bedarf (Auftragsbestätigung, technischer Support);<br>- Verbesserung der Qualität der Website, Durchführung statistischer und anderer Untersuchungen.",
+                section4_title: "4. Bedingungen für die Verarbeitung und Übermittlung von Daten",
+                section4_text: "4.1. Der Betreiber verarbeitet die personenbezogenen Daten des Benutzers ausschließlich zu den Bedingungen des Bundesgesetzes Nr. 152-FZ „Über personenbezogene Daten“.<br>4.2. Der Betreiber gibt die personenbezogenen Daten des Benutzers nicht an Dritte weiter, es sei denn, dies ist ausdrücklich in der Gesetzgebung der Russischen Föderation vorgesehen.<br>4.3. Zur Abwicklung von Zahlungen kann der Betreiber erforderliche Informationen an das Zahlungssystem (YooKassa, Robokassa usw.) übermitteln. Die Datenübermittlung erfolgt gemäß der Vereinbarung und der Datenschutzerklärung dieses Systems.",
+                section5_title: "5. Speicherung und Schutz von Daten",
+                section5_text: "5.1. Der Betreiber trifft die erforderlichen organisatorischen und technischen Maßnahmen, um personenbezogene Daten vor unbefugtem Zugriff, Zerstörung, Änderung, Blockierung, Vervielfältigung und Verbreitung zu schützen.<br>5.2. Die personenbezogenen Daten des Benutzers werden für den Zeitraum gespeichert, der zur Erfüllung der Zwecke ihrer Verarbeitung erforderlich ist, sofern die Gesetzgebung der Russischen Föderation nichts anderes vorsieht.",
+                section6_title: "6. Rechte des Benutzers",
+                section6_text: "6.1. Der Benutzer hat das Recht:<br>- vom Betreiber die Berichtigung seiner personenbezogenen Daten, deren Sperrung oder Löschung zu verlangen;<br>- seine Einwilligung zur Verarbeitung personenbezogener Daten durch eine schriftliche Mitteilung an den Betreiber unter <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a> zu widerrufen.",
+                section7_title: "7. Änderungen der Datenschutzerklärung",
+                section7_text: "7.1. Der Betreiber behält sich das Recht vor, Änderungen an dieser Richtlinie vorzunehmen. Änderungen treten mit ihrer Veröffentlichung auf der Website in Kraft.",
+                section8_title: "8. Kontaktinformationen",
+                section8_text: "Für alle Fragen im Zusammenhang mit der Verarbeitung personenbezogener Daten wenden Sie sich bitte an <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                back: "← Zurück zur Startseite"
+            },
+            ka: {
+                title: "კონფიდენციალურობის პოლიტიკა",
+                operator: "ოპერატორი: დმიტრი ალექსანდრეს ძე ტრეტიაკოვი",
+                inn: "საიდენტიფიკაციო ნომერი (INN): 507803117299",
+                email: "ელ.ფოსტა: d.a.tretiakof@gmail.com",
+                section1_title: "1. ზოგადი დებულებები",
+                section1_text: "1.1. ეს კონფიდენციალურობის პოლიტიკა ვრცელდება ყველა ინფორმაციაზე, რომელიც ოპერატორმა შეიძლება მიიღოს მომხმარებლის შესახებ ვებსაიტის <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> გამოყენების დროს.<br>1.2. ვებსაიტის გამოყენებით, მომხმარებელი გამოხატავს სრულ თანხმობას ამ პოლიტიკის პირობებზე.",
+                section2_title: "2. რა მონაცემები გროვდება",
+                section2_text: "2.1. ოპერატორი აგროვებს და ამუშავებს შემდეგ ინფორმაციას:<br>- მომხმარებლის მიერ შეკვეთის გაფორმებისას მოწოდებული მონაცემები (სახელი, გვარი, ელ.ფოსტა, ტელეფონის ნომერი);<br>- ტექნიკური ინფორმაცია, რომელიც ავტომატურად გადაიცემა ვებსაიტის მიერ მისი გამოყენების პროცესში (IP-მისამართი, ბრაუზერის ინფორმაცია, რეფერერი, წვდომის დრო და ა.შ.).",
+                section3_title: "3. მონაცემთა დამუშავების მიზნები",
+                section3_text: "3.1. ოპერატორი ამუშავებს მომხმარებლის პერსონალურ მონაცემებს შემდეგი მიზნებისთვის:<br>- მომხმარებლის იდენტიფიკაცია შეკვეთის გაფორმებისა და შეძენილ ციფრულ საქონელზე წვდომის უზრუნველსაყოფად;<br>- საჭიროების შემთხვევაში მომხმარებელთან კომუნიკაცია (შეკვეთის დადასტურება, ტექნიკური მხარდაჭერა);<br>- ვებსაიტის ხარისხის გაუმჯობესება, სტატისტიკური და სხვა კვლევების ჩატარება.",
+                section4_title: "4. მონაცემთა დამუშავებისა და გადაცემის პირობები",
+                section4_text: "4.1. ოპერატორი ამუშავებს მომხმარებლის პერსონალურ მონაცემებს მხოლოდ ფედერალური კანონის №152-ФЗ „პერსონალურ მონაცემთა შესახებ“ პირობებით.<br>4.2. ოპერატორი არ უმხელს მომხმარებლის პერსონალურ მონაცემებს მესამე პირებს, გარდა იმ შემთხვევებისა, რაც პირდაპირ არის გათვალისწინებული რუსეთის ფედერაციის კანონმდებლობით.<br>4.3. გადახდების განსახორციელებლად ოპერატორმა შეიძლება გადასცეს საჭირო ინფორმაცია გადახდის სისტემას (YooKassa, Robokassa და სხვ.). მონაცემთა გადაცემა ხორციელდება ამ სისტემის ხელშეკრულებისა და კონფიდენციალურობის პოლიტიკის შესაბამისად.",
+                section5_title: "5. მონაცემთა შენახვა და დაცვა",
+                section5_text: "5.1. ოპერატორი იღებს აუცილებელ ორგანიზაციულ და ტექნიკურ ზომებს პერსონალური მონაცემების არასანქცირებული წვდომის, განადგურების, შეცვლის, დაბლოკვის, კოპირებისა და გავრცელებისგან დასაცავად.<br>5.2. მომხმარებლის პერსონალური მონაცემები ინახება იმ პერიოდის განმავლობაში, რაც აუცილებელია მათი დამუშავების მიზნების შესასრულებლად, თუ რუსეთის ფედერაციის კანონმდებლობით სხვა რამ არ არის გათვალისწინებული.",
+                section6_title: "6. მომხმარებლის უფლებები",
+                section6_text: "6.1. მომხმარებელს უფლება აქვს:<br>- მოსთხოვოს ოპერატორს მისი პერსონალური მონაცემების დაზუსტება, დაბლოკვა ან განადგურება;<br>- გააუქმოს თანხმობა პერსონალური მონაცემების დამუშავებაზე წერილობითი შეტყობინების გაგზავნით ოპერატორზე ელექტრონული ფოსტის მისამართზე <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                section7_title: "7. კონფიდენციალურობის პოლიტიკის შეცვლა",
+                section7_text: "7.1. ოპერატორი იტოვებს უფლებას, შეიტანოს ცვლილებები ამ პოლიტიკაში. ცვლილებები ძალაში შედის მათი ვებსაიტზე გამოქვეყნების მომენტიდან.",
+                section8_title: "8. საკონტაქტო ინფორმაცია",
+                section8_text: "პერსონალურ მონაცემთა დამუშავებასთან დაკავშირებულ ყველა საკითხზე შეგიძლიათ მიმართოთ <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>-ზე.",
+                back: "← მთავარ გვერდზე დაბრუნება"
+            },
+            ar: {
+                title: "سياسة الخصوصية",
+                operator: "المشغل: ديمتري ألكساندروفيتش تريتياكوف",
+                inn: "الرقم الضريبي (INN): 507803117299",
+                email: "البريد الإلكتروني: d.a.tretiakof@gmail.com",
+                section1_title: "1. أحكام عامة",
+                section1_text: "1.1. تنطبق سياسة الخصوصية هذه على جميع المعلومات التي قد يتلقاها المشغل عن المستخدم أثناء استخدامه للموقع <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> (يشار إليه فيما يلي باسم الموقع).<br>1.2. باستخدام الموقع، يعبر المستخدم عن موافقته الكاملة على شروط هذه السياسة.",
+                section2_title: "2. ما هي البيانات التي يتم جمعها",
+                section2_text: "2.1. يقوم المشغل بجمع ومعالجة المعلومات التالية:<br>- البيانات التي يقدمها المستخدم عند تقديم الطلب (الاسم الكامل، عنوان البريد الإلكتروني، رقم الهاتف)؛<br>- المعلومات التقنية التي يرسلها الموقع تلقائياً أثناء استخدامه (عنوان IP، معلومات المتصفح، المحيل، وقت الوصول، إلخ).",
+                section3_title: "3. أغراض معالجة البيانات",
+                section3_text: "3.1. يقوم المشغل بمعالجة البيانات الشخصية للمستخدم للأغراض التالية:<br>- تحديد هوية المستخدم لمعالجة الطلب وتوفير الوصول إلى السلع الرقمية المشتراة؛<br>- التواصل مع المستخدم إذا لزم الأمر (تأكيد الطلب، الدعم الفني)؛<br>- تحسين جودة الموقع، وإجراء البحوث الإحصائية وغيرها.",
+                section4_title: "4. شروط معالجة ونقل البيانات",
+                section4_text: "4.1. يقوم المشغل بمعالجة البيانات الشخصية للمستخدم فقط وفقًا للشروط المنصوص عليها في القانون الاتحادي رقم 152-FZ 'بشأن البيانات الشخصية'.<br>4.2. لا يكشف المشغل عن البيانات الشخصية للمستخدم لأطراف ثالثة، إلا في الحالات المنصوص عليها صراحة في تشريعات الاتحاد الروسي.<br>4.3. لإجراء المدفوعات، يجوز للمشغل نقل المعلومات اللازمة إلى نظام الدفع (YooKassa، Robokassa، وما إلى ذلك). يتم نقل البيانات وفقًا لاتفاقية وسياسة الخصوصية الخاصة بتلك المنصة.",
+                section5_title: "5. تخزين البيانات وحمايتها",
+                section5_text: "5.1. يتخذ المشغل التدابير التنظيمية والتقنية اللازمة لحماية البيانات الشخصية من الوصول غير المصرح به، أو التدمير، أو التعديل، أو الحظر، أو النسخ، أو التوزيع.<br>5.2. يتم تخزين البيانات الشخصية للمستخدم طوال الفترة اللازمة لتحقيق أغراض معالجتها، ما لم ينص تشريع الاتحاد الروسي على خلاف ذلك.",
+                section6_title: "6. حقوق المستخدم",
+                section6_text: "6.1. يحق للمستخدم:<br>- مطالبة المشغل بتوضيح بياناته الشخصية، أو حظرها أو تدميرها؛<br>- سحب موافقته على معالجة البيانات الشخصية عن طريق إرسال إشعار كتابي إلى المشغل على البريد الإلكتروني <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                section7_title: "7. تغيير سياسة الخصوصية",
+                section7_text: "7.1. يحتفظ المشغل بالحق في إجراء تغييرات على هذه السياسة. تدخل التغييرات حيز التنفيذ بمجرد نشرها على الموقع.",
+                section8_title: "8. معلومات الاتصال",
+                section8_text: "لجميع الأسئلة المتعلقة بمعالجة البيانات الشخصية، يرجى الاتصال على <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                back: "← العودة إلى الصفحة الرئيسية"
+            },
+            he: {
+                title: "מדיניות פרטיות",
+                operator: "מפעיל: דמיטרי אלכסנדרוביץ' טרטיאקוב",
+                inn: "מספר זהות משלם המסים (INN): 507803117299",
+                email: "אימייל: d.a.tretiakof@gmail.com",
+                section1_title: "1. הוראות כלליות",
+                section1_text: "1.1. מדיניות פרטיות זו חלה על כל המידע שהמפעיל עשוי לקבל על המשתמש במהלך השימוש שלו באתר <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a> (להלן – האתר).<br>1.2. באמצעות השימוש באתר, המשתמש מביע את הסכמתו המלאה לתנאי מדיניות זו.",
+                section2_title: "2. אילו נתונים נאספים",
+                section2_text: "2.1. המפעיל אוסף ומעבד את המידע הבא:<br>- נתונים שמסר המשתמש בעת ביצוע ההזמנה (שם מלא, כתובת דוא\"ל, מספר טלפון);<br>- מידע טכני המועבר באופן אוטומטי על ידי האתר במהלך השימוש בו (כתובת IP, מידע על הדפדפן, מפנה, שעת גישה וכו').",
+                section3_title: "3. מטרות עיבוד הנתונים",
+                section3_text: "3.1. המפעיל מעבד את הנתונים האישיים של המשתמש למטרות הבאות:<br>- זיהוי המשתמש לעיבוד ההזמנה ומתן גישה למוצרים הדיגיטליים שנרכשו;<br>- תקשורת עם המשתמש במידת הצורך (אישור הזמנה, תמיכה טכנית);<br>- שיפור איכות האתר, ביצוע מחקרים סטטיסטיים ואחרים.",
+                section4_title: "4. תנאי עיבוד והעברת נתונים",
+                section4_text: "4.1. המפעיל מעבד את הנתונים האישיים של המשתמש אך ורק בתנאים הקבועים בחוק הפדרלי מס' 152-FZ 'על נתונים אישיים'.<br>4.2. המפעיל אינו חושף את הנתונים האישיים של המשתמש לצדדים שלישיים, למעט מקרים המפורשים בחוק הפדרציה הרוסית.<br>4.3. לצורך עיבוד תשלומים, המפעיל רשאי להעביר מידע נדרש למערכת התשלומים (YooKassa, Robokassa ועוד). העברת הנתונים מתבצעת בהתאם להסכם ולמדיניות הפרטיות של אותה מערכת.",
+                section5_title: "5. אחסון והגנת נתונים",
+                section5_text: "5.1. המפעיל נוקט באמצעים הארגוניים והטכניים הדרושים כדי להגן על מידע אישי מפני גישה בלתי מורשית, הרס, שינוי, חסימה, העתקה, הפצה.<br>5.2. הנתונים האישיים של המשתמש מאוחסנים למשך התקופה הדרושה להשגת מטרות עיבודם, אלא אם נקבע אחרת בחוק הפדרציה הרוסית.",
+                section6_title: "6. זכויות המשתמש",
+                section6_text: "6.1. למשתמש הזכות:<br>- לדרוש מהמפעיל הבהרת הנתונים האישיים שלו, חסימתם או השמדתם;<br>- לבטל את הסכמתו לעיבוד נתונים אישיים על ידי שליחת הודעה בכתב למפעיל בכתובת הדוא\"ל <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                section7_title: "7. שינוי מדיניות הפרטיות",
+                section7_text: "7.1. המפעיל שומר לעצמו את הזכות לבצע שינויים במדיניות זו. השינויים נכנסים לתוקף עם פרסומם באתר.",
+                section8_title: "8. פרטי התקשרות",
+                section8_text: "לכל שאלה הקשורה לעיבוד נתונים אישיים, אנא פנה אל <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>.",
+                back: "← חזרה לעמוד הראשי"
+            },
+            zh: {
+                title: "隐私政策",
+                operator: "运营者：德米特里·亚历山德罗维奇·特列季亚科夫",
+                inn: "纳税人识别号 (INN)：507803117299",
+                email: "电子邮件：d.a.tretiakof@gmail.com",
+                section1_title: "1. 总则",
+                section1_text: "1.1. 本隐私政策适用于运营者在使用网站 <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a>（以下简称“网站”）期间可能获取的用户的所有信息。<br>1.2. 使用本网站即表示用户完全同意本政策的条款。",
+                section2_title: "2. 收集哪些数据",
+                section2_text: "2.1. 运营者收集和处理以下信息：<br>- 用户在下订单时提供的数据（全名、电子邮件地址、电话号码）；<br>- 网站使用过程中自动传输的技术信息（IP地址、浏览器信息、来源、访问时间等）。",
+                section3_title: "3. 数据处理的目的",
+                section3_text: "3.1. 运营者出于以下目的处理用户的个人数据：<br>- 识别用户身份以处理订单并提供对所购买数字商品的访问权限；<br>- 必要时与用户沟通（订单确认、技术支持）；<br>- 提高网站质量，进行统计和其他研究。",
+                section4_title: "4. 数据处理和传输的条件",
+                section4_text: "4.1. 运营者仅在俄罗斯联邦第152-FZ号《个人数据法》规定的条件下处理用户的个人数据。<br>4.2. 除非俄罗斯联邦法律明确规定，否则运营者不会向第三方披露用户的个人数据。<br>4.3. 为处理付款，运营者可将必要信息传输给支付系统（YooKassa、Robokassa等）。数据传输根据该系统的协议和隐私政策进行。",
+                section5_title: "5. 数据的存储和保护",
+                section5_text: "5.1. 运营者采取必要的组织和技术措施，保护个人数据免遭未经授权的访问、破坏、更改、阻止、复制、分发。<br>5.2. 用户的个人数据存储期限为实现其处理目的所需的时间，除非俄罗斯联邦法律另有规定。",
+                section6_title: "6. 用户权利",
+                section6_text: "6.1. 用户有权：<br>- 要求运营者澄清其个人数据、阻止或销毁其个人数据；<br>- 通过向运营者发送书面通知至 <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a> 撤回其对处理个人数据的同意。",
+                section7_title: "7. 隐私政策的变更",
+                section7_text: "7.1. 运营者保留对本政策进行更改的权利。更改自其在网站上发布之日起生效。",
+                section8_title: "8. 联系信息",
+                section8_text: "有关个人数据处理的任何问题，请联系 <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a>。",
+                back: "← 返回首页"
+            },
+            ja: {
+                title: "プライバシーポリシー",
+                operator: "運営者：ドミトリー・アレクサンドロヴィチ・トレチャコフ",
+                inn: "納税者番号 (INN)：507803117299",
+                email: "メールアドレス: d.a.tretiakof@gmail.com",
+                section1_title: "1. 総則",
+                section1_text: "1.1. このプライバシーポリシーは、運営者がウェブサイト <a href='https://2e-erich-erlenbach.github.io/portfolio' style='color: var(--ios-accent);'>https://2e-erich-erlenbach.github.io/portfolio</a>（以下「サイト」）の利用中にユーザーに関して受け取る可能性のあるすべての情報に適用されます。<br>1.2. サイトを利用することにより、ユーザーは本ポリシーの条件に完全に同意したものとみなされます。",
+                section2_title: "2. 収集されるデータ",
+                section2_text: "2.1. 運営者は以下の情報を収集し処理します。<br>- ユーザーが注文時に提供するデータ（氏名、メールアドレス、電話番号）<br>- サイトの使用中に自動的に送信される技術情報（IPアドレス、ブラウザ情報、リファラー、アクセス時間など）。",
+                section3_title: "3. データ処理の目的",
+                section3_text: "3.1. 運営者は、以下の目的でユーザーの個人データを処理します。<br>- 注文処理と購入したデジタル商品へのアクセス提供のためのユーザー識別<br>- 必要に応じたユーザーとの連絡（注文確認、テクニカルサポート）<br>- サイトの品質向上、統計調査およびその他の調査の実施",
+                section4_title: "4. データ処理と転送の条件",
+                section4_text: "4.1. 運営者は、ロシア連邦の連邦法第152-FZ「個人データについて」に定められた条件でのみ、ユーザーの個人データを処理します。<br>4.2. 運営者は、ロシア連邦の法律で明示的に規定されている場合を除き、ユーザーの個人データを第三者に開示しません。<br>4.3. 支払い処理のため、運営者は必要な情報を決済システム（YooKassa、Robokassaなど）に転送する場合があります。データ転送は、そのシステムの契約およびプライバシーポリシーに従って行われます。",
+                section5_title: "5. データの保存と保護",
+                section5_text: "5.1. 運営者は、個人データへの不正アクセス、破壊、改ざん、ブロック、複製、配布から保護するために、必要な組織的・技術的措置を講じます。<br>5.2. ユーザーの個人データは、ロシア連邦の法律で別段の定めがない限り、その処理目的を達成するために必要な期間保存されます。",
+                section6_title: "6. ユーザーの権利",
+                section6_text: "6.1. ユーザーには以下の権利があります。<br>- 運営者に対して、自身の個人データの明確化、ブロック、または消去を要求する権利<br>- 運営者宛てに書面による通知を <a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a> 宛てに送信することにより、個人データ処理に対する同意を撤回する権利",
+                section7_title: "7. プライバシーポリシーの変更",
+                section7_text: "7.1. 運営者は、本ポリシーを変更する権利を留保します。変更はサイトに掲載された時点で発効します。",
+                section8_title: "8. 連絡先情報",
+                section8_text: "個人データの処理に関連するすべての質問は、<a href='mailto:d.a.tretiakof@gmail.com' style='color: var(--ios-accent);'>d.a.tretiakof@gmail.com</a> までお問い合わせください。",
+                back: "← ホームページに戻る"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function renderContent() {
+            const t = translations[currentLang];
+            const container = document.getElementById('contentContainer');
+            container.innerHTML = `
+                <h1>${t.title}</h1>
+                <p><strong>${t.operator}</strong><br>
+                <strong>${t.inn}</strong><br>
+                ${t.email}</p>
+                <h2>${t.section1_title}</h2>
+                <p>${t.section1_text}</p>
+                <h2>${t.section2_title}</h2>
+                <p>${t.section2_text}</p>
+                <h2>${t.section3_title}</h2>
+                <p>${t.section3_text}</p>
+                <h2>${t.section4_title}</h2>
+                <p>${t.section4_text}</p>
+                <h2>${t.section5_title}</h2>
+                <p>${t.section5_text}</p>
+                <h2>${t.section6_title}</h2>
+                <p>${t.section6_text}</p>
+                <h2>${t.section7_title}</h2>
+                <p>${t.section7_text}</p>
+                <h2>${t.section8_title}</h2>
+                <p>${t.section8_text}</p>
+                <a href="https://2e-erich-erlenbach.github.io/portfolio" class="back-link">${t.back}</a>
+            `;
+        }
+
+        function changeLang(lang) {
+            currentLang = lang;
+            renderContent();
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            document.body.dir = (lang === 'ar' || lang === 'he') ? 'rtl' : 'ltr';
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => changeLang(btn.dataset.lang));
+        });
+
+        // Тема (светлая/тёмная)
+        const themeSwitch = document.getElementById('themeSwitch');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-theme');
+        themeSwitch.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const isLight = document.body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeSwitch.innerText = isLight ? '☀️ Светлая тема' : '🌓 Тёмная тема';
+        });
+        if (document.body.classList.contains('light-theme')) themeSwitch.innerText = '☀️ Светлая тема';
+        else themeSwitch.innerText = '🌓 Тёмная тема';
+
+        // Инициализация
+        changeLang('ru');
+    </script>
+</body>
+</html>
