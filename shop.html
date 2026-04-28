@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Магазин | Erich Erlenbach</title>
+    <style>
+        :root {
+            --ios-bg: #000;
+            --ios-card: rgba(28, 28, 30, 0.7);
+            --ios-accent: #d4af37;
+            --ios-text: #fff;
+            --ios-secondary: #8e8e93;
+            --blur: blur(25px) saturate(180%);
+            --border: 0.5px solid rgba(255, 255, 255, 0.15);
+            --radius: 24px;
+            --wallpaper-url: url('bg-dark.jpg');
+        }
+        body.light-theme {
+            --ios-bg: #f2f2f7;
+            --ios-card: rgba(255, 255, 255, 0.7);
+            --ios-text: #1c1c1e;
+            --ios-secondary: #3a3a3c;
+            --border: 0.5px solid rgba(0, 0, 0, 0.1);
+            --wallpaper-url: url('bg-light.jpg');
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--ios-bg);
+            color: var(--ios-text);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
+        }
+        .wallpaper {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), var(--wallpaper-url);
+            background-size: cover; background-position: center;
+        }
+        body.light-theme .wallpaper {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.4)), var(--wallpaper-url);
+        }
+        header {
+            position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
+            height: 44px; background: rgba(0, 0, 0, 0.8); backdrop-filter: var(--blur);
+            border-radius: 22px; z-index: 2000; border: var(--border); display: flex;
+            align-items: center; padding: 0 15px; gap: 15px;
+        }
+        body.light-theme header { background: rgba(255, 255, 255, 0.8); }
+        .theme-toggle {
+            background: none; border: none; font-size: 1.2rem; cursor: pointer;
+            color: var(--ios-text); padding: 0 10px;
+        }
+        .back-link {
+            color: var(--ios-accent); text-decoration: none; font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .container {
+            max-width: 1200px; margin: 0 auto; padding: 100px 20px 60px;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem; color: var(--ios-accent); text-align: center;
+            margin-bottom: 40px;
+        }
+        .shop-category {
+            margin-bottom: 50px;
+        }
+        .category-title {
+            font-size: 1.5rem; color: var(--ios-accent); margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 2px solid var(--ios-accent);
+            display: inline-block;
+        }
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .shop-item {
+            background: var(--ios-card);
+            backdrop-filter: var(--blur);
+            border-radius: 20px;
+            padding: 20px;
+            border: var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .shop-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.2);
+        }
+        .item-icon { font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .item-title {
+            font-weight: 700; color: var(--ios-accent); font-size: 1.1rem;
+            text-align: center; margin-bottom: 5px;
+        }
+        .item-desc {
+            font-size: 0.75rem; color: var(--ios-secondary); text-align: center;
+            margin-bottom: 15px;
+        }
+        .item-price {
+            font-size: 1.5rem; font-weight: 700; color: var(--ios-accent);
+            text-align: center; margin: 10px 0;
+        }
+        .buy-btn {
+            width: 100%; background: var(--ios-accent); border: none;
+            padding: 12px; border-radius: 30px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; color: #000;
+        }
+        .buy-btn:hover { transform: scale(1.02); background: #e5c558; }
+        .buy-btn:active { transform: scale(0.98); }
+        .footer {
+            text-align: center; padding: 30px; border-top: var(--border);
+            margin-top: 40px;
+        }
+        .payment-icons {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 15px; margin: 20px 0;
+        }
+        .payment-icons img { height: 30px; width: auto; opacity: 0.7; }
+        @media (max-width: 768px) {
+            .container { padding: 80px 15px 40px; }
+            h1 { font-size: 1.8rem; }
+            .shop-grid { gap: 15px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wallpaper"></div>
+    
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <a href="/portfolio/" class="back-link">← На главную</a>
+    </header>
+
+    <div class="container">
+        <h1>🛒 Магазин произведений</h1>
+        
+        <!-- КНИГИ И РОМАНЫ -->
+        <div class="shop-category">
+            <div class="category-title">📚 Книги и романы</div>
+            <div class="shop-grid">
+                <div class="shop-item" data-product="Тени над Курфюрстендаммом" data-price="19.99">
+                    <div class="item-icon">📖</div>
+                    <div class="item-title">Тени над Курфюрстендаммом</div>
+                    <div class="item-desc">Книги 1, 2, 3. Мистический детектив</div>
+                    <div class="item-price">$19.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Наследие забытых снов" data-price="14.99">
+                    <div class="item-icon">📘</div>
+                    <div class="item-title">Наследие забытых снов</div>
+                    <div class="item-desc">Книги 1 и 2. Философская фантастика</div>
+                    <div class="item-price">$14.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Горизонт разума" data-price="12.99">
+                    <div class="item-icon">📙</div>
+                    <div class="item-title">Горизонт разума</div>
+                    <div class="item-desc">Книга 1. Интеллектуальный триллер</div>
+                    <div class="item-price">$12.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- МУЗЫКА И ПЕСНИ -->
+        <div class="shop-category">
+            <div class="category-title">🎵 Музыка и песни</div>
+            <div class="shop-grid">
+                <div class="shop-item" data-product="Dämon - Rock Opera" data-price="9.99">
+                    <div class="item-icon">🎭</div>
+                    <div class="item-title">Dämon - Рок-опера</div>
+                    <div class="item-desc">Полный альбом + бонус-треки (MP3)</div>
+                    <div class="item-price">$9.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Bagatelles Collection" data-price="7.99">
+                    <div class="item-icon">🎹</div>
+                    <div class="item-title">Bagatelles Op. 1-9</div>
+                    <div class="item-desc">Классические фортепианные миниатюры</div>
+                    <div class="item-price">$7.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Bosch Musical Trilogy" data-price="12.99">
+                    <div class="item-icon">🎨</div>
+                    <div class="item-title">Bosch Musical Trilogy</div>
+                    <div class="item-desc">Триптих по мотивам Босха</div>
+                    <div class="item-price">$12.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Seasons Complete" data-price="8.99">
+                    <div class="item-icon">🍂</div>
+                    <div class="item-title">Seasons - Complete</div>
+                    <div class="item-desc">Времена года. Полная версия</div>
+                    <div class="item-price">$8.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- СТИХИ И РАССКАЗЫ -->
+        <div class="shop-category">
+            <div class="category-title">📜 Стихи и рассказы</div>
+            <div class="shop-grid">
+                <div class="shop-item" data-product="Полное собрание стихов" data-price="14.99">
+                    <div class="item-icon">📜</div>
+                    <div class="item-title">Полное собрание стихов</div>
+                    <div class="item-desc">PDF + аудиоверсия в исполнении автора</div>
+                    <div class="item-price">$14.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Рассказы о Тбилиси" data-price="9.99">
+                    <div class="item-icon">🏔️</div>
+                    <div class="item-title">Рассказы о Тбилиси</div>
+                    <div class="item-desc">Сборник короткой прозы</div>
+                    <div class="item-price">$9.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Философские эссе" data-price="11.99">
+                    <div class="item-icon">💭</div>
+                    <div class="item-title">Философские эссе</div>
+                    <div class="item-desc">О музыке, времени и сознании</div>
+                    <div class="item-price">$11.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ВИДЕОКЛИПЫ -->
+        <div class="shop-category">
+            <div class="category-title">🎬 Видеоклипы</div>
+            <div class="shop-grid">
+                <div class="shop-item" data-product="Cinema Consciousness Collection" data-price="24.99">
+                    <div class="item-icon">🎥</div>
+                    <div class="item-title">Коллекция видеоклипов</div>
+                    <div class="item-desc">14 клипов в HD-качестве</div>
+                    <div class="item-price">$24.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+                <div class="shop-item" data-product="Dämon Visual Album" data-price="19.99">
+                    <div class="item-icon">🎬</div>
+                    <div class="item-title">Dämon - Visual Album</div>
+                    <div class="item-desc">Рок-опера с видеоинсталляциями</div>
+                    <div class="item-price">$19.99</div>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="payment-icons">
+            <img src="images/visa.svg" alt="Visa" onerror="this.style.display='none'">
+            <img src="images/mastercard.svg" alt="Mastercard" onerror="this.style.display='none'">
+            <img src="images/paypal.svg" alt="PayPal" onerror="this.style.display='none'">
+            <img src="images/mir.svg" alt="МИР" onerror="this.style.display='none'">
+            <img src="images/applepay.svg" alt="Apple Pay" onerror="this.style.display='none'">
+            <img src="images/googlepay.svg" alt="Google Pay" onerror="this.style.display='none'">
+        </div>
+        <div class="copyright">© 2025 Erich Erlenbach | Все права защищены</div>
+        <div style="margin-top: 10px;"><a href="/portfolio/" style="color: var(--ios-accent);">← Вернуться на главную</a></div>
+    </div>
+    
+    <script>
+        // Тёмная/светлая тема
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        }
+        
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-theme');
+        }
+        
+        // Обработка покупок
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const item = this.closest('.shop-item');
+                const product = item.dataset.product;
+                const price = item.dataset.price;
+                
+                // Показываем информацию о заказе
+                alert(`Товар: ${product}\nЦена: $${price}\n\n📧 Для оформления заказа напишите на email:\nd.a.tretiakof@gmail.com\n\nУкажите название товара, и мы отправим ссылку на оплату и скачивание.`);
+            });
+        });
+    </script>
+</body>
+</html>
