@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Магазин | Erich Erlenbach</title>
+    <title>Shop | Erich Erlenbach</title>
     <style>
         :root {
             --ios-bg: #000;
@@ -52,8 +52,16 @@
             background: none; border: none; font-size: 1.2rem; cursor: pointer;
             color: var(--ios-text); padding: 0 10px;
         }
+        .lang-nav { display: flex; gap: 4px; }
+        .lang-btn {
+            background: transparent; border: none; color: var(--ios-secondary);
+            font-size: 10px; font-weight: 700; padding: 6px 8px;
+            cursor: pointer; border-radius: 18px; transition: 0.3s;
+        }
+        .lang-btn.active { background: var(--ios-accent); color: #000; }
         .back-link {
             color: var(--ios-accent); text-decoration: none; font-size: 0.9rem;
+            margin-left: auto;
         }
         .back-link:hover { text-decoration: underline; }
         .container {
@@ -120,11 +128,15 @@
             gap: 15px; margin: 20px 0;
         }
         .payment-icons img { height: 30px; width: auto; opacity: 0.7; }
+        .copyright { font-size: 0.8rem; color: var(--ios-secondary); }
         @media (max-width: 768px) {
             .container { padding: 80px 15px 40px; }
             h1 { font-size: 1.8rem; }
             .shop-grid { gap: 15px; }
+            header { flex-wrap: wrap; height: auto; padding: 8px 12px; gap: 8px; }
+            .back-link { margin-left: 0; }
         }
+        body.rtl { direction: rtl; text-align: right; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -133,34 +145,39 @@
     
     <header>
         <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
-        <a href="/portfolio/" class="back-link">← На главную</a>
+        <div class="lang-nav">
+            <button class="lang-btn" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
+        </div>
+        <a href="/portfolio/" class="back-link" id="backLink">← На главную</a>
     </header>
 
     <div class="container">
-        <h1>🛒 Магазин произведений</h1>
+        <h1 id="shopTitle">🛒 Магазин произведений</h1>
         
         <!-- КНИГИ И РОМАНЫ -->
         <div class="shop-category">
-            <div class="category-title">📚 Книги и романы</div>
+            <div class="category-title" id="catBooks">📚 Книги и романы</div>
             <div class="shop-grid">
                 <div class="shop-item" data-product="Тени над Курфюрстендаммом" data-price="19.99">
                     <div class="item-icon">📖</div>
-                    <div class="item-title">Тени над Курфюрстендаммом</div>
-                    <div class="item-desc">Книги 1, 2, 3. Мистический детектив</div>
+                    <div class="item-title" id="book1Title">Тени над Курфюрстендаммом</div>
+                    <div class="item-desc" id="book1Desc">Книги 1, 2, 3. Мистический детектив</div>
                     <div class="item-price">$19.99</div>
-                    <button class="buy-btn">Купить</button>
+                    <button class="buy-btn" id="buyBtnText">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Наследие забытых снов" data-price="14.99">
                     <div class="item-icon">📘</div>
-                    <div class="item-title">Наследие забытых снов</div>
-                    <div class="item-desc">Книги 1 и 2. Философская фантастика</div>
+                    <div class="item-title" id="book2Title">Наследие забытых снов</div>
+                    <div class="item-desc" id="book2Desc">Книги 1 и 2. Философская фантастика</div>
                     <div class="item-price">$14.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Горизонт разума" data-price="12.99">
                     <div class="item-icon">📙</div>
-                    <div class="item-title">Горизонт разума</div>
-                    <div class="item-desc">Книга 1. Интеллектуальный триллер</div>
+                    <div class="item-title" id="book3Title">Горизонт разума</div>
+                    <div class="item-desc" id="book3Desc">Книга 1. Интеллектуальный триллер</div>
                     <div class="item-price">$12.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
@@ -169,33 +186,26 @@
         
         <!-- МУЗЫКА И ПЕСНИ -->
         <div class="shop-category">
-            <div class="category-title">🎵 Музыка и песни</div>
+            <div class="category-title" id="catMusic">🎵 Музыка и песни</div>
             <div class="shop-grid">
                 <div class="shop-item" data-product="Dämon - Rock Opera" data-price="9.99">
                     <div class="item-icon">🎭</div>
-                    <div class="item-title">Dämon - Рок-опера</div>
-                    <div class="item-desc">Полный альбом + бонус-треки (MP3)</div>
+                    <div class="item-title" id="music1Title">Dämon - Рок-опера</div>
+                    <div class="item-desc" id="music1Desc">Полный альбом + бонус-треки (MP3)</div>
                     <div class="item-price">$9.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Bagatelles Collection" data-price="7.99">
                     <div class="item-icon">🎹</div>
-                    <div class="item-title">Bagatelles Op. 1-9</div>
-                    <div class="item-desc">Классические фортепианные миниатюры</div>
+                    <div class="item-title" id="music2Title">Bagatelles Op. 1-9</div>
+                    <div class="item-desc" id="music2Desc">Классические фортепианные миниатюры</div>
                     <div class="item-price">$7.99</div>
-                    <button class="buy-btn">Купить</button>
-                </div>
-                <div class="shop-item" data-product="Bosch Musical Trilogy" data-price="12.99">
-                    <div class="item-icon">🎨</div>
-                    <div class="item-title">Bosch Musical Trilogy</div>
-                    <div class="item-desc">Триптих по мотивам Босха</div>
-                    <div class="item-price">$12.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Seasons Complete" data-price="8.99">
                     <div class="item-icon">🍂</div>
-                    <div class="item-title">Seasons - Complete</div>
-                    <div class="item-desc">Времена года. Полная версия</div>
+                    <div class="item-title" id="music3Title">Seasons - Complete</div>
+                    <div class="item-desc" id="music3Desc">Времена года. Полная версия</div>
                     <div class="item-price">$8.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
@@ -204,27 +214,20 @@
         
         <!-- СТИХИ И РАССКАЗЫ -->
         <div class="shop-category">
-            <div class="category-title">📜 Стихи и рассказы</div>
+            <div class="category-title" id="catPoetry">📜 Стихи и рассказы</div>
             <div class="shop-grid">
                 <div class="shop-item" data-product="Полное собрание стихов" data-price="14.99">
                     <div class="item-icon">📜</div>
-                    <div class="item-title">Полное собрание стихов</div>
-                    <div class="item-desc">PDF + аудиоверсия в исполнении автора</div>
+                    <div class="item-title" id="poetry1Title">Полное собрание стихов</div>
+                    <div class="item-desc" id="poetry1Desc">PDF + аудиоверсия в исполнении автора</div>
                     <div class="item-price">$14.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Рассказы о Тбилиси" data-price="9.99">
                     <div class="item-icon">🏔️</div>
-                    <div class="item-title">Рассказы о Тбилиси</div>
-                    <div class="item-desc">Сборник короткой прозы</div>
+                    <div class="item-title" id="poetry2Title">Рассказы о Тбилиси</div>
+                    <div class="item-desc" id="poetry2Desc">Сборник короткой прозы</div>
                     <div class="item-price">$9.99</div>
-                    <button class="buy-btn">Купить</button>
-                </div>
-                <div class="shop-item" data-product="Философские эссе" data-price="11.99">
-                    <div class="item-icon">💭</div>
-                    <div class="item-title">Философские эссе</div>
-                    <div class="item-desc">О музыке, времени и сознании</div>
-                    <div class="item-price">$11.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
             </div>
@@ -232,19 +235,19 @@
         
         <!-- ВИДЕОКЛИПЫ -->
         <div class="shop-category">
-            <div class="category-title">🎬 Видеоклипы</div>
+            <div class="category-title" id="catVideo">🎬 Видеоклипы</div>
             <div class="shop-grid">
                 <div class="shop-item" data-product="Cinema Consciousness Collection" data-price="24.99">
                     <div class="item-icon">🎥</div>
-                    <div class="item-title">Коллекция видеоклипов</div>
-                    <div class="item-desc">14 клипов в HD-качестве</div>
+                    <div class="item-title" id="video1Title">Коллекция видеоклипов</div>
+                    <div class="item-desc" id="video1Desc">14 клипов в HD-качестве</div>
                     <div class="item-price">$24.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
                 <div class="shop-item" data-product="Dämon Visual Album" data-price="19.99">
                     <div class="item-icon">🎬</div>
-                    <div class="item-title">Dämon - Visual Album</div>
-                    <div class="item-desc">Рок-опера с видеоинсталляциями</div>
+                    <div class="item-title" id="video2Title">Dämon - Visual Album</div>
+                    <div class="item-desc" id="video2Desc">Рок-опера с видеоинсталляциями</div>
                     <div class="item-price">$19.99</div>
                     <button class="buy-btn">Купить</button>
                 </div>
@@ -261,8 +264,8 @@
             <img src="images/applepay.svg" alt="Apple Pay" onerror="this.style.display='none'">
             <img src="images/googlepay.svg" alt="Google Pay" onerror="this.style.display='none'">
         </div>
-        <div class="copyright">© 2025 Erich Erlenbach | Все права защищены</div>
-        <div style="margin-top: 10px;"><a href="/portfolio/" style="color: var(--ios-accent);">← Вернуться на главную</a></div>
+        <div class="copyright" id="copyright">© 2025 Erich Erlenbach | Все права защищены</div>
+        <div style="margin-top: 10px;"><a href="/portfolio/" id="backLinkFooter" style="color: var(--ios-accent);">← Вернуться на главную</a></div>
     </div>
     
     <script>
@@ -276,6 +279,152 @@
             document.body.classList.add('light-theme');
         }
         
+        // ПЕРЕВОДЫ (русский, английский, грузинский)
+        const translations = {
+            ru: {
+                shopTitle: "🛒 Магазин произведений",
+                backLink: "← На главную",
+                catBooks: "📚 Книги и романы",
+                catMusic: "🎵 Музыка и песни",
+                catPoetry: "📜 Стихи и рассказы",
+                catVideo: "🎬 Видеоклипы",
+                book1Title: "Тени над Курфюрстендаммом",
+                book1Desc: "Книги 1, 2, 3. Мистический детектив",
+                book2Title: "Наследие забытых снов",
+                book2Desc: "Книги 1 и 2. Философская фантастика",
+                book3Title: "Горизонт разума",
+                book3Desc: "Книга 1. Интеллектуальный триллер",
+                music1Title: "Dämon - Рок-опера",
+                music1Desc: "Полный альбом + бонус-треки (MP3)",
+                music2Title: "Bagatelles Op. 1-9",
+                music2Desc: "Классические фортепианные миниатюры",
+                music3Title: "Seasons - Complete",
+                music3Desc: "Времена года. Полная версия",
+                poetry1Title: "Полное собрание стихов",
+                poetry1Desc: "PDF + аудиоверсия в исполнении автора",
+                poetry2Title: "Рассказы о Тбилиси",
+                poetry2Desc: "Сборник короткой прозы",
+                video1Title: "Коллекция видеоклипов",
+                video1Desc: "14 клипов в HD-качестве",
+                video2Title: "Dämon - Visual Album",
+                video2Desc: "Рок-опера с видеоинсталляциями",
+                buyBtn: "Купить",
+                copyright: "© 2025 Erich Erlenbach | Все права защищены",
+                alertMessage: "Для оформления заказа напишите на email: d.a.tretiakof@gmail.com\nУкажите название товара, и мы отправим ссылку на оплату и скачивание."
+            },
+            en: {
+                shopTitle: "🛒 Shop",
+                backLink: "← Back to home",
+                catBooks: "📚 Books & Novels",
+                catMusic: "🎵 Music & Songs",
+                catPoetry: "📜 Poetry & Stories",
+                catVideo: "🎬 Video Clips",
+                book1Title: "Shadows over Kurfürstendamm",
+                book1Desc: "Books 1, 2, 3. Mystical detective",
+                book2Title: "Legacy of Forgotten Dreams",
+                book2Desc: "Books 1 & 2. Philosophical fiction",
+                book3Title: "Horizon of Reason",
+                book3Desc: "Book 1. Intellectual thriller",
+                music1Title: "Dämon - Rock Opera",
+                music1Desc: "Full album + bonus tracks (MP3)",
+                music2Title: "Bagatelles Op. 1-9",
+                music2Desc: "Classical piano miniatures",
+                music3Title: "Seasons - Complete",
+                music3Desc: "Four seasons. Complete version",
+                poetry1Title: "Complete Poetry Collection",
+                poetry1Desc: "PDF + audio version read by author",
+                poetry2Title: "Stories of Tbilisi",
+                poetry2Desc: "Collection of short prose",
+                video1Title: "Video Clips Collection",
+                video1Desc: "14 clips in HD quality",
+                video2Title: "Dämon - Visual Album",
+                video2Desc: "Rock opera with video installations",
+                buyBtn: "Buy",
+                copyright: "© 2025 Erich Erlenbach | All rights reserved",
+                alertMessage: "To place an order, email: d.a.tretiakof@gmail.com\nSpecify the product name, and we will send a payment link and download instructions."
+            },
+            ka: {
+                shopTitle: "🛒 მაღაზია",
+                backLink: "← მთავარ გვერდზე",
+                catBooks: "📚 წიგნები და რომანები",
+                catMusic: "🎵 მუსიკა და სიმღერები",
+                catPoetry: "📜 ლექსები და მოთხრობები",
+                catVideo: "🎬 ვიდეოკლიპები",
+                book1Title: "ჩრდილები კურფიურსტენდამზე",
+                book1Desc: "წიგნები 1, 2, 3. მისტიკური დეტექტივი",
+                book2Title: "დავიწყებული სიზმრების მემკვიდრეობა",
+                book2Desc: "წიგნები 1 და 2. ფილოსოფიური ფანტასტიკა",
+                book3Title: "გონების ჰორიზონტი",
+                book3Desc: "წიგნი 1. ინტელექტუალური თრილერი",
+                music1Title: "Dämon - როკ-ოპერა",
+                music1Desc: "სრული ალბომი + ბონუს ტრეკები (MP3)",
+                music2Title: "Bagatelles Op. 1-9",
+                music2Desc: "კლასიკური საფორტეპიანო მინიატურები",
+                music3Title: "Seasons - სრული",
+                music3Desc: "ოთხი სეზონი. სრული ვერსია",
+                poetry1Title: "ლექსების სრული კრებული",
+                poetry1Desc: "PDF + აუდიო ვერსია ავტორის შესრულებით",
+                poetry2Title: "მოთხრობები თბილისზე",
+                poetry2Desc: "მოკლე პროზის კრებული",
+                video1Title: "ვიდეოკლიპების კოლექცია",
+                video1Desc: "14 კლიპი HD ხარისხში",
+                video2Title: "Dämon - Visual Album",
+                video2Desc: "როკ-ოპერა ვიდეო ინსტალაციებით",
+                buyBtn: "ყიდვა",
+                copyright: "© 2025 ერიხ ერლენბახი | ყველა უფლება დაცულია",
+                alertMessage: "შეკვეთის გასაფორმებლად მიწერეთ ელ.ფოსტაზე: d.a.tretiakof@gmail.com\nმიუთითეთ პროდუქტის სახელი და ჩვენ გამოგიგზავნით გადახდის ბმულს."
+            }
+        };
+        
+        let currentLang = 'ru';
+        
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+            
+            document.getElementById('shopTitle').innerText = t.shopTitle;
+            document.getElementById('backLink').innerHTML = t.backLink;
+            document.getElementById('backLinkFooter').innerHTML = t.backLink;
+            document.getElementById('catBooks').innerHTML = t.catBooks;
+            document.getElementById('catMusic').innerHTML = t.catMusic;
+            document.getElementById('catPoetry').innerHTML = t.catPoetry;
+            document.getElementById('catVideo').innerHTML = t.catVideo;
+            
+            document.getElementById('book1Title').innerText = t.book1Title;
+            document.getElementById('book1Desc').innerText = t.book1Desc;
+            document.getElementById('book2Title').innerText = t.book2Title;
+            document.getElementById('book2Desc').innerText = t.book2Desc;
+            document.getElementById('book3Title').innerText = t.book3Title;
+            document.getElementById('book3Desc').innerText = t.book3Desc;
+            
+            document.getElementById('music1Title').innerText = t.music1Title;
+            document.getElementById('music1Desc').innerText = t.music1Desc;
+            document.getElementById('music2Title').innerText = t.music2Title;
+            document.getElementById('music2Desc').innerText = t.music2Desc;
+            document.getElementById('music3Title').innerText = t.music3Title;
+            document.getElementById('music3Desc').innerText = t.music3Desc;
+            
+            document.getElementById('poetry1Title').innerText = t.poetry1Title;
+            document.getElementById('poetry1Desc').innerText = t.poetry1Desc;
+            document.getElementById('poetry2Title').innerText = t.poetry2Title;
+            document.getElementById('poetry2Desc').innerText = t.poetry2Desc;
+            
+            document.getElementById('video1Title').innerText = t.video1Title;
+            document.getElementById('video1Desc').innerText = t.video1Desc;
+            document.getElementById('video2Title').innerText = t.video2Title;
+            document.getElementById('video2Desc').innerText = t.video2Desc;
+            
+            document.getElementById('copyright').innerText = t.copyright;
+            
+            document.querySelectorAll('.buy-btn').forEach(btn => {
+                btn.innerText = t.buyBtn;
+            });
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+            document.body.classList.toggle('rtl', lang === 'ka');
+        }
+        
         // Обработка покупок
         document.querySelectorAll('.buy-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -283,11 +432,18 @@
                 const item = this.closest('.shop-item');
                 const product = item.dataset.product;
                 const price = item.dataset.price;
-                
-                // Показываем информацию о заказе
-                alert(`Товар: ${product}\nЦена: $${price}\n\n📧 Для оформления заказа напишите на email:\nd.a.tretiakof@gmail.com\n\nУкажите название товара, и мы отправим ссылку на оплату и скачивание.`);
+                const t = translations[currentLang];
+                alert(`Товар: ${product}\nЦена: $${price}\n\n${t.alertMessage}`);
             });
         });
+        
+        // Переключение языка
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
+        });
+        
+        // Установка русского языка по умолчанию
+        changeLanguage('ru');
     </script>
 </body>
 </html>
